@@ -9,6 +9,7 @@ To add a lab, create a directory here.  Fill in the Presenter template and stude
 #### Questions
 
 * Which open source license should we be using for this material?  Does the Foundation care which license we use?
+
     NAA - I was thinking the MIT License
 
 #### FYI
