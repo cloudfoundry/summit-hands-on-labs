@@ -81,7 +81,7 @@ Space:          development
 
 Now that you are logged in, you can deploy an application. In Cloud Foundry terms, this is a `cf push`.
 
-* Download the application: TODO
+* Download the application from Google Drive: https://drive.google.com/uc?id=1s3O1RvCgLdFWHaDT5Dglb_jZP8-P-fMB&export=download
 * You can use `cf push --help` to see the details of the `push` command.
 * Push your application:
 
@@ -91,7 +91,7 @@ Now that you are logged in, you can deploy an application. In Cloud Foundry term
 
   Let's dissect the command:
 
-  * `APP_NAME_IN_CF` is the name of the application in Cloud Foundry. It should be a descriptive name for use by humans. Example: TODO
+  * `APP_NAME_IN_CF` is the name of the application in Cloud Foundry. It should be a descriptive name for use by humans. Example: `first-push`.
   * `-p` is used to specify the path to the application bits on your local filesystem so the CLI knows what to upload (labeled `PATH_TO_APPLICATION_JAR` files above).
   * `-b java_buildpack` tells Cloud Foundry to use the Java Buildpack to stage the application. You could leave this off and let Cloud Foundry figure it out, but specifying via `-b` is slightly faster.
   * `--random-route` is used to ensure you don't have route conflicts with the other PWS users.
@@ -137,7 +137,7 @@ The Cloud Foundry marketplace shows you a list of available services that can be
 
   * `cleardb` is the service offering.
   * `spark` is the plan or tier.
-  * `SERVICE_NAME_IN_CF` is a descriptive name for this MySQL instance as referred to in Cloud Foundry. Again, this name is used by humans. Example: TODO
+  * `SERVICE_NAME_IN_CF` is a descriptive name for this MySQL instance as referred to in Cloud Foundry. Again, this name is used by humans. Example: `first-push-db`
 
 #### Checking Your Work
 
