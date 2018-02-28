@@ -222,6 +222,8 @@ If you refresh your app in a browser multiple times, you will see the `App Insta
 
 Behind the scenes, Cloud Foundry is also ensuring your application instances are running. To watch this, we will use the Pivotal Web Services console called `Apps Manager`.
 
+> Note: Apps Manager is a Pivotal-only add on to Cloud Foundry.  It is not part of open source Cloud Foundry. We are using it in the interest of time.
+
 * Log in at https://run.pivotal.io.
 * You will be taken to an organization where you should see a single space. Click on this space.
 * In the space, you will see your application. Click on the application name. This takes you to a detail view for your application.
