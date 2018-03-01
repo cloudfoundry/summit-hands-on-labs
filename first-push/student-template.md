@@ -36,7 +36,7 @@ If you installed the CLI successfully, you should be able to open a terminal win
 
 ```
 $ cf version
-6.33.0+a345ea34d.2017-11-20
+cf version 6.34.1+bbdf81482.2018-01-17
 ```
 
 ### Using the CLI
