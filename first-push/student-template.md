@@ -24,9 +24,11 @@ Learn how to:
 
 ### Installing the CLI
 
-The CLI (Command Line Interface) is used to interact with Cloud Foundry.
+The CLI (Command Line Interface) is used to interact with Cloud Foundry.  You can [follow the instructions](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) to install the CLI on your laptop (which gives you some useful bits like command line completion), or you can download pre-built binaries:
 
-* Follow the instructions to install the CLI on your laptop: https://docs.cloudfoundry.org/cf-cli/install-go-cli.html
+* [MacOS](https://packages.cloudfoundry.org/stable?release=macosx64-binary&source=github)
+* [Windows](https://packages.cloudfoundry.org/stable?release=windows64-exe&source=github)
+* [Linux](https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github)
 
 #### Checking Your Work
 
@@ -212,8 +214,8 @@ stack:             cflinuxfs2
 buildpack:         java_buildpack
 
      state      since                  cpu    memory         disk         details
-#0   running    2018-02-23T16:12:04Z   0.1%   383.9M of 1G   171M of 1G   
-#1   starting   2018-02-23T16:24:48Z   0.0%   75.8M of 1G    171M of 1G  
+#0   running    2018-02-23T16:12:04Z   0.1%   383.9M of 1G   171M of 1G
+#1   starting   2018-02-23T16:24:48Z   0.0%   75.8M of 1G    171M of 1G
 ```
 
 If you refresh your app in a browser multiple times, you will see the `App Instance Index` change. Cloud Foundry is load balancing your requests across both instances.
