@@ -227,7 +227,7 @@ Behind the scenes, Cloud Foundry is also ensuring your application instances are
 
 > Note: Apps Manager is a Pivotal-only add on to Cloud Foundry.  It is not part of open source Cloud Foundry. We are using it in the interest of time.
 
-1. Log in at https://run.pivotal.io.
+1. Log in at https://console.run.pivotal.io
 1. You will be taken to an organization where you should see a single space. **Click on this space.**
 1. In the space, you will see your application. **Click on the application name.** This takes you to a detail view for your application.
 
