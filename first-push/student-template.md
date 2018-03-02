@@ -86,13 +86,13 @@ Now that you are logged in, you can deploy an application. In Cloud Foundry term
 First, download the application from Google Drive:
 
 ```
-$ curl -sLo first-push.jar https://drive.google.com/uc?id=1s3O1RvCgLdFWHaDT5Dglb_jZP8-P-fMB&export=download
+$ curl -sLo first-push.jar "https://drive.google.com/uc?id=1s3O1RvCgLdFWHaDT5Dglb_jZP8-P-fMB&export=download"
 ```
 
 Now push your application:
 
 ```
-$ cf push first-push -p PATH_TO_APPLICATION_JAR -b java_buildpack --random-route
+$ cf push first-push -p first-push.jar -b java_buildpack --random-route
 ```
 
 > Note: You can use `cf push --help` to see the details of the `push` command.
@@ -110,19 +110,24 @@ If everything is successful you should see output for your running application:
 
 ```
 ...
-Showing health and status for app first-push in org cloudfoundry-training / space development as sgreenberg@rscale.io...
-OK
+name:              first-push
+requested state:   started
+instances:         1/1
+usage:             1G x 1 instances
+routes:            first-push-accountable-cat.cfapps.io
+last uploaded:     Fri 02 Mar 08:22:38 PST 2018
+stack:             cflinuxfs2
+buildpack:         java_buildpack
+start command:     JAVA_OPTS="-agentpath:$PWD/.java-buildpack/open_jdk_jre/bin/jvmkill-1.12.0_RELEASE=printHeapHistogram=1 -Djava.io.tmpdir=$TMPDIR
+                   -Djava.ext.dirs=$PWD/.java-buildpack/container_security_provider:$PWD/.java-buildpack/open_jdk_jre/lib/ext
+                   -Djava.security.properties=$PWD/.java-buildpack/java_security/java.security $JAVA_OPTS" &&
+                   CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-3.10.0_RELEASE -totMemory=$MEMORY_LIMIT
+                   -stackThreads=250 -loadedClasses=18837 -poolType=metaspace -vmOptions="$JAVA_OPTS") && echo JVM Memory Configuration: $CALCULATED_MEMORY &&
+                   JAVA_OPTS="$JAVA_OPTS $CALCULATED_MEMORY" && MALLOC_ARENA_MAX=2 SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java
+                   $JAVA_OPTS -cp $PWD/. org.springframework.boot.loader.JarLauncher
 
-requested state: started
-instances: 1/1
-usage: 1G x 1 instances
-urls: first-push-variable-ottoman.cfapps.io
-last uploaded: Fri Feb 23 16:01:58 UTC 2018
-stack: cflinuxfs2
-buildpack: java_buildpack
-
-     state     since                    cpu    memory         disk         details
-#0   running   2018-02-23 09:03:06 AM   0.0%   278.9M of 1G   171M of 1G
+     state     since                  cpu      memory         disk         details
+#0   running   2018-03-02T16:24:09Z   151.3%   373.2M of 1G   171M of 1G
 ```
 
 The application has a user interface that will show you some details about the application. You can copy the url of your application above and open it in a browser.
