@@ -49,15 +49,15 @@ You can run:
 
 ### Logging In
 
-When using Cloud Foundry, the first thing you need to do is target and log in to a Cloud Foundry instance.
+When using Cloud Foundry, the first thing you need to do is target and log in to a Cloud Foundry instance.  Run the following:
 
-* You can use `cf login --help` for details on how to log in. The `-a` flag will be needed to specify the API endpoint for Pivotal Web Services (api.run.pivotal.io).
+```
+$ cf login -a api.run.pivotal.io
+```
 
-  ```
-  $ cf login -a api.run.pivotal.io
-  ```
+The `-a` flag specifies the API endpoint for Pivotal Web Services (api.run.pivotal.io).  You will be prompted for your username and password (provided by your instructor).
 
-* You will be prompted for your username and password (provided by your instructor).
+> Note: You can use `cf login --help` for details on how to log in.
 
 #### Checking Your Work
 
@@ -81,20 +81,26 @@ Space:          development
 
 Now that you are logged in, you can deploy an application. In Cloud Foundry terms, this is a `cf push`.
 
-* Download the application from Google Drive: https://drive.google.com/uc?id=1s3O1RvCgLdFWHaDT5Dglb_jZP8-P-fMB&export=download
-* You can use `cf push --help` to see the details of the `push` command.
-* Push your application:
+First, download the application from Google Drive:
 
-  ```
-  $ cf push APP_NAME_IN_CF -p PATH_TO_APPLICATION_JAR -b java_buildpack --random-route
-  ```
+```
+$ curl -sLo first-push.jar https://drive.google.com/uc?id=1s3O1RvCgLdFWHaDT5Dglb_jZP8-P-fMB&export=download
+```
 
-  Let's dissect the command:
+Now push your application:
 
-  * `APP_NAME_IN_CF` is the name of the application in Cloud Foundry. It should be a descriptive name for use by humans. Example: `first-push`.
-  * `-p` is used to specify the path to the application bits on your local filesystem so the CLI knows what to upload (labeled `PATH_TO_APPLICATION_JAR` files above).
-  * `-b java_buildpack` tells Cloud Foundry to use the Java Buildpack to stage the application. You could leave this off and let Cloud Foundry figure it out, but specifying via `-b` is slightly faster.
-  * `--random-route` is used to ensure you don't have route conflicts with the other PWS users.
+```
+$ cf push APP_NAME_IN_CF -p PATH_TO_APPLICATION_JAR -b java_buildpack --random-route
+```
+
+> Note: You can use `cf push --help` to see the details of the `push` command.
+
+Let's dissect that command:
+
+* `APP_NAME_IN_CF` is the name of the application in Cloud Foundry. It should be a descriptive name for use by humans. Example: `first-push`.
+* `-p` specifies the path to the application bits on your local filesystem so the CLI knows what to upload (labeled `PATH_TO_APPLICATION_JAR` files above).
+* `-b java_buildpack` tells Cloud Foundry to use the Java Buildpack to stage the application. You could leave this off and let Cloud Foundry figure it out, but specifying via `-b` is slightly faster.
+* `--random-route` is used to ensure you don't have route conflicts with the other PWS users.
 
 #### Checking Your Work
 
@@ -123,21 +129,21 @@ The application has a user interface that will show you some details about the a
 
 Your app is now running, but it is using an in memory database. If you viewed your application in a browser, you will see it is using an in memory database called `H2`. We need to move this "state" to an external MySQL database.
 
-The Cloud Foundry marketplace shows you a list of available services that can be provisioned on demand.
+The Cloud Foundry marketplace is a collection of services that can be provisioned on demand.  We will be using a MySQL service from `cleardb`.
 
-* You can see the marketplace by running `cf marketplace`. We will be using a MySQL service from `cleardb`.
+Provision a new instance using `cf create-service`:
 
-* You can provision a new instance using `cf create-service`:
+```
+$ cf create-service cleardb spark SERVICE_NAME_IN_CF
+```
 
-  ```
-  $ cf create-service cleardb spark SERVICE_NAME_IN_CF
-  ```
+> Note: You can list all available services in the marketplace by running `cf marketplace`.
 
-  Let's dissect the above command:
+Let's dissect the above command:
 
-  * `cleardb` is the service offering.
-  * `spark` is the plan or tier.
-  * `SERVICE_NAME_IN_CF` is a descriptive name for this MySQL instance as referred to in Cloud Foundry. Again, this name is used by humans. Example: `first-push-db`
+* `cleardb` is the service offering.
+* `spark` is the plan or tier.
+* `SERVICE_NAME_IN_CF` is a descriptive name for this MySQL instance as referred to in Cloud Foundry. Again, this name is used by humans. Example: `first-push-db`
 
 #### Checking Your Work
 
@@ -154,19 +160,17 @@ first-push-db   cleardb   spark                create succeeded
 
 ### Binding a Database
 
-Now that you have a database instance, you need to tell your application about it.
+Now that you have a database instance, you need to tell your application about it:
 
-* You can do this using `cf bind-service`:
+```
+$ cf bind-service APP_NAME_IN_CF SERVICE_NAME_IN_CF
+```
 
-  ```
-  $ cf bind-service APP_NAME_IN_CF SERVICE_NAME_IN_CF
-  ```
+Now restart your application so that it picks up the change:
 
-* You then need to restart your application so that it picks up the change.
-
-  ```
-  $ cf restart APP_NAME_IN_CF
-  ```
+```
+$ cf restart APP_NAME_IN_CF
+```
 
 Binding passes credentials for the database instance to your app through environment variables.
 
@@ -187,12 +191,11 @@ You can also refresh your app in the browser and should see it is now using MySQ
 
 ### Scaling
 
-Now that you have state moved to an external service, we can safely scale our application up.
+Now that you have state moved to an external service, we can safely scale our application up to more than one instance:
 
-* You can scale to 2 instances using `cf scale`:
-  ```
-  $ cf scale APP_NAME_IN_CF -i 2
-  ```
+```
+$ cf scale APP_NAME_IN_CF -i 2
+```
 
 #### Checking Your Work
 
@@ -212,8 +215,8 @@ stack:             cflinuxfs2
 buildpack:         java_buildpack
 
      state      since                  cpu    memory         disk         details
-#0   running    2018-02-23T16:12:04Z   0.1%   383.9M of 1G   171M of 1G   
-#1   starting   2018-02-23T16:24:48Z   0.0%   75.8M of 1G    171M of 1G  
+#0   running    2018-02-23T16:12:04Z   0.1%   383.9M of 1G   171M of 1G
+#1   starting   2018-02-23T16:24:48Z   0.0%   75.8M of 1G    171M of 1G
 ```
 
 If you refresh your app in a browser multiple times, you will see the `App Instance Index` change. Cloud Foundry is load balancing your requests across both instances.
@@ -224,15 +227,15 @@ Behind the scenes, Cloud Foundry is also ensuring your application instances are
 
 > Note: Apps Manager is a Pivotal-only add on to Cloud Foundry.  It is not part of open source Cloud Foundry. We are using it in the interest of time.
 
-* Log in at https://run.pivotal.io.
-* You will be taken to an organization where you should see a single space. Click on this space.
-* In the space, you will see your application. Click on the application name. This takes you to a detail view for your application.
+1. Log in at https://run.pivotal.io.
+1. You will be taken to an organization where you should see a single space. **Click on this space.**
+1. In the space, you will see your application. **Click on the application name.** This takes you to a detail view for your application.
 
 The application has an endpoint that will programmatically kill the instance answering the request. You will access this endpoint in one browser window before quickly switching back to the `Apps Manager` window.
 
-* Go to your application in a browser. Tack on `/kill` to the URL and hit enter.
-* Switch back to the `Apps Manager` window to see the crash and subsequent recovery.
-* You can also continue to access your root application URL (not the `/kill` endpoint) and see that you are routed to the live, running instance.
+1. Go to your application in a browser. Tack on `/kill` to the URL and hit enter.
+1. Switch back to the `Apps Manager` window to see the crash and subsequent recovery.
+1. You can also continue to access your root application URL (not the `/kill` endpoint) and see that you are routed to the live, running instance.
 
 ## Learning Objectives Review
 
