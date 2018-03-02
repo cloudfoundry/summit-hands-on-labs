@@ -41,7 +41,7 @@ $ cf version
 
 The CLI is a self-documenting tool. You will use the `help` capability to complete the exercises below.
 
-You can run:
+For example, you can run:
 
 * `cf help` to see a list of the most commonly used commands
 * `cf help -a` to see a list of all the available commands
@@ -90,14 +90,14 @@ $ curl -sLo first-push.jar https://drive.google.com/uc?id=1s3O1RvCgLdFWHaDT5Dglb
 Now push your application:
 
 ```
-$ cf push APP_NAME_IN_CF -p PATH_TO_APPLICATION_JAR -b java_buildpack --random-route
+$ cf push first-push -p PATH_TO_APPLICATION_JAR -b java_buildpack --random-route
 ```
 
 > Note: You can use `cf push --help` to see the details of the `push` command.
 
 Let's dissect that command:
 
-* `APP_NAME_IN_CF` is the name of the application in Cloud Foundry. It should be a descriptive name for use by humans. Example: `first-push`.
+* `first-push` is the name of the application in Cloud Foundry. It should be a descriptive name for use by humans, and can be whatever you want.
 * `-p` specifies the path to the application bits on your local filesystem so the CLI knows what to upload (labeled `PATH_TO_APPLICATION_JAR` files above).
 * `-b java_buildpack` tells Cloud Foundry to use the Java Buildpack to stage the application. You could leave this off and let Cloud Foundry figure it out, but specifying via `-b` is slightly faster.
 * `--random-route` is used to ensure you don't have route conflicts with the other PWS users.
@@ -134,7 +134,7 @@ The Cloud Foundry marketplace is a collection of services that can be provisione
 Provision a new instance using `cf create-service`:
 
 ```
-$ cf create-service cleardb spark SERVICE_NAME_IN_CF
+$ cf create-service cleardb spark first-push-db
 ```
 
 > Note: You can list all available services in the marketplace by running `cf marketplace`.
@@ -143,7 +143,7 @@ Let's dissect the above command:
 
 * `cleardb` is the service offering.
 * `spark` is the plan or tier.
-* `SERVICE_NAME_IN_CF` is a descriptive name for this MySQL instance as referred to in Cloud Foundry. Again, this name is used by humans. Example: `first-push-db`
+* `first-push-db` is a descriptive name for this MySQL instance as referred to in Cloud Foundry. Again, this name is used by humans, and can be whatever you want.
 
 #### Checking Your Work
 
@@ -163,13 +163,13 @@ first-push-db   cleardb   spark                create succeeded
 Now that you have a database instance, you need to tell your application about it:
 
 ```
-$ cf bind-service APP_NAME_IN_CF SERVICE_NAME_IN_CF
+$ cf bind-service first-push first-push-db
 ```
 
 Now restart your application so that it picks up the change:
 
 ```
-$ cf restart APP_NAME_IN_CF
+$ cf restart first-push
 ```
 
 Binding passes credentials for the database instance to your app through environment variables.
@@ -194,7 +194,7 @@ You can also refresh your app in the browser and should see it is now using MySQ
 Now that you have state moved to an external service, we can safely scale our application up to more than one instance:
 
 ```
-$ cf scale APP_NAME_IN_CF -i 2
+$ cf scale first-push -i 2
 ```
 
 #### Checking Your Work
@@ -202,7 +202,7 @@ $ cf scale APP_NAME_IN_CF -i 2
 You can see the status of your app by running `cf app`:
 
 ```
-$ cf app APP_NAME_IN_CF
+$ cf app first-push
 Showing health and status for app first-push in org cloudfoundry-training / space development as sgreenberg@rscale.io...
 
 name:              first-push
