@@ -1,0 +1,21 @@
+{
+  "services": [{
+    "name": "otherservice",
+    "description": "some mediocore service",
+    "bindable": true,
+    "plans": [{
+      "name": "plan-1",
+      "description": "A fantastic service plan that does SO MUCH"
+    }, {
+      "name": "plan-2",
+      "description": "A fantastic service plan that does SO MUCH"
+    }]}, {
+    "name": "handsonlab",
+    "description": "some fantastic service",
+    "bindable": true,
+    "plans": [{
+      "name": "plan-a",
+      "description": "A fantastic service plan that does SO MUCH"
+    }]
+  }]
+}
