@@ -16,42 +16,54 @@ At the end of this lab, students will:
 
 ## Lab
 
-TODO
 Basic flow:
-1. Create the service broker
-2. Deploy the service broker to your CF space
-3. CF walkthrough
+1. Introduction
+ - Who we are, what OSBAPI is, what SAPI is
+ - Say exactly what we're going to do. (One sentence)
+2. Create the service broker
+ - Explain basics of what a service broker is.
+ - Should have a slide with a basic definition/explanation.
+ - Open up the service broker code and catalog (explain services, plans, and instances)
+3. Deploy the service broker to your CF space
+ - cf push broker
+ - cf app broker
+4. CF walkthrough
 -- Register broker
--- List plans ?
+ - cf create-service-broker <..> --space-scoped
+-- List plans
+ - cf marketplace (to see your services)
+ - cf service-brokers (to see your broker)
 -- Create a service instance
+ - cf create-service my-service-instance
+ - cf service my-service-instance
 -- Create a simple app
+ - Open up the CF sample app and just show what it's doing.
+ - cf push my-app
 -- Bind to simple app
-4. K8s walkthrough
+ - curl <app-address> 
+ - cf bind-service my-app my-service-instance
+ - cf service my-service-instance
+ - cf restart my-app
+ - curl <app-address>
+5. K8s walkthrough
 -- Register broker
+kubectl create -f broker.yaml
 -- List plans ?
+kubectl get clusterservicebrokers broker-name -o yaml
+kubectl get clusterserviceclasses -o=custom-columns=NAME:.metadata.name,EXTERNAL\ NAME:.spec.externalName
+kubectl get clusterserviceplans -o=custom-columns=NAME:.metadata.name,EXTERNAL\ NAME:.spec.externalName
 -- Create a service instance
+kubectl get serviceinstances -n user_ns my-instance -o yaml
 -- Create a simple app
--- Bind to simple app
-Simple app (in progress):
-```
-var http = require('http');
-var util = require('util');
+- show them the server.js and Dockerfile
+- Unknown: push the image? have their username as the image tag
+kubectl run my-app --image=hello-node:v1 --port=8080
 
-var handleRequest = function(request, response) {
-  console.log('Received request for URL: ' + request.url);
-  response.writeHead(200);
-  response.end('Hello World!' + "\nENV:\n" + util.inspect(process.env));
-};
-var www = http.createServer(handleRequest);
-www.listen(8080);
-```
-Dockerfile:
-```
-FROM node:6.9.2
-EXPOSE 8080
-COPY server.js .
-CMD node server.js
-```
+-- Bind to simple app
+1. create the service binding
+kubectl create -f service-binding.yml
+2. Add secrets to the app
+kubectl edit deployment my-app (and add mapping from secret to env vars) 
 
 ## Learning Objectives Review
 

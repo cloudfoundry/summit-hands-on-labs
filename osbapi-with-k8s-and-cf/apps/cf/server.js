@@ -1,14 +1,18 @@
 var http = require('http');
 
 var handleRequest = function(request, response) {
-  try {
-    var creds = JSON.parse(process.env.VCAP_SERVICES).otherservice[0].credentials;
-    response.writeHead(200);
-    response.end('USERNAME: ' + creds.username + "\nPASSWORD: " + creds.password);
-  } catch(err) {
-    response.writeHead(418);
-    response.end("I'm a teapot and I'm confused.");
+  var parsed_services = JSON.parse(process.env.VCAP_SERVICES)
+  var message = '';
+  if (Object.keys(parsed_services).length > 0) {
+    service_name = Object.keys(parsed_services)[0];
+    var creds = parsed_services[service_name][0].credentials;
+    message = "Credentials available: username is '" + creds.username + "' and password is '" + creds.password+ "'\n";
+  } else {
+    message = 'No service instances are bound to this app.\n';
   }
+
+  response.writeHead(200);
+  response.end(message);
 };
 
 http.createServer(handleRequest).listen(process.env.PORT);
