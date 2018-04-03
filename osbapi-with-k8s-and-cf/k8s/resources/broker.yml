@@ -1,0 +1,7 @@
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ClusterServiceBroker
+metadata:
+  name: NAMESPACE-broker
+spec:
+  url: <your broker url>
+  insecureSkipTLSVerify: true

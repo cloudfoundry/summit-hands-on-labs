@@ -1,27 +1,27 @@
 {
   "services": [{
-    "name": "fake_mysql",
+    "name": "fake-mysql",
     "id": "will be replaced by server.js",
     "description": "A fake non-operational mysql service",
     "bindable": true,
     "plans": [{
-      "name": "top_tier",
+      "name": "top-tier",
       "id": "will be replaced by server.js",
       "description": "A fantastic service plan that does SO MUCH"
     }, {
     "name": "free",
     "description": "A limited service plan offering that does not do so much"
     }]}, {
-    "name": "fake_redis",
+    "name": "fake-redis",
     "id": "will be replaced by server.js",
     "description": "The best fake redis",
     "bindable": true,
     "plans": [{
-      "name": "small_mem",
+      "name": "small-mem",
       "id": "will be replaced by server.js",
       "description": "A fake redis that pretends to offer a small amount of storage"
     }, {
-      "name": "large_mem",
+      "name": "large-mem",
       "description": "A fake redis that pretends to offer a large amount of storage"
     }]
   }]

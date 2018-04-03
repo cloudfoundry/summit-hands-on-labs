@@ -25,8 +25,8 @@ Basic flow:
  - Should have a slide with a basic definition/explanation.
  - Open up the service broker code and catalog (explain services, plans, and instances)
 3. Deploy the service broker to your CF space
- - cf push broker
- - cf app broker
+ - cf push
+ - cf apps
 4. CF walkthrough
 -- Register broker
  - cf create-service-broker <..> --space-scoped
@@ -64,6 +64,14 @@ kubectl run my-app --image=hello-node:v1 --port=8080
 kubectl create -f service-binding.yml
 2. Add secrets to the app
 kubectl edit deployment my-app (and add mapping from secret to env vars) 
+
+
+Problems with k8s broker:
+k8s user Auth not working (rbac)
+check that names are valid now
+see if it's a problem that basic auth wasn't provided to broker
+Later:
+(later figure out how to trust the cluster ca)
 
 ## Learning Objectives Review
 

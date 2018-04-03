@@ -1,0 +1,8 @@
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceBinding
+metadata:
+  name: r1-binding
+  namespace: alex-and-jen
+spec:
+  instanceRef:
+    name: r1
