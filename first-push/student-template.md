@@ -9,7 +9,6 @@ In this hands on lab, you will deploy a simple application, bind it to a databas
 ### Prerequisites
 
 * Comfortable using a terminal/command line
-* A laptop with the ability to install the Cloud Foundry CLI
 
 ### Learning Objectives
 
@@ -22,24 +21,14 @@ Learn how to:
 
 ## Lab
 
-### Installing the CLI
+### Using the CLI
 
-The CLI (Command Line Interface) is used to interact with Cloud Foundry.  You can [follow the instructions](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) to install the CLI on your laptop (which gives you some useful bits like command line completion), or you can download pre-built binaries:
-
-* [MacOS](https://packages.cloudfoundry.org/stable?release=macosx64-binary&source=github)
-* [Windows](https://packages.cloudfoundry.org/stable?release=windows64-exe&source=github)
-* [Linux](https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github)
-
-#### Checking Your Work
-
-If you installed the CLI successfully, you should be able to open a terminal window and see the version of the CLI.
+We've pre-installed the CF cli (`cf`) for you in the `~/bin` directory.  You can test that it works by running `cf version`:
 
 ```
 $ cf version
 cf version 6.34.1+bbdf81482.2018-01-17
 ```
-
-### Using the CLI
 
 The CLI is a self-documenting tool. You will use the `help` capability to complete the exercises below.
 
