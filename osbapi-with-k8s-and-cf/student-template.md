@@ -46,33 +46,49 @@ Basic flow:
  - cf restart my-app
  - curl <app-address>
 5. K8s walkthrough
+-- push the app
+cd ~/k8s/app
+cat server.js
+cat Dockerfile
+
+kubectl run my-app --image=servicesapi/node-env --port=8080
+kubectl expose deployment my-app --type=LoadBalancer
+
 -- Register broker
-kubectl create -f broker.yaml
+vim broker.yml
+kubectl create -f broker.yml
 -- List plans ?
 kubectl get clusterservicebrokers broker-name -o yaml
 kubectl get clusterserviceclasses -o=custom-columns=NAME:.metadata.name,EXTERNAL\ NAME:.spec.externalName
 kubectl get clusterserviceplans -o=custom-columns=NAME:.metadata.name,EXTERNAL\ NAME:.spec.externalName
 -- Create a service instance
-kubectl get serviceinstances -n user_ns my-instance -o yaml
+vim service_instance.yml
+kubectl create -f service_instance.yml
 -- Create a simple app
 - show them the server.js and Dockerfile
 - Unknown: push the image? have their username as the image tag
-kubectl run my-app --image=hello-node:v1 --port=8080
+kubectl get services (until the external IP appears)
+curl <external IP>:8080
 
 -- Bind to simple app
 1. create the service binding
+vim service_binding.yml (get the service instance name)
 kubectl create -f service-binding.yml
 2. Add secrets to the app
+kubectl get secrets our-binding -o yaml
 kubectl edit deployment my-app (and add mapping from secret to env vars) 
 
-
-Problems with k8s broker:
-k8s user Auth not working (rbac)
-check that names are valid now
-see if it's a problem that basic auth wasn't provided to broker
-Later:
-(later figure out how to trust the cluster ca)
-
+        env:
+          - name: BINDING_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: our-binding
+                key: username
+          - name: BINDING_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: our-binding
+                key: password
 ## Learning Objectives Review
 
 TODO

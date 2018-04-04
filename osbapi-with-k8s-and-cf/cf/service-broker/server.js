@@ -5,18 +5,7 @@ var uuid = require('uuid/v4');
 var app = express();
 
 app.get('/v2/catalog', function(req, res) {
-  var catalog = JSON.parse(fs.readFileSync("catalog.json"));
-
-  // Generate random service ID, service name, and plan ID, since they must be globally unique within the platform.
-  catalog.services.forEach(function (s) {
-    s.id = uuid();
-    s.name += '_' + uuid();
-    s.plans.forEach(function (p) {
-      p.id = uuid();
-    });
-  });
-
-  res.send(JSON.stringify(catalog));
+  res.send(fs.readFileSync("catalog.json"));
   res.status(200);
 })
 
