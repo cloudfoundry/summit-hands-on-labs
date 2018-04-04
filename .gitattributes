@@ -1,0 +1,2 @@
+bin/Darwin/cf filter=lfs diff=lfs merge=lfs -text
+bin/Linux/cf filter=lfs diff=lfs merge=lfs -text
