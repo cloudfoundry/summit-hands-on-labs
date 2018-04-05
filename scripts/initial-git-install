@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+numbers=$(seq 1 12)
+scripts=$(dirname $0)
+
+export GIT_SSH_COMMAND="ssh -i $(PWD)/.ssh/id_ed25519"
+
+for n in $numbers; do
+  "$scripts/mount-home-directory" $n
+  pushd "homes/$n"
+    rm -rf .git
+    git init
+    git remote add origin git@github.com:cloudfoundry/summit-hands-on-labs.git
+    git fetch --all
+    git reset --hard origin/master
+    git branch --set-upstream-to=origin/master master
+    git status
+  popd
+  umount "homes/$n"
+done

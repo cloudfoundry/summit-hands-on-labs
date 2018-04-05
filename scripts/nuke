@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ ! -v CLOUD_SHELL ]]; then
+  echo "This script removes all changes from a git-backed cloud-shell home directory."
+  echo "Since I don't see the \$CLOUD_SHELL variable defined, I don't believe we're in a cloud shell."
+  echo "Cowardly refusing to proceed."
+  exit 1
+fi
+
+git clean -df
+git reset --hard

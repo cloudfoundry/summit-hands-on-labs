@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+numbers=$(seq 12)
+org=cloudfoundry-training
+CF="./bin/$(uname)/cf"
+
+$CF target -o $org -s development
+
+for n in $numbers; do
+  username="training.hol.$n@gmail.com"
+  space="training-hol-space-$n"
+  echo "Recreating space $n"
+  $CF delete-space -f "$space" -o "$org" || true
+  $CF create-space "$space" -o "$org" -q hands-on-labs
+  echo "Making $username a SpaceDeveloper in $space"
+  $CF set-space-role "$username" "$org" "$space" SpaceDeveloper
+done

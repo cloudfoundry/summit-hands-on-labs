@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+n=$1
+
+if [[ -z $n ]]; then
+  echo "Usage: $0 [1-12]"
+fi
+
+mkdir -p homes/$n
+$(gcloud --account="training.hol.$n@gmail.com" --project="handson-lab-user$n" alpha cloud-shell get-mount-command $(PWD)/homes/$n 2>&1 | tail -n 1)
+mount | grep $PWD
