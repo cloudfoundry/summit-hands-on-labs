@@ -1,3 +1,4 @@
 ---
 applications:
 - name: BROKER_NAME
+  memory: 64M

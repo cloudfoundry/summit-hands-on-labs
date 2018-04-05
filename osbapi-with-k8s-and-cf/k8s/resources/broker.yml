@@ -3,5 +3,5 @@ kind: ClusterServiceBroker
 metadata:
   name: NAMESPACE-broker
 spec:
-  url: <your broker url>
+  url: http://<broker route in cloud foundry>
   insecureSkipTLSVerify: true

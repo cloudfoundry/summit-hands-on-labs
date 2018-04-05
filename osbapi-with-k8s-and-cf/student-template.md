@@ -61,6 +61,9 @@ kubectl create -f broker.yml
 kubectl get clusterservicebrokers broker-name -o yaml
 kubectl get clusterserviceclasses -o=custom-columns=NAME:.metadata.name,EXTERNAL\ NAME:.spec.externalName
 kubectl get clusterserviceplans -o=custom-columns=NAME:.metadata.name,EXTERNAL\ NAME:.spec.externalName
+
+kubectl get clusterserviceclasses -o=custom-columns=NAME:.spec.externalName
+kubectl get clusterserviceplans -o=custom-columns=NAME:.spec.externalName
 -- Create a service instance
 vim service_instance.yml
 kubectl create -f service_instance.yml
