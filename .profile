@@ -11,4 +11,3 @@
 # shellcheck source=.bashrc
 . "$HOME/.bashrc"
 
-PATH="$HOME/bin/Linux:$HOME/scripts:$PATH"
