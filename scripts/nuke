@@ -9,6 +9,8 @@ if [[ ! -v CLOUD_SHELL ]]; then
   exit 1
 fi
 
+export GIT_SSH_COMMAND='ssh -o StrictHostKeyChecking=no'
+
 git clean -df
 git reset --hard
 git pull
