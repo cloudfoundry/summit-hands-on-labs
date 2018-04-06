@@ -4,6 +4,9 @@
 
 PATH="$PATH:$HOME/bin/Linux:$HOME/scripts:$HOME/.git/bin"
 
+export PWS_PASSWORD='CFsumm1th@l'
+export PWS_USER="$(whoami | sed 's/_/./g')@gmail.com"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
