@@ -13,4 +13,6 @@ export GIT_SSH_COMMAND='ssh -o StrictHostKeyChecking=no'
 
 git clean -df
 git reset --hard
+git lfs install
 git pull
+git lfs checkout
