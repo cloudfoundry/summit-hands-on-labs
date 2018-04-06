@@ -2,7 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-PATH="$HOME/bin/Linux:$HOME/scripts:$PATH"
+PATH="$PATH:$HOME/bin/Linux:$HOME/scripts"
 
 # If not running interactively, don't do anything
 case $- in
