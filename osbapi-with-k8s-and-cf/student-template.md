@@ -20,14 +20,29 @@ Basic flow:
 1. Introduction
  - Who we are, what OSBAPI is, what SAPI is
  - Say exactly what we're going to do. (One sentence)
-2. Create the service broker
+
+### Create the Service Broker
+
+Cloud Foundry provides an opinionated and streamlined experience for running an application
+on the cloud. Remember the haiku?
+
+"Here is my source code,
+run it on the cloud for me,
+I do not care how."
+
+We will use cloud foundry to create a service broker that is running in the cloud
+
+1. Create the service broker
  - Explain basics of what a service broker is.
  - Should have a slide with a basic definition/explanation.
  - Open up the service broker code and catalog (explain services, plans, and instances)
-3. Deploy the service broker to your CF space
+2. Deploy the service broker to your CF space
  - cf push
  - cf apps
-4. CF walkthrough
+
+### Cloud Foundry track
+
+1. CF walkthrough
 -- Register broker
  - cf create-service-broker <..> --space-scoped
 -- List plans
@@ -45,7 +60,9 @@ Basic flow:
  - cf service my-service-instance
  - cf restart my-app
  - curl <app-address>
-5. K8s walkthrough
+
+### Kubernetes Track
+1. K8s walkthrough
 -- push the app
 cd ~/k8s/app
 cat server.js
