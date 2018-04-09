@@ -70,14 +70,12 @@ Space:          development
 
 ### Deploying to Cloud Foundry
 
-Now that you are logged in, you can deploy an application. In Cloud Foundry terms, this is a `cf push`.
-
-First, download the application from Google Drive: https://drive.google.com/uc?id=1s3O1RvCgLdFWHaDT5Dglb_jZP8-P-fMB&export=download
+Now that you are logged in, you can deploy an application. In Cloud Foundry terms, this is a `cf push`. You will be pushing a java application packaged as a jar file. The file is already on the file system.
 
 Now push your application:
 
 ```
-$ cf push first-push -p YOUR-DOWNLOADS/first-push.jar -b java_buildpack --random-route
+$ cf push first-push -p first-push/first-push.jar -b java_buildpack --random-route
 ```
 
 > Note: You can use `cf push --help` to see the details of the `push` command.
@@ -85,7 +83,7 @@ $ cf push first-push -p YOUR-DOWNLOADS/first-push.jar -b java_buildpack --random
 Let's dissect that command:
 
 * `first-push` is the name of the application in Cloud Foundry. It should be a descriptive name for use by humans, and can be whatever you want.
-* `-p` specifies the path to the application bits on your local filesystem so the CLI knows what to upload. Be sure to specify the correct path to where you downloaded the jar file.
+* `-p` specifies the path to the application bits on your local filesystem so the CLI knows what to upload. 
 * `-b java_buildpack` tells Cloud Foundry to use the Java Buildpack to stage the application. You could leave this off and let Cloud Foundry figure it out, but specifying via `-b` is slightly faster.
 * `--random-route` is used to ensure you don't have route conflicts with the other PWS users.
 
