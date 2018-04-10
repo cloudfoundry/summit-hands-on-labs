@@ -11,3 +11,16 @@ $ nuke
 ```
 
 Hope you enjoy the lab and take some knowledge home with you!
+
+
+If you log into https://console.cloud.google.com/cloudshell/editor
+as `training.hol.N` (where N is 1-12), password `cfsummith0l`, then
+you’ll be sitting at an IDE and a terminal with a home directory 
+backed by our git repo.  Feel free to change the README (which the IDE 
+kindly shows by default), or the `.bashrc`, etc files to suit your needs.
+The latest `cf` is installed, and there’s a `./scripts/nuke` script 
+which removes all local changes.
+accounts.google.com
+Google Cloud Platform
+Google Cloud Platform lets you build, deploy, and scale applications,
+websites, and services on the same infrastructure as Google.
