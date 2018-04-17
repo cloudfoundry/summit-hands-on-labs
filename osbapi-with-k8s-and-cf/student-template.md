@@ -290,13 +290,53 @@ Here we provide some instructions to Kubernetes regarding the type of resource w
 to create. The important fields are:
 - `kind: ClusterServiceBroker` This tells Kuberenetes we want to create a Service Broker
 - `metadata.name:` A unique name to identify the Broker, we have auto generated this for you
-- `spec.url:` This is the location of the Service Broker. We will need to edit it this,
+- `spec.url:` This is the location of the Service Broker. We will need to edit this with the
+url of our service broker
+
+When you are done viewing the broker manifest, close less by pressing `q`
+
+Lets edit the broker manifest to point to our broker we deployed earlier. 
+
+We can get the url of our broker by running 
+
+```
+$: cf apps
+Getting apps in org lab / space hol as admin...
+OK
+
+name                   requested state   instances   memory   disk   urls
+hol_app                started           1/1         64M      1G     holapp.hol.cf-app.com
+hol_broker             started           1/1         64M      1G     holbroker.hol.cf-app.com
+```
+
+In this example our broker url is holbroker.hol.cf-app.com. Copy this url.
+
+Open the `k8s/resources/broker.yml` in an editor. We have provisioned this machine with
+vim, nano and emacs. Paste the url of your broker in the spec.url field.
+
+Great! We are now ready to create the Service Broker in kubernetes. This can be done with
+a simple command.
+
+```
+kubectl create -f k8s/resources/broker.yml
+```
+
+Congratulations! You have just registered a Service Broker in Kubernetes!
+
+We can now begin to explore the service offerings and plans that the Service Broker
+exposes. In Kubernetes a service offering is referred to as a Service Class. Service
+Classes can be made available at the Cluster level, and Namespace level. Namespaces 
+in Kuberenetes allow admins to allocate resources to particular users. If a resource 
+is available at the cluster level, it is available to all users of the cluster.
+
+```
+kubectl get clusterserviceclasses -l user=$ME -o=custom-columns=NAME:.spec.externalName
+```
 
 
-
-
-
-
+```
+kubectl get clusterserviceplans -l user=$ME -o=custom-columns=NAME:.spec.externalName
+```
 
 1. K8s walkthrough
 -- push the app
