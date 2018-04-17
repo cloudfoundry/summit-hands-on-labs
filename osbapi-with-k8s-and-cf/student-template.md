@@ -6,7 +6,7 @@ They will exercise the service instance life cycle and bind a service instance t
 ## Learning Objectives
 At the end of this lab, students will:
 
-* Know what the Open Service Broker API (OSPABI) is and why it's beneficial.
+* Know what the Open Service Broker API (OSPABI) is and why it's beneficial. TODO need to summarize this somewhere!
 * Feel comfortable registering a service broker in both Cloud Foundry and Kubernetes
 * Understand how to create service instances, see service plans, and other basic operations in both platforms.
 
@@ -117,7 +117,7 @@ The `--space-scoped` flag is required since our user account in Cloud Foundry
 only has write and read permissions in the space we are currently targeting. You
 can type `cf target` to see which space you are currently targeting. It should
 look similar to your user name. Spaces in Cloud Foundry are a mechanism by which
-Cloud Foundry resources can be allocated to users.  TODO  make this description of spaces better
+Cloud Foundry resources can be allocated to users.  TODO make this description of spaces better
 
 #### Enable Service Access
 Now that we have created a Service Broker in Cloud Foundry, we should ask Cloud Foundry
@@ -210,11 +210,37 @@ curl appname.hol.cf-app.com
 No service instances are bound to this app.
 ```
 
+So we have our app running on the cloud, great! Now can explore the binding
+a service instance to our application using our Service Broker. In Cloud 
+Foundry, the end result of a service biniding is that an application has
+credentials for a service instance injected into an environment variable.
+
 #### Create a Service Binding
+
+Lets ask Cloud Foundry to create a binding between our service instance
+and our application. 
 
 ```
 cf bind-service app-name service-instance
 ```
+
+After we make this request there are various things that happen behind
+the scenes. 
+Firstly Cloud Foundry sends a request to the service broker to create a
+service binding. The Service Broker must respond and some credentials
+in JSON format. Cloud Foundry takes these credentials and delivers them to
+our application via an environment variable
+
+If we restage our application now, we will see the environment variable
+changes take effect. 
+
+```
+curl appname.hol.cf-app.com
+Credentials available: username is 'admin' and password is 'passw0rd'
+```
+
+Congratulations! You have finished the Cloud Foundry track. If you 
+like move onto the Kuberenetes Track
 
 
 1. CF walkthrough
@@ -241,6 +267,36 @@ cf bind-service app-name service-instance
  - curl <app-address>
 
 ### Kubernetes Track
+
+Before you start the Kubernetes track you should have already deployed a Service
+Broker. If you have not already done so please start here TODO link to create a sb step
+
+#### Create the Service Broker
+Now that you have deployed a Service Broker, we need to register the broker
+in Kubernetes! This will allow us to view the services and plans offered by
+the broker. 
+
+We will create the service broker using the `kubectl` Command Line Interface, which
+has been pre provisioned on our machine.
+
+We ask Kubernetes to create our Service broker based on a small manifest. Let's
+take a look at this manifest
+
+```
+less k8s/resources/broker.yml
+```
+
+Here we provide some instructions to Kubernetes regarding the type of resource we want
+to create. The important fields are:
+- `kind: ClusterServiceBroker` This tells Kuberenetes we want to create a Service Broker
+- `metadata.name:` A unique name to identify the Broker, we have auto generated this for you
+- `spec.url:` This is the location of the Service Broker. We will need to edit it this,
+
+
+
+
+
+
 
 1. K8s walkthrough
 -- push the app
