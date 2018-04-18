@@ -1,0 +1,25 @@
+director_address: https://104.197.154.139:25555
+director_name: bosh-bbl-env-balkhash-2018-04-05t18-37z
+external_ip: 104.197.154.139
+internal_cidr: 10.0.0.0/24
+internal_gw: 10.0.0.1
+internal_ip: 10.0.0.5
+internal_tag_name: bbl-env-balkhash-2018-04-05t18-37z-internal
+jumpbox_url: 104.197.154.139:22
+network: bbl-env-balkhash-2018-04-05t18-37z-network
+router_backend_service: bbl-env-balkhash-2018-04-05t18-37z-router-lb
+router_lb_ip: 107.178.247.9
+ssh_proxy_lb_ip: 35.224.2.72
+ssh_proxy_target_pool: bbl-env-balkhash-2018-04-05t18-37z-cf-ssh-proxy
+subnet_cidr_1: 10.0.16.0/24
+subnet_cidr_2: 10.0.32.0/24
+subnet_cidr_3: 10.0.48.0/24
+subnet_cidr_4: 10.0.64.0/24
+subnetwork: bbl-env-balkhash-2018-04-05t18-37z-subnet
+tags:
+- bbl-env-balkhash-2018-04-05t18-37z-bosh-open
+- bbl-env-balkhash-2018-04-05t18-37z-jumpbox
+tcp_router_lb_ip: 35.226.9.68
+tcp_router_target_pool: bbl-env-balkhash-2018-04-05t18-37z-cf-tcp-router
+ws_lb_ip: 35.202.135.35
+ws_target_pool: bbl-env-balkhash-2018-04-05t18-37z-cf-ws
