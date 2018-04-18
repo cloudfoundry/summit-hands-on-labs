@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+export GOPATH=${PWD}/gopath
+export PATH=${PATH}:${GOPATH}/bin
+cd code
+
+echo "##" ; echo "##"
+echo "## Checking go version..."
+echo "##" ; echo "##"
+go version
+echo; echo
+
+echo "##" ; echo "##"
+echo "## Installing application dependencies..."
+echo "##" ; echo "##"
+grep -h github *.go | sort | uniq | xargs go get
+echo ; echo
+
+echo "##" ; echo "##"
+echo "## Running application tests..."
+echo "##" ; echo "##"
+go test -v
+echo; echo

@@ -241,34 +241,24 @@ Congratulations! You have finished the Cloud Foundry track. If you like, move on
 
 ### Kubernetes Track
 
-Before you start the Kubernetes track you should have already deployed a Service
-Broker. If you have not already done so please start here TODO link to create a sb step
+Before you start the Kubernetes track you should have already deployed a Service Broker. If you have not already done so please start here.
 
-#### Create the Service Broker
-Now that you have deployed a Service Broker, we need to register the broker
-in Kubernetes! This will allow us to view the services and plans offered by
-the broker. 
+#### Register the Service Broker
+Now that you have deployed a Service Broker, we need to register the broker in Kubernetes! This will allow Kubernetes users to interact with with services provided by your broker. 
 
-We will create the service broker using the `kubectl` Command Line Interface, which
-has been pre provisioned on our machine.
+We will create the service broker using the `kubectl` Command Line Interface, which has been pre installed on our machine.
 
-We ask Kubernetes to create our Service broker based on a small manifest. Let's
-take a look at this manifest
+We will ask Kubernetes to create our Service broker based on a small manifest. Let's take a look at this manifest
 
 ```
-less k8s/resources/broker.yml
+vim k8s/resources/broker.yml
 ```
 
 Here we provide some instructions to Kubernetes regarding the type of resource we want
 to create. The important fields are:
 - `kind: ClusterServiceBroker` This tells Kuberenetes we want to create a Service Broker
 - `metadata.name:` A unique name to identify the Broker, we have auto generated this for you
-- `spec.url:` This is the location of the Service Broker. We will need to edit this with the
-url of our service broker
-
-When you are done viewing the broker manifest, close less by pressing `q`
-
-Lets edit the broker manifest to point to our broker we deployed earlier. 
+- `spec.url:` This is the location of the Service Broker. You will need to edit this with the url of our service broker
 
 We can get the url of our broker by running 
 
@@ -282,12 +272,9 @@ hol_app                started           1/1         64M      1G     holapp.hol.
 hol_broker             started           1/1         64M      1G     holbroker.hol.cf-app.com
 ```
 
-In this example our broker url is holbroker.hol.cf-app.com. Copy this url.
+In this example our broker url is holbroker.hol.cf-app.com.
 
-Open the `k8s/resources/broker.yml` in an editor.  Paste the url of your broker in the spec.url field.
-
-Great! We are now ready to create the Service Broker in kubernetes. This can be done with
-a simple command.
+Great! We are now ready to create the Service Broker in kubernetes. This can be done with a simple command.
 
 ```
 kubectl create -f k8s/resources/broker.yml
@@ -295,17 +282,24 @@ kubectl create -f k8s/resources/broker.yml
 
 Congratulations! You have just registered a Service Broker in Kubernetes!
 
+#### Viewing the Services and Service Plans
+
 We can now begin to explore the service offerings and plans that the Service Broker
 exposes. In Kubernetes a service offering is referred to as a Service Class. Service
 Classes can be made available at the Cluster level, and Namespace level. Namespaces 
 in Kuberenetes allow admins to allocate resources to particular users. If a resource 
-is available at the cluster level, it is available to all users of the cluster.
+is available at the cluster level, it is available to all users of the cluster. The
+Service Broker we created is a ClusterServiceBroker, and it's Service Classes are visible 
+at the Cluster level. We can fetch the Service Classes offered by the broker with this command:
 
 ```
 kubectl get clusterserviceclasses -l user=$ME -o=custom-columns=NAME:.spec.externalName
 ```
 
+You should see a list of service names, which you should recognise from when you edited the 
+service broker code eariler.
 
+We can also fetch the service plans offered by the broker with this command:
 ```
 kubectl get clusterserviceplans -l user=$ME -o=custom-columns=NAME:.spec.externalName
 ```

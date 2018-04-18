@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#
+# ci/scripts/shipit
+#
+# Script for generating Github release / tag assets
+# and managing release notes for a software pipeline
+#
+# author:  James Hunt <james@niftylogic.com>
+# created: 2016-03-30
+#
+
+set -eu
+VERSION=$(date +%Y%m%d.%H%M%S)
+
+: ${GIT_EMAIL:?required}
+: ${GIT_NAME:?required}
+
+###############################################################
+
+go version; echo; echo
+TARGETS=${TARGETS:-linux/amd64 darwin/amd64}
+ROOT=$( cd "$( dirname "${BASH_SOURCE[0]}" )/../.." && pwd )
+
+pushd $REPO_ROOT
+newgopath=${ROOT%%/gopath/*}/gopath
+if [[ -d ${newgopath} ]]; then
+	if [[ -z ${GOPATH} ]]; then
+		GOPATH="${newgopath}"
+	else
+		GOPATH="${newgopath}:${GOPATH}"
+	fi
+	PATH="${PATH}:${newgopath}/bin"
+fi
+echo ">> Using GOPATH ${GOPATH}"
+go get github.com/mitchellh/gox
+popd
+
+export CGO_ENABLED=0
+pushd $REPO_ROOT
+grep -h github *.go | sort | uniq | xargs go get
+mkdir artifacts
+gox -osarch="${TARGETS}" --output="artifacts/${BINARY}-{{.OS}}-{{.Arch}}" -ldflags="-X main.Version=${VERSION}" ./...
+go build -o "${BINARY}" ${CMD_PKG:-.}
+popd
+
+if [[ ! -f ${REPO_ROOT}/ci/release_notes.md ]]; then
+	echo "_no release notes provided (yet)_" \
+		> ${REPO_ROOT}/ci/release_notes.md
+fi
+echo "v${VERSION}"                         > ${RELEASE_ROOT}/tag
+echo "${RELEASE_NAME} v${VERSION}"         > ${RELEASE_ROOT}/name
+mv ${REPO_ROOT}/ci/release_notes.md          ${RELEASE_ROOT}/notes.md
+mv ${REPO_ROOT}/artifacts                    ${RELEASE_ROOT}/artifacts
+
+# GIT!
+git config --global user.email "${GIT_EMAIL}"
+git config --global user.name "${GIT_NAME}"
+
+(cd ${REPO_ROOT}
+ git merge --no-edit ${BRANCH}
+ git add -A
+ git status
+ git commit -m "release v${VERSION}" || true)
+
+
+# so that future steps in the pipeline can push our changes
+cp -a ${REPO_ROOT} ${REPO_OUT}/git

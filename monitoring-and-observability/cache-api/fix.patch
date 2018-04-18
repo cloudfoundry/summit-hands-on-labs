@@ -1,0 +1,20 @@
+diff --git a/cache-api/main.go b/cache-api/main.go
+index dc06fed..41bee4a 100644
+--- a/cache-api/main.go
++++ b/cache-api/main.go
+@@ -11,14 +11,10 @@ func main() {
+ 	g := NewGenerator() // the expensive process
+ 
+ 	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+-
+ 		file := GetCachePath(req)
+ 
+ 		if !InCache(file) {
+-			// cache the data
+-			f, _ := ioutil.TempFile(CacheRoot, "cache")
+-			f.Write(g.Run(req))
+-			f.Close()
++			ioutil.WriteFile(file, g.Run(req), 0644)
+ 		}
+ 
+ 		// satisfy request from cache

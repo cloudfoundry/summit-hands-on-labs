@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# ci/repipe
+#
+# Script for merging together pipeline configuration files
+# (via Spruce!) and configuring Concourse.
+#
+# author:  James Hunt <james@niftylogic.com>
+#          Dennis Bell <dennis.j.bell@gmail.com>
+# created: 2016-03-04
+
+need_command() {
+  local cmd=${1:?need_command() - no command name given}
+  local url=${2:-}
+
+  if [[ ! -x "$(command -v $cmd)" ]]; then
+    echo >&2 "${cmd} is not installed."
+    if [[ -n "$url" ]]; then
+      echo >&2 "Please download it from ${url}"
+    fi
+    exit 2
+  fi
+}
+
+cd $(dirname $BASH_SOURCE[0])
+echo "Working in $(pwd)"
+need_command spruce "https://github.com/geofffranks/spruce/releases"
+need_command jq
+
+set -e
+trap "rm -f .deploy.yml" QUIT TERM EXIT INT
+spruce merge pipeline.yml settings.yml > .deploy.yml
+PIPELINE=$(spruce json .deploy.yml | jq -r '.meta.pipeline // ""')
+if [[ -z ${PIPELINE} ]]; then
+  echo >&2 "Missing pipeline name in ci/settings.yml!"
+  exit 1
+fi
+
+TARGET=$(spruce json .deploy.yml | jq -r '.meta.target // ""')
+if [[ -z ${TARGET} ]]; then
+  echo >&2 "Missing Concourse Target (meta.target) in ci/settings.yml!"
+  exit 1
+fi
+
+URL=$(spruce json .deploy.yml | jq -r '.meta.url //""')
+if [[ -z ${URL} ]]; then
+  echo >&2 "Missing Concourse URL (meta.url) in ci/settings.yml!"
+  exit 1
+fi
+if [[ -z $(fly targets | grep "$URL") ]]; then
+  echo "Logging into Concourse"
+  fly -t $TARGET login -u ci -c $URL
+fi
+fly -t $TARGET sync
+
+set +x
+fly --target ${TARGET} set-pipeline     --pipeline ${PIPELINE} --config .deploy.yml
+fly --target ${TARGET} unpause-pipeline --pipeline ${PIPELINE}

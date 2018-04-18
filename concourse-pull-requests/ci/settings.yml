@@ -1,0 +1,5 @@
+---
+meta:
+  github:
+    owner:        (( param "Replace this with your Github username" ))
+    access_token: (( param "Go make a Github access token" ))

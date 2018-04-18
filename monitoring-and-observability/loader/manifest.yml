@@ -1,0 +1,11 @@
+applications:
+  - name: loader
+    memory: 64M
+    buildpack: go_buildpack
+    no-route: yes
+    health-check-type: process
+    env:
+      GOPACKAGENAME: github.com/starkandwayne/cfsummit-lab-badactors/loader
+
+      LOAD_TEST_MEM:   '10:https://bad-fulfil-api.apps.cfna2018.starkandwayne.com'
+      LOAD_TEST_DISK:  '250:https://bad-cache-api.apps.cfna2018.starkandwayne.com'
