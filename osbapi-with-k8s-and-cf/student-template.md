@@ -14,8 +14,8 @@ They will exercise the service instance life cycle and bind a service instance t
 At the end of this lab, students will:
 
 * Know what the Open Service Broker API (OSBAPI) is and why it's beneficial.
-* Feel comfortable registering a service broker in both Cloud Foundry and Kubernetes
-* Understand how to create service instances, see service plans, and other basic operations in both platforms.
+* Feel comfortable registering a service broker in both Cloud Foundry and Kubernetes.
+* Understand how to create service instances, see service plans, and perform other basic operations in both platforms.
 
 ## Prerequisites
 
@@ -24,20 +24,19 @@ At the end of this lab, students will:
 
 ## Lab
 
+Your lab instructors today are Alex and Jen. If you have any questions or problems during the lab, please don't hesitate to raise your hand for one of us to come over.
+
 For this lab, we will be working on a virtual machine that has been pre-provisioned with all the tools we will need. Start by opening a terminal. If you're on a Chromebook you can use the short cut `ctrl-alt-t` to open a terminal. Then open an ssh connection to our virtual machine.
 
 ```
 ssh <user_name>@jump.sapi.cf-app.com
 ```
 
-Welcome!
+The username and password will be provided to you when you sit down for the lab.
 
-Explore your home directory, if you run the command `ls` you should see a directory
-structure that looks little bit like this:
+Welcome to the lab!
 
-```
-cf  k8s
-```
+Explore your home directory. If you run the command `ls`, you should see a folder called `cf` and another called `k8s`.
 
 These folders contain resources that will be used through out the lab.
 
@@ -55,7 +54,7 @@ A Service Broker is implemented as an HTTP server which coordinates the service 
 
 Each of these operations is provided via an HTTP endpoint on the service broker.
 
-Another responsibility of a Service Broker, is that they must advertise available
+Another responsibility of a Service Broker is to advertise available
 Services and Service Plans. This is done by exposing a catalog endpoint, which
 responds with descriptions of the Services and Plans in JSON format.
 
@@ -90,9 +89,9 @@ run it on the cloud for me,
 I do not care how.
 ```
 
-We will use cloud foundry to create a service broker that is running in the cloud!
+We will use Cloud Foundry to create a service broker that is running in the cloud!
 
-Change directory into the cf/service-broker directory
+Change directory into the cf/service-broker directory:
 
 ```
 cd ~/cf/service-broker
@@ -520,24 +519,26 @@ curl <external IP>:8080
 
 This time, you should see the USERNAME and PASSWORD values as they exist in your service broker code.
 
-
 Congratulations! You've created a service instance from the same broker in Cloud Foundry and Kubernetes, and given apps in both platforms access to your Service Instance!
 
 ## Learning Objectives Review
 
-TODO
+Now that you've deployed a service broker and used it to create dummy service instances and bindings in both CF and Kubernetes, you should:
+* Understand the value of having a single API for both platforms to use when talking to service brokers.
+* Know how to register a service broker in both Cloud Foundry and Kubernetes.
+* Understand how to create service instances, see service plans, and perform other basic operations in both platforms.
 
 ## Beyond the Lab
 
 Write a real service broker:
-* (Link to OSBAPI spec)
-* (Link to On-Demand broker)
-* (Link to SUSE universal service broker)
+* On-Demand Service Broker: https://github.com/pivotal-cf/on-demand-service-broker
+* SUSE Universal Service Broker: https://github.com/suse/cf-usb
+* The OSBAPI Spec: https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md
 
 Go further with CF:
-* (bosh-lite)
-* (Something here)
+* Getting Started: https://www.cloudfoundry.org/get-started/
+* Services in Cloud Foundry: https://docs.cloudfoundry.org/services/
 
 Go further with K8s:
-* (Minicube)
-* (Something here)
+* Getting started with Minikube: https://kubernetes.io/docs/tutorials/stateless-application/hello-minikube/
+* Service Catalog: https://kubernetes.io/docs/concepts/service-catalog/
