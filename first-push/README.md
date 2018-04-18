@@ -43,10 +43,10 @@ For example, you can run:
 When using Cloud Foundry, the first thing you need to do is target and log in to a Cloud Foundry instance.  Run the following:
 
 ```
-$ cf login -a api.run.pivotal.io
+$ cf login -u $PWS_USER -p $PWS_PASSWORD -a api.run.pivotal.io
 ```
 
-The `-a` flag specifies the API endpoint for Pivotal Web Services (api.run.pivotal.io).  You will be prompted for your username and password (provided by your instructor).
+The `-a` flag specifies the API endpoint for Pivotal Web Services (api.run.pivotal.io).
 
 > Note: You can use `cf login --help` for details on how to log in.
 
@@ -83,7 +83,7 @@ $ cf push first-push -p first-push/first-push.jar -b java_buildpack --random-rou
 Let's dissect that command:
 
 * `first-push` is the name of the application in Cloud Foundry. It should be a descriptive name for use by humans, and can be whatever you want.
-* `-p` specifies the path to the application bits on your local filesystem so the CLI knows what to upload. 
+* `-p` specifies the path to the application bits on your local filesystem so the CLI knows what to upload.
 * `-b java_buildpack` tells Cloud Foundry to use the Java Buildpack to stage the application. You could leave this off and let Cloud Foundry figure it out, but specifying via `-b` is slightly faster.
 * `--random-route` is used to ensure you don't have route conflicts with the other PWS users.
 
