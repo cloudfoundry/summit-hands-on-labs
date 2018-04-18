@@ -2,8 +2,6 @@
 
 ## Learning Objectives
 
-## Prerequisites
-
 ## Lab
 
 ```
@@ -23,8 +21,8 @@ $ cf target -o "system" -s "labs"
 
 ```
 $ git clone https://github.com/cloudfoundry-samples/spring-music.git
+$ cd spring-music
+$ gradlew
+$ cf push
+$ cf scale spring-music -i 3 
 ```
-
-## Learning Objectives Review
-
-## Beyond the Lab
