@@ -1,3 +1,5 @@
+# Open Service Broker API with Cloud Foundry and Kubernetes
+
 ## Introduction
 
 In this lab, students will deploy a very simple Service Broker and then register this Service Broker in Cloud Foundry and Kubernetes.
@@ -40,9 +42,9 @@ At some points in the lab you will need to edit some text files via the command 
 
 ### Deploy the Service Broker
 
-TODO: Get an OSBAPI approved definition of a 'service'
-A Service is a <???>. Typical examples of services are databases and messaging queues, but can also include anything that fits within the contract defined by the Open Service Broker API.
-A Service Broker is an HTTP server which coordinates the service lifecycle between a platform (e.g., Cloud Foundry or Kubernetes) and services. The basic operations that a service broker supports are:
+A Service Broker can provide services for developers to use on platforms like Cloud Foundry and Kubernetes. Some examples of common services include databases, configuration servers and messaging queues. Each service is made up of a number of plans, like ‘small’, ‘medium’ and ‘large’, that developers can choose from when they create backing services for their applications and containers.
+
+A Service Broker is implemented as an HTTP server which coordinates the service lifecycle between a platform (e.g., Cloud Foundry or Kubernetes) and services. The basic operations that a service broker supports are:
 1. Provision a new service instance (for example, provision a new MySQL cluster)
 1. Bind to a service instance (for example, provide a set of credentials to access that cluster)
 1. Unbind (e.g., revoke the credentials)
@@ -112,7 +114,9 @@ Congratulations you have deployed a service broker! You Rock!
 From here you can start the Cloud Foundry track, or the Kubernetes track. It's recommended to start with the Cloud Foundry
 track if you are not already familiar with services in Cloud Foundry. Otherwise, feel free to jump directly to the Kubernetes track.
 
-### Cloud Foundry track
+---
+
+# Cloud Foundry track
 
 #### Register the Service Broker
 
@@ -156,9 +160,9 @@ Great! We are now in a position where we can ask the service broker to create an
 ```
 cf create-service <service-name> <service-plan> <instance-name>
 ```
-- <service-name> is the name of one of the services you saw from running `cf marketplace`. Pick either one.
-- <service-plan> is the name of a plan in the service you picked (also visible in `cf marketplace`).
-- <instance-name> can be anything you want. You will need to refer back to this name later, so you may want it to be short.
+- `<service-name>` is the name of one of the services you saw from running `cf marketplace`. Pick either one.
+- `<service-plan>` is the name of a plan in the service you picked (also visible in `cf marketplace`).
+- `<instance-name>` can be anything you want. You will need to refer back to this name later, so you may want it to be short.
 
 What's happening under the hood here:
 - We asked Cloud Foundry to create a service instance.
@@ -199,7 +203,7 @@ Once the app has been deployed, let's `curl` it to check its current state:
 curl http://<app-route>
 ```
 
-where <app-route> is the route returned at the end of the `cf push` command.
+where `<app-route>` is the route returned at the end of the `cf push` command.
 
 You should get the following response from `curl`:
 
@@ -217,8 +221,8 @@ Let's ask Cloud Foundry to create a binding between our service instance and our
 cf bind-service <app-name> <instance-name>
 ```
 
-- <app-name> is the name of your app. You should be able to find it by running `cf apps`
-- <instance-name> is the name of the service instance you created earlier.
+- `<app-name>` is the name of your app. You should be able to find it by running `cf apps`
+- `<instance-name>` is the name of the service instance you created earlier.
 
 After we make this request there are various things that happen behind the scenes. Firstly Cloud Foundry sends a request to the service broker to create a service binding. The Service Broker must respond with some credentials in JSON format. Cloud Foundry takes these credentials and delivers them to our application via the `VCAP_SERVICES` environment variable.
 
@@ -239,7 +243,9 @@ Credentials available: username is 'admin' and password is 'passw0rd'
 
 Congratulations! You have finished the Cloud Foundry track. If you like, move onto the Kuberenetes Track.
 
-### Kubernetes Track
+---
+
+# Kubernetes Track
 
 Before you start the Kubernetes track you should have already deployed a Service Broker. If you have not already done so please start here.
 
@@ -304,32 +310,78 @@ We can also fetch the service plans offered by the broker with this command:
 kubectl get clusterserviceplans -l user=$ME -o=custom-columns=NAME:.spec.externalName
 ```
 
+Again, you should recognise these service plans, from when you edited the service broker code earlier. 
+
+Now that you have successfully registered the Service Broker in Kubernetes, we can use it to create a service instance
+
+#### Create a service instance
+
+To create a service instance we will ask Kubernetes to create a new resources based on a manifest. We have provied a manifest template for a Service Instance resource. Let's take a look at it.
+
+```
+vim k8s/resources/service_instance.yml
+```
+
+- `kind: ServiceInstance` this tells kubernetes that we want to create a service instance
+- `metadata.name:` this field will be the name of the service instance. We recommend you keep this short, and easy to remember
+- `spec.clusterServiceClassExternalName:` this field is the name of the service that we want to create
+- `spec.clusterServicePlanExternalName:` the name of the service plan that we want to create an instance of. 
+
+Once you have finished editing the service instance manifest, we are ready to tell kubernetes to create the service instance! We can do that by using the `kubectl` command line tool
+
+```
+kubectl create -f k8s/resources/service_instance.yml
+```
+
+TODO: view service instance?
+
+#### Create a Simple app
+
+So far we have used our Service Broker to provision a service instance. Now, we want to hook up an application to use this service instance. To do that we are going to create a binding. But before we do that we need to have an application to bind the service to!
+
+We have provided a very simple app for demonstration purposes. You can take a look at the app code by entering
+
+```
+vim ~/k8s/app/server.js
+```
+
+This app checks the value of the `BINDING_USERNAME` and `BINDING_PASSWORD` environment variables. These environment variable are what we will use to deliver the credentials of the service instance, when we create a binding between this app and a service instance. When no service is bound to this app, these environment variables will be empty, and the app will print "USERNAME: PASSWORD: ". When a service instance is bound to this app, it will print the username and password.
+
+In order to deploy this app to Kubernetes it needs to be inside a Docker image. We have created this image already and pushed to to Docker hub. Let's get the app runing on Kubernetes by running
+
+```
+kubectl run <my-app> --image=servicesapi/node-env --port=8080
+```
+
+- `<my-app>` give your application a name, something that you can remember later on
+- `--image-servicesapi/node-env` is where our docker image containing the siple app is located on docker hub
+- `--port-8080` this will expose our app on port 8080
+
+Great, our simple app is now running on Kubernetes, but before we can use it, we need to expose it to allow us to talk to it from otside the cluster. We can do that by running:
+
+```
+kubectl expose deployment my-app --type=LoadBalancer
+```
+
+- `<my-app>` is the name of application you created earlier
+
+
+- show them the server.js and Dockerfile
+- Unknown: push the image? have their username as the image tag
+kubectl get services (until the external IP appears)
+curl <external IP>:8080
+
+
+
 1. K8s walkthrough
 -- push the app
 cd ~/k8s/app
 cat server.js
 cat Dockerfile
 
--- Run the app in the docker image and expose it on port 8080
-kubectl run my-app --image=servicesapi/node-env --port=8080
 -- The app is now running. Lets expose it so we can talk to it from outside the cluster
 kubectl expose deployment my-app --type=LoadBalancer
 
-#### Register broker
-vim broker.yml
-kubectl create -f broker.yml
--- List services classes offered by the broker
-kubectl get clusterserviceclasses -l user=$ME -o=custom-columns=NAME:.spec.externalName
--- List plans for services offered by the broker
-kubectl get clusterserviceplans -l user=$ME -o=custom-columns=NAME:.spec.externalName
-
-#### Create a service instance
-vim service_instance.yml
-kubectl create -f service_instance.yml
-- show them the server.js and Dockerfile
-- Unknown: push the image? have their username as the image tag
-kubectl get services (until the external IP appears)
-curl <external IP>:8080
 
 -- Bind to simple app
 1. create the service binding
