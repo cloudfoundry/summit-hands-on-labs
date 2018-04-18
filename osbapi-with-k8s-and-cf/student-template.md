@@ -4,6 +4,7 @@ In this lab, students will deploy a very simple Service Broker and then register
 They will exercise the service instance life cycle and bind a service instance to a sample application in both platforms.
 
 ## Learning Objectives
+
 At the end of this lab, students will:
 
 * Know what the Open Service Broker API (OSPABI) is and why it's beneficial.
@@ -17,10 +18,7 @@ At the end of this lab, students will:
 
 ## Lab
 
-For this lab, we will be working on a virtual machine that has been pre provisioned with
-all the tools we will need. Start by opening a terminal. If you're on a Chromebook
-you can use the short cut `ctrl-alt-t` to open a terminal. Then open an ssh connection
-to our virtual machine.
+For this lab, we will be working on a virtual machine that has been pre-provisioned with all the tools we will need. Start by opening a terminal. If you're on a Chromebook you can use the short cut `ctrl-alt-t` to open a terminal. Then open an ssh connection to our virtual machine.
 
 ```
 ssh <user_name>@jump.sapi.cf-app.com
@@ -38,34 +36,48 @@ cf  k8s  snap
 
 These folders contain resources that will be used through out the lab.
 
+At some points in the lab you will need to edit some text files via the command line. We have provisioned our machine with vim, emacs and nano. If you are not familiar with command line editing, we recommend using nano. In our examples we will be using vim, but anywhere that you see vim, feel free to substitute it for emacs or nano. 
+
 ### Deploy the Service Broker
-<!--  - Open up the service broker code and catalog (explain services, plans, and instances) -->
-<!-- 2. Deploy the service broker to your CF space -->
 
-We are providing a very simple service broker for use in this lab. The Service Broker
-is a web application that has been written in node.js. You can view the source code
-of the Service Broker by running
+TODO: Get an OSBAPI approved definition of a 'service'
+A Service is a <???>. Typical examples of services are databases and messaging queues, but can also include anything that fits within the contract defined by the Open Service Broker API.
+A Service Broker is an HTTP server which coordinates the service lifecycle between a platform (e.g., Cloud Foundry or Kubernetes) and services. The basic operations that a service broker supports are:
+1. Provision a new service instance (for example, provision a new MySQL cluster)
+1. Bind to a service instance (for example, provide a set of credentials to access that cluster)
+1. Unbind (e.g., revoke the credentials)
+1. Deprovision (e.g., destroy the cluster)
+
+Each of these operations is provided via an HTTP endpoint on the service broker.
+
+Another responsibility of a Service Broker, is that they must advertise available
+Services and Service Plans. This is done by exposing a catalog endpoint, which
+responds with descriptions of the Services and Plans in JSON format.
+
+We are providing a very simple Service Broker for use in this lab. To see the catalog of this simple Service Broker, run the following:
 
 ```
-less cf/service-broker/server.js
+less cf/service-broker/catalog.json
 ```
 
-Our Service Broker exposes a set of endpoints that will serve requests for various
-operations. At the top is a `get '/v2/catalog'` endpoint. Every Service Broker
-must provide a way for clients to discover what services it offers. The response
-to this endpoint will be a JSON object which contains information about
-the services and configuration options or plans for each service.
-
-Below the catalog endpoint you should see some endpoints to do with creating and
-deleting service instances, and creating and deleting service bindings. We will
-go into more detail around these endpoints later on in the lab. For now, lets move
-on to deploying our super simple broker!
-TODO this is a dummy broker
-
+You should be able to see a fake MySQL service, with two plans, as well as a fake redis service, also with two plans.
 When you are done viewing the service broker code, press `q` to exit less.
 
-Cloud Foundry provides an opinionated and streamlined experience for running an application
-on the cloud. Remember the haiku?
+Open up the Service Broker code for editing by running
+
+```
+vim cf/service-broker/server.js
+```
+
+(remember that emacs and nano are also available if you feel more comfortable with them.)
+
+As you can see at the top, the `/v2/catalog` endpoint exposes the catalog you saw previously.
+
+Below the catalog endpoint you should see some endpoints to do with creating and deleting service instances, and creating and deleting service bindings. Most of these endpoints are no-op dummy endpoints, just to satisfy the Open Service Broker API ("OSBAPI"), but take a closer look at the PUT to `/v2/service_instance/<guid>/service_bindings/<guid>` endpoint. This endpoint provides credentials to access the service instance, and we've provided a sample username and password. Change the username and password values to be anything you want. You'll see this show up later in the lab when we bind to a service instance. 
+
+Now we're going to deploy this service broker so that it can be accessed from both CF and Kubernetes.
+
+Cloud Foundry provides an opinionated and streamlined experience for running an application on the cloud. Remember the haiku?
 
 "Here is my source code,
 run it on the cloud for me,
@@ -74,6 +86,7 @@ I do not care how."
 We will use cloud foundry to create a service broker that is running in the cloud!
 
 Change directory into the cf/service-broker directory
+
 ```
 cd ~/cf/service-broker
 ```
@@ -86,53 +99,35 @@ cf push
 
 This will take a minute or so.
 
+You can verify that your service broker is up by running
+
+```
+curl http://<broker-url>/v2/catalog
+```
+
+(You can see the broker URL in the output of `cf push`)
+
 Congratulations you have deployed a service broker! You Rock!
 
-From here you can start the Cloud Foundry track, or the Kubernetes Track. You
-can do both of them, in any order. It's recommended to start the Cloud Foundry
-track if you are not already familiar with these concepts.
+From here you can start the Cloud Foundry track, or the Kubernetes track. It's recommended to start with the Cloud Foundry
+track if you are not already familiar with services in Cloud Foundry. Otherwise, feel free to jump directly to the Kubernetes track.
 
 ### Cloud Foundry track
 
-#### Create the Service Broker
-Now that we have deployed our service broker, we need to register the broker in
-Cloud Foundry. This will enable Cloud Foundry to render the Service Brokers
-catalog and present the services in a friendly way. Lets begin by registering
-the service broker!
+#### Register the Service Broker
+
+Now that we have deployed our service broker, we need to register the broker in Cloud Foundry. This will enable Cloud Foundry users to interact with the services provided by your broker. Let's begin by registering the service broker!
 
 ```
 cf create-service-broker <broker-name> <username> <password> https://<broker_url> --space-scoped
 ```
 
-- <broker-name> can be anything you like. It is used to create a unique identifier
-for the Service Broker.
-- The <username> and <password> fields can be anything. Usually Service Brokers
-require at least Basic Authentication. Our service broker doesn't
-require any authentication, but Cloud Foundry will reject this command if we
-don't provide any values here.
-- <broker_url> must be the url of the Service Broker including the protocol.
-To get the url of the Service Broker you can enter `cf apps`
+- <broker-name> is a unique identifier for this broker across the entire Cloud Foundry instance. We recommend that you choose a broker-name that includes your username.
+- The <username> and <password> fields can be anything. Usually Service Brokers require at least Basic Authentication. Our service broker doesn't require any authentication (which is a terrible idea for any real broker), but Cloud Foundry needs some values to send to the broker.
+- <broker_url> must be the url of the Service Broker including the protocol. This is the same value you used when curling the broker earlier. If you don't remember the URL, you can retrieve this by running `cf apps`.
+- The `--space-scoped` flag is required for this lab. By default, service brokers are registered across the entire Cloud Foundry instance, which requires admin privileges. Since the lab users accounts are not admins, you will create a service broker that only you can see and use.
 
-The `--space-scoped` flag is required since our user account in Cloud Foundry
-only has write and read permissions in the space we are currently targeting. You
-can type `cf target` to see which space you are currently targeting. It should
-look similar to your user name. Spaces in Cloud Foundry are a mechanism by which
-Cloud Foundry resources can be allocated to users.  TODO  make this description of spaces better
-
-#### Enable Service Access
-Now that we have created a Service Broker in Cloud Foundry, we should ask Cloud Foundry
-to allow developers in our space to have access to the broker. To do this we
-need to enable access to services offered by the Broker. We can do this using
-the `cf enable-service-access` command
-
-```
-cf enable-service-access fake-mysql-NAMESPACE
-cf enable-service-access fake-redis-NAMESPACE
-```
-
-What's happened under the hood here, is that we have asked Cloud Foundry to
-fetch the brokers Catalog, and for services that match the fake-mysql or fake-redis
-names, populate the Cloud Foundry marketplace.
+#### Viewing the Services and Service Plans
 
 To view the services in the marketplace, enter
 
@@ -148,99 +143,172 @@ Getting services from marketplace in org system / space root as admin...
 OK
 
 service                plans                              description
-fake-mysql-NAMESPACE   mysql-top-tier, mysql-free         A fake non-operational mysql service
-fake-redis-NAMESPACE   redis-small-mem, redis-large-mem   The best fake redis
+fake-mysql-<you>   mysql-top-tier, mysql-free         A fake non-operational mysql service
+fake-redis-<you>   redis-small-mem, redis-large-mem   The best fake redis
 ```
 
-The marketplace gives a description of each service, and tells us what plans are
-available for each service.
+The marketplace gives a description of each service, and tells us what plans are available for each service. This comes directly from the catalog endpoint of the service broker.
 
 #### Create A Service Instance
-Great! We are now in a position where we can ask the service broker to create
-an instance of one of its services. To do this we need to tell it which service
-we want, and which plan we want. We will also have to provide a name, which will
-be used to identify our instance if the service
+
+Great! We are now in a position where we can ask the service broker to create an instance of one of its services. To do this we need to tell it which service we want, and which plan we want. We will also have to provide a name, which will be used to identify our instance.
 
 ```
-cf create-service fake-mysql-NAMESPACE mysql-free my-mysql-instance
+cf create-service <service-name> <service-plan> <instance-name>
+```
+- <service-name> is the name of one of the services you saw from running `cf marketplace`. Pick either one.
+- <service-plan> is the name of a plan in the service you picked (also visible in `cf marketplace`).
+- <instance-name> can be anything you want. You will need to refer back to this name later, so you may want it to be short.
+
+What's happening under the hood here:
+- We asked Cloud Foundry to create a service instance.
+- Cloud Foundry has sent a request to the `PUT /v2/service_instance` endpoint of the Broker
+- Our dummy broker responds with a 200 OK, but doesn't actually do anything.
+- Cloud Foundry internally creates a record of this service instance, which you can refer to via the name you gave it.
+
+For details about your service instance, run:
+
+```
+cf service <instance-name>
 ```
 
-Whats happening under the hood here:
-- We asked Cloud Foundry to create a service instance for us on our behalf
-- Cloud Foundry has sent a request to the `'put /v2/service_instance` endpoint of the Broker
-- The Broker has responded with 200 OK which tells us that the service instance
-  already exists and is fully provisioned (actually this was a no-op in our broker)
+#### Create a simple app
 
-```
-cf service my-mysql-instance
-```
+So far we have used our Service Broker to provision a service instance. Now, we want to hook up an application to use this service instance. To do that we are going to create a binding. But before we do that we need to have an application to bind the service to!
 
-#### Create a Simple app
-
-So far we have used our Service Broker to Provision  a service instance, based
-on the type of service offered by the broker, and the configuration options
-available in the plans. We want to hook up an application to use this service
-instance. To do that we are going to create a binding. But before we do that
-we need to have an application to bind the service to!
-
-We have provided a very simple app for demonstration purposes. You can view the
-app code by entering
+We have provided a very simple app for demonstration purposes. You can view the app code by entering
 
 ```
 less ~/cf/simple-app/server.js
 ```
 
-Again this is a very app written in node.js. When no service is bound to this
-app, it will print "No services instances are bound to this app". When a service
-instance is bound to this app, it will print the username and password present
-in the binding.
+This app checks the value of the `VCAP_SERVICES` environment variable. This is a special environment variable injected into the app's container which provides credentials and other access information for any services bound to this app.
+When no service is bound to this app, `VCAP_SERVICES` will be empty, and the app will print "No services instances are bound to this app". When a service instance is bound to this app, it will print the username and password present in the binding.
 
-When you are done viewing the source code of the app, close less by pressing
-`q`.
+If you like, feel free to customize the messages returned by this app.
 
-Lets push the app to the cloud!
+Let's push the app to the cloud!
+
 ```
 cd ~/cf/simple-app && cf push
 ```
 
-Once the app has been deployed lets curl it to check its current state.
+Once the app has been deployed, let's `curl` it to check its current state:
 
 ```
-curl appname.hol.cf-app.com
+curl http://<app-route>
+```
+
+where <app-route> is the route returned at the end of the `cf push` command.
+
+You should get the following response from `curl`:
+
+```
 No service instances are bound to this app.
 ```
 
+So we have our app running on the cloud, great! Now we can explore binding a service instance to our application using our Service Broker.
+
 #### Create a Service Binding
 
+Let's ask Cloud Foundry to create a binding between our service instance and our application. 
+
 ```
-cf bind-service app-name service-instance
+cf bind-service <app-name> <instance-name>
 ```
 
+- <app-name> is the name of your app. You should be able to find it by running `cf apps`
+- <instance-name> is the name of the service instance you created earlier.
 
-1. CF walkthrough
--- Register broker
- - cf create-service-broker <..> --space-scoped
+After we make this request there are various things that happen behind the scenes. Firstly Cloud Foundry sends a request to the service broker to create a service binding. The Service Broker must respond with some credentials in JSON format. Cloud Foundry takes these credentials and delivers them to our application via the `VCAP_SERVICES` environment variable.
 
--- List plans
- - cf marketplace (to see your services)
- - cf service-brokers (to see your broker)
+If we restage our application now, we will see the environment variable changes take effect. 
 
--- Create a service instance
- - cf create-service my-service-instance
- - cf service my-service-instance
+```
+cf restage <app-name>
+curl http://<app-route>
+```
 
--- Create a simple app
- - Open up the CF sample app and just show what it's doing.
- - cf push my-app
+You should now get the following output:
 
--- Bind to simple app
- - curl <app-address> 
- - cf bind-service my-app my-service-instance
- - cf service my-service-instance
- - cf restage my-app
- - curl <app-address>
+```
+Credentials available: username is 'admin' and password is 'passw0rd'
+```
+
+(The exact credentials may be different if you changed the values in the service broker code.)
+
+Congratulations! You have finished the Cloud Foundry track. If you like, move onto the Kuberenetes Track.
 
 ### Kubernetes Track
+
+Before you start the Kubernetes track you should have already deployed a Service
+Broker. If you have not already done so please start here TODO link to create a sb step
+
+#### Create the Service Broker
+Now that you have deployed a Service Broker, we need to register the broker
+in Kubernetes! This will allow us to view the services and plans offered by
+the broker. 
+
+We will create the service broker using the `kubectl` Command Line Interface, which
+has been pre provisioned on our machine.
+
+We ask Kubernetes to create our Service broker based on a small manifest. Let's
+take a look at this manifest
+
+```
+less k8s/resources/broker.yml
+```
+
+Here we provide some instructions to Kubernetes regarding the type of resource we want
+to create. The important fields are:
+- `kind: ClusterServiceBroker` This tells Kuberenetes we want to create a Service Broker
+- `metadata.name:` A unique name to identify the Broker, we have auto generated this for you
+- `spec.url:` This is the location of the Service Broker. We will need to edit this with the
+url of our service broker
+
+When you are done viewing the broker manifest, close less by pressing `q`
+
+Lets edit the broker manifest to point to our broker we deployed earlier. 
+
+We can get the url of our broker by running 
+
+```
+$: cf apps
+Getting apps in org lab / space hol as admin...
+OK
+
+name                   requested state   instances   memory   disk   urls
+hol_app                started           1/1         64M      1G     holapp.hol.cf-app.com
+hol_broker             started           1/1         64M      1G     holbroker.hol.cf-app.com
+```
+
+In this example our broker url is holbroker.hol.cf-app.com. Copy this url.
+
+Open the `k8s/resources/broker.yml` in an editor.  Paste the url of your broker in the spec.url field.
+
+Great! We are now ready to create the Service Broker in kubernetes. This can be done with
+a simple command.
+
+```
+kubectl create -f k8s/resources/broker.yml
+```
+
+Congratulations! You have just registered a Service Broker in Kubernetes!
+
+We can now begin to explore the service offerings and plans that the Service Broker
+exposes. In Kubernetes a service offering is referred to as a Service Class. Service
+Classes can be made available at the Cluster level, and Namespace level. Namespaces 
+in Kuberenetes allow admins to allocate resources to particular users. If a resource 
+is available at the cluster level, it is available to all users of the cluster.
+
+```
+kubectl get clusterserviceclasses -l user=$ME -o=custom-columns=NAME:.spec.externalName
+```
+
+
+```
+kubectl get clusterserviceplans -l user=$ME -o=custom-columns=NAME:.spec.externalName
+```
 
 1. K8s walkthrough
 -- push the app
