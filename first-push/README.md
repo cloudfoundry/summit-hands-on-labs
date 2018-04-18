@@ -75,6 +75,7 @@ Now that you are logged in, you can deploy an application. In Cloud Foundry term
 Now push your application:
 
 ```
+$ cd first-push  # if you're not already there...
 $ cf push first-push -p first-push-app.jar -b java_buildpack --random-route
 ```
 
@@ -189,7 +190,7 @@ $ cf scale first-push -i 2
 
 #### Checking Your Work
 
-You can see the status of your app by running `cf app`:
+You can see the status of your app by running `cf app first-push`:
 
 ```
 $ cf app first-push
