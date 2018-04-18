@@ -255,7 +255,7 @@ Congratulations! You have finished the Cloud Foundry track. If you like, move on
 Before you start the Kubernetes track, you should have already deployed a Service Broker on Cloud Foundry at the start of this lab.
 
 #### Register the Service Broker
-Kubernetes (k8s for short) provides OSPABI-compliant service functionality via a component called the Service Catalog.
+Kubernetes (k8s for short) provides OSBAPI-compliant service functionality via a component called the Service Catalog.
 
 To use the service lifecycle features provided by Service Catalog, you need to register the broker in Kubernetes. This will allow Kubernetes users to interact with services provided by your broker. 
 
@@ -310,6 +310,8 @@ This tells Kubernetes to create the resource described by the given yaml file. `
 ```
 kubectl get clusterservicebroker <your-service-broker-name> -o yaml
 ```
+
+Where `<your-service-broker-name>` is the name of your service broker in Kubernetes (found inside the broker.yml file).
 
 You should see a section that looks similar to the following:
 ```
@@ -419,51 +421,107 @@ We have created this image already and pushed it to to Docker hub, thus you won'
 Let's get the app deployed on Kubernetes by running
 
 ```
-kubectl run <my-app> --image=servicesapi/node-env --port=8080
+kubectl run <app-name> --image=servicesapi/node-env --port=8080
 ```
 
-- `<my-app>` is your deployment's name. It should be something short that you can remember later on.
+- `<app-name>` is your deployment's name. It should be something short that you can remember later on.
 - `--image-servicesapi/node-env` is where our docker image containing the simple app is located on docker hub.
 - `--port-8080` this will expose our app on port 8080.
 
-Great, our simple app is now running on Kubernetes, but before we can use it, we need to expose it to allow us to talk to it from otside the cluster. We can do that by running:
+Great, our simple app is now running on Kubernetes, but before we can use it, we need to expose it to allow us to talk to it from outside the cluster. We can do that by running:
 
 ```
-kubectl expose deployment my-app --type=LoadBalancer
+kubectl expose deployment <app-name> --type=LoadBalancer
 ```
 
-- `<my-app>` is the name of application you created earlier
+- `<app-name>` is the name of deployment you created in the last command.
 
+The `expose deployment` command will take a little bit of time to allocate an IP for you app. In the meantime, we will create a Service Binding to fetch a set of credentials from our Service Instance.
 
-- show them the server.js and Dockerfile
-- Unknown: push the image? have their username as the image tag
-kubectl get services (until the external IP appears)
+#### Create a Service Binding
+
+The term "Service Binding" in Kubernetes means something different than a Service Binding in Cloud Foundry. In Cloud Foundry, a Service Binding is a connection between an app and a Service Instance, usually to provide the app with credentials to access the Service Instance. In Kubernetes, a Service Binding has nothing to do with an app. It represents a connection to a Service Instance which is stored as a secret in Kubernetes. After the binding (and secret) are created, we need to explicitly reference that secret in the deployment to integrate that credential information into our app.
+
+To create a service binding, open up the yaml file representing a Service Binding resource:
+
+```
+cd ~/k8s/resources
+vim service_binding.yml
+```
+
+- `metadata.name` will be the name of your Service Binding (and Secret). We recommend you keep this short and easy to remember.
+- `spec.instanceRef.Name` should be the name of the Service Instance you created earlier. If you've forgotten this, just run `kubectl get serviceinstances`.
+
+Once you're finished editing, we can create the Service Binding with the familiar `kubectl` command.
+
+```
+kubectl create -f service_binding.yml
+```
+
+To verify that your binding and secret were created, you can run:
+
+```
+kubectl get servicebindings
+```
+
+and 
+
+```
+kubectl get secrets
+```
+
+In both cases, you should eventually see a row appear with the same name as you gave your service binding.
+
+#### Map the App to the Service Binding
+
+Before you map your app to your new secret, let's verify that your app is reachable and that the environment variables `BINDING_USERNAME` and `BINDING_PASSWORD` are empty.
+
+To get the external IP of your app, run the following command:
+
+```
+kubectl get services
+```
+
+Note that `services` in this context refers to Kubernetes' own concept of services, which has nothing to do with Service Catalog or the Services we've otherwise been dealing with during this lab.
+
+Curl your app at the external IP you see from the output of that command.
+
+```
 curl <external IP>:8080
+```
 
+You should see a response like:
 
+```
+USERNAME: undefined
+PASSWORD: undefined
+```
 
-1. K8s walkthrough
--- push the app
-cd ~/k8s/app
-cat server.js
-cat Dockerfile
+Now we're going to set those environment variables to get their values from the secret you created when you created the Service Binding.
 
--- The app is now running. Lets expose it so we can talk to it from outside the cluster
-kubectl expose deployment my-app --type=LoadBalancer
-
-
--- Bind to simple app
-1. create the service binding
-vim service_binding.yml (get the service instance name)
-kubectl create -f service-binding.yml
-2. Add secrets to the app
-kubectl get secrets our-binding -o yaml
+```
 vim add-env-to-deployment.yml
-kubectl patch deployment my-app --patch "$(cat add-env-to-deployment.yml)"
+```
+
+On line 5, replace the dummy text with the name of your app (aka deployment). In the two `secretKeyRef` sections below, replace the dummy text with the name of your secret (which is also the name of your Service Binding).
+This is telling Kubernetes to inject two environment variables into the container running your app, and the `secretKeyRef` describes how to fill the value of those environment variables from a Kubernetes secret.
+
+All we have left now is to patch the deployment with the file you just edited!
+
+```
+kubectl patch deployment <app-name> --patch "$(cat add-env-to-deployment.yml)"
+```
+
+Wait a second or two, and then curl your Kubernetes app like you did before.
+
+```
+curl <external IP>:8080
+```
+
+This time, you should see the USERNAME and PASSWORD values as they exist in your service broker code.
 
 
-while IFS= read -r newline; do echo $newline | awk '{ user=$2; sub(/-broker$/, "", user); print "kubectl label clusterserviceplan " $1 " user=" user }' | bash ; done < <(kubectl get clusterserviceplans --watch -l '!user' -o=custom-columns=NAME:.metadata.name,BROKER:.spec.clusterServiceBrokerName --no-headers)
-
+Congratulations! You've created a service instance from the same broker in Cloud Foundry and Kubernetes, and given apps in both platforms access to your Service Instance!
 
 ## Learning Objectives Review
 
