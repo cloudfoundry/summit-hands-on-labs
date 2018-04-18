@@ -1,0 +1,8 @@
+---
+applications:
+- name: bad-fulfil-api
+  memory: 128M
+  buildpack: go_buildpack
+  env:
+    GOPACKAGENAME: github.com/starkandwayne/cfsummit-lab-badactors/fulfillment-api
+    GET_ENDPOINT_URL: https://api.system.workshop.starkandwayne.online/v2/info

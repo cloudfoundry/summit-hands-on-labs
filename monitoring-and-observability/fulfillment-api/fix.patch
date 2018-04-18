@@ -1,0 +1,18 @@
+diff --git a/fulfillment-api/main.go b/fulfillment-api/main.go
+index 51b1ff3..200f9ad 100644
+--- a/fulfillment-api/main.go
++++ b/fulfillment-api/main.go
+@@ -25,8 +25,11 @@ func main() {
+ 	}
+ 
+ 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+-		req, _ := http.NewRequest("GET", endpoint, nil)
+-		go c.Do(req)
++		go func () {
++			req, _ := http.NewRequest("GET", endpoint, nil)
++			res, _ := c.Do(req)
++			res.Body.Close()
++		}()
+ 
+ 		w.WriteHeader(200)
+ 		fmt.Fprintf(w, "backend process started!\n")

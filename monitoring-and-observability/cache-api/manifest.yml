@@ -1,0 +1,7 @@
+---
+applications:
+- name: bad-cache-api
+  memory: 32M
+  buildpack: go_buildpack
+  env:
+    GOPACKAGENAME: github.com/starkandwayne/cfsummit-lab-badactors/cache-api
