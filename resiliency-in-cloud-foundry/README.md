@@ -35,6 +35,10 @@ $ cf a
 Get list of containers
 
 ```
+$ sudo apt-get update
+$ sudo apt-get install netcat-openbsd
+```
+```
 $ bosh -d cf ssh diego-cell/0
 $ sudo -i
 # cd /var/vcap/packages/runc/bin/
