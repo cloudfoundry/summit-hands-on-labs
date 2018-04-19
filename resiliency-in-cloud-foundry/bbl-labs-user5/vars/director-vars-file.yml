@@ -1,0 +1,24 @@
+director_address: https://35.188.64.196:25555
+director_name: bosh-bbl-env-saimaa-2018-04-19t03-41z
+external_ip: 35.188.64.196
+internal_cidr: 10.0.0.0/24
+internal_gw: 10.0.0.1
+internal_ip: 10.0.0.6
+internal_tag_name: bbl-env-saimaa-2018-04-19t03-41z-internal
+jumpbox_url: 35.188.64.196:22
+network: bbl-env-saimaa-2018-04-19t03-41z-network
+router_backend_service: bbl-env-saimaa-2018-04-19t03-41z-router-lb
+router_lb_ip: 35.190.22.111
+ssh_proxy_lb_ip: 35.184.21.243
+ssh_proxy_target_pool: bbl-env-saimaa-2018-04-19t03-41z-cf-ssh-proxy
+subnet_cidr_1: 10.0.16.0/24
+subnet_cidr_2: 10.0.32.0/24
+subnet_cidr_3: 10.0.48.0/24
+subnet_cidr_4: 10.0.64.0/24
+subnetwork: bbl-env-saimaa-2018-04-19t03-41z-subnet
+tags:
+- bbl-env-saimaa-2018-04-19t03-41z-bosh-director
+tcp_router_lb_ip: 35.184.62.33
+tcp_router_target_pool: bbl-env-saimaa-2018-04-19t03-41z-cf-tcp-router
+ws_lb_ip: 35.188.25.137
+ws_target_pool: bbl-env-saimaa-2018-04-19t03-41z-cf-ws

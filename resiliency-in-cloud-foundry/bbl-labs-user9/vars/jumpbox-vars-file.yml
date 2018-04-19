@@ -1,0 +1,25 @@
+director_address: https://35.184.142.215:25555
+director_name: bosh-bbl-env-vostok-2018-04-19t03-43z
+external_ip: 35.184.142.215
+internal_cidr: 10.0.0.0/24
+internal_gw: 10.0.0.1
+internal_ip: 10.0.0.5
+internal_tag_name: bbl-env-vostok-2018-04-19t03-43z-internal
+jumpbox_url: 35.184.142.215:22
+network: bbl-env-vostok-2018-04-19t03-43z-network
+router_backend_service: bbl-env-vostok-2018-04-19t03-43z-router-lb
+router_lb_ip: 35.190.34.66
+ssh_proxy_lb_ip: 35.184.61.250
+ssh_proxy_target_pool: bbl-env-vostok-2018-04-19t03-43z-cf-ssh-proxy
+subnet_cidr_1: 10.0.16.0/24
+subnet_cidr_2: 10.0.32.0/24
+subnet_cidr_3: 10.0.48.0/24
+subnet_cidr_4: 10.0.64.0/24
+subnetwork: bbl-env-vostok-2018-04-19t03-43z-subnet
+tags:
+- bbl-env-vostok-2018-04-19t03-43z-bosh-open
+- bbl-env-vostok-2018-04-19t03-43z-jumpbox
+tcp_router_lb_ip: 35.192.14.174
+tcp_router_target_pool: bbl-env-vostok-2018-04-19t03-43z-cf-tcp-router
+ws_lb_ip: 35.192.11.21
+ws_target_pool: bbl-env-vostok-2018-04-19t03-43z-cf-ws

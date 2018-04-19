@@ -1,0 +1,24 @@
+director_address: https://35.192.93.109:25555
+director_name: bosh-bbl-env-ladoga-2018-04-19t03-44z
+external_ip: 35.192.93.109
+internal_cidr: 10.0.0.0/24
+internal_gw: 10.0.0.1
+internal_ip: 10.0.0.6
+internal_tag_name: bbl-env-ladoga-2018-04-19t03-44z-internal
+jumpbox_url: 35.192.93.109:22
+network: bbl-env-ladoga-2018-04-19t03-44z-network
+router_backend_service: bbl-env-ladoga-2018-04-19t03-44z-router-lb
+router_lb_ip: 35.186.218.196
+ssh_proxy_lb_ip: 35.192.38.116
+ssh_proxy_target_pool: bbl-env-ladoga-2018-04-19t03-44z-cf-ssh-proxy
+subnet_cidr_1: 10.0.16.0/24
+subnet_cidr_2: 10.0.32.0/24
+subnet_cidr_3: 10.0.48.0/24
+subnet_cidr_4: 10.0.64.0/24
+subnetwork: bbl-env-ladoga-2018-04-19t03-44z-subnet
+tags:
+- bbl-env-ladoga-2018-04-19t03-44z-bosh-director
+tcp_router_lb_ip: 35.184.166.180
+tcp_router_target_pool: bbl-env-ladoga-2018-04-19t03-44z-cf-tcp-router
+ws_lb_ip: 35.192.85.117
+ws_target_pool: bbl-env-ladoga-2018-04-19t03-44z-cf-ws
