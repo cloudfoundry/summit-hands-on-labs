@@ -26,7 +26,7 @@ Clone, push and scale application
 ```
 $ git clone https://github.com/cloudfoundry-samples/spring-music.git
 $ cd spring-music
-$ gradlew
+$ ./gradlew
 $ cf push
 $ cf scale spring-music -i 3 
 ```
@@ -34,16 +34,15 @@ $ cf scale spring-music -i 3
 Get list of containers
 
 ```
-bosh -d cf ssh diego-cell/0
-sudo -i
-cd /var/vcap/packages/runc/bin/
-./runc list
+$ bosh -d cf ssh diego-cell/0
+$ sudo -i
+# cd /var/vcap/packages/runc/bin/
+# ./runc list
 ```
 
 Kill application instance
 ```
-$ ./get_guid.sh spring-music
-$ ./delete_app.sh guid 1
+kill -9 CONTAINER_PID
 ```
 
 Find IP of diego cells
