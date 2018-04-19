@@ -16,3 +16,7 @@ git reset --hard
 git lfs install
 git pull
 git lfs checkout
+
+. ~/.bashrc
+
+cf login -u $PWS_USER -p $PWS_PASSWORD -a api.run.pivotal.io
