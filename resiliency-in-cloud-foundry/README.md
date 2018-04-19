@@ -28,7 +28,8 @@ $ git clone https://github.com/cloudfoundry-samples/spring-music.git
 $ cd spring-music
 $ ./gradlew
 $ cf push
-$ cf scale spring-music -i 3 
+$ cf scale spring-music -i 3
+$ cf a
 ```
 
 Get list of containers
