@@ -43,6 +43,9 @@ $ sudo -i
 
 Kill application instance
 ```
+$ ./get_guid.sh spring-music
+$ ./delete_app.sh guid 0
+
 $ kill -9 CONTAINER_PID
 $ ./runc list
 ```
