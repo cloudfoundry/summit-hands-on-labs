@@ -6,6 +6,8 @@
 
 Get ClooudFoundry environment
 ```
+$ cd resiliency-in-cloud-foundry
+$ git pull
 $ cd bbl-labs-user[1-12]
 $ eval "$(bbl print-env)"
 ```
