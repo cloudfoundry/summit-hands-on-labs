@@ -43,7 +43,7 @@ For example, you can run:
 When using Cloud Foundry, the first thing you need to do is target and log in to a Cloud Foundry instance.  Run the following:
 
 ```
-$ cf login -u $PWS_USER -p $PWS_PASSWORD -a api.run.pivotal.io
+$ cf login -u $PWS_USER -p 'Firstpush1!' -a api.run.pivotal.io
 ```
 
 The `-a` flag specifies the API endpoint for Pivotal Web Services (api.run.pivotal.io).
