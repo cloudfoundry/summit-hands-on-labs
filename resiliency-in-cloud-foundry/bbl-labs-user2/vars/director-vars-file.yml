@@ -1,0 +1,24 @@
+director_address: https://35.188.72.91:25555
+director_name: bosh-bbl-env-tanganyika-2018-04-19t01-50z
+external_ip: 35.188.72.91
+internal_cidr: 10.0.0.0/24
+internal_gw: 10.0.0.1
+internal_ip: 10.0.0.6
+internal_tag_name: bbl-env-tanganyika-2018-04-19t01-50z-internal
+jumpbox_url: 35.188.72.91:22
+network: bbl-env-tanganyika-2018-04-19t01-50z-network
+router_backend_service: bbl-env-tanganyika-2018-04-19t01-50z-router-lb
+router_lb_ip: 35.190.25.140
+ssh_proxy_lb_ip: 35.184.30.16
+ssh_proxy_target_pool: bbl-env-tanganyika-2018-04-19t01-50z-cf-ssh-proxy
+subnet_cidr_1: 10.0.16.0/24
+subnet_cidr_2: 10.0.32.0/24
+subnet_cidr_3: 10.0.48.0/24
+subnet_cidr_4: 10.0.64.0/24
+subnetwork: bbl-env-tanganyika-2018-04-19t01-50z-subnet
+tags:
+- bbl-env-tanganyika-2018-04-19t01-50z-bosh-director
+tcp_router_lb_ip: 35.184.101.204
+tcp_router_target_pool: bbl-env-tanganyika-2018-04-19t01-50z-cf-tcp-router
+ws_lb_ip: 35.184.131.75
+ws_target_pool: bbl-env-tanganyika-2018-04-19t01-50z-cf-ws
