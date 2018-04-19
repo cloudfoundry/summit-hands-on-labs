@@ -42,7 +42,8 @@ $ sudo -i
 
 Kill application instance
 ```
-kill -9 CONTAINER_PID
+$ kill -9 CONTAINER_PID
+$ ./runc list
 ```
 
 Find IP of diego cells
