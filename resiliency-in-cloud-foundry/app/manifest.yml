@@ -1,0 +1,6 @@
+---
+applications:
+- name: jwar
+  memory: 1G
+  random-route: true
+  path: jwar.war
