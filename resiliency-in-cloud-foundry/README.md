@@ -24,13 +24,11 @@ $ cf login -u admin -p PASSWORD
 $ cf target -o "system" -s "labs"
 ```
 
-Clone, push and scale application
+Push and scale application
 ```
-$ git clone https://github.com/cloudfoundry-samples/spring-music.git
-$ cd spring-music
-$ ./gradlew
+$ cd app
 $ cf push
-$ cf scale spring-music -i 3
+$ cf scale jwar -i 5
 $ cf a
 ```
 
@@ -49,7 +47,7 @@ $ sudo -i
 
 Kill application instance
 ```
-$ ./get_guid.sh spring-music
+$ ./get_guid.sh jwar
 $ ./delete_app.sh guid 0
 
 $ kill -9 CONTAINER_PID
