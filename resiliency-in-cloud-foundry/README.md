@@ -58,3 +58,7 @@ Find IP of diego cells
 ```
 bosh vms | grep diego-cell
 ```
+
+Open Google Cloud Console
+
+https://console.cloud.google.com/compute/instances
