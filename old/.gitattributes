@@ -1,8 +1,0 @@
-bin/Darwin/cf filter=lfs diff=lfs merge=lfs -text
-bin/Linux/cf filter=lfs diff=lfs merge=lfs -text
-bin/Linux/bbl filter=lfs diff=lfs merge=lfs -text
-bin/Linux/bosh filter=lfs diff=lfs merge=lfs -text
-bin/Darwin filter=lfs diff=lfs merge=lfs -text
-bin/Darwin/git-lfs filter=lfs diff=lfs merge=lfs -text
-bin/Linux filter=lfs diff=lfs merge=lfs -text
-bin/Linux/git-lfs filter=lfs diff=lfs merge=lfs -text
