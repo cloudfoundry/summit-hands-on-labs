@@ -26,6 +26,25 @@ Each team has two slots. They can do one lab two times, two separate labs or two
 1. Pivotal
 1. ?
 
+Timeline
+--------
+
+- August 8:
+  - [ ] lab descriptions are ready
+- Sep 19:
+  - [ ] lab demoed at the call
+  - [ ] each lab was done at least one
+  - [ ] draft documentation for the lab is ready
+  - [ ] draft code was commited to this repo
+- Oct 3:
+  - [ ] final documentation for the lab is ready
+  - [ ] final code was commited to this repo
+  - [ ] public version of this repo that allows participants redo the labs is live
+  - [ ] instructors have access to the infrastructure provider account to verify everything works fine
+- Oct 9:
+  - [ ] instructors have access to the chromebooks and have time to set up
+- Oct 10-11: labs take place
+
 How to create a lab
 -------------------
 
