@@ -1,7 +1,7 @@
 Summit Hands-On Labs
 ====================
 
-Welcome to the Hands-on Labs for CF Summit Basel '18!
+Welcome to the Hands-on Labs for CF Summit Basel 2018!
 
 Useful info
 -----------
