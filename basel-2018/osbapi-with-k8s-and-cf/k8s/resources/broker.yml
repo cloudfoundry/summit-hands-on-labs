@@ -1,0 +1,9 @@
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ClusterServiceBroker
+metadata:
+  name: NAMESPACE-broker
+  labels:
+    user: NAMESPACE
+spec:
+  url: http://<broker route in cloud foundry>
+  insecureSkipTLSVerify: true

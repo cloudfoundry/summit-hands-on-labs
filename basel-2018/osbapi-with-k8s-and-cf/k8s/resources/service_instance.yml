@@ -1,0 +1,8 @@
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  name: <service instance name>
+  namespace: NAMESPACE
+spec:
+  clusterServiceClassExternalName: <service_class_name>
+  clusterServicePlanExternalName: <plan_name>

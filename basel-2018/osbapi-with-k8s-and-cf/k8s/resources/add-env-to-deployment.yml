@@ -1,0 +1,16 @@
+spec:
+  template:
+    spec:
+      containers:
+      - name: <your deployment name>
+        env:
+          - name: BINDING_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: <your secret name (which is also your binding name)>
+                key: username
+          - name: BINDING_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: <your secret name>
+                key: password
