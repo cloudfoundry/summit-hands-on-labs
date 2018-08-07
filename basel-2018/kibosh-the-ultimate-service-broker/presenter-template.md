@@ -1,28 +1,27 @@
 # Lab Description
 
-Describe the purpose of the lab so all commitee members can
-understand what this lab is about and your expectations for
-your attendees will gain from your lab.
+We're demonstrating how to utilize Kibosh to provide on demand services hosted on PKS. Kibosh takes your Helm Charts (Kubernetes Package Manager) and auto implements the service broker API for you to create the service offering you always dreamed of. We go through the steps to setup and deploy Kibosh to be able to create and consume a service offering from Kibosh.
 
 # Program Description
+On demand dedicated Services?
+Container Based Service Instances?
+Automatically implemented Service Broker APIs?
 
-Another lab description for publishing in the CF Summit program.
+Say no more and try Kibosh today.
+
 
 # Environment
 
-Describe your lab environment that is necessary for your attendees
-to run through your lab. This information will be used to find commonalities 
-between the various labs and for Tim to make sure we have the resources for
-all the labs.
-
-Examples:
-  1. shared CF environment in a single space
-  1. shared CF environment with a space per attendee
-  1. separate CF environment per attendee
+  1. shared CF with one Org that holds spaces for participants
+  2. Access to a BOSH director to deploy Kibosh
+  3. shared large PKS Cluster (~ 10 Workers) to deploy services on
 
 # Setup
+Setup CF
+Setup PKS
+Provision PKS
+Deploy Kibosh
+Register Kibosh as a ServiceBroker with CF
 
-This section describes any particular setup issues that need to be done
-before presenting your lab.
 
 # Issues
