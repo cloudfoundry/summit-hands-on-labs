@@ -1,8 +1,7 @@
 # Lab Description
 
-Describe the purpose of the lab so all commitee members can
-understand what this lab is about and your expectations for
-your attendees will gain from your lab.
+The lab will show how easy it is deploy, configure and use the uaa in applications.  
+The attendees will learn how simple it is to have authorization and authentication in their applications.
 
 # Program Description
 
