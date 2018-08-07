@@ -1,6 +1,6 @@
 # Lab Description
 
-The lab will show how easy it is deploy, configure and use the uaa in applications.  
+The lab will show how easy it is to deploy, configure and use the uaa with your applications.  
 The attendees will learn how simple it is to have authorization and authentication in their applications.
 
 # Program Description
