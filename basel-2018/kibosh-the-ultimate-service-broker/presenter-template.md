@@ -17,11 +17,10 @@ Say no more and try Kibosh today.
   3. shared large PKS Cluster (~ 10 Workers) to deploy services on
 
 # Setup
-Setup CF
-Setup PKS
-Provision PKS
-Deploy Kibosh
-Register Kibosh as a ServiceBroker with CF
-
+1. Setup CF
+2. Setup PKS
+3. Provision PKS
+4. Deploy Kibosh
+5. Register Kibosh as a ServiceBroker with CF
 
 # Issues
