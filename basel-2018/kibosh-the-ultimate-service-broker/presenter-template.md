@@ -1,6 +1,6 @@
 # Lab Description
 
-We're demonstrating how to utilize Kibosh to provide on demand services hosted on PKS. Kibosh takes your Helm Charts (Kubernetes Package Manager) and auto implements the service broker API for you to create the service offering you always dreamed of. We go through the steps to setup and deploy Kibosh to be able to create and consume a service offering from Kibosh.
+We're demonstrating how to utilize Kibosh to provide on demand services hosted on PKS. Kibosh takes your Helm Charts (Kubernetes Package Manager) and auto implements the service broker API for you to create the service offering you always dreamed of. We go through the steps to setup and deploy Kibosh to be able to create and consume a service offering from Kibosh.  See the [kibosh repository](https://github.com/cf-platform-eng/kibosh) for more information
 
 # Program Description
 On demand dedicated Services?
