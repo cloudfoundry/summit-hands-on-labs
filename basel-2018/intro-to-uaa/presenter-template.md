@@ -5,23 +5,16 @@ The attendees will learn how simple it is to have authorization and authenticati
 
 # Program Description
 
-Another lab description for publishing in the CF Summit program.
+*Another lab description for publishing in the CF Summit program*
 
 # Environment
 
-Describe your lab environment that is necessary for your attendees
-to run through your lab. This information will be used to find commonalities 
-between the various labs and for Tim to make sure we have the resources for
-all the labs.
-
-Examples:
-  1. shared CF environment in a single space
-  1. shared CF environment with a space per attendee
-  1. separate CF environment per attendee
+It will be a shared CF environment, but need to be able to install uaa bosh release.
+Most likely a space per attendee but could be a single space.   The lab designer will be make the final decision.
 
 # Setup
 
-This section describes any particular setup issues that need to be done
-before presenting your lab.
+Need to be able to install uaa bosh release onto the CF platform
+A sample application will need to be pulled from a github repository.
 
 # Issues
