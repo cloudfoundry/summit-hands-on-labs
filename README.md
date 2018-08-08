@@ -12,7 +12,7 @@ Useful info
 - Number of slots: 12
 - Infrastructure provider: Google Cloud, ?
 - Laptops: chromebooks
-- Number of students: ?
+- Number of students: up to 10
 
 Teams
 -----
