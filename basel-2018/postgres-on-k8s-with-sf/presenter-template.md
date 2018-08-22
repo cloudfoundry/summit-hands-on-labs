@@ -1,8 +1,6 @@
 # Lab Description
 
-Describe the purpose of the lab so all commitee members can
-understand what this lab is about and your expectations for
-your attendees will gain from your lab.
+With this lab we want to demonstrate the ease with which a broker developer can on-board a new backing service provisioner on [Service Fabrik](https://github.com/cloudfoundry-incubator/service-fabrik-broker). In this lab we intend to provide a ready-to-use implementation of backing service provisioner which helps to provision a PostgreSQL instance on [shoot cluster](https://kubernetes.io/blog/2018/05/17/gardener/) managed by [Gardener](https://gardener.cloud/)
 
 # Program Description
 
@@ -10,15 +8,13 @@ Another lab description for publishing in the CF Summit program.
 
 # Environment
 
-Describe your lab environment that is necessary for your attendees
-to run through your lab. This information will be used to find commonalities 
-between the various labs and for Tim to make sure we have the resources for
-all the labs.
+Target lab environment would be a separate environment for each participant comprising of the following
 
-Examples:
-  1. shared CF environment in a single space
-  1. shared CF environment with a space per attendee
-  1. separate CF environment per attendee
+1. BOSH-Lite deployed on GCP for each participant
+2. Each BOSH-Lite will have Service Fabrik deployed on it
+3. A pre-provisioned Gardener Shoot Cluster
+4. Service Fabrik to have required privileges to create PostgreSQL service on Gardener
+5. A GitHub repo to host the code for K8S provisioner which the participants can pull from the repo into there Service Fabrik instance
 
 # Setup
 
