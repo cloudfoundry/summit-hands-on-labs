@@ -1,0 +1,10 @@
+{
+  "name": "bazel",
+  "version": "0.0.1",
+  "author": "Alex Zalesov <aleksey.zalesov@altoros.com",
+  "description": "sample app for the Bazel summit",
+  "dependencies" : [ ],
+  "engines": {
+    "node": ">=0.10"
+  }
+}
