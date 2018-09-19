@@ -10,7 +10,7 @@ In this lab participant with learn
 
 ## Prerequisites
 1. Basic understanding of CF ecosystem for example creating a service instance, binding a service instance etc.
-2. Basic understanding of [Service Fabrik](https://github.com/cloudfoundry-incubator/service-fabrik-broker).
+2. Basic understanding of [Service Broker](https://github.com/openservicebrokerapi/servicebroker).
 
 ## Lab
 
