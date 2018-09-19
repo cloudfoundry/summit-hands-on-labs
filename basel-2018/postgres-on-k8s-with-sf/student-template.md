@@ -13,6 +13,83 @@ In this lab participant with learn
 2. Basic understanding of [Service Broker](https://github.com/openservicebrokerapi/servicebroker).
 
 ## Lab
+### Get CloudFoundry environment
+```
+$ git clone <service-fabrik-lab-states-repository>
+$ cd service-fabrik-lab-states
+$ git pull
+$ cd user[1-12]
+$ eval "$(bbl print-env)"
+```
+
+### Get CloudFoundry Credentials
+```
+$ cat cf_creds.txt
+```
+
+### SSH into jumpbox
+```
+$ bbl ssh --jumpbox
+$ bash
+$ cd service-fabrik-lab-states/user[1-12]
+$ eval "$(bbl print-env)"
+```
+
+### Target to CloudFoundry API
+```
+$ cf api https://api.bosh-lite.com --skip-ssl-validation
+$ cf login -u admin -p PASSWORD -o service-fabrik
+$ cf target -o "service-fabrik" -s "labs"
+```
+
+### Check avaialble services
+```
+$ cf service-access
+```
+
+### Steps to bring in a new provisioner
+
+1. List new CRDS in service-fabrik manifest
+2. List new services  in service-fabrik manifest
+3. Add new manger job in service-fabrik manifest
+```
+vimdiff manifest-k8s.yml manifest-no-k8s.yml
+```
+
+### Start kubernetes manager job
+```
+$ bosh -nd service-fabrik deploy manifest-k8s.yml
+```
+
+### Update broker
+```
+$ cf update-service-broker service-fabrik-broker broker secret https://10.244.4.2:9293/cf
+$ cf service-access
+```
+
+### Enable newly available service
+```
+$ cf enable-service-access pg-crunchydata
+$ cf marketplace
+```
+
+### Create a Postgresql instance and binding key
+```
+$ cf create-service pg-crunchydata v1.0 pg-test
+$ cf service pg-test 
+$ cf create-service-key pg-test bindingKey
+$ cf service-key pg-test bindingKey
+```
+
+### Create a Postgresql instance and binding key
+```
+$ kubectl get deployments
+```
+
+### Connect to service using obtained service keys
+```
+$ psql -h $hostname -p 5432 -U $username -d $db
+```
 
 ## Learning Objectives Review
 Now that you have deployed [Service Fabrik](https://github.com/cloudfoundry-incubator/service-fabrik-broker) with provisioner to provision a PostgreSQL instance, you should:
