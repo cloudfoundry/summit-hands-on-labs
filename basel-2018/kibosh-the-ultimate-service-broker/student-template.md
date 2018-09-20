@@ -9,14 +9,14 @@ In this lab you will learn to deploy and use Kibosh. Doing that you will learn t
 
 
 ## Prerequisites
-Eden CLI or cURL for requests against Kibosh API (https://github.com/starkandwayne/eden)
-kubectl for running commands against Kubernetes 
-bazaar cli for uploading helm charts (https://github.com/cf-platform-eng/kibosh/releases)
-git for repo access
-rabbitmqctl for testing created rabbit service (https://www.rabbitmq.com/man/rabbitmqctl.8.html)
-jq for parsing JSON
--- OR --
-I have a docker container containing all required clis and it can also run kibosh that I'm using for my test pipeline.. If internet access is fast enough, everyone can pull & start the docker container and run her/his own instance against the shared KubeCluster. Then, the only requirement would be to be able to run a local docker image..
+- Eden CLI or cURL for requests against Kibosh API (https://github.com/starkandwayne/eden)
+- kubectl for running commands against Kubernetes 
+- bazaar cli for uploading helm charts (https://github.com/cf-platform-eng/kibosh/releases)
+- git for repo access
+- rabbitmqctl for testing created rabbit service (https://www.rabbitmq.com/man/rabbitmqctl.8.html)
+- jq for parsing JSON
+###### __-- OR --__
+- *I have a docker container containing all required clis and it can also run kibosh that I'm using for my test pipeline.. If internet access is fast enough, everyone can pull & start the docker container and run her/his own instance against the shared KubeCluster. Then, the only requirement would be to be able to run a local docker image..*
   
 ## Lab
 
@@ -67,15 +67,15 @@ rmq:
 - **do something with rabbit** 
 
 ## Learning Objectives Review
-Understand the OSB Api
-Understand how Kibosh uses Helm-Charts to implement the OSB Spec
-Understand the workflow to create Kibosh Services from Helm-Charts
+- Understand the OSB Api
+- Understand how Kibosh uses Helm-Charts to implement the OSB Spec
+- Understand the workflow to create Kibosh Services from Helm-Charts
 
 ## Beyond the Lab
 
-Check out Helms curated charts repo
-https://github.com/helm/charts/tree/master/stable
+- Check out Helms curated charts repo
+`https://github.com/helm/charts/tree/master/stable`
 
-Cooperate on Kibosh
-https://github.com/cf-platform-eng/kibosh
+- Cooperate on Kibosh
+`https://github.com/cf-platform-eng/kibosh`
 
