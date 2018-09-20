@@ -1,5 +1,5 @@
 ## Introduction
-In this lab you will learn to deploy and use Kibosh. Doing that you will learn to deploy Helm Charts as Services on Kubernetes via Kibosh' Open Service Broker API. On demand dedicated services the easy way. In this lab you will create a rabbit-mq service offering on Kibosh and use Kibosh to provision an instance of your rabbit-mq service, in less than half an hour.
+In this lab you will explore Kibosh and learn to deploy Helm Charts as Services on Kubernetes via Kibosh' Open Service Broker API. On demand dedicated services the easy way.  Joining us you will create a rabbit-mq service offering on Kibosh from a base chart and use Kibosh to provision an instance of your rabbit-mq service.
 
 
 ## Learning Objectives
