@@ -13,33 +13,10 @@ In this lab participant with learn
 2. Basic understanding of [Service Broker](https://github.com/openservicebrokerapi/servicebroker).
 
 ## Lab
-### Get CloudFoundry environment
+### Setup Lab environment
+You can start with running an initial script, which will install required packages (bbl, expect) if required and login to jumpbox. The script will also setup CF and BOSH environment so that you can readily start working on lab. 
 ```
-$ git clone <service-fabrik-lab-states-repository>
-$ cd service-fabrik-lab-states
-$ git pull
-$ cd user[1-12]
-$ eval "$(bbl print-env)"
-```
-
-### Get CloudFoundry Credentials
-```
-$ cat cf_creds.txt
-```
-
-### SSH into jumpbox
-```
-$ bbl ssh --jumpbox
-$ bash
-$ cd service-fabrik-lab-states/user[1-12]
-$ eval "$(bbl print-env)"
-```
-
-### Target to CloudFoundry API
-```
-$ cf api https://api.bosh-lite.com --skip-ssl-validation
-$ cf login -u admin -p PASSWORD -o service-fabrik
-$ cf target -o "service-fabrik" -s "labs"
+$ ./student-setup user[1-12]
 ```
 
 ### Check avaialble services
