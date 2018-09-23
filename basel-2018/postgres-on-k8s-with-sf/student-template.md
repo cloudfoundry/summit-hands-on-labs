@@ -33,7 +33,7 @@ $ cf service-access
 vimdiff manifest-k8s.yml manifest-no-k8s.yml
 ```
 
-### Start kubernetes manager job
+### Start Kubernetes manager job
 ```
 $ bosh -nd service-fabrik deploy manifest-k8s.yml
 ```
@@ -53,19 +53,44 @@ $ cf marketplace
 ### Create a Postgresql instance and binding key
 ```
 $ cf create-service pg-crunchydata v1.0 pg-test
-$ cf service pg-test 
-$ cf create-service-key pg-test bindingKey
-$ cf service-key pg-test bindingKey
+$ watch cf service pg-test
 ```
 
-### Create a Postgresql instance and binding key
+### Check PostgreSQL instance resources in K8S Cluster
+A deployment and a service will be created as part of create instance call in K8S cluster and can be identified with instance guid in CF.
 ```
 $ kubectl get deployments
+$ kubectl get service
+```
+
+### Create a binding key
+```
+$ cf create-service-key pg-test bindingKey
+$ cf service-key pg-test bindingKey
 ```
 
 ### Connect to service using obtained service keys
 ```
 $ psql -h $hostname -p 5432 -U $username -d $db
+$ userdb=> \dt
+```
+
+### Delete previously created binding key
+```
+$ cf delete-service-key -f pg-test bindingKey
+$ cf service-key pg-test bindingKey
+```
+
+### Delete the PostgreSQL service instance
+```
+$ cf delete-service -f pg-test
+$ watch cf service pg-test
+```
+
+### Check that PostgreSQL instance resources are deleted in K8S Cluster
+```
+$ kubectl get deployments
+$ kubectl get service
 ```
 
 ## Learning Objectives Review
