@@ -31,6 +31,13 @@ To run the UAA locally requires:
 
     **NOTE:** Apache Tomcat may not work on Java 9 / Java 10; hence requirement for specifically Java 8.
 
+1. Git
+
+    ```plain
+    $ git --version
+    git version 2.17.1 (Apple Git-112)
+    ```
+
 To run the example applications requires:
 
 1. Docker CLI and Docker Daemon running
@@ -46,6 +53,12 @@ To run the example applications requires:
       ...
     ```
 
+1. Docker image for sample application
+
+    ```plain
+    docker pull starkandwayne/uaa-example-resource-server
+    ```
+
 1. Example application source code:
 
     ```plain
@@ -57,6 +70,7 @@ To run the example applications requires:
 Lab steps:
 
 1. Quickly run UAA locally
+1. Run a "resource server" for anonymous users
 
 ### Quickly run UAA locally
 
@@ -78,7 +92,7 @@ cd ~/workspace/quick-uaa-local
 Either run `direnv allow` if prompted, or:
 
 ```plain
-source "$(bin/quaa env)
+eval "$(bin/quaa env)"
 ```
 
 On both:
@@ -88,6 +102,50 @@ To run a local UAA:
 ```plain
 quaa up
 ```
+
+### Run a "resource server" for anonymous users
+
+The example resource server (data API to be protected by UAA later) is a list of Australian Airports.
+
+The application supports anonymous users - those who interact with the API without any valid authorization.
+
+We will use environment variables to configure the application with our local UAA:
+
+```plain
+quaa env
+
+eval "$(quaa env)"
+echo $UAA_URL
+```
+
+Either run with Docker, or investigate the [different Ruby/Golang implementations](https://github.com/starkandwayne/ultimate-guide-to-uaa-examples)
+
+```plain
+docker run -ti -p 9292:9292 -e UAA_URL=$UAA_URL -e UAA_CA_CERT=$UAA_CA_CERT starkandwayne/uaa-example-resource-server
+```
+
+The Airport API resource server application is now running on port `:9292`. We can interact with it using `curl`:
+
+```plain
+$ curl localhost:9292
+[
+  {
+    "Airport ID": 3317,
+    "Name": "Brisbane Archerfield Airport",
+    "City": "Brisbane",
+    "Country": "Australia",
+    "IATA": "\\N",
+    "ICAO": "YBAF",
+```
+
+If you have the `jq` CLI you can see that as an anonymous user we receive 10 results only:
+
+```plain
+$ curl localhost:9292 | jq length
+10
+```
+
+See the [Ruby example source code](https://github.com/starkandwayne/ultimate-guide-to-uaa-examples/blob/master/ruby/resource-server/config.ru#L24-L27)
 
 ## Learning Objectives Review
 
