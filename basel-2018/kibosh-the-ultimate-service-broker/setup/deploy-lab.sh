@@ -9,7 +9,7 @@ export BBL_IAAS=gcp
 # GET BUCC AND CFCR DEPLOYMENT
 git submodule update --init
 
-if [ ! terraform ]; then
+if [ ! -d terraform ]; then
   mkdir terraform
 fi
 
