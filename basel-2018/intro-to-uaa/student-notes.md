@@ -31,13 +31,6 @@ To run the UAA locally requires:
 
     **NOTE:** Apache Tomcat may not work on Java 9 / Java 10; hence requirement for specifically Java 8.
 
-1. [Quick UAA Local](https://github.com/starkandwayne/quick-uaa-local/) project cloned:
-
-    ```plain
-    git clone https://github.com/starkandwayne/quick-uaa-local ~/workspace/quick-uaa-local
-    cd ~/workspace/quick-uaa-local
-    ```
-
 To run the example applications requires:
 
 1. Docker CLI and Docker Daemon running
@@ -60,6 +53,41 @@ To run the example applications requires:
     ```
 
 ## Lab
+
+Lab steps:
+
+1. Quickly run UAA locally
+
+### Quickly run UAA locally
+
+We will use the [Quick UAA Local](https://github.com/starkandwayne/quick-uaa-local/) project to download all remaining dependencies and run a local UAA.
+
+On MacOS/Homebrew:
+
+```plain
+brew install starkandwayne/cf/quaa
+```
+
+On Linux/MacOS:
+
+```plain
+git clone https://github.com/starkandwayne/quick-uaa-local ~/workspace/quick-uaa-local
+cd ~/workspace/quick-uaa-local
+```
+
+Either run `direnv allow` if prompted, or:
+
+```plain
+source "$(bin/quaa env)
+```
+
+On both:
+
+To run a local UAA:
+
+```plain
+quaa up
+```
 
 ## Learning Objectives Review
 
