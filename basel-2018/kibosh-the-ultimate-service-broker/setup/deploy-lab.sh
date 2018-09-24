@@ -17,6 +17,9 @@ fi
 ln -s -f bucc/bbl/*-director-override.sh .
 ln -sr -f bucc/bbl/terraform/$BBL_IAAS/* terraform/
 
+# Add Kibosh extra TF
+ln -sr -f kibosh/kibosh-tf-override.tf terraform/
+
 # CHECK FOR BBL, DOWNLOAD IF NECESSARY
 if [ -n "$(command -v bbl)" ]; then
   echo "found bbl, continuing"
@@ -41,9 +44,9 @@ fi
 
 # BBL BUCC UP
 if [ -f bbl-state.json ]; then
-  bbl up -lb-type concourse --gcp-service-account-key gcp.json --debug
+  bbl up --lb-type concourse --gcp-service-account-key gcp.json --debug
 else
-  bbl up -lb-type concourse --gcp-service-account-key gcp.json --gcp-region "$GCP_REGION" --debug
+  bbl up --lb-type concourse --gcp-service-account-key gcp.json --gcp-region "$GCP_REGION" --debug
 fi
 # BOSH CLI CONFIG
 eval "$(bbl print-env)"
@@ -56,4 +59,4 @@ bosh -n ucc <( bosh int <(bosh cc) -o kibosh/kubo-ops/cloud-config-lb-extension.
 bosh -d cfcr -n \
   deploy <( bosh int kubo-deployment/manifests/cfcr.yml -o kibosh/kubo-ops/add-lb-extension-worker.yml -o kubo-deployment/manifests/ops-files/use-runtime-config-bosh-dns.yml -o kibosh/kubo-ops/add-addon-spec.yml -l <(bosh int kibosh/kibosh-spec.yml  -l kibosh/vars.yml) -l kibosh/vars.yml ) 
 
-bosh -d cfcr run-errand apply-addons -n 
+bosh -d cfcr run-errand apply-addons -n
