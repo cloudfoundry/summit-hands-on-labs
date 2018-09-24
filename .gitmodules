@@ -1,0 +1,6 @@
+[submodule "basel-2018/kibosh-the-ultimate-service-broker/setup/kubo-deployment"]
+	path = basel-2018/kibosh-the-ultimate-service-broker/setup/kubo-deployment
+	url = https://github.com/cloudfoundry-incubator/kubo-deployment
+[submodule "basel-2018/kibosh-the-ultimate-service-broker/setup/bucc"]
+	path = basel-2018/kibosh-the-ultimate-service-broker/setup/bucc
+	url = https://github.com/starkandwayne/bucc

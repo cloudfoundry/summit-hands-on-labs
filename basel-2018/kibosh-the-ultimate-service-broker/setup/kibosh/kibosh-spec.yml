@@ -1,0 +1,123 @@
+kibosh-spec: |
+  ---
+  kind: ServiceAccount
+  apiVersion: v1
+  metadata:
+    name: kibosh-helm
+    namespace: kube-system
+  ---        
+  kind: ClusterRoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+    name: kibosh-helm
+    annotations:
+      "rbac.authorization.kubernetes.io/autoupdate": "true"
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+    - kind: ServiceAccount
+      name: kibosh-helm
+      namespace: kube-system
+  ---
+  kind: ConfigMap
+  apiVersion: v1
+  data:
+    kibosh.user:  ((kibosh-user))
+    kibosh.password: ((kibosh-pw))
+    bazaar.user: ((bazaar-user))
+    bazaar.password: ((bazaar-pw))
+  metadata:
+    name: cluster-addon-deployment-data
+    namespace: kube-system
+
+  ---
+  kind: Deployment
+  apiVersion: apps/v1
+  metadata:
+    name: kibosh
+    namespace: kube-system
+  spec:
+    selector:
+      matchLabels:
+        name: kibosh
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          name: kibosh
+      spec:
+        serviceAccount: kibosh-helm
+        containers:
+        - name: kibosh
+          image: nouseforaname/kibosh:latest
+          imagePullPolicy: Always
+          command: ["start"]
+          ports:
+          - containerPort: 8080
+          - containerPort: 8081
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 20
+          env:
+          - name: BAZAAR_USER
+            valueFrom:
+              configMapKeyRef:
+               # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
+                name: cluster-addon-deployment-data
+                key: bazaar.user
+          - name: BAZAAR_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+               # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
+                name: cluster-addon-deployment-data
+                key: bazaar.password
+          - name: KIBOSH_USER
+            valueFrom:
+              configMapKeyRef:
+               # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
+                name: cluster-addon-deployment-data
+                key: kibosh.user
+          - name: KIBOSH_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+               # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
+                name: cluster-addon-deployment-data
+                key: kibosh.password
+
+  ---
+  kind: Service
+  apiVersion: v1
+  metadata:
+    name: kibosh-np
+    namespace: kube-system
+  spec:
+    type: NodePort
+    ports:
+      - targetPort: 8080
+        protocol: TCP
+        port: 8080
+    selector:
+      name: kibosh
+  ---
+  kind: Service
+  apiVersion: v1
+  metadata:
+    name: kibosh-bazaar-np
+    namespace: kube-system
+  spec:
+    type: NodePort
+    ports:
+      - targetPort: 6080
+        protocol: TCP
+        port: 8081
+    selector:
+      name: kibosh
