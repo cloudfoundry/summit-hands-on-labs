@@ -29,6 +29,8 @@ To run the UAA locally requires:
     java version "1.8.0_66"
     ```
 
+    **NOTE:** Apache Tomcat may not work on Java 9 / Java 10; hence requirement for specifically Java 8.
+
 1. [Quick UAA Local](https://github.com/starkandwayne/quick-uaa-local/) project cloned:
 
     ```plain
@@ -62,3 +64,5 @@ To run the example applications requires:
 ## Learning Objectives Review
 
 ## Beyond the Lab
+
+* WIP book - [Ultimate Guide to UAA](https://www-staging.ultimateguidetouaa.com/)
