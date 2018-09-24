@@ -9,11 +9,13 @@ export BBL_IAAS=gcp
 # GET BUCC AND CFCR DEPLOYMENT
 git submodule update --init
 
-# GET SOME BUCC OVERRIDES GOING, THX RAMON
-if [ ! -f ./create-director-override.sh ]; then
-  ln -s bucc/bbl/*-director-override.sh .
-  ln -sr bucc/bbl/terraform/$BBL_IAAS/* terraform/
+if [ ! terraform ]; then
+  mkdir terraform
 fi
+
+# GET SOME BUCC OVERRIDES GOING, THX RAMON
+ln -s -f bucc/bbl/*-director-override.sh .
+ln -sr -f bucc/bbl/terraform/$BBL_IAAS/* terraform/
 
 # CHECK FOR BBL, DOWNLOAD IF NECESSARY
 if [ -n "$(command -v bbl)" ]; then
