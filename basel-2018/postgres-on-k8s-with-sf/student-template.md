@@ -60,6 +60,7 @@ $ cf marketplace
 ```
 $ cf create-service pg-crunchydata v1.0 pg-test
 $ watch cf service pg-test
+# Enter `Ctrl + C` to come out of watch
 ```
 
 ### Check PostgreSQL instance resources in K8S Cluster
@@ -91,6 +92,7 @@ $ cf service-key pg-test bindingKey
 ```
 $ cf delete-service -f pg-test
 $ watch cf service pg-test
+# Enter `Ctrl + C` to come out of watch
 ```
 
 ### Check that PostgreSQL instance resources are deleted in K8S Cluster
