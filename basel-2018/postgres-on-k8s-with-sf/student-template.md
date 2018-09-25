@@ -14,7 +14,11 @@ In this lab participant with learn
 
 ## Lab
 ### Setup Lab environment
-Lab workspace directory on cloud shell is ```~/lab-workspace```
+Lab workspace directory on cloud shell is ```~/lab-workspace```.
+```
+$ cd ~/lab-workspace/service-fabrik-lab/
+```
+
 You can start with running an initial script, which will install required packages (bbl, expect) if required and login to jumpbox. The script will also setup CF and BOSH environment so that you can readily start working on lab. 
 ```
 $ ./student-setup user[1-12]
