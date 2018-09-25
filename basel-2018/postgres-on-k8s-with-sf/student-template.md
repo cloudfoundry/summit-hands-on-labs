@@ -14,6 +14,7 @@ In this lab participant with learn
 
 ## Lab
 ### Setup Lab environment
+Lab workspace directory on cloud shell is ```~/lab-workspace```
 You can start with running an initial script, which will install required packages (bbl, expect) if required and login to jumpbox. The script will also setup CF and BOSH environment so that you can readily start working on lab. 
 ```
 $ ./student-setup user[1-12]
@@ -30,7 +31,8 @@ $ cf service-access
 2. List new services  in service-fabrik manifest
 3. Add new manger job in service-fabrik manifest
 ```
-vimdiff manifest-k8s.yml manifest-no-k8s.yml
+$ vimdiff manifest-k8s.yml manifest-no-k8s.yml
+# To exit, type `esc :q!` twice 
 ```
 
 ### Start Kubernetes manager job
