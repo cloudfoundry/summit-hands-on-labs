@@ -80,6 +80,7 @@ $ cf service-key pg-test bindingKey
 ```
 $ psql -h $hostname -p 5432 -U $username -d $db
 $ userdb=> \dt
+$ userdb=> \q
 ```
 
 ### Delete previously created binding key
