@@ -55,8 +55,8 @@ eval "$(bucc/bin/bucc env)"
 # WE MIGHT NEED A STEMCELL AND A RELEASE
 bosh us --sha1 61eb67dcebc84d4fa818708f79c1e37d811c99e9 "https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-xenial-go_agent?v=97.17"
 bosh ur "https://github.com/cloudfoundry-incubator/kubo-release/releases/download/v0.21.0/kubo-release-0.21.0.tgz"
-bosh -n ucc <( bosh int <(bosh cc) -o kibosh/kubo-ops/cloud-config-lb-extension.yml -l kibosh/vars.yml) 
+bosh -n ucc <( bosh int <(bosh cc) -o kibosh/kubo-ops/cloud-config-lb-extension.yml -l kibosh/vars.yml)
 bosh -d cfcr -n \
-  deploy <( bosh int kubo-deployment/manifests/cfcr.yml -o kibosh/kubo-ops/add-lb-extension-worker.yml -o kubo-deployment/manifests/ops-files/use-runtime-config-bosh-dns.yml -o kibosh/kubo-ops/add-addon-spec.yml -l <(bosh int kibosh/kibosh-spec.yml  -l kibosh/vars.yml) -l kibosh/vars.yml ) 
+  deploy <( bosh int kubo-deployment/manifests/cfcr.yml -o kibosh/kubo-ops/add-lb-extension-worker.yml -o kibosh/kubo-ops/add-addon-spec.yml -l <(bosh int kibosh/kibosh-spec.yml  -l kibosh/vars.yml) -l kibosh/vars.yml ) 
 
 bosh -d cfcr run-errand apply-addons -n
