@@ -58,5 +58,15 @@ bosh ur "https://github.com/cloudfoundry-incubator/kubo-release/releases/downloa
 bosh -n ucc <( bosh int <(bosh cc) -o kibosh/kubo-ops/cloud-config-lb-extension.yml -l kibosh/vars.yml)
 bosh -d cfcr -n \
   deploy <( bosh int kubo-deployment/manifests/cfcr.yml -o kibosh/kubo-ops/add-lb-extension-worker.yml -o kibosh/kubo-ops/add-addon-spec.yml -l <(bosh int kibosh/kibosh-spec.yml  -l kibosh/vars.yml) -l kibosh/vars.yml ) 
+  -o kubo-deployment/manifests/ops-files/add-hostname-to-master-certificate.yml \
+  -v api-hostname="$MASTER_LB_IP"
 
 bosh -d cfcr run-errand apply-addons -n
+
+bucc/bin/bucc credhub
+
+pushd kubo-deployment
+  ./bin/set_kubeconfig "$BOSH_NAME/cfcr" "https://$MASTER_LB_IP:8443"
+popd 
+
+
