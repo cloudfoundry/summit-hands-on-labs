@@ -116,7 +116,7 @@ kibosh-spec: |
   spec:
     type: NodePort
     ports:
-      - targetPort: 6080
+      - targetPort: 8081
         protocol: TCP
         port: 8081
     selector:
