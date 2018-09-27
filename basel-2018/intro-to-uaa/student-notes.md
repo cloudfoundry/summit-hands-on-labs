@@ -214,7 +214,8 @@ We can easily create a new UAA client for our Airport application:
 
 ```plain
 uaa create-client airports -s airports \
-  --authorized_grant_types password,refresh_token
+  --authorized_grant_types password,refresh_token \
+  --scope openid
 ```
 
 The flag `--authorized_grant_types password` allows users to request access tokens using their username/password. The suffix `--authorized_grant_types password,refresh_token` means that their client application (which is the `uaa` CLI in our case) can automatically request new access tokens in future if the current one expires.
@@ -231,7 +232,7 @@ Access token successfully fetched and added to context.
 To get our access token from the `uaa` client application it provides a handy `uaa context` command:
 
 ```plain
-uaa context
+$ uaa context
 {
   "client_id": "airports",
   "grant_type": "password",
@@ -249,16 +250,10 @@ uaa context
 Copy and paste the large `access_token` value into your `curl` command:
 
 ```plain
-curl -s localhost:9292 -H 'Authorization: bearer eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vbG9jYWxob3N0OjgwODAvdG9rZW5fa2V5cyIsImtpZCI6InVhYS1qd3Qta2V5LTEiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiI2NDFjMmQ3NmNiZmY0NzZjYTExNzEzNDJjYjgwOGU1MCIsInN1YiI6ImNiNTRlYjVhLWQ4NGQtNDI0MS1iNTNjLWRkOGE3YTk2ZGFkMSIsInNjb3BlIjpbIm9wZW5pZCJdLCJjbGllbnRfaWQiOiJhaXJwb3J0cyIsImNpZCI6ImFpcnBvcnRzIiwiYXpwIjoiYWlycG9ydHMiLCJncmFudF90eXBlIjoicGFzc3dvcmQiLCJ1c2VyX2lkIjoiY2I1NGViNWEtZDg0ZC00MjQxLWI1M2MtZGQ4YTdhOTZkYWQxIiwib3JpZ2luIjoidWFhIiwidXNlcl9uYW1lIjoiZHJuaWMiLCJlbWFpbCI6ImRybmljQHN0YXJrYW5kd2F5bmUiLCJhdXRoX3RpbWUiOjE1Mzc4MjAwMzAsInJldl9zaWciOiJjOTQ5Y2U5YiIsImlhdCI6MTUzNzgyMDAzMCwiZXhwIjoxNTM3ODYzMjMwLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvb2F1dGgvdG9rZW4iLCJ6aWQiOiJ1YWEiLCJhdWQiOlsib3BlbmlkIiwiYWlycG9ydHMiXX0.0I0yzodqDAjYZofzmdLWLzufhG_y0baOY0QBhpG1MOTsUNuExjbDQT1ZwhQXH7ng5mkTssnBjhNaWMETIY-B4xOD-bvIr_vVWZqYveBz7Ua2dx6hoq98HHKEdLuL1XbdhJgC_eDl9BVjCgjIxtxlEn1C9Q1rb6FHnIAyTvQUadz4YxSNLPzwClkBKIXCuBPULiNVHJ1nzhNNIuLf6h6oBu3-y_B4eDi77erC8HNXBujPDbJdC3w2QZbsdBY_HiErXc03cZ5WRKzaXKwsMsypbvlYdAghM7SaFZVcdRiDQ71S4GImcPf9Aiy3zbecAxvDpa-Mywtxzv3DExDp-e3YzQ' | jq length
+curl -H 'Authorization: bearer eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vbG9jYWxob3N0OjgwODAvdG9rZW5fa2V5cyIsImtpZCI6InVhYS1qd3Qta2V5LTEiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiI2NDFjMmQ3NmNiZmY0NzZjYTExNzEzNDJjYjgwOGU1MCIsInN1YiI6ImNiNTRlYjVhLWQ4NGQtNDI0MS1iNTNjLWRkOGE3YTk2ZGFkMSIsInNjb3BlIjpbIm9wZW5pZCJdLCJjbGllbnRfaWQiOiJhaXJwb3J0cyIsImNpZCI6ImFpcnBvcnRzIiwiYXpwIjoiYWlycG9ydHMiLCJncmFudF90eXBlIjoicGFzc3dvcmQiLCJ1c2VyX2lkIjoiY2I1NGViNWEtZDg0ZC00MjQxLWI1M2MtZGQ4YTdhOTZkYWQxIiwib3JpZ2luIjoidWFhIiwidXNlcl9uYW1lIjoiZHJuaWMiLCJlbWFpbCI6ImRybmljQHN0YXJrYW5kd2F5bmUiLCJhdXRoX3RpbWUiOjE1Mzc4MjAwMzAsInJldl9zaWciOiJjOTQ5Y2U5YiIsImlhdCI6MTUzNzgyMDAzMCwiZXhwIjoxNTM3ODYzMjMwLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvb2F1dGgvdG9rZW4iLCJ6aWQiOiJ1YWEiLCJhdWQiOlsib3BlbmlkIiwiYWlycG9ydHMiXX0.0I0yzodqDAjYZofzmdLWLzufhG_y0baOY0QBhpG1MOTsUNuExjbDQT1ZwhQXH7ng5mkTssnBjhNaWMETIY-B4xOD-bvIr_vVWZqYveBz7Ua2dx6hoq98HHKEdLuL1XbdhJgC_eDl9BVjCgjIxtxlEn1C9Q1rb6FHnIAyTvQUadz4YxSNLPzwClkBKIXCuBPULiNVHJ1nzhNNIuLf6h6oBu3-y_B4eDi77erC8HNXBujPDbJdC3w2QZbsdBY_HiErXc03cZ5WRKzaXKwsMsypbvlYdAghM7SaFZVcdRiDQ71S4GImcPf9Aiy3zbecAxvDpa-Mywtxzv3DExDp-e3YzQ' -s http://localhost:9292/ | jq length
 ```
 
-Pooey
-
-```json
-{
-  "error": "error: Connection refused - Connection refused - connect(2) for \"localhost\" port 8080 (localhost:8080)"
-}
-```
+The result will be 20. The example resource server was implemented to expand the number of results returned if a valid access token was passed via an `Authorization: bearer <token>` header.
 
 ## Learning Objectives Review
 
