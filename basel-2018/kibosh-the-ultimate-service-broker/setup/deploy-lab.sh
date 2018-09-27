@@ -21,15 +21,23 @@ ln -sr -f bucc/bbl/terraform/$BBL_IAAS/* terraform/
 ln -sr -f kibosh/kibosh-tf-override.tf terraform/
 
 # CHECK FOR BBL, DOWNLOAD IF NECESSARY
-if [ -n "$(command -v bbl)" ]; then
-  echo "found bbl, continuing"
+set +e
+echo "test"
+if [ ! -z "$(bbl -v |  grep '6\.1[0-9]\|6\.[2-9][0-9]')" ]; then
+  echo "found bbl, with required min version"
+  bbl="bbl "
+elif [ ! -z "$(bin/bbl -v |  grep '6\.1[0-9]\|6\.[2-9][0-9]')" ]; then
+  echo "found bbl in workdir"
+  bbl="$PWD/bin/bbl "
 else
-   echo "installing bbl into ./bin/"
+   echo "bbl not found or system bbl version < 6.10; installing bbl into ./bin/"
+   rm -r "$PWD/bin "
    mkdir "$PWD/bin"
-    wget "https://github.com/cloudfoundry/bosh-bootloader/releases/download/v6.10.0/bbl-v6.10.0_linux_x86-64" -o "$PWD/bin/bbl"
+   wget "https://github.com/cloudfoundry/bosh-bootloader/releases/download/v6.10.0/bbl-v6.10.0_linux_x86-64" -O "$PWD/bin/bbl"
    chmod +x "$PWD/bin/bbl"
-   export PATH=$PATH:$PWD/bin
+   bbl="$PWD/bin/bbl "
 fi
+set -e
 
 # CHECK FOR CONFIG EXIT IF GCP DATA IS NOT PROVIDED
 if [ -z "$GCP_JSON" ]; then
@@ -44,15 +52,15 @@ fi
 
 # BBL BUCC UP
 if [ -f bbl-state.json ]; then
-  bbl up --lb-type concourse --gcp-service-account-key gcp.json --debug
+  $bbl up --lb-type concourse --gcp-service-account-key gcp.json --debug
 else
-  bbl up --lb-type concourse --gcp-service-account-key gcp.json --gcp-region "$GCP_REGION" --debug
+  $bbl up --lb-type concourse --gcp-service-account-key gcp.json --gcp-region "$GCP_REGION" --debug
 fi
 # BOSH CLI CONFIG
-eval "$(bbl print-env)"
+eval "$($bbl print-env)"
 eval "$(bucc/bin/bucc env)"
-MASTER_LB_IP="$(bbl outputs | grep kube_master_tcp_lb_ip  | sed 's/kube_master_tcp_lb_ip: //g')"
-WORKER_LB_IP="$(bbl outputs | grep kube_worker_tcp_lb_ip  | sed 's/kube_worker_tcp_lb_ip: //g')"
+MASTER_LB_IP="$($bbl outputs | grep kube_master_tcp_lb_ip  | sed 's/kube_master_tcp_lb_ip: //g')"
+WORKER_LB_IP="$($bbl outputs | grep kube_worker_tcp_lb_ip  | sed 's/kube_worker_tcp_lb_ip: //g')"
 BOSH_NAME="$(bosh env --json | jq '.Tables[0].Rows[0].name' -r)"
 # WE MIGHT NEED A STEMCELL AND A RELEASE
 bosh us --sha1 61eb67dcebc84d4fa818708f79c1e37d811c99e9 "https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-xenial-go_agent?v=97.17"
