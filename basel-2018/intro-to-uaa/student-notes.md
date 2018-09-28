@@ -255,6 +255,135 @@ curl -H 'Authorization: bearer eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vbG9jYWxob
 
 The result will be 20. The example resource server was implemented to expand the number of results returned if a valid access token was passed via an `Authorization: bearer <token>` header.
 
+### Enhance Access Token with Scopes
+
+Update the `airports` client to also support two new scopes: `airports.all`, and `airports.50`. These are already supported within the code base.
+
+First, change the `uaa` client back to being a UAA admin client; and then run `uaa update-client airports` with a modified `--scope` to change the scope of `airports` client:
+
+```plain
+quaa auth-client
+uaa update-client airports --scope openid,airports.all,airports.50
+```
+
+Next, we need to add our `tutorialuser` to a group with the same name as the scope expected by the application `airports.all`.
+
+```plain
+uaa create-group airports.all -d "Display all airports"
+uaa create-group airports.50 -d "Display 50 airports"
+
+uaa add-member airports.all tutorialuser
+```
+
+At this point, the authorization header's access token still represents the original grant that does not include `airports.all`. The user needs to authorize again to create a new access token that contains the updated scopes.
+
+```plain
+uaa get-password-token airports -s airports -u tutorialuser -p tutorialsecret
+```
+
+With `jq` you can get the `access_token` and store it in an environment variable:
+
+```plain
+access_token=$(uaa context | jq -r .access_token)
+curl -sH "Authorization: bearer ${access_token}" http://localhost:9292 | jq length
+```
+
+The result will be `297` since the authorized user's access token contains the `airports.all` scope.
+
+With https://jwt.io or a `jwt` CLI, inspect the user's access token:
+
+```plain
+$ jwt decode ${access_token}
+Token header
+------------
+{
+  "typ": "JWT",
+  "alg": "RS256",
+  "jku": "https://192.168.50.1:8080/token_keys",
+  "kid": "uaa-jwt-key-1"
+}
+
+Token claims
+------------
+{
+  "aud": [
+    "openid",
+    "airports"
+  ],
+  "auth_time": 1538097346,
+  "azp": "airports",
+  "cid": "airports",
+  "client_id": "airports",
+  "email": "drnic@starkandwayne",
+  "exp": 1538140546,
+  "grant_type": "password",
+  "iat": 1538097346,
+  "iss": "http://192.168.50.1:8080/oauth/token",
+  "jti": "8f57dcfba2ca4efdad6d1b1a393aba81",
+  "origin": "uaa",
+  "rev_sig": "b3ca88a",
+  "scope": [
+    "openid",
+    "airports.all"
+  ],
+  "sub": "55eb9261-2511-4025-b089-d3ee35af2c9f",
+  "user_id": "55eb9261-2511-4025-b089-d3ee35af2c9f",
+  "user_name": "tutorialuser",
+  "zid": "uaa"
+}
+```
+
+### Trusting an access token
+
+The Airports API resource server is receiving an access token - an easily decodable JSON Web Token string - and using its contents to determine what response it should give the request (in the Airports API resource server this decision is "how many results to return"; but for a normal app it might decide "who's data should I return?" or "is this user allowed to edit this data?")
+
+Since it is very easy for anyone to generate their own JWT string, it is critical that the resource server can verify that the JWT string was produced by its own UAA, and was definitely not modified.
+
+A resource server can either validate a JWT:
+
+* online: by asking the UAA to validate it
+* offline: by checking its signed token key
+
+Our `quaa up` UAA is using asymmetric signed keys. The UAA uses a secret private key to sign the JWT, and publishes the matching public key at its `/token_keys` API endpoint. It is the responsiblity of each resource server to check that each JWT is signed with one of the keys published at this endpoint.
+
+The decoded JWT access token has a header section that contains:
+
+* the name of the signing token key: `uaa-jwt-key-1`
+* the algorithm used to sign the JWT access token: `RS256`
+* the URL to fetch the public key: `https://192.168.50.1:8080/token_keys`
+
+NOTE: the JWT token `jku` URL for public keys forced into `https` protocol scheme. If your UAA is not running under `https` then change the URL yourself to `http://`:
+
+```plain
+$ curl http://192.168.50.1:8080/token_keys
+{
+  "keys": [
+    {
+      "kty": "RSA",
+      "e": "AQAB",
+      "use": "sig",
+      "kid": "uaa-jwt-key-1",
+      "alg": "RS256",
+      "value": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxFoMC25Ys2p5ZUqAxvBD\ngdryekS0AgUkT0xYe5Yuhg02Xctj61aj3+7byLwXH1DISfOVLRlTIYmsFRLdjRYb\nRXH5DetA+fw4+eFzt8NNtlcVDgwVKXV7rBs/9kxaMiiWL2vKFE/d956iGqfFXD+W\nPhFnyIg+WwmMdz/X3ERPB23akdAf5iiRCSSrzGxNEsOCAMDgrZb4rm7n3APfctDD\nuC+fIhH6yDt67CwgyWePfkH6MW9vRALzq22kLNnCGKFbolORbG6yZgZ/MZkfVh5h\nUKjpExhlbtvqPopiymRrj7kofvhgy0Mefg/jBpwcbI1BHc9XQYjLAHsraPyKy4dG\nTwIDAQAB\n-----END PUBLIC KEY-----",
+      "n": "AMRaDAtuWLNqeWVKgMbwQ4Ha8npEtAIFJE9MWHuWLoYNNl3LY-tWo9_u28i8Fx9QyEnzlS0ZUyGJrBUS3Y0WG0Vx-Q3rQPn8OPnhc7fDTbZXFQ4MFSl1e6wbP_ZMWjIoli9ryhRP3feeohqnxVw_lj4RZ8iIPlsJjHc_19xETwdt2pHQH-YokQkkq8xsTRLDggDA4K2W-K5u59wD33LQw7gvnyIR-sg7euwsIMlnj35B-jFvb0QC86ttpCzZwhihW6JTkWxusmYGfzGZH1YeYVCo6RMYZW7b6j6KYspka4-5KH74YMtDHn4P4wacHGyNQR3PV0GIywB7K2j8isuHRk8"
+    }
+  ]
+}
+```
+
+The resource server must check that:
+
+1. The named `"kid": "uaa-jwt-key-1"` in the JWT is available from `/token_keys`. In the example above, it is correctly available.
+1. The published `"value"` public key correctly matches the signed portion of the JWT.
+
+In the Ruby version of the Airports API resource server, this behaviour is encoded in the `cf-uaa-lib` library (at the time writing this is in a branch `auto-token-keys` in https://github.com/drnic/cf-uaa-lib fork):
+
+```ruby
+decoder = CF::UAA::TokenCoder.decode(access_token, info: uaa_info)
+```
+
+Other languages might not have this behaviour refactored into a shared library and might need to implement it themselves. Or refactor it into a shared library for everyone else.
+
 ## Learning Objectives Review
 
 ## Beyond the Lab
