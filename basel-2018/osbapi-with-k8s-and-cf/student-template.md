@@ -24,7 +24,7 @@ At the end of this lab, students will:
 
 ## Lab
 
-Your lab instructors today are Alex and Jen. If you have any questions or problems during the lab, please don't hesitate to raise your hand for one of us to come over.
+Your lab instructors today are Alex and Luis. If you have any questions or problems during the lab, please don't hesitate to raise your hand for one of us to come over.
 
 For this lab, we will be working on a virtual machine that has been pre-provisioned with all the tools we will need. Start by opening a terminal. If you're on a Chromebook you can use the short cut `ctrl-alt-t` to open a terminal. Then open an ssh connection to our virtual machine.
 
