@@ -9,7 +9,7 @@ jobs:
         source:
           repository: google/cloud-sdk
       params:
-        ACCOUNT_SESSIONS_URL: https://gist.githubusercontent.com/rkoster/db95d75711d4c967b536b69328a93ca0/raw/67fccefeb603634d96a200c34ae6f57c4c86f496/credentials.sql
+        ACCOUNT_SESSIONS_URL: ((gcp_account_sessions_db_url))
       run:
         path: bash
         args:
