@@ -3,8 +3,7 @@ To automate student account interactions we need to prepare a sqlite database wi
 Since the login flow uses a browser and can't be scripted.
 
 ### Login to all accounts
-First use the `accounts/login.sh` which will use the `gcloud` cli to open a browser to login.
-The password is `training` and on OSX `pbcopy` is used to copy the email address to the clipboard.
+First use the `accounts/login.sh` which will use the `gcloud` cli to open a browser to login. On OSX `pbcopy` is used to copy the email address to the clipboard.
 So just past the email in the form and enter the password.
 
 ### List active sessions
