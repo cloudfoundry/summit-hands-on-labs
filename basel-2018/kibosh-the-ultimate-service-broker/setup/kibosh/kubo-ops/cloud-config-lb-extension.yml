@@ -3,15 +3,15 @@
   value:
     name: worker_lb
     cloud_properties:
-      target_pool: ((worker_pool_name))
-      tags: ((worker_tags))
+      target_pool: ((kube_worker_tcp_target_pool_name))
+      tags: ((kube_worker_tcp_target_pool_tags))
 - type: replace
   path: /vm_extensions?/name=master_lb?
   value:
     name: master_lb
     cloud_properties:
-      target_pool: ((master_pool_name))
-      tags: ((master_tags))
+      target_pool: ((kube_master_tcp_target_pool_name))
+      tags: ((kube_master_tcp_target_pool_tags))
 - type: replace
   path: /vm_types/name=medium
   value:

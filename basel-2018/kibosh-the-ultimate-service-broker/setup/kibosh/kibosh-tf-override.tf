@@ -34,6 +34,11 @@ output "kube_master_tcp_target_pool_name" {
   value = "${google_compute_target_pool.kube-master-tcp.name}"
 }
 
+output "kube_master_tcp_target_pool_tags" {
+  value = "${google_compute_firewall.kube-master-tcp.target_tags}"
+}
+
+
 resource "google_compute_firewall" "kube-worker-tcp" {
   name    = "${var.env_id}-kube-worker-tcp"
   network = "${google_compute_network.bbl-network.name}"
@@ -68,4 +73,7 @@ output "kube_worker_tcp_lb_ip" {
 }
 output "kube_worker_tcp_target_pool_name" {
   value = "${google_compute_target_pool.kube-worker-tcp.name}"
+}
+output "kube_worker_tcp_target_pool_tags" {
+  value = "${google_compute_firewall.kube-worker-tcp.target_tags}"
 }
