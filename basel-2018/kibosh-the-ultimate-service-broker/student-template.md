@@ -8,63 +8,93 @@ In this lab you will explore Kibosh and learn to deploy Helm Charts as Services 
 - Learning how to create a service from a helm chart basis (e.g. from https://github.com/helm/charts/tree/master/stable)
 
 
-## Prerequisites
-- Eden CLI or cURL for requests against Kibosh API (https://github.com/starkandwayne/eden)
-- kubectl for running commands against Kubernetes 
-- bazaar cli for uploading helm charts (https://github.com/cf-platform-eng/kibosh/releases)
-- git for repo access
-- rabbitmqctl for testing created rabbit service (https://www.rabbitmq.com/man/rabbitmqctl.8.html)
-- jq for parsing JSON
-###### __-- OR --__
-- *I have a docker container containing all required clis and it can also run kibosh that I'm using for my test pipeline.. If internet access is fast enough, everyone can pull & start the docker container and run her/his own instance against the shared KubeCluster. Then, the only requirement would be to be able to run a local docker image..*
-  
-## Lab
+## Lets go :)
+#### First lets get a container that contains everything we need 
 
-- Presenters deploy Shared Kubernetes Cluster that runs KIBOSH
 
-- Fire Up your shell :)
+`docker run -it nouseforaname/kibosh-lab-cloud-shell`
 
-- `git clone https://github.com/cloudfoundry/summit-hands-on-labs`
+####  Now we need to go into the container, so let us find out the ID
 
-- `cd summit-hands-on-labs/basel-2018/kibosh-the-ultimate-service-broker/ && source lab/kibosh.env `
+`export CONTAINER_ID=$(docker ps | tail -1 | awk '{ print $1}')`
 
-- `mkdir workdir`
+#### Copy the base files into the container
 
-- `cp lab/rabbitmq.tgz workdir/`
+`docker cp ../kibosh-the-ultimate-service-broker $CONTAINER_ID:/kibosh-lab`
 
-- `cd workdir && tar -xzf rabbitmq.tgz`
+#### Step into the arena :)
+`docker exec -it $CONTAINER_ID /bin/bash`
 
-- `vi rabbitmq/plans.yml`
+
+#### Let us set your name
+`export STUDENT_NAME=<your_name>` 
+
+#### This will create your workdir and extract the base files there
+
+`mkdir "/$STUDENT_NAME" && cd "/$STUDENT_NAME" && tar -xzf /kibosh-lab/lab/rabbitmq.tgz && mv rabbitmq "${STUDENT_NAME}_rabbit"`
+
+#### The first step to do is to define our plans
+
+`vi ${STUDENT_NAME}_rabbit/plans.yaml`
+
+#### You can use this File as your base
 
 ```
 - name: "ha"
-  description: "High availablity plan for rmq-dell"
+  description: "High availablity"
   file: "ha.yaml"
 - name: "singlenode"
-  description: "Single node plan for rmq-dell"
+  description: "Single node"
   file: "single.yaml"
 ```
+#### notice that each plan specifies a plan yaml. This is where the actual configuration goes. In our scenario we will just change the amount of nodes deployed
 
-- `mkdir -p rabbitmq/plans && vi rabbitmq/plans/ha.yaml`
+
+`mkdir -p ${STUDENT_NAME}_rabbit/plans && vi ${STUDENT_NAME}_rabbit/plans/ha.yaml`
+
+
 ```
 rmq:
   replicas: 3
 ```
-- `vi rabbitmq/plans/single.yaml`
+
+#### now the singlenode plan
+
+`vi ${STUDENT_NAME}_rabbit/plans/single.yaml`
+
 ```
 rmq:
   replicas: 1
 ```
-- `cat rabbitmq/values.yaml | awk 'NR >= 12 && NR <= 16'`
+#### what did we change right now? Every Chart comes with a values.yaml. This file contains reasonable defaults for the Chart to work.
 
-- `cp -r rabbitmq rabbitmq-<student-name> && tar -czf rabbitmq-service.tgz rabbitmq-<student-name>`
-- `eden catalog`
-- `bazaar -t $BAZAAR_PREFIX$BAZAAR_FQDN:$BAZAAR_PORT -u $BAZAAR_USER -p $BAZAAR_PASSWORD save rabbitmq-service.tgz`
-- `bazaar -t $BAZAAR_PREFIX$BAZAAR_FQDN:$BAZAAR_PORT -u $BAZAAR_USER -p $BAZAAR_PASSWORD list`
-- `eden catalog`
-- `eden provision -s rabbitmq-<student-name> -p ha`
-- `eden bind -s <service_id_from_previous command>`
-- **do something with rabbit** 
+`cat ${STUDENT_NAME}_rabbit/values.yaml | awk 'NR >= 12 && NR <= 16'`
+
+#### By specifying plans we can override defaults from the values.yaml. By doing this we build and define how our service instances are provisioned
+#### For the rabbitmq chart this is already enough for us to be able create a service instance, let us package our Service Chart
+
+` cd "/${STUDENT_NAME}" && tar -czf "${STUDENT_NAME}_rabbit.tgz" ${STUDENT_NAME}_rabbit`
+
+
+
+## Uploading and Managing Service Charts
+
+#### First let us source the ENV Vars provided by the LAB to have EDEN and BAZAAR CLI configured
+`source /kibosh-lab/lab/kibosh.env`
+
+#### Now that the CLIs are configured we can get the current catalog
+`eden catalog`
+
+#### Upload to the bazaar endpoint
+`bazaar -t $BAZAAR_URL-u $BAZAAR_USER -p $BAZAAR_PASSWORD save "${STUDENT_NAME}_rabbit.tgz"`
+#### Check if succeeded
+`bazaar -t $BAZAAR_URL-u $BAZAAR_USER -p $BAZAAR_PASSWORD list`
+`eden catalog`
+`eden provision -s "${STUDENT_NAME}_rabbit" -p ha
+#### Eden will output a service ID that we can use to create a binding
+`eden bind -s <service_id_from_previous command>`
+
+
 
 ## Learning Objectives Review
 - Understand the OSB Api
@@ -78,4 +108,3 @@ rmq:
 
 - Cooperate on Kibosh
 `https://github.com/cf-platform-eng/kibosh`
-
