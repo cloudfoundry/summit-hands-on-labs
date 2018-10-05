@@ -89,8 +89,11 @@ rmq:
 `bazaar -t $BAZAAR_URL-u $BAZAAR_USER -p $BAZAAR_PASSWORD save "${STUDENT_NAME}_rabbit.tgz"`
 #### Check if succeeded
 `bazaar -t $BAZAAR_URL-u $BAZAAR_USER -p $BAZAAR_PASSWORD list`
+
 `eden catalog`
-`eden provision -s "${STUDENT_NAME}_rabbit" -p ha
+
+`eden provision -s "${STUDENT_NAME}_rabbit" -p ha`
+
 #### Eden will output a service ID that we can use to create a binding
 `eden bind -s <service_id_from_previous command>`
 
