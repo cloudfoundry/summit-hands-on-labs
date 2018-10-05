@@ -1,0 +1,63 @@
+jobs:
+- name: nuke-cloud-console-home-directories
+  plan:
+  - task: nuke-cloud-console-home-directories
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: google/cloud-sdk
+      params:
+        ACCOUNT_SESSIONS_URL: ((gcp_account_sessions_db_url))
+      run:
+        path: bash
+        args:
+        - -ec
+        - |
+          apt install jq sqlite3 -y >/dev/null
+          ssh-keygen -t rsa -q -f /root/.ssh/google_compute_engine -P ""
+          config_path=$(gcloud info --format json | jq -r '.config.paths.global_config_dir')
+          curl ${ACCOUNT_SESSIONS_URL} | sqlite3 ${config_path}/credentials.db
+          for i in $(seq 12); do
+              account=training.hol.$i@cloudfoundry.org
+              repo=https://github.com/rkoster/hands-on-labs-student-home
+              gcloud --account=${account} \
+                --project="hol-basel-project-1" \
+                alpha cloud-shell ssh --command="git init && git remote add origin ${repo} || true && git pull -t origin master"
+              gcloud --account=${account} \
+                --project="hol-basel-project-1" \
+                alpha cloud-shell ssh --command="git pull -t origin master && ./bin/nuke" &
+          done
+          wait
+
+- name: recreate-cf-accounts
+  plan:
+  - task: recreate-cf-accounts
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: starkandwayne/concourse
+      params:
+        CF_USERNAME: ((cf_username))
+        CF_PASSWORD: ((cf_password))
+        CF_API: ((cf_api))
+      run:
+        path: bash
+        args:
+        - -ec
+        - |
+          cf api ${CF_API} --skip-ssl-validation
+          cf auth ${CF_USERNAME} "${CF_PASSWORD}"
+          for i in $(seq 12); do
+              account=training.hol.$i@cloudfoundry.org
+              cf create-user ${account} training
+              org=training.hol.$i
+              cf delete-org ${org} -f || true
+              cf create-org ${org}
+              cf create-space training -o ${org}
+              cf set-space-role ${account} ${org} training SpaceDeveloper
+          done
+          wait

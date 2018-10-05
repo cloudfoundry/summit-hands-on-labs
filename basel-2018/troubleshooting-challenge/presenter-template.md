@@ -14,4 +14,14 @@ Shared Cloud Foundry environment with a space per attendee.
 Setup
 -----
 
-Given the students work on pre-configured Chromebooks no additional configuration is required.
+1. Run `make prepare` from `setup` folder once to setup lab
+1. Run `setup/configure-laptop.sh` for each enviornment
+
+Exercises
+---------
+
+1. Large app: app exceeds 1G limit
+1. Incorrect buildpack: push node.js app with go buildpack
+1. Route conflict: the route already in use
+1. Out of memory: container uses more memory then allowed
+1. Wrong port: container listens on the wrong port

@@ -1,0 +1,86 @@
+jobs:
+- name: deploy-kibosh
+  plan:
+  - aggregate:
+    - get: stemcell
+    - get: labs
+  - task: pre-merge-template
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: starkandwayne/concourse
+      inputs:
+      - name: labs
+      outputs:
+      - name: merged
+      run:
+        path: bash
+        args:
+        - -ec
+        - |
+          out=$(pwd)/merged/base.yml
+          pushd labs/basel-2018/kibosh-the-ultimate-service-broker/setup
+          bosh int kubo-deployment/manifests/cfcr.yml \
+            -o kibosh/kubo-ops/add-lb-extension-worker.yml \
+            -o kibosh/kubo-ops/add-addon-spec.yml \
+            -l <(bosh int kibosh/kibosh-spec.yml  -l kibosh/vars.yml) -l kibosh/vars.yml > ${out}
+  - put: deploy
+    params:
+      manifest: merged/base.yml
+      stemcells: [ stemcell/stemcell.tgz ]
+      ops_files:
+      - labs/basel-2018/kibosh-the-ultimate-service-broker/setup/kubo-deployment/manifests/ops-files/use-runtime-config-bosh-dns.yml
+      - labs/basel-2018/kibosh-the-ultimate-service-broker/setup/kubo-deployment/manifests/ops-files/add-hostname-to-master-certificate.yml
+      vars:
+        api-hostname: 35.242.254.204
+        worker-hostname: 35.234.80.160
+  - put: bosh-errand
+    params:
+      name: apply-addons
+
+resources:
+- name: labs
+  type: git
+  source:
+    uri: https://github.com/cloudfoundry/summit-hands-on-labs
+    branch: master
+    submodules:
+      - basel-2018/kibosh-the-ultimate-service-broker/setup/kubo-deployment
+
+- name: stemcell
+  type: bosh-io-stemcell
+  source: { name: ((bosh_stemcell)) }
+
+- name: deploy
+  type: bosh-deployment
+  source:
+    deployment: cfcr
+    target: ((bosh_environment))
+    client: ((bosh_client))
+    client_id: ((bosh_client))
+    client_secret: ((bosh_client_secret))
+    ca_cert: ((bosh_ca_cert))
+
+- name: bosh-errand
+  type: bosh-errand
+  source:
+    deployment: cfcr
+    target: ((bosh_environment))
+    client: ((bosh_client))
+    client_id: ((bosh_client))
+    client_secret: ((bosh_client_secret))
+    ca_cert: ((bosh_ca_cert))
+
+resource_types:
+- name: bosh-deployment
+  type: docker-image
+  source:
+    repository: cloudfoundry/bosh-deployment-resource
+    tag: latest
+
+- name: bosh-errand
+  type: docker-image
+  source:
+    repository: cfcommunity/bosh2-errand-resource

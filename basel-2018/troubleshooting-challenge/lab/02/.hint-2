@@ -1,0 +1,6 @@
+
+==Hint==
+
+Check the application logs using `cf logs bazel-03`. 
+
+What command does Cloud Foundry use to start the app?

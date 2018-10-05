@@ -1,30 +1,40 @@
 {
-  "services": [{
-    "name": "fake-mysql-NAMESPACE",
-    "id": GUID_1,
-    "description": "A fake non-operational mysql service",
-    "bindable": true,
-    "plans": [{
-      "name": "mysql-top-tier",
-      "id": GUID_2,
-      "description": "A fantastic service plan that does SO MUCH"
-    }, {
-    "name": "mysql-free",
-    "id": GUID_3,
-    "description": "A limited service plan offering that does not do so much"
-    }]}, {
-    "name": "fake-redis-NAMESPACE",
-    "id": GUID_4,
-    "description": "The best fake redis",
-    "bindable": true,
-    "plans": [{
-      "name": "redis-small-mem",
-      "id": GUID_5,
-      "description": "A fake redis that pretends to offer a small amount of storage"
-    }, {
-      "name": "redis-large-mem",
-      "id": GUID_6,
-      "description": "A fake redis that pretends to offer a large amount of storage"
-    }]
-  }]
+  "services": [
+    {
+      "name": "fake-mysql-NAMESPACE",
+      "id": GUID_1,
+      "description": "A fake non-operational mysql service",
+      "bindable": true,
+      "plans": [
+        {
+          "name": "mysql-top-tier",
+          "id": GUID_2,
+          "description": "A fantastic service plan that does SO MUCH"
+        },
+        {
+          "name": "mysql-free",
+          "id": GUID_3,
+          "description": "A limited service plan offering that does not do so much"
+        }
+      ]
+    },
+    {
+      "name": "fake-redis-NAMESPACE",
+      "id": GUID_4,
+      "description": "The best fake redis",
+      "bindable": true,
+      "plans": [
+        {
+          "name": "redis-small-mem",
+          "id": GUID_5,
+          "description": "A fake redis that pretends to offer a small amount of storage"
+        },
+        {
+          "name": "redis-large-mem",
+          "id": GUID_6,
+          "description": "A fake redis that pretends to offer a large amount of storage"
+        }
+      ]
+    }
+  ]
 }

@@ -1,0 +1,7 @@
+- type: replace
+  path: /instance_groups/name=worker/vm_extensions?/-
+  value:
+    name: worker_lb
+- type: replace
+  path: /instance_groups/name=worker/vm_type
+  value: medium

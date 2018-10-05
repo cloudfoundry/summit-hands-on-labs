@@ -1,0 +1,8 @@
+kibosh-user:  abcd
+kibosh-pw: efgh
+bazaar-user: ijkl
+bazaar-pw: mnop
+master_pool_name: basel-summit-kibosh-lab-kube-master-tcp
+worker_pool_name: basel-summit-kibosh-lab-kube-worker-tcp
+worker_tags: [basel-summit-kibosh-lab-kube-worker-tcp]
+master_tags: [basel-summit-kibosh-lab-kube-master-tcp]

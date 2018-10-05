@@ -13,33 +13,15 @@ In this lab participant with learn
 2. Basic understanding of [Service Broker](https://github.com/openservicebrokerapi/servicebroker).
 
 ## Lab
-### Get CloudFoundry environment
+### Setup Lab environment
+Lab workspace directory on cloud shell is ```~/lab-workspace```.
 ```
-$ git clone <service-fabrik-lab-states-repository>
-$ cd service-fabrik-lab-states
-$ git pull
-$ cd user[1-12]
-$ eval "$(bbl print-env)"
+$ cd ~/lab-workspace/service-fabrik-lab/
 ```
 
-### Get CloudFoundry Credentials
+You can start with running an initial script, which will install required packages (bbl, expect) if required and login to jumpbox. The script will also setup CF and BOSH environment so that you can readily start working on lab. 
 ```
-$ cat cf_creds.txt
-```
-
-### SSH into jumpbox
-```
-$ bbl ssh --jumpbox
-$ bash
-$ cd service-fabrik-lab-states/user[1-12]
-$ eval "$(bbl print-env)"
-```
-
-### Target to CloudFoundry API
-```
-$ cf api https://api.bosh-lite.com --skip-ssl-validation
-$ cf login -u admin -p PASSWORD -o service-fabrik
-$ cf target -o "service-fabrik" -s "labs"
+$ ./student-setup user[1-12]
 ```
 
 ### Check avaialble services
@@ -53,10 +35,11 @@ $ cf service-access
 2. List new services  in service-fabrik manifest
 3. Add new manger job in service-fabrik manifest
 ```
-vimdiff manifest-k8s.yml manifest-no-k8s.yml
+$ vimdiff manifest-k8s.yml manifest-no-k8s.yml
+# To exit, type `esc :q!` twice 
 ```
 
-### Start kubernetes manager job
+### Start Kubernetes manager job
 ```
 $ bosh -nd service-fabrik deploy manifest-k8s.yml
 ```
@@ -76,19 +59,47 @@ $ cf marketplace
 ### Create a Postgresql instance and binding key
 ```
 $ cf create-service pg-crunchydata v1.0 pg-test
-$ cf service pg-test 
-$ cf create-service-key pg-test bindingKey
-$ cf service-key pg-test bindingKey
+$ watch cf service pg-test
+# Enter `Ctrl + C` to come out of watch
 ```
 
-### Create a Postgresql instance and binding key
+### Check PostgreSQL instance resources in K8S Cluster
+A deployment and a service will be created as part of create instance call in K8S cluster and can be identified with instance guid in CF.
 ```
 $ kubectl get deployments
+$ kubectl get service
+```
+
+### Create a binding key
+```
+$ cf create-service-key pg-test bindingKey
+$ cf service-key pg-test bindingKey
 ```
 
 ### Connect to service using obtained service keys
 ```
 $ psql -h $hostname -p 5432 -U $username -d $db
+$ userdb=> \dt
+$ userdb=> \q
+```
+
+### Delete previously created binding key
+```
+$ cf delete-service-key -f pg-test bindingKey
+$ cf service-key pg-test bindingKey
+```
+
+### Delete the PostgreSQL service instance
+```
+$ cf delete-service -f pg-test
+$ watch cf service pg-test
+# Enter `Ctrl + C` to come out of watch
+```
+
+### Check that PostgreSQL instance resources are deleted in K8S Cluster
+```
+$ kubectl get deployments
+$ kubectl get service
 ```
 
 ## Learning Objectives Review

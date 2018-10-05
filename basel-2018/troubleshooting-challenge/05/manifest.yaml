@@ -1,9 +1,0 @@
----
-applications:
-- name: bazel-05
-  instances: 1
-  memory: 10M
-  buildpack: go_buildpack
-  timeout: 5
-  env:
-      GOPACKAGENAME: github.com/lexsys27/bazel-sample-app
