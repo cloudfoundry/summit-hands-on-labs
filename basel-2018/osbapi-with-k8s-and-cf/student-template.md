@@ -127,7 +127,7 @@ track if you are not already familiar with services in Cloud Foundry. Otherwise,
 Now that we have deployed our service broker, we need to register the broker in Cloud Foundry. This will enable Cloud Foundry users to interact with the services provided by your broker. Let's begin by registering the service broker!
 
 ```
-cf create-service-broker <broker-name> <username> <password> https://<broker_url> --space-scoped
+cf create-service-broker <broker-name> <username> <password> http://<broker_url> --space-scoped
 ```
 
 - `<broker-name>` is a unique identifier for this broker across the entire Cloud Foundry instance. We recommend that you choose a broker-name that includes your username.
