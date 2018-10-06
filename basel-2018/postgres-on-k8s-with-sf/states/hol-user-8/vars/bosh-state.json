@@ -4,8 +4,17 @@
     "current_vm_cid": "vm-20d38cf2-982f-4e31-54a5-04b27fc09ef3",
     "current_stemcell_id": "da25244a-64c4-4906-5b67-a55ef1de0a05",
     "current_disk_id": "5e33ec46-2d26-4423-6f22-4064946b43c0",
-    "current_release_ids": [],
-    "current_manifest_sha": "",
+    "current_release_ids": [
+        "eb11da48-baf3-459d-6616-deb1bbf64b12",
+        "2c95b704-b5ae-4fdd-63d3-e3ebf6954335",
+        "7d454af9-b9ba-4e9e-5636-a9648d3c68ff",
+        "9e1022e8-3a08-4d28-6b67-fa5a12e7d587",
+        "06d3cd7f-68cf-412b-4967-ef06a7475604",
+        "889002c6-3c87-4db0-69b1-e8ebdf66fd64",
+        "ef744985-62c0-4a8e-4333-d7f6496add01",
+        "44b8f489-84b2-4fef-4a40-542de945fb27"
+    ],
+    "current_manifest_sha": "d462b0de398cdefd8e5751847668b61e0db74ed2a93ae1333874cb434b856c08418a007a81490b81d5544fc0f97ec84c3574d521bdad1b50c75fbe4b985df710",
     "disks": [
         {
             "id": "5e33ec46-2d26-4423-6f22-4064946b43c0",
@@ -24,5 +33,46 @@
             "cid": "stemcell-15889108-3c84-4b56-6bda-0cad6daac146"
         }
     ],
-    "releases": []
+    "releases": [
+        {
+            "id": "eb11da48-baf3-459d-6616-deb1bbf64b12",
+            "name": "bosh",
+            "version": "267.5.0"
+        },
+        {
+            "id": "2c95b704-b5ae-4fdd-63d3-e3ebf6954335",
+            "name": "bpm",
+            "version": "0.9.0"
+        },
+        {
+            "id": "7d454af9-b9ba-4e9e-5636-a9648d3c68ff",
+            "name": "bosh-google-cpi",
+            "version": "27.0.1"
+        },
+        {
+            "id": "9e1022e8-3a08-4d28-6b67-fa5a12e7d587",
+            "name": "os-conf",
+            "version": "18"
+        },
+        {
+            "id": "06d3cd7f-68cf-412b-4967-ef06a7475604",
+            "name": "uaa",
+            "version": "60.2"
+        },
+        {
+            "id": "889002c6-3c87-4db0-69b1-e8ebdf66fd64",
+            "name": "credhub",
+            "version": "1.9.3"
+        },
+        {
+            "id": "ef744985-62c0-4a8e-4333-d7f6496add01",
+            "name": "bosh-warden-cpi",
+            "version": "40"
+        },
+        {
+            "id": "44b8f489-84b2-4fef-4a40-542de945fb27",
+            "name": "garden-runc",
+            "version": "1.9.4"
+        }
+    ]
 }
