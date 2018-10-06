@@ -1,0 +1,3 @@
+step: generating terraform template
+step: generating terraform variables
+step: terraform init

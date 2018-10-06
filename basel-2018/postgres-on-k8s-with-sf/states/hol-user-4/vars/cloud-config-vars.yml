@@ -1,0 +1,20 @@
+director__external_ip: 35.195.50.133
+director__internal_ip: 10.0.0.6
+director__tags:
+- hol-user-4-bosh-director
+director_address: https://35.240.18.60:25555
+director_name: bosh-hol-user-4
+external_ip: 35.240.18.60
+internal_cidr: 10.0.0.0/16
+internal_gw: 10.0.0.1
+internal_tag_name: hol-user-4-internal
+jumpbox__external_ip: 35.240.18.60
+jumpbox__internal_ip: 10.0.0.5
+jumpbox__tags:
+- hol-user-4-bosh-open
+- hol-user-4-jumpbox
+jumpbox_url: 35.240.18.60:22
+network: hol-user-4-network
+subnetwork: hol-user-4-subnet
+subnetwork_reserved_ips: 10.0.0.1-10.0.0.255
+subnetwork_static_ips: 10.0.255.0-10.0.255.254
