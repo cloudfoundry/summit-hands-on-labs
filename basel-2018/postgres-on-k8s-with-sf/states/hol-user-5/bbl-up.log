@@ -1,0 +1,3 @@
+step: terraform init
+step: terraform apply
+step: creating jumpbox
