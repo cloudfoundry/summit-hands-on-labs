@@ -1,0 +1,33 @@
+{
+    "director_id": "ec021111-188e-4aa6-74a6-121e6162916a",
+    "installation_id": "57c8b050-34b5-46ee-5aef-683a4036acbc",
+    "current_vm_cid": "vm-98d8d0db-70b4-485f-641c-044d9486a46e",
+    "current_stemcell_id": "33351a5c-91e1-4730-7cce-1503d2d61123",
+    "current_disk_id": "",
+    "current_release_ids": [
+        "fcf83cc4-234d-4c18-5942-7e53ab13bd19",
+        "7c18264d-7523-42da-667e-f340c8cb3944"
+    ],
+    "current_manifest_sha": "af96d1bbb75bda49f7daf3de73a953291e5d862ee5a80574f73d876c8fe434d02797f95a228c3ccfab30c17f49a9e40f624a0313828da55d0b76b0ccee06e668",
+    "disks": null,
+    "stemcells": [
+        {
+            "id": "33351a5c-91e1-4730-7cce-1503d2d61123",
+            "name": "bosh-google-kvm-ubuntu-trusty-go_agent",
+            "version": "3468.17",
+            "cid": "stemcell-8aabd2b8-668b-4e19-4c28-d5684a5048b1"
+        }
+    ],
+    "releases": [
+        {
+            "id": "fcf83cc4-234d-4c18-5942-7e53ab13bd19",
+            "name": "os-conf",
+            "version": "13"
+        },
+        {
+            "id": "7c18264d-7523-42da-667e-f340c8cb3944",
+            "name": "bosh-google-cpi",
+            "version": "25.9.0"
+        }
+    ]
+}
