@@ -3539,3 +3539,71 @@ Task 33 | 19:55:05 | Compiling packages: nginx_newrelic_plugin/70737ccb2088b16e9
 Task 33 | 19:55:05 | Compiling packages: windows_app_lifecycle/ae397a64384eb88f442ca2f897e77a4e4041a2a864b4a798f1a3fcc84694d795
 Task 33 | 19:55:07 | Compiling packages: thresholder/f4e483ede3a933f7aae30e29b3f4d1490768bba3aaf620290c8ed0b18ad71ff3 (00:00:16)
 Task 33 | 19:55:07 | Compiling packages: docker_app_lifecycle/9c43d1638b91523c8cfe11f93da3c592702061e854dceb260c8ac807e7124520
+Task 33 | 19:55:14 | Compiling packages: bosh-dns/5ee91aab4edcd9399f5f5e78fd06f4fba0190ee9 (00:00:39)
+Task 33 | 19:55:14 | Compiling packages: buildpack_app_lifecycle/3c44a5edf39d30c6a825f522660a9e9dff915a2540238568a2968b3941c4acc1
+Task 33 | 19:55:42 | Compiling packages: lzo/7ec718ef29da337d56f08e90534f561c138c2c88b576dc5da5185d85fdd42b20 (00:00:53)
+Task 33 | 19:55:42 | Compiling packages: galera/f480a48c26d56d050bc0b579ed60750ccf52dadb
+Task 33 | 19:56:00 | Compiling packages: docker_app_lifecycle/9c43d1638b91523c8cfe11f93da3c592702061e854dceb260c8ac807e7124520 (00:00:53)
+Task 33 | 19:56:01 | Compiling packages: windows_app_lifecycle/ae397a64384eb88f442ca2f897e77a4e4041a2a864b4a798f1a3fcc84694d795 (00:00:56)
+Task 33 | 19:56:34 | Compiling packages: buildpack_app_lifecycle/3c44a5edf39d30c6a825f522660a9e9dff915a2540238568a2968b3941c4acc1 (00:01:20)
+Task 33 | 19:57:50 | Compiling packages: util-linux/6310f68e8294c980de62481bced2fc915f449e3a2cc2d13a7a2a49c4a612d825 (00:03:11)
+Task 33 | 19:57:50 | Compiling packages: xfs-progs/6ce014f88e05f358621a25ce48ee036d78bdb1a935a8eb556974d3de26c8614d
+Task 33 | 19:58:20 | Compiling packages: cloud_controller_ng/a7e73b91c734202ae283165f1386d1a9b2f7d385796bdff21de5a9c25eb49a7a (00:03:23)
+Task 33 | 19:59:58 | Compiling packages: xfs-progs/6ce014f88e05f358621a25ce48ee036d78bdb1a935a8eb556974d3de26c8614d (00:02:08)
+Task 33 | 20:03:15 | Compiling packages: galera/f480a48c26d56d050bc0b579ed60750ccf52dadb (00:07:33)
+Task 33 | 20:03:15 | Compiling packages: mariadb/7baa5c2ab22714f55170e71219b7f0205be0878f (00:14:34)
+Task 33 | 20:17:50 | Compiling packages: xtrabackup/e3be0425981cfbd68ce5971505962bf526ae02a4 (00:12:05)
+Task 33 | 20:29:56 | Creating missing vms: consul/c566cdcb-206d-4149-bf2c-2ea03a690d6f (0)
+Task 33 | 20:29:56 | Creating missing vms: adapter/98f1903d-438b-4764-b31f-470c38ce6f83 (0)
+Task 33 | 20:29:56 | Creating missing vms: nats/3524357d-645b-423f-a1df-e83c3ae92150 (0)
+Task 33 | 20:29:56 | Creating missing vms: database/35ed3289-273e-43d4-b4b2-d0a9bc438438 (0)
+Task 33 | 20:29:56 | Creating missing vms: scheduler/37cf05d7-b3d4-4741-bb42-03c0bf5e4cf0 (0)
+Task 33 | 20:29:56 | Creating missing vms: uaa/1a63f71b-118f-4e62-adf6-ef7e34df5b21 (0)
+Task 33 | 20:29:56 | Creating missing vms: router/8961d22b-8926-485b-8c61-f2ce841d7a1a (0)
+Task 33 | 20:29:56 | Creating missing vms: cc-worker/265dae17-bec3-47b9-9c9e-d6a955556794 (0)
+Task 33 | 20:29:56 | Creating missing vms: credhub/0c1adeb9-17c8-4fdb-93e2-e3468495304b (0)
+Task 33 | 20:29:56 | Creating missing vms: tcp-router/94842d5c-0799-4b2d-920f-c133e9d5b89f (0)
+Task 33 | 20:29:56 | Creating missing vms: diego-api/3f4ce38f-483b-41f7-bff8-42ad8e6924f4 (0)
+Task 33 | 20:29:56 | Creating missing vms: singleton-blobstore/1a7a741b-debb-4ffc-86d2-d813d24a040a (0)
+Task 33 | 20:29:56 | Creating missing vms: log-api/dd629567-cdcd-49f2-9724-f49f36dd90fa (0)
+Task 33 | 20:29:56 | Creating missing vms: api/85578ad2-22c3-4eb2-bf55-a7951598f494 (0)
+Task 33 | 20:29:56 | Creating missing vms: doppler/391f19d9-b8ac-4417-a1de-24cc6084e51b (0)
+Task 33 | 20:29:56 | Creating missing vms: diego-cell/a297dd51-5bb1-4918-8b70-306c7197a787 (0)
+Task 33 | 20:30:52 | Creating missing vms: nats/3524357d-645b-423f-a1df-e83c3ae92150 (0) (00:00:56)
+Task 33 | 20:30:58 | Creating missing vms: consul/c566cdcb-206d-4149-bf2c-2ea03a690d6f (0) (00:01:02)
+Task 33 | 20:31:00 | Creating missing vms: singleton-blobstore/1a7a741b-debb-4ffc-86d2-d813d24a040a (0) (00:01:04)
+Task 33 | 20:31:02 | Creating missing vms: tcp-router/94842d5c-0799-4b2d-920f-c133e9d5b89f (0) (00:01:06)
+Task 33 | 20:31:05 | Creating missing vms: credhub/0c1adeb9-17c8-4fdb-93e2-e3468495304b (0) (00:01:09)
+Task 33 | 20:31:06 | Creating missing vms: adapter/98f1903d-438b-4764-b31f-470c38ce6f83 (0) (00:01:10)
+Task 33 | 20:31:19 | Creating missing vms: cc-worker/265dae17-bec3-47b9-9c9e-d6a955556794 (0) (00:01:23)
+Task 33 | 20:31:22 | Creating missing vms: database/35ed3289-273e-43d4-b4b2-d0a9bc438438 (0) (00:01:26)
+Task 33 | 20:31:27 | Creating missing vms: router/8961d22b-8926-485b-8c61-f2ce841d7a1a (0) (00:01:31)
+Task 33 | 20:31:31 | Creating missing vms: diego-api/3f4ce38f-483b-41f7-bff8-42ad8e6924f4 (0) (00:01:35)
+Task 33 | 20:31:31 | Creating missing vms: log-api/dd629567-cdcd-49f2-9724-f49f36dd90fa (0) (00:01:35)
+Task 33 | 20:31:33 | Creating missing vms: uaa/1a63f71b-118f-4e62-adf6-ef7e34df5b21 (0) (00:01:37)
+Task 33 | 20:31:40 | Creating missing vms: diego-cell/a297dd51-5bb1-4918-8b70-306c7197a787 (0) (00:01:44)
+Task 33 | 20:31:40 | Creating missing vms: doppler/391f19d9-b8ac-4417-a1de-24cc6084e51b (0) (00:01:44)
+Task 33 | 20:31:44 | Creating missing vms: api/85578ad2-22c3-4eb2-bf55-a7951598f494 (0) (00:01:48)
+Task 33 | 20:31:44 | Creating missing vms: scheduler/37cf05d7-b3d4-4741-bb42-03c0bf5e4cf0 (0) (00:01:48)
+Task 33 | 20:31:45 | Updating instance consul: consul/c566cdcb-206d-4149-bf2c-2ea03a690d6f (0) (canary) (00:00:57)
+Task 33 | 20:32:42 | Updating instance nats: nats/3524357d-645b-423f-a1df-e83c3ae92150 (0) (canary)
+Task 33 | 20:32:42 | Updating instance adapter: adapter/98f1903d-438b-4764-b31f-470c38ce6f83 (0) (canary)
+Task 33 | 20:33:34 | Updating instance nats: nats/3524357d-645b-423f-a1df-e83c3ae92150 (0) (canary) (00:00:52)
+Task 33 | 20:33:35 | Updating instance adapter: adapter/98f1903d-438b-4764-b31f-470c38ce6f83 (0) (canary) (00:00:53)
+Task 33 | 20:33:35 | Updating instance database: database/35ed3289-273e-43d4-b4b2-d0a9bc438438 (0) (canary) (00:02:16)
+Task 33 | 20:35:51 | Updating instance diego-api: diego-api/3f4ce38f-483b-41f7-bff8-42ad8e6924f4 (0) (canary) (00:00:54)
+Task 33 | 20:36:45 | Updating instance uaa: uaa/1a63f71b-118f-4e62-adf6-ef7e34df5b21 (0) (canary) (00:02:26)
+Task 33 | 20:39:11 | Updating instance singleton-blobstore: singleton-blobstore/1a7a741b-debb-4ffc-86d2-d813d24a040a (0) (canary) (00:00:56)
+Task 33 | 20:40:07 | Updating instance cc-worker: cc-worker/265dae17-bec3-47b9-9c9e-d6a955556794 (0) (canary)
+Task 33 | 20:40:07 | Updating instance api: api/85578ad2-22c3-4eb2-bf55-a7951598f494 (0) (canary)
+Task 33 | 20:43:47 | Updating instance cc-worker: cc-worker/265dae17-bec3-47b9-9c9e-d6a955556794 (0) (canary) (00:03:40)
+Task 33 | 20:50:51 | Updating instance api: api/85578ad2-22c3-4eb2-bf55-a7951598f494 (0) (canary) (00:10:44)
+                   L Error: Action Failed get_task: Task 3eea409b-9567-4958-6de8-9d789f1b5e0e result: 1 of 6 pre-start scripts failed. Failed Jobs: policy-server. Successful Jobs: cc_uploader, bpm, bosh-dns, consul_agent, cloud_controller_ng.
+Task 33 | 20:50:51 | Error: Action Failed get_task: Task 3eea409b-9567-4958-6de8-9d789f1b5e0e result: 1 of 6 pre-start scripts failed. Failed Jobs: policy-server. Successful Jobs: cc_uploader, bpm, bosh-dns, consul_agent, cloud_controller_ng.
+
+Task 33 Started  Sat Oct  6 19:41:05 UTC 2018
+Task 33 Finished Sat Oct  6 20:50:51 UTC 2018
+Task 33 Duration 01:09:46
+Task 33 error
+
+
