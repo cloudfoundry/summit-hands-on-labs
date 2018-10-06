@@ -1,0 +1,33 @@
+jumpbox_ssh:
+  private_key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEowIBAAKCAQEA4Z7DWTwMzLvr7e4c3Pe7E3m6xvagSkeMiCT+zxev/fktXFQ7
+    tOA8foNFhY5T3UNObw0NjG5cbgljwGo0o8dmJY/75fb4aeOMDhEqQNXnmegFn0k0
+    Vg7ikHkFor7QC5xqCqP93MKN76UTHuddmxvSd0WL81kT2Hj23YfaUx2AUVgqD/5y
+    Hz+Kmt4PBiTNyoZLeX8jcckMyGsbAlc0BGqFb6bZaPEQRVkpVvKRgz+/27gUIDA2
+    6Iodz0qAvQqSjua8AjSXw/ajUT5hhAZkssOeYruWp7gJIBDKGI1fNhEscS0qR6dH
+    /tYrCA+xQhAQxIgX6s8ZHal1CNJ99jt0Z0KMtwIDAQABAoIBAD9RJtFsIMt0EYn8
+    QO1iOIYGq3waynEOE0pB16CWrTVBMJGwsfDY3SFEBcatYqu9r81KhHrcnePjjrL5
+    Gzy7QNdZyP+Ih75vtWZdOtZnMU/n5WwGR0G/e6W/0O0TT59yje/ehefmUZ7nXK5X
+    j9VvwWjng5cPcJpXmDAjaAnbRZ+N75aBjLKfoXZmG5OyfP67zLQaGyCqu5ndXrmw
+    Qodt/FPhfAu1edNDb9+izfAIGo1l8Eecjl+LxbaOEI0Fo9jN+VaqzER8LUR6U9WQ
+    1Hei+pbznR3+Js9mDtFIkMTJ0al5DQiZ6W1TM8ukTOGSfXcA4bnKttN75LTG15Km
+    AlbCLAECgYEA9HOZQk8kEGJODKDrEFO/e4MpM5W+SQzsayhPN4h5TUcsDNGxX76t
+    KGYBqylykmG6EJxrjnAle1O2v14KHc6UrespJbsQjXcmPmyWQbfOBZ1fNUKML/eK
+    aBM88UVgCHS+NsTPJY3abSncU9k4sze6M9wiiGMNY6Itjk9a+gFt8MECgYEA7Edq
+    0jfwcDoEH27wrtwYuFtZZkzfRxCOC56VO/Wkx3FyOd3vxci9/8jtl86/x4MdyBYh
+    OGRuXExPnrKKoftsanK95zAWuNz+voqfi2w2fAPa0g/UXpfPWAIX8e4YRlknCcI3
+    +yT58cZCKuKO/+GtlqFDjRRSdg31RbTw449NY3cCgYEA2iyCUMhJq8XRWzwUEFJu
+    yFHb6Apx9sjuCQXFDg9kFDC9hANzh7yq1y+TtawcccF/S2wQIuS8z0F8DXhlFw1V
+    bZRA+UfoEhqRq41G3giqfCBk5Sgr7nPEt/bToZMFjwaC7mbhauccV+nQl5V8IZhP
+    PBHxUED3pkEM38K7s/6qnQECgYBu/Qk3oGFIRmhjX5idevP9vaNcA6YqWqNu39pY
+    JQZ3TVoLxq336VkeywKYedzqWjPmJkcKl1qj7pDECjhG6LS/uBBuhc9WnTDoznMt
+    afKaBLGIVTk8CfGy9KDM2zv5560Hz3y+c1sZcDjqrivgFOGWzT/PCInHvLzHNryl
+    GE6Q9wKBgD5lflhjIplmLT8VRp+CYSiS65AguqM43jHp1JdJ784PzdD/IkbdXydO
+    2n3Q3SHsoWRM2dPsPeRgOMIrrby+zm5Ny4vig4jx4bTk+35k/eLyILxiNPxQCO7u
+    fy6WzuVehwb+YaTRbA/USF1sbhNyLRvR9J/iycIeGHnkbvP3a3wb
+    -----END RSA PRIVATE KEY-----
+  public_key: |
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhnsNZPAzMu+vt7hzc97sTebrG9qBKR4yIJP7PF6/9+S1cVDu04Dx+g0WFjlPdQ05vDQ2MblxuCWPAajSjx2Ylj/vl9vhp44wOESpA1eeZ6AWfSTRWDuKQeQWivtALnGoKo/3cwo3vpRMe512bG9J3RYvzWRPYePbdh9pTHYBRWCoP/nIfP4qa3g8GJM3Khkt5fyNxyQzIaxsCVzQEaoVvptlo8RBFWSlW8pGDP7/buBQgMDboih3PSoC9CpKO5rwCNJfD9qNRPmGEBmSyw55iu5anuAkgEMoYjV82ESxxLSpHp0f+1isID7FCEBDEiBfqzxkdqXUI0n32O3RnQoy3
+  public_key_fingerprint: ed:6b:83:ae:d8:79:1e:83:79:47:63:ea:04:f8:7d:93
+mbus_bootstrap_password: 6kfliixwrtqht0os8ne6
