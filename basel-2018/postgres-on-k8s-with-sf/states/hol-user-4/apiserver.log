@@ -1,0 +1,281 @@
+Using environment 'https://10.0.0.6:25555' as client 'admin'
+
+Using deployment 'apiserver'
+
+Task 38
+
+Task 38 | 19:26:54 | Downloading remote release: Downloading remote release (00:00:01)
+Task 38 | 19:26:55 | Verifying remote release: Verifying remote release (00:00:00)
+Task 38 | 19:26:55 | Extracting release: Extracting release (00:00:01)
+Task 38 | 19:26:56 | Verifying manifest: Verifying manifest (00:00:00)
+Task 38 | 19:26:56 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 38 | 19:26:56 | Processing 4 existing packages: Processing 4 existing packages (00:00:00)
+Task 38 | 19:26:56 | Processing 2 existing jobs: Processing 2 existing jobs (00:00:00)
+Task 38 | 19:26:56 | Release has been created: bpm/0.4.0 (00:00:01)
+
+Task 38 Started  Sat Oct  6 19:26:54 UTC 2018
+Task 38 Finished Sat Oct  6 19:26:57 UTC 2018
+Task 38 Duration 00:00:03
+Task 38 done
++ azs:
++ - name: z1
++ - name: z2
++ - name: z3
+  
++ vm_types:
++ - name: minimal
++ - name: small
++ - name: small-highmem
+  
++ vm_extensions:
++ - name: 5GB_ephemeral_disk
++ - name: 10GB_ephemeral_disk
++ - name: 50GB_ephemeral_disk
++ - name: 100GB_ephemeral_disk
++ - name: 500GB_ephemeral_disk
++ - name: 1TB_ephemeral_disk
++ - cloud_properties:
++     ports:
++     - host: 80
++     - host: 443
++     - host: 2222
++   name: ssh-proxy-and-router-lb
++ - cloud_properties:
++     ports:
++     - host: 1024-1123
++   name: cf-tcp-router-network-properties
++ - cloud_properties:
++     ports:
++     - host: 8845
++   name: credhub-lb
+  
++ compilation:
++   az: z1
++   network: default
++   reuse_compilation_vms: true
++   vm_type: minimal
++   workers: 6
+  
++ networks:
++ - name: default
++   subnets:
++   - azs:
++     - z1
++     - z2
++     - z3
++     cloud_properties:
++       name: random
++     gateway: 10.244.0.1
++     range: 10.244.0.0/20
++     reserved:
++     - 10.244.0.1
++     static:
++     - 10.244.0.2 - 10.244.14.254
+  
++ disk_types:
++ - disk_size: 1024
++   name: 1GB
++ - disk_size: 5120
++   name: 5GB
++ - disk_size: 10240
++   name: 10GB
++ - disk_size: 100240
++   name: 100GB
+  
++ stemcells:
++ - alias: default
++   os: ubuntu-trusty
++   version: '3586.42'
+  
++ releases:
++ - name: bpm
++   sha1: 5a03b988c725c6b5a1aed247c8c23c2bff9d421b
++   url: https://bosh.io/d/github.com/cloudfoundry-incubator/bpm-release?v=0.4.0
++   version: 0.12.3
++ - name: service-fabrik
++   version: 3.70.0
++ - name: cfcr-etcd
++   version: 1.4.0
++ - name: bosh-dns
++   sha1: 3b77329a772483d6c949f1a47ba9734976bc2b31
++   url: https://bosh.io/d/github.com/cloudfoundry/bosh-dns-release?v=1.8.0
++   version: 1.8.0
+  
++ update:
++   canaries: 1
++   canary_watch_time: 1000-60000
++   max_in_flight: 1
++   serial: true
++   update_watch_time: 1000-60000
+  
++ addons:
++ - include:
++     stemcell:
++     - os: ubuntu-trusty
++     - os: ubuntu-xenial
++   jobs:
++   - name: bosh-dns
++     properties:
++       api:
++         client:
++           tls: "<redacted>"
++         server:
++           tls: "<redacted>"
++       cache:
++         enabled: "<redacted>"
++       health:
++         client:
++           tls: "<redacted>"
++         enabled: "<redacted>"
++         server:
++           tls: "<redacted>"
++     release: bosh-dns
++   name: bosh-dns
++ - include:
++     stemcell:
++     - os: windows2012R2
++     - os: windows2016
++     - os: windows1803
++   jobs:
++   - name: bosh-dns-windows
++     properties:
++       api:
++         client:
++           tls: "<redacted>"
++         server:
++           tls: "<redacted>"
++       cache:
++         enabled: "<redacted>"
++       health:
++         client:
++           tls: "<redacted>"
++         enabled: "<redacted>"
++         server:
++           tls: "<redacted>"
++     release: bosh-dns
++   name: bosh-dns-windows
+  
++ variables:
++ - name: "/dns_healthcheck_tls_ca"
++   options:
++     common_name: dns-healthcheck-tls-ca
++     is_ca: true
++   type: certificate
++ - name: "/dns_healthcheck_server_tls"
++   options:
++     ca: "/dns_healthcheck_tls_ca"
++     common_name: health.bosh-dns
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: "/dns_healthcheck_client_tls"
++   options:
++     ca: "/dns_healthcheck_tls_ca"
++     common_name: health.bosh-dns
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: "/dns_api_tls_ca"
++   options:
++     common_name: dns-api-tls-ca
++     is_ca: true
++   type: certificate
++ - name: "/dns_api_server_tls"
++   options:
++     ca: "/dns_api_tls_ca"
++     common_name: api.bosh-dns
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: "/dns_api_client_tls"
++   options:
++     ca: "/dns_api_tls_ca"
++     common_name: api.bosh-dns
++     extended_key_usage:
++     - client_auth
++   type: certificate
+  
++ instance_groups:
++ - azs:
++   - z1
++   instances: 3
++   jobs:
++   - name: service-fabrik-apiserver
++     properties:
++       admin-password: "<redacted>"
++       admin-username: "<redacted>"
++       backend_port: "<redacted>"
++       etcd:
++         ssl:
++           ca: "<redacted>"
++           crt: "<redacted>"
++           key: "<redacted>"
++         url:
++         - "<redacted>"
++         - "<redacted>"
++         - "<redacted>"
++       ip: "<redacted>"
++       port: "<redacted>"
++       tls:
++         apiserver:
++           ca: "<redacted>"
++           certificate: "<redacted>"
++           private_key: "<redacted>"
++     release: service-fabrik
++   - name: etcd
++     properties:
++       tls:
++         etcd:
++           ca: "<redacted>"
++           certificate: "<redacted>"
++           private_key: "<redacted>"
++         etcdctl:
++           ca: "<redacted>"
++           certificate: "<redacted>"
++           private_key: "<redacted>"
++         peer:
++           ca: "<redacted>"
++           certificate: "<redacted>"
++           private_key: "<redacted>"
++     provides:
++       etcd:
++         as: etcd
++     release: cfcr-etcd
++   - name: bpm
++     release: bpm
++   name: etcd
++   networks:
++   - name: default
++     static_ips:
++     - 10.244.14.252
++     - 10.244.14.253
++     - 10.244.14.254
++   persistent_disk_type: 10GB
++   stemcell: default
++   vm_type: small
+  
++ name: apiserver
+
+Task 39
+
+Task 39 | 19:27:01 | Preparing deployment: Preparing deployment (00:00:03)
+Task 39 | 19:27:06 | Preparing package compilation: Finding packages to compile (00:00:00)
+Task 39 | 19:27:06 | Compiling packages: etcd/c4dcd8c2b12255ed693871685ff283ff27f74ee9163f34a67cc59b7620d178e0
+Task 39 | 19:27:06 | Compiling packages: apiserver/ee00fa2ff035bd24094425d8b91a730cfa86ab1e
+Task 39 | 19:27:21 | Compiling packages: etcd/c4dcd8c2b12255ed693871685ff283ff27f74ee9163f34a67cc59b7620d178e0 (00:00:15)
+Task 39 | 19:27:28 | Compiling packages: apiserver/ee00fa2ff035bd24094425d8b91a730cfa86ab1e (00:00:22)
+Task 39 | 19:27:29 | Creating missing vms: etcd/482fe824-3664-405e-8803-f031f1dedc46 (0)
+Task 39 | 19:27:29 | Creating missing vms: etcd/ca29e939-fe95-4953-9769-50339eb1627b (1)
+Task 39 | 19:27:29 | Creating missing vms: etcd/fbca537e-2fc2-4e82-a43f-0c8bf3c7d48b (2) (00:00:10)
+Task 39 | 19:27:39 | Creating missing vms: etcd/ca29e939-fe95-4953-9769-50339eb1627b (1) (00:00:10)
+Task 39 | 19:27:40 | Creating missing vms: etcd/482fe824-3664-405e-8803-f031f1dedc46 (0) (00:00:11)
+Task 39 | 19:27:41 | Updating instance etcd: etcd/482fe824-3664-405e-8803-f031f1dedc46 (0) (canary) (00:00:40)
+Task 39 | 19:28:21 | Updating instance etcd: etcd/ca29e939-fe95-4953-9769-50339eb1627b (1) (00:00:47)
+Task 39 | 19:29:08 | Updating instance etcd: etcd/fbca537e-2fc2-4e82-a43f-0c8bf3c7d48b (2) (00:00:33)
+
+Task 39 Started  Sat Oct  6 19:27:01 UTC 2018
+Task 39 Finished Sat Oct  6 19:29:41 UTC 2018
+Task 39 Duration 00:02:40
+Task 39 done
+
+Succeeded
