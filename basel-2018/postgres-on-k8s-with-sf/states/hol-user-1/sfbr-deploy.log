@@ -1,16 +1,1 @@
-Using environment 'https://10.0.0.6:25555' as client 'admin'
 
-Using deployment 'service-fabrik'
-
-Task 66
-
-Task 66 | 17:42:55 | Preparing deployment: Preparing deployment (00:00:04)
-Task 66 | 17:43:02 | Preparing package compilation: Finding packages to compile (00:00:00)
-Task 66 | 17:43:02 | Updating instance broker: broker/e437cfe0-9534-4e79-b705-eb48ab8f046f (0) (canary) (00:01:58)
-
-Task 66 Started  Sat Oct  6 17:42:55 UTC 2018
-Task 66 Finished Sat Oct  6 17:45:00 UTC 2018
-Task 66 Duration 00:02:05
-Task 66 done
-
-Succeeded
