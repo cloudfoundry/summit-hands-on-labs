@@ -3666,4 +3666,12 @@ Task 33 | 18:02:06 | Updating instance doppler: doppler/f296e5b3-7a48-43eb-a120-
 Task 33 | 18:02:06 | Updating instance diego-cell: diego-cell/fc3b9cb1-ec3b-4fb8-8a0e-363622142941 (0) (canary)
 Task 33 | 18:03:07 | Updating instance doppler: doppler/f296e5b3-7a48-43eb-a120-d5f42e5694e1 (0) (canary) (00:01:01)
 Task 33 | 18:03:45 | Updating instance diego-cell: diego-cell/fc3b9cb1-ec3b-4fb8-8a0e-363622142941 (0) (canary) (00:01:39)
-Task 33 | 18:03:45 | Updating instance log-api: log-api/5ca22045-9ae9-460d-a42d-5c6588684ca6 (0) (canary)
+Task 33 | 18:03:45 | Updating instance log-api: log-api/5ca22045-9ae9-460d-a42d-5c6588684ca6 (0) (canary) (00:00:58)
+Task 33 | 18:04:43 | Updating instance credhub: credhub/48b26d7c-abce-4384-b74f-d74f5d4fda3c (0) (canary) (00:01:16)
+
+Task 33 Started  Sat Oct  6 16:53:27 UTC 2018
+Task 33 Finished Sat Oct  6 18:05:59 UTC 2018
+Task 33 Duration 01:12:32
+Task 33 done
+
+Succeeded
