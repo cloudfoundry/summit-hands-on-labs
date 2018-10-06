@@ -1,0 +1,33 @@
+jumpbox_ssh:
+  private_key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEpQIBAAKCAQEAsowNXLCOYfzmfM2wXbJKllTM6Suhon5TfaHK/L1lZtPHpWkU
+    Ft9OR/h/cVkmsO8LuQW68P33dPrchsEtSRayBHiTZl6iwVpMlMUh8Z6Mvl/if3fe
+    vbLuvkax4ffnIQ5IlP44uRXIJeLAXPBxzF5scl2hgX/f7Xhe3qshy5PHuSCs7bq0
+    XOSHaBeSBulrKJg3cUZwQ2I2NbZrf2H+09Jb6AqLYt7DgQmgrw8a6Ts/CktFY+eY
+    PK9UoEtGu9AalIBdbshqm4Kp7+yvgIn9UcnopjagvHrn5FzWIulBCJjfcNfuZ9MO
+    +3J2fiDjsK3GjDfAewCnIUSE37pkCc9BSHOK2QIDAQABAoIBAGDu4CI+SE6yen+v
+    O9zietP63fSJF4ucgb9nI0jrmi2lNHJ9BccVHO693pKvD+5nGTot/jvv5XTA7RDL
+    t8ZCaAs9Wujs3/eRCpqKG8+NgGOqstD5Rxg+GJd80f4YFIdBte4NxsXVKYBIBp9u
+    epm1ebLtWk1wGyZVf0vsJMDdTkUWq0JCja9faQp9IVWLi16F68rO4zGIFx829QWN
+    fEYl6pE1/i94bkEnZPDxWoqKY6A0fbB3QoY+ZogHZx0aGCJbSYJwXqC6dtuqOz6e
+    MX7gl/PxTyRazwVW/G+UVXKtaePg+B9csduFLQGkh5VHL1zkhQjW7Vmg61HgMqdl
+    8bTKl8ECgYEAw9IqIzV2h1fomlyHhnBzRAivaGqXziwFbcgzsK62PcCjpABrR5yg
+    y0uVQ4R4h/0T2QXQ8HY6hbGsG3zjFS3JEbFAIjF9b0rKByeUH2qxVae2fO6D1J79
+    cwKduGsnudW44M/Nqy9N0QdzJMsIOOklV5ueJnoC1eA95UAOjju4V/UCgYEA6Wrm
+    EsuGzknfRrv9VCuSjthhvnupvHSJj3vRaxm51AW5n12u/TC5B2f6WUeKwC9gtZPX
+    1d7MNVCMAent4CgJb4ByfRLz0e1lCFooqb7J5cMeLbjE1Fs7Kz7L6i/iRyAm0uE7
+    Zsn92MmGn+NETOGGnDxJnuW42wpXBQWcfGe7bNUCgYEAoNjY0+LuYW3MGj828y8a
+    /x9DNbmYyDlQnER+cPqRp1e9EtFlTYVSbqq/CJ6fgtRWoUUtwtbaa0bt4AZNYPAi
+    4O1/iJauOeRs3kOcX9H7qCgCtcwVbWjLNtVHSFx8XSE4ozEN9zb77F76LZa4Qkb/
+    7V5eIazG93ciYFSloB9d5KECgYEAqpyvZOeNNnW6lPpN1dsveefhshiz3YMVFWK8
+    lNsuADLbFgilIn4dkLNIwz9OxOEcgDx7U+FRRFsGq1NwwxqgovaxOIjE3Rn3cl5s
+    QH6rFp1DDspyXIH+wsJYzGmJrNFsb1GgWKamPHI5S98TilqCSOqsKU/iiYCKUKpk
+    Um6ECa0CgYEAqyEGOnG6ukVdIs95JcrifAbzpfbn3HDdXkebofwHdH4AtTegMLH4
+    2ZClPPl7ApXdwg2MhoC6APeZYimAruu97f8xWWWTKV4fn/tpNIx+/ZA8/9EHWyix
+    3QWcGLG1ELKSug+invF6Pb5ZMfhdVNbBKLrqLgNI3XDqtYNEILA5jE0=
+    -----END RSA PRIVATE KEY-----
+  public_key: |
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyjA1csI5h/OZ8zbBdskqWVMzpK6GiflN9ocr8vWVm08elaRQW305H+H9xWSaw7wu5Bbrw/fd0+tyGwS1JFrIEeJNmXqLBWkyUxSHxnoy+X+J/d969su6+RrHh9+chDkiU/ji5Fcgl4sBc8HHMXmxyXaGBf9/teF7eqyHLk8e5IKzturRc5IdoF5IG6WsomDdxRnBDYjY1tmt/Yf7T0lvoCoti3sOBCaCvDxrpOz8KS0Vj55g8r1SgS0a70BqUgF1uyGqbgqnv7K+Aif1RyeimNqC8eufkXNYi6UEImN9w1+5n0w77cnZ+IOOwrcaMN8B7AKchRITfumQJz0FIc4rZ
+  public_key_fingerprint: ed:16:b7:cd:f7:bc:6b:b5:ee:4e:f1:d8:5e:bc:a5:32
+mbus_bootstrap_password: toy41ngdqqpm5hmve78k
