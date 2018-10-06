@@ -2,90 +2,18 @@ Using environment 'https://10.0.0.6:25555' as client 'admin'
 
 Using deployment 'service-fabrik'
 
-+ azs:
-+ - name: z1
-+ - name: z2
-+ - name: z3
-  
-+ vm_types:
-+ - name: minimal
-+ - name: small
-+ - name: small-highmem
-+ - name: default
-  
-+ vm_extensions:
-+ - name: 5GB_ephemeral_disk
-+ - name: 10GB_ephemeral_disk
-+ - name: 50GB_ephemeral_disk
-+ - name: 100GB_ephemeral_disk
-+ - name: 500GB_ephemeral_disk
-+ - name: 1TB_ephemeral_disk
-+ - cloud_properties:
-+     ports:
-+     - host: 80
-+     - host: 443
-+     - host: 2222
-+   name: ssh-proxy-and-router-lb
-+ - cloud_properties:
-+     ports:
-+     - host: 1024-1123
-+   name: cf-tcp-router-network-properties
-+ - cloud_properties:
-+     ports:
-+     - host: 8845
-+   name: credhub-lb
-  
-+ compilation:
-+   az: z1
-+   network: default
-+   reuse_compilation_vms: true
-+   vm_type: minimal
-+   workers: 6
-  
-+ networks:
-+ - name: default
-+   subnets:
-+   - azs:
-+     - z1
-+     - z2
-+     - z3
-+     cloud_properties:
-+       name: random
-+     gateway: 10.244.0.1
-+     range: 10.244.0.0/20
-+     reserved:
-+     - 10.244.0.1
-+     static:
-+     - 10.244.0.2 - 10.244.14.254
-  
-+ disk_types:
-+ - disk_size: 1024
-+   name: 1GB
-+ - disk_size: 5120
-+   name: 5GB
-+ - disk_size: 10240
-+   name: 10GB
-+ - disk_size: 100240
-+   name: 100GB
-+ - disk_size: 1024
-+   name: default
-  
 + stemcells:
 + - alias: default
 +   os: ubuntu-trusty
 +   version: '3586.42'
   
-+ releases:
+  releases:
 + - name: routing
 +   version: 0.182.0
 + - name: service-fabrik
 +   version: 3.70.0+dev.1
 + - name: bpm
 +   version: 0.12.3
-+ - name: bosh-dns
-+   sha1: 3b77329a772483d6c949f1a47ba9734976bc2b31
-+   url: https://bosh.io/d/github.com/cloudfoundry/bosh-dns-release?v=1.8.0
-+   version: 1.8.0
   
 + update:
 +   canaries: 1
@@ -93,93 +21,6 @@ Using deployment 'service-fabrik'
 +   max_in_flight: 1
 +   serial: true
 +   update_watch_time: 1000-60000
-  
-+ addons:
-+ - include:
-+     stemcell:
-+     - os: ubuntu-trusty
-+     - os: ubuntu-xenial
-+   jobs:
-+   - name: bosh-dns
-+     properties:
-+       api:
-+         client:
-+           tls: "<redacted>"
-+         server:
-+           tls: "<redacted>"
-+       cache:
-+         enabled: "<redacted>"
-+       health:
-+         client:
-+           tls: "<redacted>"
-+         enabled: "<redacted>"
-+         server:
-+           tls: "<redacted>"
-+     release: bosh-dns
-+   name: bosh-dns
-+ - include:
-+     stemcell:
-+     - os: windows2012R2
-+     - os: windows2016
-+     - os: windows1803
-+   jobs:
-+   - name: bosh-dns-windows
-+     properties:
-+       api:
-+         client:
-+           tls: "<redacted>"
-+         server:
-+           tls: "<redacted>"
-+       cache:
-+         enabled: "<redacted>"
-+       health:
-+         client:
-+           tls: "<redacted>"
-+         enabled: "<redacted>"
-+         server:
-+           tls: "<redacted>"
-+     release: bosh-dns
-+   name: bosh-dns-windows
-  
-+ variables:
-+ - name: "/dns_healthcheck_tls_ca"
-+   options:
-+     common_name: dns-healthcheck-tls-ca
-+     is_ca: true
-+   type: certificate
-+ - name: "/dns_healthcheck_server_tls"
-+   options:
-+     ca: "/dns_healthcheck_tls_ca"
-+     common_name: health.bosh-dns
-+     extended_key_usage:
-+     - server_auth
-+   type: certificate
-+ - name: "/dns_healthcheck_client_tls"
-+   options:
-+     ca: "/dns_healthcheck_tls_ca"
-+     common_name: health.bosh-dns
-+     extended_key_usage:
-+     - client_auth
-+   type: certificate
-+ - name: "/dns_api_tls_ca"
-+   options:
-+     common_name: dns-api-tls-ca
-+     is_ca: true
-+   type: certificate
-+ - name: "/dns_api_server_tls"
-+   options:
-+     ca: "/dns_api_tls_ca"
-+     common_name: api.bosh-dns
-+     extended_key_usage:
-+     - server_auth
-+   type: certificate
-+ - name: "/dns_api_client_tls"
-+   options:
-+     ca: "/dns_api_tls_ca"
-+     common_name: api.bosh-dns
-+     extended_key_usage:
-+     - client_auth
-+   type: certificate
   
 + instance_groups:
 + - azs:
@@ -739,15 +580,41 @@ Using deployment 'service-fabrik'
 +   vm_type: minimal
   
 + name: service-fabrik
-Task 40
+Task 42
 
-Task 40 | 12:57:17 | Preparing deployment: Preparing deployment (00:00:00)
-                   L Error: Release version 'service-fabrik/3.70.0+dev.1' doesn't exist
-Task 40 | 12:57:18 | Error: Release version 'service-fabrik/3.70.0+dev.1' doesn't exist
+Task 42 | 16:43:05 | Preparing deployment: Preparing deployment (00:00:03)
+Task 42 | 16:43:12 | Preparing package compilation: Finding packages to compile (00:00:00)
+Task 42 | 16:43:12 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065
+Task 42 | 16:43:12 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019
+Task 42 | 16:43:12 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b
+Task 42 | 16:43:12 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e
+Task 42 | 16:43:12 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e
+Task 42 | 16:43:12 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930
+Task 42 | 16:43:24 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065 (00:00:12)
+Task 42 | 16:43:24 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2
+Task 42 | 16:43:25 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b (00:00:13)
+Task 42 | 16:43:25 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e (00:00:13)
+Task 42 | 16:43:25 | Compiling packages: bosh-helpers/9b13ac3033005fe8e48b3048cf1a420060b2dabe (00:00:05)
+Task 42 | 16:43:31 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2 (00:00:07)
+Task 42 | 16:43:31 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7
+Task 42 | 16:43:40 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019 (00:00:28)
+Task 42 | 16:43:49 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930 (00:00:37)
+Task 42 | 16:43:49 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2
+Task 42 | 16:43:55 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e (00:00:43)
+Task 42 | 16:43:55 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b
+Task 42 | 16:43:55 | Compiling packages: lvmvd/b34613c6cbbd78142b495d6959b5fb7d0b52b7e1 (00:00:16)
+Task 42 | 16:44:17 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7 (00:00:46)
+Task 42 | 16:44:23 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b (00:00:28)
+Task 42 | 16:44:29 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2 (00:00:40)
+Task 42 | 16:44:30 | Creating missing vms: broker/a5a4ac9d-2fd8-43f0-9605-42c0b7b8e0f6 (0)
+Task 42 | 16:44:30 | Creating missing vms: docker/874df653-30cb-4e92-931a-d7f4d1d4d841 (0) (00:00:12)
+Task 42 | 16:44:43 | Creating missing vms: broker/a5a4ac9d-2fd8-43f0-9605-42c0b7b8e0f6 (0) (00:00:13)
+Task 42 | 16:44:43 | Updating instance broker: broker/a5a4ac9d-2fd8-43f0-9605-42c0b7b8e0f6 (0) (canary) (00:00:44)
+Task 42 | 16:45:27 | Updating instance docker: docker/874df653-30cb-4e92-931a-d7f4d1d4d841 (0) (canary) (00:00:35)
 
-Task 40 Started  Sat Oct  6 12:57:17 UTC 2018
-Task 40 Finished Sat Oct  6 12:57:18 UTC 2018
-Task 40 Duration 00:00:01
-Task 40 error
+Task 42 Started  Sat Oct  6 16:43:05 UTC 2018
+Task 42 Finished Sat Oct  6 16:46:02 UTC 2018
+Task 42 Duration 00:02:57
+Task 42 done
 
-
+Succeeded

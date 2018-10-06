@@ -1,0 +1,78 @@
+{
+    "director_id": "6c691179-f20a-4ebc-55fc-c4afb06f552a",
+    "installation_id": "b2c5f417-c203-4c98-4611-859b33b819c9",
+    "current_vm_cid": "vm-4f1c5579-a48a-4fd9-7879-6415ff81e84c",
+    "current_stemcell_id": "2cefe582-d60e-419a-75e9-a225bc353259",
+    "current_disk_id": "3c193463-ca09-448c-5cbc-e54dc36bf48d",
+    "current_release_ids": [
+        "f313a920-b0aa-47d0-6a0a-7635bebd22e6",
+        "5ee0a230-c354-4e5c-6ccc-d7e0a914a8fb",
+        "f856d2c9-e146-4ef2-7d1f-670c7f3273d9",
+        "bc8945ef-1a5f-4934-4c60-08d1a1b8c487",
+        "029338ed-64d7-40af-66a2-71e7ca1c6348",
+        "0f7f8256-8ac5-45c1-7f82-09503aba635e",
+        "da4735db-ad99-41a3-7eac-904c8a054dc6",
+        "27966845-8b72-4384-6fe0-f6d50a86fec5"
+    ],
+    "current_manifest_sha": "e32376927862aff582fddd5c20176f7787ad2f6780124c7323ee013c35acf54ec1290398f3da8bb1edcaf44c5bdee25b00ed94e0a27e5199541cbb634a19c129",
+    "disks": [
+        {
+            "id": "3c193463-ca09-448c-5cbc-e54dc36bf48d",
+            "cid": "disk-62010b20-aefd-4bd0-445a-2e330835424c",
+            "size": 65536,
+            "cloud_properties": {
+                "type": "pd-standard"
+            }
+        }
+    ],
+    "stemcells": [
+        {
+            "id": "2cefe582-d60e-419a-75e9-a225bc353259",
+            "name": "bosh-google-kvm-ubuntu-trusty-go_agent",
+            "version": "3586.24",
+            "cid": "stemcell-12106254-dd87-4bee-46d6-c4d6189d92bf"
+        }
+    ],
+    "releases": [
+        {
+            "id": "f313a920-b0aa-47d0-6a0a-7635bebd22e6",
+            "name": "bosh",
+            "version": "267.5.0"
+        },
+        {
+            "id": "5ee0a230-c354-4e5c-6ccc-d7e0a914a8fb",
+            "name": "bpm",
+            "version": "0.9.0"
+        },
+        {
+            "id": "f856d2c9-e146-4ef2-7d1f-670c7f3273d9",
+            "name": "bosh-google-cpi",
+            "version": "27.0.1"
+        },
+        {
+            "id": "bc8945ef-1a5f-4934-4c60-08d1a1b8c487",
+            "name": "os-conf",
+            "version": "18"
+        },
+        {
+            "id": "029338ed-64d7-40af-66a2-71e7ca1c6348",
+            "name": "uaa",
+            "version": "60.2"
+        },
+        {
+            "id": "0f7f8256-8ac5-45c1-7f82-09503aba635e",
+            "name": "credhub",
+            "version": "1.9.3"
+        },
+        {
+            "id": "da4735db-ad99-41a3-7eac-904c8a054dc6",
+            "name": "bosh-warden-cpi",
+            "version": "40"
+        },
+        {
+            "id": "27966845-8b72-4384-6fe0-f6d50a86fec5",
+            "name": "garden-runc",
+            "version": "1.9.4"
+        }
+    ]
+}
