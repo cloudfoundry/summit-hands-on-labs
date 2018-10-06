@@ -1457,7 +1457,7 @@ releases:
 - name: routing
   version: latest
 - name: service-fabrik
-  version: 3.70.0+dev.3
+  version: 3.70.0+dev.1
 - name: bpm
   version: latest
 stemcells:

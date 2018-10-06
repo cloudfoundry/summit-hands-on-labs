@@ -739,15 +739,43 @@ Using deployment 'service-fabrik'
 +   vm_type: minimal
   
 + name: service-fabrik
-Task 40
+Task 59
 
-Task 40 | 11:08:26 | Preparing deployment: Preparing deployment (00:00:00)
-                   L Error: Release version 'service-fabrik/3.70.0+dev.1' doesn't exist
-Task 40 | 11:08:26 | Error: Release version 'service-fabrik/3.70.0+dev.1' doesn't exist
+Task 59 | 17:28:35 | Preparing deployment: Preparing deployment (00:00:04)
+Task 59 | 17:28:42 | Preparing package compilation: Finding packages to compile (00:00:00)
+Task 59 | 17:28:43 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065
+Task 59 | 17:28:43 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019
+Task 59 | 17:28:43 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e
+Task 59 | 17:28:43 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e
+Task 59 | 17:28:43 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b
+Task 59 | 17:28:43 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930
+Task 59 | 17:28:54 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e (00:00:11)
+Task 59 | 17:28:54 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2
+Task 59 | 17:28:55 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b (00:00:12)
+Task 59 | 17:28:55 | Compiling packages: bosh-helpers/9b13ac3033005fe8e48b3048cf1a420060b2dabe
+Task 59 | 17:28:55 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065 (00:00:12)
+Task 59 | 17:29:00 | Compiling packages: bosh-helpers/9b13ac3033005fe8e48b3048cf1a420060b2dabe (00:00:05)
+Task 59 | 17:29:01 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2 (00:00:07)
+Task 59 | 17:29:02 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7
+Task 59 | 17:29:10 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019 (00:00:27)
+Task 59 | 17:29:16 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930 (00:00:33)
+Task 59 | 17:29:16 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2
+Task 59 | 17:29:25 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e (00:00:42)
+Task 59 | 17:29:25 | Compiling packages: lvmvd/b34613c6cbbd78142b495d6959b5fb7d0b52b7e1
+Task 59 | 17:29:25 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b
+Task 59 | 17:29:38 | Compiling packages: lvmvd/b34613c6cbbd78142b495d6959b5fb7d0b52b7e1 (00:00:13)
+Task 59 | 17:29:43 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7 (00:00:41)
+Task 59 | 17:29:51 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b (00:00:26)
+Task 59 | 17:29:54 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2 (00:00:38)
+Task 59 | 17:29:55 | Creating missing vms: broker/e437cfe0-9534-4e79-b705-eb48ab8f046f (0)
+Task 59 | 17:29:55 | Creating missing vms: docker/accfb3e8-7c4d-43f1-823c-6bfb4258ea26 (0) (00:00:12)
+Task 59 | 17:30:08 | Creating missing vms: broker/e437cfe0-9534-4e79-b705-eb48ab8f046f (0) (00:00:13)
+Task 59 | 17:30:08 | Updating instance broker: broker/e437cfe0-9534-4e79-b705-eb48ab8f046f (0) (canary) (00:01:01)
+Task 59 | 17:31:09 | Updating instance docker: docker/accfb3e8-7c4d-43f1-823c-6bfb4258ea26 (0) (canary) (00:00:34)
 
-Task 40 Started  Sat Oct  6 11:08:26 UTC 2018
-Task 40 Finished Sat Oct  6 11:08:26 UTC 2018
-Task 40 Duration 00:00:00
-Task 40 error
+Task 59 Started  Sat Oct  6 17:28:35 UTC 2018
+Task 59 Finished Sat Oct  6 17:31:43 UTC 2018
+Task 59 Duration 00:03:08
+Task 59 done
 
-
+Succeeded
