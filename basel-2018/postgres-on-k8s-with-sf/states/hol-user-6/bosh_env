@@ -1,0 +1,8 @@
+export BOSH_CLIENT=
+export BOSH_CLIENT_SECRET=
+export BOSH_ENVIRONMENT=
+export BOSH_CA_CERT=''
+export CREDHUB_CLIENT=credhub-admin
+export JUMPBOX_PRIVATE_KEY=/tmp/bosh-jumpbox021059485/bosh_jumpbox_private.key
+export BOSH_ALL_PROXY=ssh+socks5://jumpbox@?private-key=/tmp/bosh-jumpbox021059485/bosh_jumpbox_private.key
+export CREDHUB_PROXY=ssh+socks5://jumpbox@?private-key=/tmp/bosh-jumpbox021059485/bosh_jumpbox_private.key
