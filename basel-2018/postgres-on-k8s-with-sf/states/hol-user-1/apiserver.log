@@ -2,21 +2,21 @@ Using environment 'https://10.0.0.6:25555' as client 'admin'
 
 Using deployment 'apiserver'
 
-Task 55
+Task 83
 
-Task 55 | 17:14:33 | Downloading remote release: Downloading remote release (00:00:07)
-Task 55 | 17:14:40 | Verifying remote release: Verifying remote release (00:00:00)
-Task 55 | 17:14:40 | Extracting release: Extracting release (00:00:01)
-Task 55 | 17:14:41 | Verifying manifest: Verifying manifest (00:00:00)
-Task 55 | 17:14:41 | Resolving package dependencies: Resolving package dependencies (00:00:00)
-Task 55 | 17:14:41 | Processing 4 existing packages: Processing 4 existing packages (00:00:00)
-Task 55 | 17:14:41 | Processing 2 existing jobs: Processing 2 existing jobs (00:00:00)
-Task 55 | 17:14:41 | Release has been created: bpm/0.4.0 (00:00:00)
+Task 83 | 17:58:37 | Downloading remote release: Downloading remote release (00:00:06)
+Task 83 | 17:58:43 | Verifying remote release: Verifying remote release (00:00:00)
+Task 83 | 17:58:43 | Extracting release: Extracting release (00:00:01)
+Task 83 | 17:58:44 | Verifying manifest: Verifying manifest (00:00:00)
+Task 83 | 17:58:44 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 83 | 17:58:44 | Processing 4 existing packages: Processing 4 existing packages (00:00:00)
+Task 83 | 17:58:44 | Processing 2 existing jobs: Processing 2 existing jobs (00:00:00)
+Task 83 | 17:58:44 | Release has been created: bpm/0.4.0 (00:00:00)
 
-Task 55 Started  Sat Oct  6 17:14:33 UTC 2018
-Task 55 Finished Sat Oct  6 17:14:41 UTC 2018
-Task 55 Duration 00:00:08
-Task 55 done
+Task 83 Started  Sat Oct  6 17:58:37 UTC 2018
+Task 83 Finished Sat Oct  6 17:58:44 UTC 2018
+Task 83 Duration 00:00:07
+Task 83 done
 + azs:
 + - name: z1
 + - name: z2
@@ -96,7 +96,7 @@ Task 55 done
 +   url: https://bosh.io/d/github.com/cloudfoundry-incubator/bpm-release?v=0.4.0
 +   version: 0.12.3
 + - name: service-fabrik
-+   version: 3.70.0+dev.3
++   version: 3.70.0
 + - name: cfcr-etcd
 +   version: 1.4.0
 + - name: bosh-dns
@@ -259,23 +259,24 @@ Task 55 done
   
 + name: apiserver
 
-Task 56
+Task 84
 
-Task 56 | 17:14:43 | Preparing deployment: Preparing deployment (00:00:02)
-Task 56 | 17:14:47 | Preparing package compilation: Finding packages to compile (00:00:00)
-Task 56 | 17:14:48 | Creating missing vms: etcd/fb836aea-8177-4a12-97bc-5f633781fd49 (0)
-Task 56 | 17:14:48 | Creating missing vms: etcd/d3ac7082-1d1b-479d-9429-2db5ff2782c3 (2)
-Task 56 | 17:14:48 | Creating missing vms: etcd/e1b2f9c7-1f19-4429-9c5d-4c96d10a09fd (1)
-Task 56 | 17:15:00 | Creating missing vms: etcd/d3ac7082-1d1b-479d-9429-2db5ff2782c3 (2) (00:00:12)
-Task 56 | 17:15:00 | Creating missing vms: etcd/fb836aea-8177-4a12-97bc-5f633781fd49 (0) (00:00:12)
-Task 56 | 17:15:00 | Creating missing vms: etcd/e1b2f9c7-1f19-4429-9c5d-4c96d10a09fd (1) (00:00:12)
-Task 56 | 17:15:00 | Updating instance etcd: etcd/fb836aea-8177-4a12-97bc-5f633781fd49 (0) (canary) (00:00:42)
-Task 56 | 17:15:42 | Updating instance etcd: etcd/d3ac7082-1d1b-479d-9429-2db5ff2782c3 (2) (00:00:40)
-Task 56 | 17:16:22 | Updating instance etcd: etcd/e1b2f9c7-1f19-4429-9c5d-4c96d10a09fd (1) (00:00:50)
+Task 84 | 17:58:46 | Preparing deployment: Preparing deployment (00:00:03)
+Task 84 | 17:58:51 | Preparing package compilation: Finding packages to compile (00:00:00)
+Task 84 | 17:58:52 | Compiling packages: apiserver/ee00fa2ff035bd24094425d8b91a730cfa86ab1e (00:00:19)
+Task 84 | 17:59:11 | Creating missing vms: etcd/fa24a630-dc1a-4352-abd7-950c5949534b (0)
+Task 84 | 17:59:11 | Creating missing vms: etcd/3d557f2f-7bee-4b08-8cf4-a7eb91a83618 (1)
+Task 84 | 17:59:11 | Creating missing vms: etcd/863bca73-7171-425f-9371-3276b049290f (2)
+Task 84 | 17:59:21 | Creating missing vms: etcd/3d557f2f-7bee-4b08-8cf4-a7eb91a83618 (1) (00:00:10)
+Task 84 | 17:59:22 | Creating missing vms: etcd/fa24a630-dc1a-4352-abd7-950c5949534b (0) (00:00:11)
+Task 84 | 17:59:22 | Creating missing vms: etcd/863bca73-7171-425f-9371-3276b049290f (2) (00:00:11)
+Task 84 | 17:59:22 | Updating instance etcd: etcd/fa24a630-dc1a-4352-abd7-950c5949534b (0) (canary) (00:00:34)
+Task 84 | 17:59:56 | Updating instance etcd: etcd/3d557f2f-7bee-4b08-8cf4-a7eb91a83618 (1) (00:00:42)
+Task 84 | 18:00:38 | Updating instance etcd: etcd/863bca73-7171-425f-9371-3276b049290f (2) (00:00:32)
 
-Task 56 Started  Sat Oct  6 17:14:43 UTC 2018
-Task 56 Finished Sat Oct  6 17:17:12 UTC 2018
-Task 56 Duration 00:02:29
-Task 56 done
+Task 84 Started  Sat Oct  6 17:58:46 UTC 2018
+Task 84 Finished Sat Oct  6 18:01:10 UTC 2018
+Task 84 Duration 00:02:24
+Task 84 done
 
 Succeeded
