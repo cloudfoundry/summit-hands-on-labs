@@ -1,0 +1,1422 @@
+instance_groups:
+- azs:
+  - z1
+  instances: 1
+  jobs:
+  - name: service-fabrik-apiserver
+    properties:
+      admin-password: admin
+      admin-username: admin
+      backend_port: 8443
+      crds:
+        backup.servicefabrik.io_v1alpha1_defaultbackups.yaml: YXBpVmVyc2lvbjogYXBpZXh0ZW5zaW9ucy5rOHMuaW8vdjFiZXRhMQpraW5kOiBDdXN0b21SZXNvdXJjZURlZmluaXRpb24KbWV0YWRhdGE6CiAgY3JlYXRpb25UaW1lc3RhbXA6IG51bGwKICBsYWJlbHM6CiAgICBjb250cm9sbGVyLXRvb2xzLms4cy5pbzogIjEuMCIKICBuYW1lOiBkZWZhdWx0YmFja3Vwcy5iYWNrdXAuc2VydmljZWZhYnJpay5pbwpzcGVjOgogIGdyb3VwOiBiYWNrdXAuc2VydmljZWZhYnJpay5pbwogIG5hbWVzOgogICAga2luZDogRGVmYXVsdEJhY2t1cAogICAgcGx1cmFsOiBkZWZhdWx0YmFja3VwcwogIHNjb3BlOiBOYW1lc3BhY2VkCiAgdmFsaWRhdGlvbjoKICAgIG9wZW5BUElWM1NjaGVtYToKICAgICAgcHJvcGVydGllczoKICAgICAgICBhcGlWZXJzaW9uOgogICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAga2luZDoKICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgIG1ldGFkYXRhOgogICAgICAgICAgdHlwZTogb2JqZWN0CiAgICAgICAgc3BlYzoKICAgICAgICAgIHByb3BlcnRpZXM6CiAgICAgICAgICAgIG9wdGlvbnM6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgICBzdGF0dXM6CiAgICAgICAgICBwcm9wZXJ0aWVzOgogICAgICAgICAgICBlcnJvcjoKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgICAgbGFzdE9wZXJhdGlvbjoKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgICAgcmVzcG9uc2U6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICAgIHN0YXRlOgogICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgdHlwZTogb2JqZWN0CiAgICAgIHR5cGU6IG9iamVjdAogIHZlcnNpb246IHYxYWxwaGExCnN0YXR1czoKICBhY2NlcHRlZE5hbWVzOgogICAga2luZDogIiIKICAgIHBsdXJhbDogIiIKICBjb25kaXRpb25zOiBudWxsCg==
+        backup.servicefabrik.io_v1alpha1_defaultrestores.yaml: YXBpVmVyc2lvbjogYXBpZXh0ZW5zaW9ucy5rOHMuaW8vdjFiZXRhMQpraW5kOiBDdXN0b21SZXNvdXJjZURlZmluaXRpb24KbWV0YWRhdGE6CiAgY3JlYXRpb25UaW1lc3RhbXA6IG51bGwKICBsYWJlbHM6CiAgICBjb250cm9sbGVyLXRvb2xzLms4cy5pbzogIjEuMCIKICBuYW1lOiBkZWZhdWx0cmVzdG9yZXMuYmFja3VwLnNlcnZpY2VmYWJyaWsuaW8Kc3BlYzoKICBncm91cDogYmFja3VwLnNlcnZpY2VmYWJyaWsuaW8KICBuYW1lczoKICAgIGtpbmQ6IERlZmF1bHRSZXN0b3JlCiAgICBwbHVyYWw6IGRlZmF1bHRyZXN0b3JlcwogIHNjb3BlOiBOYW1lc3BhY2VkCiAgdmFsaWRhdGlvbjoKICAgIG9wZW5BUElWM1NjaGVtYToKICAgICAgcHJvcGVydGllczoKICAgICAgICBhcGlWZXJzaW9uOgogICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAga2luZDoKICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgIG1ldGFkYXRhOgogICAgICAgICAgdHlwZTogb2JqZWN0CiAgICAgICAgc3BlYzoKICAgICAgICAgIHByb3BlcnRpZXM6CiAgICAgICAgICAgIG9wdGlvbnM6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgICBzdGF0dXM6CiAgICAgICAgICBwcm9wZXJ0aWVzOgogICAgICAgICAgICBlcnJvcjoKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgICAgbGFzdE9wZXJhdGlvbjoKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgICAgcmVzcG9uc2U6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICAgIHN0YXRlOgogICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgdHlwZTogb2JqZWN0CiAgICAgIHR5cGU6IG9iamVjdAogIHZlcnNpb246IHYxYWxwaGExCnN0YXR1czoKICBhY2NlcHRlZE5hbWVzOgogICAga2luZDogIiIKICAgIHBsdXJhbDogIiIKICBjb25kaXRpb25zOiBudWxsCg==
+        bind.servicefabrik.io_v1alpha1_directorbinds.yaml: YXBpVmVyc2lvbjogYXBpZXh0ZW5zaW9ucy5rOHMuaW8vdjFiZXRhMQpraW5kOiBDdXN0b21SZXNvdXJjZURlZmluaXRpb24KbWV0YWRhdGE6CiAgY3JlYXRpb25UaW1lc3RhbXA6IG51bGwKICBsYWJlbHM6CiAgICBjb250cm9sbGVyLXRvb2xzLms4cy5pbzogIjEuMCIKICBuYW1lOiBkaXJlY3RvcmJpbmRzLmJpbmQuc2VydmljZWZhYnJpay5pbwpzcGVjOgogIGdyb3VwOiBiaW5kLnNlcnZpY2VmYWJyaWsuaW8KICBuYW1lczoKICAgIGtpbmQ6IERpcmVjdG9yQmluZAogICAgcGx1cmFsOiBkaXJlY3RvcmJpbmRzCiAgc2NvcGU6IE5hbWVzcGFjZWQKICB2YWxpZGF0aW9uOgogICAgb3BlbkFQSVYzU2NoZW1hOgogICAgICBwcm9wZXJ0aWVzOgogICAgICAgIGFwaVZlcnNpb246CiAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICBraW5kOgogICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgbWV0YWRhdGE6CiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgICBzcGVjOgogICAgICAgICAgcHJvcGVydGllczoKICAgICAgICAgICAgaW5zdGFuY2U6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICAgIG9wdGlvbnM6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgICBzdGF0dXM6CiAgICAgICAgICBwcm9wZXJ0aWVzOgogICAgICAgICAgICBlcnJvcjoKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgICAgcmVzcG9uc2U6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICAgIHN0YXRlOgogICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgdHlwZTogb2JqZWN0CiAgICAgIHR5cGU6IG9iamVjdAogIHZlcnNpb246IHYxYWxwaGExCnN0YXR1czoKICBhY2NlcHRlZE5hbWVzOgogICAga2luZDogIiIKICAgIHBsdXJhbDogIiIKICBjb25kaXRpb25zOiBudWxsCg==
+        bind.servicefabrik.io_v1alpha1_dockerbinds.yaml: YXBpVmVyc2lvbjogYXBpZXh0ZW5zaW9ucy5rOHMuaW8vdjFiZXRhMQpraW5kOiBDdXN0b21SZXNvdXJjZURlZmluaXRpb24KbWV0YWRhdGE6CiAgY3JlYXRpb25UaW1lc3RhbXA6IG51bGwKICBsYWJlbHM6CiAgICBjb250cm9sbGVyLXRvb2xzLms4cy5pbzogIjEuMCIKICBuYW1lOiBkb2NrZXJiaW5kcy5iaW5kLnNlcnZpY2VmYWJyaWsuaW8Kc3BlYzoKICBncm91cDogYmluZC5zZXJ2aWNlZmFicmlrLmlvCiAgbmFtZXM6CiAgICBraW5kOiBEb2NrZXJCaW5kCiAgICBwbHVyYWw6IGRvY2tlcmJpbmRzCiAgc2NvcGU6IE5hbWVzcGFjZWQKICB2YWxpZGF0aW9uOgogICAgb3BlbkFQSVYzU2NoZW1hOgogICAgICBwcm9wZXJ0aWVzOgogICAgICAgIGFwaVZlcnNpb246CiAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICBraW5kOgogICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgbWV0YWRhdGE6CiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgICBzcGVjOgogICAgICAgICAgcHJvcGVydGllczoKICAgICAgICAgICAgaW5zdGFuY2U6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICAgIG9wdGlvbnM6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgICBzdGF0dXM6CiAgICAgICAgICBwcm9wZXJ0aWVzOgogICAgICAgICAgICBlcnJvcjoKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgICAgcmVzcG9uc2U6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICAgIHN0YXRlOgogICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgdHlwZTogb2JqZWN0CiAgICAgIHR5cGU6IG9iamVjdAogIHZlcnNpb246IHYxYWxwaGExCnN0YXR1czoKICBhY2NlcHRlZE5hbWVzOgogICAga2luZDogIiIKICAgIHBsdXJhbDogIiIKICBjb25kaXRpb25zOiBudWxsCg==
+        bind.servicefabrik.io_v1alpha1_virtualhostbinds.yaml: YXBpVmVyc2lvbjogYXBpZXh0ZW5zaW9ucy5rOHMuaW8vdjFiZXRhMQpraW5kOiBDdXN0b21SZXNvdXJjZURlZmluaXRpb24KbWV0YWRhdGE6CiAgY3JlYXRpb25UaW1lc3RhbXA6IG51bGwKICBsYWJlbHM6CiAgICBjb250cm9sbGVyLXRvb2xzLms4cy5pbzogIjEuMCIKICBuYW1lOiB2aXJ0dWFsaG9zdGJpbmRzLmJpbmQuc2VydmljZWZhYnJpay5pbwpzcGVjOgogIGdyb3VwOiBiaW5kLnNlcnZpY2VmYWJyaWsuaW8KICBuYW1lczoKICAgIGtpbmQ6IFZpcnR1YWxIb3N0QmluZAogICAgcGx1cmFsOiB2aXJ0dWFsaG9zdGJpbmRzCiAgc2NvcGU6IE5hbWVzcGFjZWQKICB2YWxpZGF0aW9uOgogICAgb3BlbkFQSVYzU2NoZW1hOgogICAgICBwcm9wZXJ0aWVzOgogICAgICAgIGFwaVZlcnNpb246CiAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICBraW5kOgogICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgbWV0YWRhdGE6CiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgICBzcGVjOgogICAgICAgICAgcHJvcGVydGllczoKICAgICAgICAgICAgaW5zdGFuY2U6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICAgIG9wdGlvbnM6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgICBzdGF0dXM6CiAgICAgICAgICBwcm9wZXJ0aWVzOgogICAgICAgICAgICBlcnJvcjoKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgICAgcmVzcG9uc2U6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICAgIHN0YXRlOgogICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgdHlwZTogb2JqZWN0CiAgICAgIHR5cGU6IG9iamVjdAogIHZlcnNpb246IHYxYWxwaGExCnN0YXR1czoKICBhY2NlcHRlZE5hbWVzOgogICAga2luZDogIiIKICAgIHBsdXJhbDogIiIKICBjb25kaXRpb25zOiBudWxsCg==
+        deployment.servicefabrik.io_v1alpha1_directors.yaml: YXBpVmVyc2lvbjogYXBpZXh0ZW5zaW9ucy5rOHMuaW8vdjFiZXRhMQpraW5kOiBDdXN0b21SZXNvdXJjZURlZmluaXRpb24KbWV0YWRhdGE6CiAgY3JlYXRpb25UaW1lc3RhbXA6IG51bGwKICBsYWJlbHM6CiAgICBjb250cm9sbGVyLXRvb2xzLms4cy5pbzogIjEuMCIKICBuYW1lOiBkaXJlY3RvcnMuZGVwbG95bWVudC5zZXJ2aWNlZmFicmlrLmlvCnNwZWM6CiAgZ3JvdXA6IGRlcGxveW1lbnQuc2VydmljZWZhYnJpay5pbwogIG5hbWVzOgogICAga2luZDogRGlyZWN0b3IKICAgIHBsdXJhbDogZGlyZWN0b3JzCiAgc2NvcGU6IE5hbWVzcGFjZWQKICB2YWxpZGF0aW9uOgogICAgb3BlbkFQSVYzU2NoZW1hOgogICAgICBwcm9wZXJ0aWVzOgogICAgICAgIGFwaVZlcnNpb246CiAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICBraW5kOgogICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgbWV0YWRhdGE6CiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgICBzcGVjOgogICAgICAgICAgcHJvcGVydGllczoKICAgICAgICAgICAgb3B0aW9uczoKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgIHR5cGU6IG9iamVjdAogICAgICAgIHN0YXR1czoKICAgICAgICAgIHByb3BlcnRpZXM6CiAgICAgICAgICAgIGVycm9yOgogICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgICBsYXN0T3BlcmF0aW9uOgogICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgICByZXNwb25zZToKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgICAgc3RhdGU6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgdHlwZTogb2JqZWN0CiAgdmVyc2lvbjogdjFhbHBoYTEKc3RhdHVzOgogIGFjY2VwdGVkTmFtZXM6CiAgICBraW5kOiAiIgogICAgcGx1cmFsOiAiIgogIGNvbmRpdGlvbnM6IG51bGwK
+        deployment.servicefabrik.io_v1alpha1_dockers.yaml: YXBpVmVyc2lvbjogYXBpZXh0ZW5zaW9ucy5rOHMuaW8vdjFiZXRhMQpraW5kOiBDdXN0b21SZXNvdXJjZURlZmluaXRpb24KbWV0YWRhdGE6CiAgY3JlYXRpb25UaW1lc3RhbXA6IG51bGwKICBsYWJlbHM6CiAgICBjb250cm9sbGVyLXRvb2xzLms4cy5pbzogIjEuMCIKICBuYW1lOiBkb2NrZXJzLmRlcGxveW1lbnQuc2VydmljZWZhYnJpay5pbwpzcGVjOgogIGdyb3VwOiBkZXBsb3ltZW50LnNlcnZpY2VmYWJyaWsuaW8KICBuYW1lczoKICAgIGtpbmQ6IERvY2tlcgogICAgcGx1cmFsOiBkb2NrZXJzCiAgc2NvcGU6IE5hbWVzcGFjZWQKICB2YWxpZGF0aW9uOgogICAgb3BlbkFQSVYzU2NoZW1hOgogICAgICBwcm9wZXJ0aWVzOgogICAgICAgIGFwaVZlcnNpb246CiAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICBraW5kOgogICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgbWV0YWRhdGE6CiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgICBzcGVjOgogICAgICAgICAgcHJvcGVydGllczoKICAgICAgICAgICAgb3B0aW9uczoKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgIHR5cGU6IG9iamVjdAogICAgICAgIHN0YXR1czoKICAgICAgICAgIHByb3BlcnRpZXM6CiAgICAgICAgICAgIGVycm9yOgogICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgICBsYXN0T3BlcmF0aW9uOgogICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgICByZXNwb25zZToKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgICAgc3RhdGU6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgdHlwZTogb2JqZWN0CiAgdmVyc2lvbjogdjFhbHBoYTEKc3RhdHVzOgogIGFjY2VwdGVkTmFtZXM6CiAgICBraW5kOiAiIgogICAgcGx1cmFsOiAiIgogIGNvbmRpdGlvbnM6IG51bGwK
+        deployment.servicefabrik.io_v1alpha1_virtualhosts.yaml: YXBpVmVyc2lvbjogYXBpZXh0ZW5zaW9ucy5rOHMuaW8vdjFiZXRhMQpraW5kOiBDdXN0b21SZXNvdXJjZURlZmluaXRpb24KbWV0YWRhdGE6CiAgY3JlYXRpb25UaW1lc3RhbXA6IG51bGwKICBsYWJlbHM6CiAgICBjb250cm9sbGVyLXRvb2xzLms4cy5pbzogIjEuMCIKICBuYW1lOiB2aXJ0dWFsaG9zdHMuZGVwbG95bWVudC5zZXJ2aWNlZmFicmlrLmlvCnNwZWM6CiAgZ3JvdXA6IGRlcGxveW1lbnQuc2VydmljZWZhYnJpay5pbwogIG5hbWVzOgogICAga2luZDogVmlydHVhbEhvc3QKICAgIHBsdXJhbDogdmlydHVhbGhvc3RzCiAgc2NvcGU6IE5hbWVzcGFjZWQKICB2YWxpZGF0aW9uOgogICAgb3BlbkFQSVYzU2NoZW1hOgogICAgICBwcm9wZXJ0aWVzOgogICAgICAgIGFwaVZlcnNpb246CiAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICBraW5kOgogICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgbWV0YWRhdGE6CiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgICBzcGVjOgogICAgICAgICAgcHJvcGVydGllczoKICAgICAgICAgICAgb3B0aW9uczoKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgIHR5cGU6IG9iamVjdAogICAgICAgIHN0YXR1czoKICAgICAgICAgIHByb3BlcnRpZXM6CiAgICAgICAgICAgIGVycm9yOgogICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgICBsYXN0T3BlcmF0aW9uOgogICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgICByZXNwb25zZToKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgICAgc3RhdGU6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgdHlwZTogb2JqZWN0CiAgdmVyc2lvbjogdjFhbHBoYTEKc3RhdHVzOgogIGFjY2VwdGVkTmFtZXM6CiAgICBraW5kOiAiIgogICAgcGx1cmFsOiAiIgogIGNvbmRpdGlvbnM6IG51bGwK
+        lock.servicefabrik.io_v1alpha1_deploymentlocks.yaml: YXBpVmVyc2lvbjogYXBpZXh0ZW5zaW9ucy5rOHMuaW8vdjFiZXRhMQpraW5kOiBDdXN0b21SZXNvdXJjZURlZmluaXRpb24KbWV0YWRhdGE6CiAgY3JlYXRpb25UaW1lc3RhbXA6IG51bGwKICBsYWJlbHM6CiAgICBjb250cm9sbGVyLXRvb2xzLms4cy5pbzogIjEuMCIKICBuYW1lOiBkZXBsb3ltZW50bG9ja3MubG9jay5zZXJ2aWNlZmFicmlrLmlvCnNwZWM6CiAgZ3JvdXA6IGxvY2suc2VydmljZWZhYnJpay5pbwogIG5hbWVzOgogICAga2luZDogRGVwbG95bWVudExvY2sKICAgIHBsdXJhbDogZGVwbG95bWVudGxvY2tzCiAgc2NvcGU6IE5hbWVzcGFjZWQKICB2YWxpZGF0aW9uOgogICAgb3BlbkFQSVYzU2NoZW1hOgogICAgICBwcm9wZXJ0aWVzOgogICAgICAgIGFwaVZlcnNpb246CiAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICBraW5kOgogICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgbWV0YWRhdGE6CiAgICAgICAgICB0eXBlOiBvYmplY3QKICAgICAgICBzcGVjOgogICAgICAgICAgcHJvcGVydGllczoKICAgICAgICAgICAgb3B0aW9uczoKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICAgIHR5cGU6IG9iamVjdAogICAgICAgIHN0YXR1czoKICAgICAgICAgIHByb3BlcnRpZXM6CiAgICAgICAgICAgIHN0YXRlOgogICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgdHlwZTogb2JqZWN0CiAgICAgIHR5cGU6IG9iamVjdAogIHZlcnNpb246IHYxYWxwaGExCnN0YXR1czoKICBhY2NlcHRlZE5hbWVzOgogICAga2luZDogIiIKICAgIHBsdXJhbDogIiIKICBjb25kaXRpb25zOiBudWxsCg==
+      etcd:
+        ssl:
+          ca: |
+            -----BEGIN CERTIFICATE-----
+            MIIDEzCCAfugAwIBAgIQFZTrjMx1xtCG3MyOZvLx3TANBgkqhkiG9w0BAQsFADAz
+            MQwwCgYDVQQGEwNVU0ExFjAUBgNVBAoTDUNsb3VkIEZvdW5kcnkxCzAJBgNVBAMT
+            AmNhMB4XDTE4MDgxMTEyMDgxM1oXDTE5MDgxMTEyMDgxM1owMzEMMAoGA1UEBhMD
+            VVNBMRYwFAYDVQQKEw1DbG91ZCBGb3VuZHJ5MQswCQYDVQQDEwJjYTCCASIwDQYJ
+            KoZIhvcNAQEBBQADggEPADCCAQoCggEBAL8cNpFksxjQJ+s2THYd4VtPBbVS+tFn
+            pOu+CjeX99P/3x1qwvsSn4q892VT4tve6Ld+4Ep73KSV9MoXVXwKBEloOjqUXfye
+            bNGg7UG/c8Bak7ATqCgQMT7lpgHfQjfMsykxTkBogrmnnDMx53uK84wKqyMpgqmZ
+            Ga+OiBttVfLCYPWJKwCNNBYtZrH/qByEaOTHKrkxmuesJzhmqZ3HsdXep1Zn/9k9
+            /n6Rnu5jShMgXUnyQpR/pn1ytd2PsF9aXap82DI7IztOu+fP9898VslDmYB5+E6o
+            JVmMHu9NlwqaqlHmDoi5y+dqRFdcYGppk6FvJeyNreRRa3KgEilikU8CAwEAAaMj
+            MCEwDgYDVR0PAQH/BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQEL
+            BQADggEBACd8yBBVS3pSI/0qncVECWFZLiVn1KSi/IjqPBEBCin/wLfW42cBvu3x
+            5jLnf1SHyC+nnO+VPJ1PSJA7yUTnzZNX67AFJwGhPMv3ozmsFWRwQHWVQ4TyDcfS
+            o7vbTBRxjBTbR4jk2V8yxevP2QVyi1aSh0rkprWNGDIG3jZ7cuIxSm5ihXQl79aY
+            5GFJTnhfu+rI2yUxdPQn2CwK5PT54AqrgeuE1mGVA/WfDbFp6CkTcKQ0LtRM/6eY
+            IYp7DvTKS0gXvkHgiy+59SYUDOHBCvdOxdsGORVHDAK8QMS2uecVRL/CddMNc4n5
+            DmAnGpDqt5DopRXKdYoqFdnq3Xx9bmY=
+            -----END CERTIFICATE-----
+          crt: |
+            -----BEGIN CERTIFICATE-----
+            MIIDYDCCAkigAwIBAgIQGlHtd7bVsq6zuyvRcd8XEDANBgkqhkiG9w0BAQsFADAz
+            MQwwCgYDVQQGEwNVU0ExFjAUBgNVBAoTDUNsb3VkIEZvdW5kcnkxCzAJBgNVBAMT
+            AmNhMB4XDTE4MDgxMTEyMDgxM1oXDTE5MDgxMTEyMDgxM1owRzEMMAoGA1UEBhMD
+            VVNBMRYwFAYDVQQKEw1DbG91ZCBGb3VuZHJ5MR8wHQYDVQQDExZldGNkLmRlZmF1
+            bHQuZXRjZC5ib3NoMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3J6S
+            +QZeZF6HWbcwQU73Q4Z8G2c1AmJYXREIrTLC0XLLpkDTdJhbCk6nDCpBY7z5veAP
+            vlYiQba88aSZgJmXclVq0KTULGVbWJPf1Cw0nAODcJvAV1UuTgCfSkDKEmg+iI02
+            wvnvBJz+La3kplhOFKgTePpNdD3I27e0eJPQ4wCyRURkbpk9yefur3/BtoHK8USz
+            +dbce5ZumwOAM5mKZYZXSvS9yRQKG1ndAkU189ROXirhRx8F7ydJxmp2wlZMmz43
+            pm/wUM8LuscTsP4XMoT8gvF8TN9y4lknCnmq5LyDKEMNWqdR+YBWwcbaF8q7oddv
+            HUsZXvvX6K86HByKPQIDAQABo1wwWjAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYw
+            FAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAwGwYDVR0RBBQwEocE
+            CvQO/IcECvQO/YcECvQO/jANBgkqhkiG9w0BAQsFAAOCAQEADxxu81BvIVOvxeCK
+            o59V8Rmlw7ONbEDK7dfGsX5nvaKdGr4BbUoFLqlAUMPqgA0+1VyIzo27xZjyhP6f
+            fSQueWE08LOgKhWlXpGtAnt7k7T9ZnDpghIoFwfHqknADbWMHW3c01Zj5bFS79y9
+            wSTg3j8ryixLxD+zrRzOeenm1EM00y604Q730OvZb/UzG9ifqdAS+4oYI+cv7hpH
+            7ub5yFFSxmmt3mxirSEFebomIaV8Td6Ft8B9sxyj7qup7lXFAZrggcjHaoenNVEC
+            8bJ4UVzMqhZwPJfWWEQVVWF7sXy/zdVn5X9y8Sm0hjIzduk+E8iQheEXkGB3Fi5F
+            7SLz7g==
+            -----END CERTIFICATE-----
+          key: |
+            -----BEGIN RSA PRIVATE KEY-----
+            MIIEowIBAAKCAQEA3J6S+QZeZF6HWbcwQU73Q4Z8G2c1AmJYXREIrTLC0XLLpkDT
+            dJhbCk6nDCpBY7z5veAPvlYiQba88aSZgJmXclVq0KTULGVbWJPf1Cw0nAODcJvA
+            V1UuTgCfSkDKEmg+iI02wvnvBJz+La3kplhOFKgTePpNdD3I27e0eJPQ4wCyRURk
+            bpk9yefur3/BtoHK8USz+dbce5ZumwOAM5mKZYZXSvS9yRQKG1ndAkU189ROXirh
+            Rx8F7ydJxmp2wlZMmz43pm/wUM8LuscTsP4XMoT8gvF8TN9y4lknCnmq5LyDKEMN
+            WqdR+YBWwcbaF8q7oddvHUsZXvvX6K86HByKPQIDAQABAoIBAHOnXXzWbd1IAMRz
+            WASklNL9SUpETHG3hIMlTtsc5SxPdZruGOvigrdgjAnAjQ7wHiv/rcEl/kdcuKgk
+            laPo4I+7X4eJIQE1ETHaM1hS5DF1Vg5OWAJwURnrEZYnaMdFhqKnBLIpu7c7ZbQk
+            mNzrJeOGSM7+yGPLj+Q+5YjgVHzrAzPQMo/VD4sTyqdcCoDa+5od0J1DjUBE33Ri
+            Rk9yfEoiMtuGlGcXNM6+71j60IIdV4CyH3CUl2IR8SuHu+ftX9uEaVgMb61sjMiQ
+            tyw/XdZ9ZWAENmegUnX1eMxpdn6eRzQSD/Jk79mFRljfhUUEDZjgtmNFqS1IXdDS
+            kFmqLIECgYEA9ndpK35sBM/DKP+ccMF0u+841NoBbHDOGvLivzLyUYC7iJdUa9x4
+            TmT5soF0SWmqAtN6fR/dns6wmYHYvhq+4Je1ABoIiIIFGjLWPrE69R4dZ6lgfb9G
+            8BUaB55uN0SIxKALLorSRFEVV98btAS+xqYe7rZfG3bObsvJLfmwakkCgYEA5Sc3
+            x+Ktc2Ue6txlu0RaQGrcq0UAAtX7JbeN6WBSubVxQ521XP/dmrP+PTjCi+7Vqj+o
+            A802b0YRgRq+yqFDXzDWpTrA0wEolunuJsdDA2Vcu7SvYMN+Yr5nZjndeEZcxeBn
+            SndVOvlNR827KwxFX3EbjQoqo8hkpaOd8GI/QFUCgYBw5ZnjNnG8cn7vFMdQTw1t
+            2NKrjYEBb1q5tXBwLKIa+2Dr3IXrMn5ZSp+mSO4/gotB6CU/k40s5Xi3mGb0DcRJ
+            lLRwa3xlK0mzCn5hEUX0aesGROvSLgAMkV3vB39tCZOsnbMBis1uRcYFDkneWB4b
+            WJTqu9cs+WruDaMF0E4jIQKBgQDN2iow5P+97vQUNYMp9CBDR/wN20FESud/HWJd
+            aMtHyqgB/tWiwrNXOyRD6Q5TWG0WsHKFX77rvP0Shm0oaC+2fpAEBECeDKdi0qi+
+            qzgW/+KLOKhne5a4q6UFXywF1OeYVptTeNnWzYfP3g+qfy5+q4P9ckmVsfpAFjhW
+            blu1tQKBgAv4tWOf0275srpUtH9t2nFoqoDKUfW+1VQxlsyQdFRS9IJcJVuy0e0F
+            IF0RoEO0RvtORf0YnoVs18m8bCLjz5uhrSWZwWYJkd5a8k+DoDA65xHNDi2Zoza3
+            VLvQmwA8yuUv6aDec3Y4p+UvQhGKGcSmNW0Q7VWwiwvcEZhTEoJV
+            -----END RSA PRIVATE KEY-----
+        url:
+        - 10.244.14.252:2379
+        - 10.244.14.253:2379
+        - 10.244.14.254:2379
+      ip: 10.244.14.252
+      port: 8443
+      tls:
+        apiserver:
+          ca: |
+            -----BEGIN CERTIFICATE-----
+            MIIDEzCCAfugAwIBAgIQFZTrjMx1xtCG3MyOZvLx3TANBgkqhkiG9w0BAQsFADAz
+            MQwwCgYDVQQGEwNVU0ExFjAUBgNVBAoTDUNsb3VkIEZvdW5kcnkxCzAJBgNVBAMT
+            AmNhMB4XDTE4MDgxMTEyMDgxM1oXDTE5MDgxMTEyMDgxM1owMzEMMAoGA1UEBhMD
+            VVNBMRYwFAYDVQQKEw1DbG91ZCBGb3VuZHJ5MQswCQYDVQQDEwJjYTCCASIwDQYJ
+            KoZIhvcNAQEBBQADggEPADCCAQoCggEBAL8cNpFksxjQJ+s2THYd4VtPBbVS+tFn
+            pOu+CjeX99P/3x1qwvsSn4q892VT4tve6Ld+4Ep73KSV9MoXVXwKBEloOjqUXfye
+            bNGg7UG/c8Bak7ATqCgQMT7lpgHfQjfMsykxTkBogrmnnDMx53uK84wKqyMpgqmZ
+            Ga+OiBttVfLCYPWJKwCNNBYtZrH/qByEaOTHKrkxmuesJzhmqZ3HsdXep1Zn/9k9
+            /n6Rnu5jShMgXUnyQpR/pn1ytd2PsF9aXap82DI7IztOu+fP9898VslDmYB5+E6o
+            JVmMHu9NlwqaqlHmDoi5y+dqRFdcYGppk6FvJeyNreRRa3KgEilikU8CAwEAAaMj
+            MCEwDgYDVR0PAQH/BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQEL
+            BQADggEBACd8yBBVS3pSI/0qncVECWFZLiVn1KSi/IjqPBEBCin/wLfW42cBvu3x
+            5jLnf1SHyC+nnO+VPJ1PSJA7yUTnzZNX67AFJwGhPMv3ozmsFWRwQHWVQ4TyDcfS
+            o7vbTBRxjBTbR4jk2V8yxevP2QVyi1aSh0rkprWNGDIG3jZ7cuIxSm5ihXQl79aY
+            5GFJTnhfu+rI2yUxdPQn2CwK5PT54AqrgeuE1mGVA/WfDbFp6CkTcKQ0LtRM/6eY
+            IYp7DvTKS0gXvkHgiy+59SYUDOHBCvdOxdsGORVHDAK8QMS2uecVRL/CddMNc4n5
+            DmAnGpDqt5DopRXKdYoqFdnq3Xx9bmY=
+            -----END CERTIFICATE-----
+          certificate: |
+            -----BEGIN CERTIFICATE-----
+            MIIDZjCCAk6gAwIBAgIRAPdyEhDsIIf+eOBPuhTJjP8wDQYJKoZIhvcNAQELBQAw
+            MzEMMAoGA1UEBhMDVVNBMRYwFAYDVQQKEw1DbG91ZCBGb3VuZHJ5MQswCQYDVQQD
+            EwJjYTAeFw0xODA4MTMxMTQ5MTBaFw0xOTA4MTMxMTQ5MTBaMEwxDDAKBgNVBAYT
+            A1VTQTEWMBQGA1UEChMNQ2xvdWQgRm91bmRyeTEkMCIGA1UEAwwbYXBpc2VydmVy
+            X2FjY2VwdGFuY2VfY2xpZW50MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
+            AQEAw5NOB4Ypqe48kp252V0KhKWxxtMEWkoGVoVlXaGl5qKfx6lppiMjWotNX3V8
+            Qz8UXdIere4TKqz3f68DAtKqBkNYxzAoVhi9tmv0YgXQUf1fBL8tNcZwmg2z5J7U
+            RI4AqpTofGDVYvW86qsONIQDKMSQ54MhawyKN/3TN7FeJwBUVieahMb0zicrBtC3
+            mcm78H7G+ILjoggnc0yevQ4XYDN4UYBbsLTJSg2Zk464oaJbvIK/lwpVWvokwKiM
+            9Avtfw6Tqr55G1NpZM7yJiMTefKcTR2cPWvkblCZBgnwrVm6WXiRci3z4Pb+z49S
+            w6n9FQg7XHTbyr1W7D+x7LwzlQIDAQABo1wwWjAOBgNVHQ8BAf8EBAMCBaAwHQYD
+            VR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMBMAwGA1UdEwEB/wQCMAAwGwYDVR0R
+            BBQwEocECvQO/IcECvQO/YcECvQO/jANBgkqhkiG9w0BAQsFAAOCAQEAWzg6zPwz
+            c7D5LGvwG2FhF8Z/4xAdAc4R6gIjnU9472kGsUOwXBWShO+7DKSf0BFSPDijajhl
+            0hSTyJ394kB4RPvPSoYEA9p2fb/sQ7SlXfWqVkorRxtvq6Q9J/UzewoV43KfuBWO
+            57eXrxL3SmWG/jE0MoVAg2OuV/90aiXUxpi0eCXUfoTD87j11uISugD9cFvsdsql
+            kOijVa4Q9MF3Pn5rujAiY9yxAGpV0gh4FlC199Lu27S60XUEvg8nx00zhb8qjWSp
+            e5/8R+mS9cJQ4x8ZWxa1zuOOiLCCS/LdWvPGBRcNyhSktdjSBJxudlBBTwMswdMe
+            GbC6Mq2lxiCIAg==
+            -----END CERTIFICATE-----
+          private_key: |
+            -----BEGIN RSA PRIVATE KEY-----
+            MIIEpAIBAAKCAQEAw5NOB4Ypqe48kp252V0KhKWxxtMEWkoGVoVlXaGl5qKfx6lp
+            piMjWotNX3V8Qz8UXdIere4TKqz3f68DAtKqBkNYxzAoVhi9tmv0YgXQUf1fBL8t
+            NcZwmg2z5J7URI4AqpTofGDVYvW86qsONIQDKMSQ54MhawyKN/3TN7FeJwBUViea
+            hMb0zicrBtC3mcm78H7G+ILjoggnc0yevQ4XYDN4UYBbsLTJSg2Zk464oaJbvIK/
+            lwpVWvokwKiM9Avtfw6Tqr55G1NpZM7yJiMTefKcTR2cPWvkblCZBgnwrVm6WXiR
+            ci3z4Pb+z49Sw6n9FQg7XHTbyr1W7D+x7LwzlQIDAQABAoIBAQCZnJKWIE+LNB8J
+            fa8ixgxj4Yz/wHBTxn6x6HaUk0muHB9pgGwF3OWA0ZdFGg8u9lW11zrXm/4b7905
+            wamYxwRahP0u/mlALpCbvrElaLGWJG9EWDBXY3S/23FnaUUKT4rAcNMmFhykbKUk
+            oJQ4tVOR6spxvLI71Y6eqdQDk2GDOUJZhvV7wjp5zpjrOz5Uc4/ELc3G2AK/UGnh
+            GE2c+491dGRiC5alo94ZC6LYY/QCgTsbHaGIfSATUXYBTmQ8edHqyDB/rxqfXZ2M
+            sIvyoWelL2wvpwrHhifSHjxN/cyu0k5RszbbssNiWHunGD1lga/AzB+ELI4OB3jx
+            74ZV6KxBAoGBAMg8yvo+CallkrZfusjSZ+2uWIN27l3HUIRR4tOO3mSrMO2z/SoB
+            Hzn1arf3ElJyMmcQ4yxgDYs0Th3A/luWj0O+jpERBTOL7VawtUqYjwU8eGT5I7eF
+            1dkmPZh2rWuwuCVL73H/CBnAC7Ld5Y381DG+BUS9JzkOFK1Lz4zqyg8xAoGBAPoK
+            JaGj8fxCKnYbESF2j8roXmwa2Rd0qOFp1+OIftIl61JuDCzFaM/BSLYOGgkVREW2
+            oCTNXxa/WCLlIBjK9rNeB0WyHBbkuWfoyq4019rnJpakBmn9DaZh0ha3Agg5Titn
+            wN7hzOjMm44SKL6EP1OASl0BgWWDS1gNhRNmZrmlAoGAaYc4hhep6d/BKWJcQzg4
+            U5gdx/Mm/r9rXMD3JP3XkQBzweKo2rlKprYDbz7EJjVPAOhygVGB8co4HRA4PTak
+            /FPyONvafOcSxyxL7ytlvKG45aYzv6XGJTI1JiPtk6LH+cgCQnbg4wlGYRb2wxTr
+            E+gMSMTTZgtYtFgO4zpeERECgYBCVezT7HXnsfon6VhrI1RUxb8/OQQ9Z9LiMr12
+            /SCASlUbQlzyh9EdxS6wNh+MJ1s8j43/FYlTtKICZ/1S9o3q2lhdkjpHjJjvy1/y
+            Rcy6o7amIpAdEGjNqogdRKJCYkmt1FHkD83YOWhPkdvDZ7yRP6j68cpNjz6u9q9G
+            jVVVjQKBgQCNDVDWU6ND9UUGAlt6NKCfIa8p5T8o5qWKAsYy2J4/GGp+zvWDKWVt
+            6t77DNIneCwo+uitiobeWI+gAVVND887B99vJ658a9GxIPplG2v46vMCkSvelQiz
+            cyED6IkvJ4A9jgYxllQj1oJGW4LEPS5yued1abFGHzqIBO3KWRVfSQ==
+            -----END RSA PRIVATE KEY-----
+    release: service-fabrik
+  - name: bpm
+    release: bpm
+  - name: service-fabrik-backup-manager
+    release: service-fabrik
+  - name: service-fabrik-bosh-manager
+    release: service-fabrik
+  - name: service-fabrik-docker-manager
+    release: service-fabrik
+  - name: service-fabrik-virtualhost-manager
+    release: service-fabrik
+  - name: service-fabrik-broker
+    properties:
+      backup:
+        backup_restore_status_check_every: 120000
+        backup_restore_status_poller_timeout: 86400000
+        max_num_on_demand_backup: 2
+        num_of_allowed_restores: 10
+        provider:
+          authUrl: null
+          container: null
+          keystoneAuthVersion: null
+          name: openstack
+          password: null
+          projectDomainName: null
+          region: null
+          strictSSL: false
+          tenantId: null
+          username: null
+        reschedule_backup_delay_after_restore: 3
+        restore_history_days: 30
+        retention_period_in_days: 14
+      cf:
+        password: T4q5ZCZEzGtfjpAcUuWN0kucV9vKTQ
+        url: https://api.bosh-lite.com
+        username: admin
+      common:
+        tls_cacert: |
+          -----BEGIN CERTIFICATE-----
+          MIIE9DCCAtygAwIBAgIBATANBgkqhkiG9w0BAQsFADAaMRgwFgYDVQQDEw9TZXJ2
+          aWNlRmFicmlrQ0EwHhcNMTgwOTEwMTcwMDE5WhcNMjAwMzEwMTcwMDE5WjAaMRgw
+          FgYDVQQDEw9TZXJ2aWNlRmFicmlrQ0EwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAw
+          ggIKAoICAQDF6KZKl2uJpmxrGTVhBeVfyyNvU0JBg+FZSJQ7VzLbqZCDCJ6jYJeC
+          5qr4RdXy0Ovl+20INh9O5nfRJ517s3+FpkQ7TOF5Qkwy2JfzSeGy2QH6sasKyV0u
+          cpeIA3Za6AVAG/tyC5X/BPX7wID/CQy2WAqdLch4SzPCnLmCOw5+2+GoOIehJT1L
+          YL5NlOi78Ef3qbiTXGl8wLVjkurpbzLPNf192GcYJpupdpc5Id5oBJHGy5B2Ypsi
+          eCt3olouXWY2Qcuf9yoY2iDFsrx0BQk0Eb7t8lLcCmA+6mCEkVwypmlsFVGaIojA
+          +zbdEv/g8merwiAp9Y1LurSn5mk6uaGh+JvuxPrCjK9lIObYDtc7Xn7yYGlonsAV
+          JBDqHuKBSic/0H+y9lTEvSvaQyVOquES+/m8+8+NzykZLeL330pepbCysxxM97nB
+          V9iCZNNjSGGnN3RxVLyBzlQR8b81CcIRvDmZHYLvz2vIEAKq7Mo5kwVwGzwb926+
+          KkhwT1NGZCvN4TLcmiX/LrUvz1lKyB6NFGYxjAFMIfvqs6O0qOhcExSEcO5gvKx+
+          3LJIPFULVFnKxstPQCH7eU180UJSszkxOoF1XkTkWVvYZQGx5H1xN1dLnwhxQleQ
+          4nn66vdPZCYNXibButnonOAfzF8lHB8fZyl9aSsGcK4AAqbVZr97twIDAQABo0Uw
+          QzAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQU
+          Z7vSkoCZ1beEX7Hx33W/o1zFd14wDQYJKoZIhvcNAQELBQADggIBABSN9GPpE9z4
+          920uJ0ALZXMbPzONjjiaxXMyDv33+o1mt2CkNNF/iN43nxV2ml2ezxgYVfdB2ny7
+          rMHuLPnzlu/1aSPnvJFl/LVDZhd4WcWO5iWX61v13c1jUQOLUGOsxDteuJpNAIH5
+          cgyZV0YBX/SntsY3C0f1IDyvRXwLHJbzEgOOMdM3DpiiPMbXUhNECiwH6MJKKmLZ
+          sn13JXPR2IgucfZyGAARZFyBCyDBOFMOLDQqBoAbIa+3hcJlNj8qF1Y70PjH7y7u
+          2w7XbxBuedCcT3bQ4TaBJl4FLevNQTQANpyCIPBCoxK+rmJbPz7fvPi+VNW0/Y6p
+          A62jx2Roq1SemFi4ClV9s+JR3/C2o3rcGe57fhqV+4h0SNBFGAY7qFi0dlAqkIw+
+          cn4pUMEcYsnipKTNtQn4YjmjFbJF9J1gzEXFZDZ+n8ygJD6Y/NA098G1cWEANC/Y
+          zjrnbNHrvxCNdJBRi+tC86QsQrI1KQivv7DYeMvbH/RoI8hKlGBnmR0eBRpdlRoS
+          gqymFYKei5lDjTww1dKRoLw1l99iDT5PxX6VarPvff56873Ax0urW5MbPhXcBeSL
+          vK6iDbwPug4tIerZThoFMZR/aAkUzKS2IBw02TGZ9JWL+bESZwnQwgG6AFQ4zYg0
+          cA1BfCPelG8thEMZlIPnamPGdeE0wGl1
+          -----END CERTIFICATE-----
+        tls_client_cert: |
+          -----BEGIN CERTIFICATE-----
+          MIIKkzCCCHugAwIBAgIQcWp6STiYZxhMo/7D6w9G/jANBgkqhkiG9w0BAQsFADAa
+          MRgwFgYDVQQDEw9TZXJ2aWNlRmFicmlrQ0EwHhcNMTgwOTEwMTcwMDI1WhcNMjAw
+          MzEwMTcwMDE4WjAtMSswKQYDVQQDEyJzZXJ2aWNlLWZhYnJpay1icm9rZXIud2Rm
+          LnNhcC5jb3JwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2/o2JY/I
+          siTW4KrMtppbNwgj2u9QHMeIqxTGgH7mGQybkq6jkmjDoXYHBwvn1g3zp4+e8+Gv
+          467IY3uMw9/r8kDPQRa1O+yUeyw3bjhmDRvurfWUri5Kbd5T/XTNXkK06Cyoa3oW
+          vvHafXxiszKobb0LhldAY0e4jCNfgiUKizRtFvBB1G+DYNN2c/b9louFTJtR5XSU
+          Qv0grke3sMz0UMa6I5QC05+a2kLl010hqn0fQCQXK8IjrrYlkXkYuEb5uTWKmWMd
+          NFw5oIZrN+Z0U2a0qE+wOdg1+Hs6y24VjxeFTDbhFxglcoVYldUkvUicYxIlTHDx
+          Kr8xLoTjedBe0QIDAQABo4IGwDCCBrwwDgYDVR0PAQH/BAQDAgO4MB0GA1UdJQQW
+          MBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQUvCOGTZ6qMtrXpQrZpIeT
+          J2S95EIwHwYDVR0jBBgwFoAUZ7vSkoCZ1beEX7Hx33W/o1zFd14wggZJBgNVHREE
+          ggZAMIIGPIIic2VydmljZS1mYWJyaWstYnJva2VyLndkZi5zYXAuY29ycIcECvQE
+          AocECvQEA4cEfwAAAYcEAAAAAIcECgvxAIcECgvxAYcECgvxAocECgvxA4cECgvx
+          BIcECgvxBYcECgvxBocECgvxB4cECgvxCIcECgvxCYcECgvxCocECgvxC4cECgvx
+          DIcECgvxDYcECgvxDocECgvxD4cECgvxEIcECgvxEYcECgvxEocECgvxE4cECgvx
+          FIcECgvxFYcECgvxFocECgvxF4cECgvxGIcECgvxGYcECgvxGocECgvxG4cECgvx
+          HIcECgvxHYcECgvxHocECgvxH4cECgvxIIcECgvxIYcECgvxIocECgvxI4cECgvx
+          JIcECgvxJYcECgvxJocECgvxJ4cECgvxKIcECgvxKYcECgvxKocECgvxK4cECgvx
+          LIcECgvxLYcECgvxLocECgvxL4cECgvxMIcECgvxMYcECgvxMocECgvxM4cECgvx
+          NIcECgvxNYcECgvxNocECgvxN4cECgvxOIcECgvxOYcECgvxOocECgvxO4cECgvx
+          PIcECgvxPYcECgvxPocECgvxP4cECgvxQIcECgvxQYcECgvxQocECgvxQ4cECgvx
+          RIcECgvxRYcECgvxRocECgvxR4cECgvxSIcECgvxSYcECgvxSocECgvxS4cECgvx
+          TIcECgvxTYcECgvxTocECgvxT4cECgvxUIcECgvxUYcECgvxUocECgvxU4cECgvx
+          VIcECgvxVYcECgvxVocECgvxV4cECgvxWIcECgvxWYcECgvxWocECgvxW4cECgvx
+          XIcECgvxXYcECgvxXocECgvxX4cECgvxYIcECgvxYYcECgvxYocECgvxY4cECgvx
+          ZIcECgvxZYcECgvxZocECgvxZ4cECgvxaIcECgvxaYcECgvxaocECgvxa4cECgvx
+          bIcECgvxbYcECgvxbocECgvxb4cECgvxcIcECgvxcYcECgvxcocECgvxc4cECgvx
+          dIcECgvxdYcECgvxdocECgvxd4cECgvxeIcECgvxeYcECgvxeocECgvxe4cECgvx
+          fIcECgvxfYcECgvxfocECgvxf4cECgvxgIcECgvxgYcECgvxgocECgvxg4cECgvx
+          hIcECgvxhYcECgvxhocECgvxh4cECgvxiIcECgvxiYcECgvxiocECgvxi4cECgvx
+          jIcECgvxjYcECgvxjocECgvxj4cECgvxkIcECgvxkYcECgvxkocECgvxk4cECgvx
+          lIcECgvxlYcECgvxlocECgvxl4cECgvxmIcECgvxmYcECgvxmocECgvxm4cECgvx
+          nIcECgvxnYcECgvxnocECgvxn4cECgvxoIcECgvxoYcECgvxoocECgvxo4cECgvx
+          pIcECgvxpYcECgvxpocECgvxp4cECgvxqIcECgvxqYcECgvxqocECgvxq4cECgvx
+          rIcECgvxrYcECgvxrocECgvxr4cECgvxsIcECgvxsYcECgvxsocECgvxs4cECgvx
+          tIcECgvxtYcECgvxtocECgvxt4cECgvxuIcECgvxuYcECgvxuocECgvxu4cECgvx
+          vIcECgvxvYcECgvxvocECgvxv4cECgvxwIcECgvxwYcECgvxwocECgvxw4cECgvx
+          xIcECgvxxYcECgvxxocECgvxx4cECgvxyIcECgvxyYcECgvxyocECgvxy4cECgvx
+          zIcECgvxzYcECgvxzocECgvxz4cECgvx0IcECgvx0YcECgvx0ocECgvx04cECgvx
+          1IcECgvx1YcECgvx1ocECgvx14cECgvx2IcECgvx2YcECgvx2ocECgvx24cECgvx
+          3IcECgvx3YcECgvx3ocECgvx34cECgvx4IcECgvx4YcECgvx4ocECgvx44cECgvx
+          5IcECgvx5YcECgvx5ocECgvx54cECgvx6IcECgvx6YcECgvx6ocECgvx64cECgvx
+          7IcECgvx7YcECgvx7ocECgvx74cECgvx8IcECgvx8YcECgvx8ocECgvx84cECgvx
+          9IcECgvx9YcECgvx9ocECgvx94cECgvx+IcECgvx+YcECgvx+ocECgvx+4cECgvx
+          /IcECgvx/YcECgvx/ocECgvx/zANBgkqhkiG9w0BAQsFAAOCAgEAsZmLIZNmHRTE
+          Fly87opktrEP+WCilJjqIYnqh8DS561fXsc+WtAQaPsOqKFZbqZBd5s7bzm4zfjN
+          sYY/fKlfLjNFtVsfF5/yGp2xHA172b55Oi8kgzJfl2w1Pf3IpWmoMYMwlv6Piua/
+          ebsbqRombLkv7rM9ug+QGDdfvakYH9sleCXDm5i/kqUPIVTbaMakFSrnH8FJNBQH
+          4MBcvhOgzhN4IF9kHGreSK7U5XSIEJ1dPcc0RkbXegrb/mt7AvALzRAKv1zlfjB1
+          YdOAuuWHaIWjfn3k692zRSvCKE1ISqHGuYJtVjvSm7Gq6Fhc8pg7pyr8xKyHm1Ln
+          QPA8UszEOwwQQeEQFO/05Mc+YFZB2LxHXViVnGnoWIQcv74OC8qRdmeGhua5oJgH
+          p3lc8nr+5kAiYrOiFmJC3bXJOIMMoifVbQkdgtLE+bEBy6c5QZDwPRznL7mlrI//
+          S1yOIuJDKnRkEmlek1QZ02Oi236V819m/DsXmlmpO7rR5FL/MNQ0oCRtexDILIfi
+          MeOhh4dhd9CxDT3KWHFHTSfJLVvsWoTs4BOHOJhYtF/smPNJKZHKwZRrL/bUYQu3
+          XbNoc2cnSIFm0MusKS3ZZBrNl082gnbSuxKBzgm7UeVxvzZwqSaYPjHr7W2JXxOn
+          PJ3g1NdD1HJQwyQUZBufHrYr5I6DnQs=
+          -----END CERTIFICATE-----
+        tls_client_key: |
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEpQIBAAKCAQEA2/o2JY/IsiTW4KrMtppbNwgj2u9QHMeIqxTGgH7mGQybkq6j
+          kmjDoXYHBwvn1g3zp4+e8+Gv467IY3uMw9/r8kDPQRa1O+yUeyw3bjhmDRvurfWU
+          ri5Kbd5T/XTNXkK06Cyoa3oWvvHafXxiszKobb0LhldAY0e4jCNfgiUKizRtFvBB
+          1G+DYNN2c/b9louFTJtR5XSUQv0grke3sMz0UMa6I5QC05+a2kLl010hqn0fQCQX
+          K8IjrrYlkXkYuEb5uTWKmWMdNFw5oIZrN+Z0U2a0qE+wOdg1+Hs6y24VjxeFTDbh
+          FxglcoVYldUkvUicYxIlTHDxKr8xLoTjedBe0QIDAQABAoIBAQDaRbNWoA5PnbhN
+          Y40Pn6fkukIBqrZ+aAsXXtz8gW5F6rmv2XPbAfMkEh41Ar4/KsbbO+pIKmfB7xtN
+          gzmQ3m6biW1dM3APjtdiROSXjITOeynhGS43ix01WYdTloN1BZHGUxGm25UYUJkx
+          LKwvDZQMl6mI2qi8Gl1nSG4rkB+fMUUWDOHYvD8WmtfTlTUpci80bAIxrOwPvC2b
+          lcN8TgQkgizFFlcjMJsyv4z5kvWl8oYGR/MhFWnf3l4nuRmgeRry8aXFIGIWIPzq
+          yDQDtcQUw7r0iacNGhmXGXpB76h85aExBIRARAJJ9WTR7dJuxPP7q6eeAl9YV1NJ
+          wSlA+SkxAoGBAN4JKu4jwcMeIkNcRkmwKFwl1xNSnGE/5gVJaXs9mb6nwtdPFkir
+          IA9F725zFPab7kai5VtZL4jerbCaQkYS/qpw0yENqxu932HL2wIHJ2rkyhkPRarb
+          MnPzYwq3TtPbmFVkAtILePUZikXeW4Hnf5yeAp9ERH/pt1gr3Zjr34gdAoGBAP2g
+          b9N2G6kb/Z8C/q6XOAYRrkVwwpR1bEzF5gfQ5ELboM5Tn2WdiJYYzRSBWLecAtFR
+          /rqnOTXPuJjIDivJP88GUvxHi9bHcRiFA4jrrHXZzRTg9tvUoEJwOUlFmlYINNWQ
+          ou1ZGmDD5yV5TNvK/z90kHcb9KFdmcJatDkoWjtFAoGAWEJmqUDXbbsVvZb5baMz
+          d+Wmx8yH0vR2d9WFs3J6IdpHzhRm9D3pwYh4M3xVce3r2nI4H4alKY/ylQfMnlRA
+          nPm6QyJOyPlByXsiNH0pgwks+Kckd1UoigTOct0I3ZglxpO5t0rOKwea+kj4MPwX
+          subwfeTCIeKCee796CKiuVUCgYEAtIfTsWhbjgb/g4UFNc8rsJ47NvBpgHUIrqka
+          8KtPHwvoLZU2W4VDqNtkdtkPBjrFgqtjrwbC4TvHQPD9rUsl4T22Kh7fOfVi2jor
+          5vUiIAz1PoxXCukRXdk13aLulZhnyzCV2G5ZKVGooXLzM2wOPePBxRagDZBrlv0r
+          VZgUiiUCgYEAvsCLt4Fl8rQJol6fQ5ynK7F3470oXeJNW24sHupNI2EW4lwAvETG
+          fdaZoQv+nlUbzF/DSanW8LiaW/SBzVWESl6VcKKl6s7sjz2uf98MGXqp191W7QyY
+          MwZsqqY3IKODaSzTTGmqaGtsIPMKrfIzokZZLqm3cFknaiS3+IIge4o=
+          -----END RSA PRIVATE KEY-----
+      directors:
+      - default_task_poll_interval: 10000
+        infrastructure:
+          azs:
+          - cloud_properties:
+              name: random
+            name: z1
+          - cloud_properties:
+              name: random
+            name: z2
+          - cloud_properties:
+              name: random
+            name: z3
+          compilation:
+            cloud_properties:
+              name: random
+            network: compilation
+            reuse_compilation_vms: true
+            workers: 4
+          networks:
+          - name: sf_bosh_services
+            subnets:
+            - az: z1
+              cloud_properties:
+                name: random
+              range: 10.244.10.0/24
+            - az: z2
+              cloud_properties:
+                name: random
+              range: 10.244.11.0/24
+            - az: z3
+              cloud_properties:
+                name: random
+              range: 10.244.12.0/24
+            type: manual
+          - name: compilation
+            type: dynamic
+          segmentation:
+            capacity: -1
+            network_name: sf_bosh_services
+            offset: 1
+            size: 8
+          stemcell:
+            alias: default
+            os: ubuntu-trusty
+            version: latest
+        lock_deployment_max_duration: 86400
+        name: bosh
+        password: 4f4g6w7ac2sd01y1mm08
+        primary: true
+        skip_ssl_validation: true
+        support_create: true
+        url: https://10.0.0.6:25555
+        username: admin
+      docker:
+        allocate_docker_host_ports: true
+        url: https://10.244.4.2:2376
+      external:
+        api_requires_admin_scope: false
+        cookie_secret: 214a2bed-4988-4841-ae8b-c1b6c29a9de4
+        host: service-fabrik-broker.bosh-lite.com
+        log_event: true
+        port: 9292
+        trust_proxy: 2
+      internal:
+        ip: 10.244.4.2
+        log_event: true
+        port: 9293
+        ssl:
+          cert: |
+            -----BEGIN CERTIFICATE-----
+            MIIKkzCCCHugAwIBAgIQcWp6STiYZxhMo/7D6w9G/jANBgkqhkiG9w0BAQsFADAa
+            MRgwFgYDVQQDEw9TZXJ2aWNlRmFicmlrQ0EwHhcNMTgwOTEwMTcwMDI1WhcNMjAw
+            MzEwMTcwMDE4WjAtMSswKQYDVQQDEyJzZXJ2aWNlLWZhYnJpay1icm9rZXIud2Rm
+            LnNhcC5jb3JwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2/o2JY/I
+            siTW4KrMtppbNwgj2u9QHMeIqxTGgH7mGQybkq6jkmjDoXYHBwvn1g3zp4+e8+Gv
+            467IY3uMw9/r8kDPQRa1O+yUeyw3bjhmDRvurfWUri5Kbd5T/XTNXkK06Cyoa3oW
+            vvHafXxiszKobb0LhldAY0e4jCNfgiUKizRtFvBB1G+DYNN2c/b9louFTJtR5XSU
+            Qv0grke3sMz0UMa6I5QC05+a2kLl010hqn0fQCQXK8IjrrYlkXkYuEb5uTWKmWMd
+            NFw5oIZrN+Z0U2a0qE+wOdg1+Hs6y24VjxeFTDbhFxglcoVYldUkvUicYxIlTHDx
+            Kr8xLoTjedBe0QIDAQABo4IGwDCCBrwwDgYDVR0PAQH/BAQDAgO4MB0GA1UdJQQW
+            MBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQUvCOGTZ6qMtrXpQrZpIeT
+            J2S95EIwHwYDVR0jBBgwFoAUZ7vSkoCZ1beEX7Hx33W/o1zFd14wggZJBgNVHREE
+            ggZAMIIGPIIic2VydmljZS1mYWJyaWstYnJva2VyLndkZi5zYXAuY29ycIcECvQE
+            AocECvQEA4cEfwAAAYcEAAAAAIcECgvxAIcECgvxAYcECgvxAocECgvxA4cECgvx
+            BIcECgvxBYcECgvxBocECgvxB4cECgvxCIcECgvxCYcECgvxCocECgvxC4cECgvx
+            DIcECgvxDYcECgvxDocECgvxD4cECgvxEIcECgvxEYcECgvxEocECgvxE4cECgvx
+            FIcECgvxFYcECgvxFocECgvxF4cECgvxGIcECgvxGYcECgvxGocECgvxG4cECgvx
+            HIcECgvxHYcECgvxHocECgvxH4cECgvxIIcECgvxIYcECgvxIocECgvxI4cECgvx
+            JIcECgvxJYcECgvxJocECgvxJ4cECgvxKIcECgvxKYcECgvxKocECgvxK4cECgvx
+            LIcECgvxLYcECgvxLocECgvxL4cECgvxMIcECgvxMYcECgvxMocECgvxM4cECgvx
+            NIcECgvxNYcECgvxNocECgvxN4cECgvxOIcECgvxOYcECgvxOocECgvxO4cECgvx
+            PIcECgvxPYcECgvxPocECgvxP4cECgvxQIcECgvxQYcECgvxQocECgvxQ4cECgvx
+            RIcECgvxRYcECgvxRocECgvxR4cECgvxSIcECgvxSYcECgvxSocECgvxS4cECgvx
+            TIcECgvxTYcECgvxTocECgvxT4cECgvxUIcECgvxUYcECgvxUocECgvxU4cECgvx
+            VIcECgvxVYcECgvxVocECgvxV4cECgvxWIcECgvxWYcECgvxWocECgvxW4cECgvx
+            XIcECgvxXYcECgvxXocECgvxX4cECgvxYIcECgvxYYcECgvxYocECgvxY4cECgvx
+            ZIcECgvxZYcECgvxZocECgvxZ4cECgvxaIcECgvxaYcECgvxaocECgvxa4cECgvx
+            bIcECgvxbYcECgvxbocECgvxb4cECgvxcIcECgvxcYcECgvxcocECgvxc4cECgvx
+            dIcECgvxdYcECgvxdocECgvxd4cECgvxeIcECgvxeYcECgvxeocECgvxe4cECgvx
+            fIcECgvxfYcECgvxfocECgvxf4cECgvxgIcECgvxgYcECgvxgocECgvxg4cECgvx
+            hIcECgvxhYcECgvxhocECgvxh4cECgvxiIcECgvxiYcECgvxiocECgvxi4cECgvx
+            jIcECgvxjYcECgvxjocECgvxj4cECgvxkIcECgvxkYcECgvxkocECgvxk4cECgvx
+            lIcECgvxlYcECgvxlocECgvxl4cECgvxmIcECgvxmYcECgvxmocECgvxm4cECgvx
+            nIcECgvxnYcECgvxnocECgvxn4cECgvxoIcECgvxoYcECgvxoocECgvxo4cECgvx
+            pIcECgvxpYcECgvxpocECgvxp4cECgvxqIcECgvxqYcECgvxqocECgvxq4cECgvx
+            rIcECgvxrYcECgvxrocECgvxr4cECgvxsIcECgvxsYcECgvxsocECgvxs4cECgvx
+            tIcECgvxtYcECgvxtocECgvxt4cECgvxuIcECgvxuYcECgvxuocECgvxu4cECgvx
+            vIcECgvxvYcECgvxvocECgvxv4cECgvxwIcECgvxwYcECgvxwocECgvxw4cECgvx
+            xIcECgvxxYcECgvxxocECgvxx4cECgvxyIcECgvxyYcECgvxyocECgvxy4cECgvx
+            zIcECgvxzYcECgvxzocECgvxz4cECgvx0IcECgvx0YcECgvx0ocECgvx04cECgvx
+            1IcECgvx1YcECgvx1ocECgvx14cECgvx2IcECgvx2YcECgvx2ocECgvx24cECgvx
+            3IcECgvx3YcECgvx3ocECgvx34cECgvx4IcECgvx4YcECgvx4ocECgvx44cECgvx
+            5IcECgvx5YcECgvx5ocECgvx54cECgvx6IcECgvx6YcECgvx6ocECgvx64cECgvx
+            7IcECgvx7YcECgvx7ocECgvx74cECgvx8IcECgvx8YcECgvx8ocECgvx84cECgvx
+            9IcECgvx9YcECgvx9ocECgvx94cECgvx+IcECgvx+YcECgvx+ocECgvx+4cECgvx
+            /IcECgvx/YcECgvx/ocECgvx/zANBgkqhkiG9w0BAQsFAAOCAgEAsZmLIZNmHRTE
+            Fly87opktrEP+WCilJjqIYnqh8DS561fXsc+WtAQaPsOqKFZbqZBd5s7bzm4zfjN
+            sYY/fKlfLjNFtVsfF5/yGp2xHA172b55Oi8kgzJfl2w1Pf3IpWmoMYMwlv6Piua/
+            ebsbqRombLkv7rM9ug+QGDdfvakYH9sleCXDm5i/kqUPIVTbaMakFSrnH8FJNBQH
+            4MBcvhOgzhN4IF9kHGreSK7U5XSIEJ1dPcc0RkbXegrb/mt7AvALzRAKv1zlfjB1
+            YdOAuuWHaIWjfn3k692zRSvCKE1ISqHGuYJtVjvSm7Gq6Fhc8pg7pyr8xKyHm1Ln
+            QPA8UszEOwwQQeEQFO/05Mc+YFZB2LxHXViVnGnoWIQcv74OC8qRdmeGhua5oJgH
+            p3lc8nr+5kAiYrOiFmJC3bXJOIMMoifVbQkdgtLE+bEBy6c5QZDwPRznL7mlrI//
+            S1yOIuJDKnRkEmlek1QZ02Oi236V819m/DsXmlmpO7rR5FL/MNQ0oCRtexDILIfi
+            MeOhh4dhd9CxDT3KWHFHTSfJLVvsWoTs4BOHOJhYtF/smPNJKZHKwZRrL/bUYQu3
+            XbNoc2cnSIFm0MusKS3ZZBrNl082gnbSuxKBzgm7UeVxvzZwqSaYPjHr7W2JXxOn
+            PJ3g1NdD1HJQwyQUZBufHrYr5I6DnQs=
+            -----END CERTIFICATE-----
+          key: |
+            -----BEGIN RSA PRIVATE KEY-----
+            MIIEpQIBAAKCAQEA2/o2JY/IsiTW4KrMtppbNwgj2u9QHMeIqxTGgH7mGQybkq6j
+            kmjDoXYHBwvn1g3zp4+e8+Gv467IY3uMw9/r8kDPQRa1O+yUeyw3bjhmDRvurfWU
+            ri5Kbd5T/XTNXkK06Cyoa3oWvvHafXxiszKobb0LhldAY0e4jCNfgiUKizRtFvBB
+            1G+DYNN2c/b9louFTJtR5XSUQv0grke3sMz0UMa6I5QC05+a2kLl010hqn0fQCQX
+            K8IjrrYlkXkYuEb5uTWKmWMdNFw5oIZrN+Z0U2a0qE+wOdg1+Hs6y24VjxeFTDbh
+            FxglcoVYldUkvUicYxIlTHDxKr8xLoTjedBe0QIDAQABAoIBAQDaRbNWoA5PnbhN
+            Y40Pn6fkukIBqrZ+aAsXXtz8gW5F6rmv2XPbAfMkEh41Ar4/KsbbO+pIKmfB7xtN
+            gzmQ3m6biW1dM3APjtdiROSXjITOeynhGS43ix01WYdTloN1BZHGUxGm25UYUJkx
+            LKwvDZQMl6mI2qi8Gl1nSG4rkB+fMUUWDOHYvD8WmtfTlTUpci80bAIxrOwPvC2b
+            lcN8TgQkgizFFlcjMJsyv4z5kvWl8oYGR/MhFWnf3l4nuRmgeRry8aXFIGIWIPzq
+            yDQDtcQUw7r0iacNGhmXGXpB76h85aExBIRARAJJ9WTR7dJuxPP7q6eeAl9YV1NJ
+            wSlA+SkxAoGBAN4JKu4jwcMeIkNcRkmwKFwl1xNSnGE/5gVJaXs9mb6nwtdPFkir
+            IA9F725zFPab7kai5VtZL4jerbCaQkYS/qpw0yENqxu932HL2wIHJ2rkyhkPRarb
+            MnPzYwq3TtPbmFVkAtILePUZikXeW4Hnf5yeAp9ERH/pt1gr3Zjr34gdAoGBAP2g
+            b9N2G6kb/Z8C/q6XOAYRrkVwwpR1bEzF5gfQ5ELboM5Tn2WdiJYYzRSBWLecAtFR
+            /rqnOTXPuJjIDivJP88GUvxHi9bHcRiFA4jrrHXZzRTg9tvUoEJwOUlFmlYINNWQ
+            ou1ZGmDD5yV5TNvK/z90kHcb9KFdmcJatDkoWjtFAoGAWEJmqUDXbbsVvZb5baMz
+            d+Wmx8yH0vR2d9WFs3J6IdpHzhRm9D3pwYh4M3xVce3r2nI4H4alKY/ylQfMnlRA
+            nPm6QyJOyPlByXsiNH0pgwks+Kckd1UoigTOct0I3ZglxpO5t0rOKwea+kj4MPwX
+            subwfeTCIeKCee796CKiuVUCgYEAtIfTsWhbjgb/g4UFNc8rsJ47NvBpgHUIrqka
+            8KtPHwvoLZU2W4VDqNtkdtkPBjrFgqtjrwbC4TvHQPD9rUsl4T22Kh7fOfVi2jor
+            5vUiIAz1PoxXCukRXdk13aLulZhnyzCV2G5ZKVGooXLzM2wOPePBxRagDZBrlv0r
+            VZgUiiUCgYEAvsCLt4Fl8rQJol6fQ5ynK7F3470oXeJNW24sHupNI2EW4lwAvETG
+            fdaZoQv+nlUbzF/DSanW8LiaW/SBzVWESl6VcKKl6s7sjz2uf98MGXqp191W7QyY
+            MwZsqqY3IKODaSzTTGmqaGtsIPMKrfIzokZZLqm3cFknaiS3+IIge4o=
+            -----END RSA PRIVATE KEY-----
+      log_level: debug
+      mongodb:
+        agent:
+          auth:
+            password: service-fabrik-mongodb-secret
+            username: service-fabrik-mongodb-agent
+          provider:
+            container: cf.mycf.com-service-fabrik-mongodb
+          supported_features:
+          - state
+          - lifecycle
+          - credentials
+          - backup
+          - restore
+          version: "1"
+        backup:
+          backup_timeout_time: 7200000
+          schedule_interval: 0 12 * * *
+          status_check_every: 120000
+        deployment_name: service-fabrik-mongodb
+        provision:
+          network_index: 1
+        record_max_fetch_count: 100
+        retry_connect:
+          max_attempt: 8
+          min_delay: 120000
+      name: service-fabrik-broker
+      nats:
+        machines:
+        - 10.244.0.129
+        password: OrtJ7laxvaR8IIzeckd5jNN5IojzM8
+        port: 4222
+        user: nats
+      password: secret
+      quota:
+        oauthDomain: null
+        password: null
+        serviceDomain: null
+        username: null
+        whitelist: null
+      riemann:
+        host: example
+        metrics: metrics
+        port: 5555
+        prefix: CF
+      route_registrar:
+        name: service-fabrik-broker
+        port: 9292
+        registration_interval: 20s
+        routes:
+        - health_check:
+            name: service-fabrik-broker-health-check
+            script_path: /var/vcap/jobs/service-fabrik-broker/bin/health_check
+            timeout: 5s
+        tags:
+          component: service-fabrik-broker
+          env: production
+        uris:
+        - service-fabrik-broker.bosh-lite.com
+      services:
+      - bindable: true
+        dashboard_client:
+          id: e317d88d-86c8-4103-8212-5c41025e1f6f
+          redirect_uri: https://services-fabrik-broker.bosh-lite.com/manage/auth/cloudfoundry/callback
+          secret: 08263931-0e77-419c-9f37-4f673d4e36d1
+        description: Redis in-memory data structure store
+        id: 6855ef2c-e036-4984-9654-f6b0169d95de
+        metadata:
+          displayName: Redis
+          documentationUrl: http://redis.io/documentation
+          longDescription: Redis in-memory data structure store
+          providerDisplayName: Provider
+          supportUrl: http://redis.io/community
+        name: redis
+        plan_updateable: true
+        plans:
+        - credentials:
+            password:
+              key: REDIS_PASSWORD
+          description: Redis 3.0.7 service running inside a Docker container
+          free: true
+          id: 39c1cf1f-c698-4db1-a0c5-42cfc394f246
+          manager:
+            name: docker
+            settings:
+              environment:
+              - REDIS_MAXMEMORY=31457280
+              image: weberstephanhd/redis
+              memory: 50m
+              persistent_volumes:
+              - name: data
+                path: /data
+                size: 500m
+              tag: 3.0.7.1
+          metadata:
+            bullets:
+            - Container Deployment
+            - 50 MB Memory
+            - 30 MB Redis maxmemory
+            - 500 MB Disk
+            costs:
+            - amount:
+                usd: 0
+              unit: MONTHLY
+          name: v3.0-container
+        tags:
+        - redis
+        - keyvalue
+      - actions: Blueprint
+        bindable: true
+        dashboard_client:
+          id: service-fabrik-blueprint-client
+          redirect_uri: https://services-fabrik-broker.bosh-lite.com/manage/auth/cloudfoundry/callback
+          secret: service-fabrik-blueprint-secret
+        description: Blueprint service for internal development, testing, and documentation
+          purposes of the Service Fabrik
+        id: 24731fb8-7b84-4f57-914f-c3d55d793dd4
+        metadata:
+          displayName: Blueprint
+          documentationUrl: https://sap.com/
+          longDescription: Blueprint service for internal development, testing, and
+            documentation purposes of the Service Fabrik
+          providerDisplayName: SAP SE
+          supportUrl: https://sap.com/
+        name: blueprint
+        plan_updateable: true
+        plans:
+        - credentials:
+            password:
+              key: BLUEPRINT_USER_PASS
+            uri:
+              port: 8080/tcp
+              prefix: http
+            username:
+              key: BLUEPRINT_USER_NAME
+          description: Blueprint 1.0 service running inside a Docker container (for
+            non-productive usage)
+          free: true
+          id: 466c5078-df6e-427d-8fb2-c76af50c0f56
+          manager:
+            name: docker
+            resource_mappings:
+              bind:
+                resource_group: bind.servicefabrik.io
+                resource_type: dockerbinds
+              resource_group: deployment.servicefabrik.io
+              resource_type: dockers
+            settings:
+              image: servicefabrikjenkins/blueprint
+              memory: 128m
+              tag: latest
+          metadata:
+            bullets:
+            - Container Deployment
+            - 128 MB Memory
+            - 100 MB Disk
+            costs:
+            - amount:
+                usd: 0
+              unit: MONTHLY
+          name: v1.0-container
+        - credentials:
+            password:
+              key: BLUEPRINT_USER_PASS
+            uri:
+              port: 8080/tcp
+              prefix: http
+            username:
+              key: BLUEPRINT_USER_NAME
+          description: Blueprint 1.0 service running inside a large Docker container
+            (for non-productive usage)
+          free: true
+          id: 6a252f89-c974-4ef9-a4de-c49f300de39a
+          manager:
+            name: docker
+            settings:
+              image: servicefabrikjenkins/blueprint
+              memory: 256m
+              tag: latest
+          metadata:
+            bullets:
+            - Container Deployment
+            - 256 MB Memory
+            - 200 MB Disk
+            costs:
+            - amount:
+                usd: 0
+              unit: MONTHLY
+          name: v1.0-container-large
+        - actions: ReserveIps
+          description: Blueprint 1.0 service x-small (managed service in beta)
+          free: false
+          id: bc158c9a-7934-401e-94ab-057082a5073f
+          manager:
+            name: director
+            resource_mappings:
+              backup:
+                resource_group: backup.servicefabrik.io
+                resource_type: defaultbackups
+              bind:
+                resource_group: bind.servicefabrik.io
+                resource_type: directorbinds
+              resource_group: deployment.servicefabrik.io
+              resource_type: directors
+            settings:
+              agent:
+                auth:
+                  password: secret
+                  username: agent
+                provider: boshlite
+                supported_features:
+                - state
+                - lifecycle
+                - credentials
+                version: "1"
+              context:
+                agent:
+                  auth:
+                    password: secret
+                    username: agent
+                  provider: boshlite
+                  supported_features:
+                  - state
+                  - lifecycle
+                  - credentials
+                  version: "1"
+                disk_type: service_fabrik_hdd_1gb
+                vm_type: service_fabrik_vm_micro
+              dashboard_template: |
+                PCUKY29uc3QgcGxhbl9tYW5hZ2VyID0gcGxhbi5tYW5hZ2VyLm5hbWU7CiU+
+                CgpwbGFuOgogIE1hbmFnZXI6IDwlPSBwbGFuX21hbmFnZXIgJT4K
+              prefix: blueprint
+              releases:
+              - git: https://github.com/sap/service-fabrik-blueprint-boshrelease.git
+                name: blueprint
+                version: 1.7.0
+              template: |
+                PCU9IHNwZWMuaGVhZGVyICU+Cgp1cGRhdGU6CiAgY2FuYXJpZXM6IDAKICBt
+                YXhfaW5fZmxpZ2h0OiA1MAogIGNhbmFyeV93YXRjaF90aW1lOiAxMDAwLTEw
+                MDAwMAogIHVwZGF0ZV93YXRjaF90aW1lOiAxMDAwLTEwMDAwMAogIHNlcmlh
+                bDogZmFsc2UKCmluc3RhbmNlX2dyb3VwczogJmluc3RhbmNlX2dyb3Vwcwo8
+                JQp2YXIgbmV0Owp2YXIgYXpzOwppZiAoc3BlYy5tdWx0aV9hel9lbmFibGVk
+                KXsKICBuZXQgPSBzcGVjLm5ldHdvcmtzWzFdOwogIGF6cyA9ICdbejEsIHoy
+                XSc7Cn0gZWxzZSB7CiAgbmV0ID0gc3BlYy5uZXR3b3Jrc1swXTsKICBhenMg
+                PSAnW3oxXSc7Cn0KY29uc3Qgc3RlbWNlbGwgPSBzcGVjLnN0ZW1jZWxsOwpj
+                b25zdCBtZW1iZXJzID0gbmV0LnN0YXRpYy5zbGljZSgwLDEpOwpjb25zdCBw
+                cm9wZXJ0aWVzID0ge307CmlmICghc3BlYy5wcmV2aW91c19tYW5pZmVzdCkg
+                ewogIC8qIGNyZWF0ZSBzY2VuYXJpbzogcGljayByYW5kb20gc2VydmljZSBp
+                bnN0YW5jZSBwcm9wZXJ0aWVzICovCiAgcHJvcGVydGllcy5ibHVlcHJpbnQg
+                PSB7CiAgICBhZG1pbjogewogICAgICB1c2VybmFtZTogU2VjdXJlUmFuZG9t
+                LmhleCgxNiksCiAgICAgIHBhc3N3b3JkOiBTZWN1cmVSYW5kb20uaGV4KDE2
+                KQogICAgfQogIH07Cn0gZWxzZSB7CiAgaWYoIXNwZWMucHJldmlvdXNfbWFu
+                aWZlc3QuaW5zdGFuY2VfZ3JvdXBzKXsKICAgIHByb3BlcnRpZXMuYmx1ZXBy
+                aW50ID0gc3BlYy5wcmV2aW91c19tYW5pZmVzdC5wcm9wZXJ0aWVzLmJsdWVw
+                cmludDsKICB9ZWxzZXsKICAgIHByb3BlcnRpZXMuYmx1ZXByaW50ID0gc3Bl
+                Yy5wcmV2aW91c19tYW5pZmVzdC5pbnN0YW5jZV9ncm91cHNbMF0uam9ic1sw
+                XS5wcm9wZXJ0aWVzOwogIH0KfQppZighc3BlYy5wcmVVcGRhdGVBZ2VudFJl
+                c3BvbnNlKXsKICBwcm9wZXJ0aWVzLmJsdWVwcmludC5wcmVVcGRhdGVBZ2Vu
+                dFJlc3BvbnNlID0gSlNPTi5zdHJpbmdpZnkoc3BlYy5wcmV2aW91c19tYW5p
+                ZmVzdC5pbnN0YW5jZV9ncm91cHNbMF0uam9ic1swXS5wcm9wZXJ0aWVzLnBy
+                ZVVwZGF0ZUFnZW50UmVzcG9uc2UpOwp9CmVsc2V7CiAgcHJvcGVydGllcy5i
+                bHVlcHJpbnQucHJlVXBkYXRlQWdlbnRSZXNwb25zZSA9IEpTT04uc3RyaW5n
+                aWZ5KHNwZWMucHJlVXBkYXRlQWdlbnRSZXNwb25zZSk7Cn0KaWYoIXNwZWMu
+                YWN0aW9ucyl7CiAgcHJvcGVydGllcy5ibHVlcHJpbnQuYWN0aW9uUmVzcG9u
+                c2UgPSBKU09OLnN0cmluZ2lmeShzcGVjLnByZXZpb3VzX21hbmlmZXN0Lmlu
+                c3RhbmNlX2dyb3Vwc1swXS5qb2JzWzBdLnByb3BlcnRpZXMuYWN0aW9uUmVz
+                cG9uc2UpOwp9CmVsc2V7CiAgcHJvcGVydGllcy5ibHVlcHJpbnQuYWN0aW9u
+                UmVzcG9uc2UgPSBKU09OLnN0cmluZ2lmeShzcGVjLmFjdGlvbnMpOwp9CiU+
+                Ci0gbmFtZTogYmx1ZXByaW50CiAgbWlncmF0ZWRfZnJvbToKICAtIG5hbWU6
+                IGJsdWVwcmludF96MQogICAgYXo6IHoxCiAgaW5zdGFuY2VzOiA8JT0gbWVt
+                YmVycy5sZW5ndGggJT4KICBuZXR3b3JrczoKICAtIG5hbWU6IDwlPSBuZXQu
+                bmFtZSAlPgogICAgc3RhdGljX2lwczogPCU9IEpTT04uc3RyaW5naWZ5KG1l
+                bWJlcnMpICU+CiAgdm1fdHlwZTogPCU9IHAoJ3ZtX3R5cGUnKSAlPgogIHBl
+                cnNpc3RlbnRfZGlza190eXBlOiA8JT0gcCgnZGlza190eXBlJykgJT4KICBh
+                enM6IDwlPSBhenMgJT4KICBzdGVtY2VsbDogPCU9IHN0ZW1jZWxsLmFsaWFz
+                ICU+CiAgam9iczoKICAtIG5hbWU6IGJsdWVwcmludAogICAgcmVsZWFzZTog
+                Ymx1ZXByaW50CiAgICBibHVlcHJpbnQ6ICZibHVlcHJpbnQKICAgIHByb3Bl
+                cnRpZXM6CiAgICAgIHBvcnQ6IDgwODAKICAgICAgYWN0aW9uUmVzcG9uc2U6
+                IDwlPSBwcm9wZXJ0aWVzLmJsdWVwcmludC5hY3Rpb25SZXNwb25zZSAlPgog
+                ICAgICBwcmVVcGRhdGVBZ2VudFJlc3BvbnNlOiA8JT0gcHJvcGVydGllcy5i
+                bHVlcHJpbnQucHJlVXBkYXRlQWdlbnRSZXNwb25zZSAlPgogICAgICBhZG1p
+                bjoKICAgICAgICB1c2VybmFtZTogPCU9IHByb3BlcnRpZXMuYmx1ZXByaW50
+                LmFkbWluLnVzZXJuYW1lICU+CiAgICAgICAgcGFzc3dvcmQ6IDwlPSBwcm9w
+                ZXJ0aWVzLmJsdWVwcmludC5hZG1pbi5wYXNzd29yZCAlPgogIC0gbmFtZTog
+                YnJva2VyLWFnZW50CiAgICByZWxlYXNlOiBibHVlcHJpbnQKICAgIHByb3Bl
+                cnRpZXM6CiAgICAgIHVzZXJuYW1lOiA8JT0gcCgnYWdlbnQuYXV0aC51c2Vy
+                bmFtZScpICU+CiAgICAgIHBhc3N3b3JkOiA8JT0gcCgnYWdlbnQuYXV0aC5w
+                YXNzd29yZCcpICU+CiAgICAgIHByb3ZpZGVyOiA8JT0gSlNPTi5zdHJpbmdp
+                ZnkocCgnYWdlbnQucHJvdmlkZXInKSkgJT4K
+          metadata:
+            bullets:
+            - Dedicated Deployment
+            - 1 VM
+            - 1 vCPUs
+            - 1 GB Memory
+            - 1 GB Disk
+            costs:
+            - amount:
+                usd: 0
+              unit: MONTHLY
+          name: v1.0-dedicated-xsmall
+        - description: Blueprint 1.0 service large (managed service in beta)
+          free: false
+          id: d616b00a-5949-4b1c-bc73-0d3c59f3954a
+          manager:
+            name: director
+            resource_mappings: null
+            settings:
+              agent:
+                auth:
+                  password: secret
+                  username: agent
+                provider: boshlite
+                supported_features:
+                - state
+                - lifecycle
+                - credentials
+                version: "1"
+              context:
+                agent:
+                  auth:
+                    password: secret
+                    username: agent
+                  provider: boshlite
+                  supported_features:
+                  - state
+                  - lifecycle
+                  - credentials
+                  version: "1"
+                disk_type: service_fabrik_hdd_2gb
+                vm_type: service_fabrik_vm_micro
+              prefix: blueprint
+              releases:
+              - git: https://github.com/sap/service-fabrik-blueprint-boshrelease.git
+                name: blueprint
+                version: 1.7.0
+              template: |
+                PCU9IHNwZWMuaGVhZGVyICU+Cgp1cGRhdGU6CiAgY2FuYXJpZXM6IDAKICBt
+                YXhfaW5fZmxpZ2h0OiA1MAogIGNhbmFyeV93YXRjaF90aW1lOiAxMDAwLTEw
+                MDAwMAogIHVwZGF0ZV93YXRjaF90aW1lOiAxMDAwLTEwMDAwMAogIHNlcmlh
+                bDogZmFsc2UKCmluc3RhbmNlX2dyb3VwczogJmluc3RhbmNlX2dyb3Vwcwo8
+                JQp2YXIgbmV0Owp2YXIgYXpzOwppZiAoc3BlYy5tdWx0aV9hel9lbmFibGVk
+                KXsKICBuZXQgPSBzcGVjLm5ldHdvcmtzWzFdOwogIGF6cyA9ICdbejEsIHoy
+                XSc7Cn0gZWxzZSB7CiAgbmV0ID0gc3BlYy5uZXR3b3Jrc1swXTsKICBhenMg
+                PSAnW3oxXSc7Cn0KY29uc3Qgc3RlbWNlbGwgPSBzcGVjLnN0ZW1jZWxsOwpj
+                b25zdCBtZW1iZXJzID0gbmV0LnN0YXRpYy5zbGljZSgwLDEpOwpjb25zdCBw
+                cm9wZXJ0aWVzID0ge307CmlmICghc3BlYy5wcmV2aW91c19tYW5pZmVzdCkg
+                ewogIC8qIGNyZWF0ZSBzY2VuYXJpbzogcGljayByYW5kb20gc2VydmljZSBp
+                bnN0YW5jZSBwcm9wZXJ0aWVzICovCiAgcHJvcGVydGllcy5ibHVlcHJpbnQg
+                PSB7CiAgICBhZG1pbjogewogICAgICB1c2VybmFtZTogU2VjdXJlUmFuZG9t
+                LmhleCgxNiksCiAgICAgIHBhc3N3b3JkOiBTZWN1cmVSYW5kb20uaGV4KDE2
+                KQogICAgfQogIH07Cn0gZWxzZSB7CiAgaWYoIXNwZWMucHJldmlvdXNfbWFu
+                aWZlc3QuaW5zdGFuY2VfZ3JvdXBzKXsKICAgIHByb3BlcnRpZXMuYmx1ZXBy
+                aW50ID0gc3BlYy5wcmV2aW91c19tYW5pZmVzdC5wcm9wZXJ0aWVzLmJsdWVw
+                cmludDsKICB9ZWxzZXsKICAgIHByb3BlcnRpZXMuYmx1ZXByaW50ID0gc3Bl
+                Yy5wcmV2aW91c19tYW5pZmVzdC5pbnN0YW5jZV9ncm91cHNbMF0uam9ic1sw
+                XS5wcm9wZXJ0aWVzOwogIH0KfQppZighc3BlYy5wcmVVcGRhdGVBZ2VudFJl
+                c3BvbnNlKXsKICBwcm9wZXJ0aWVzLmJsdWVwcmludC5wcmVVcGRhdGVBZ2Vu
+                dFJlc3BvbnNlID0gSlNPTi5zdHJpbmdpZnkoc3BlYy5wcmV2aW91c19tYW5p
+                ZmVzdC5pbnN0YW5jZV9ncm91cHNbMF0uam9ic1swXS5wcm9wZXJ0aWVzLnBy
+                ZVVwZGF0ZUFnZW50UmVzcG9uc2UpOwp9CmVsc2V7CiAgcHJvcGVydGllcy5i
+                bHVlcHJpbnQucHJlVXBkYXRlQWdlbnRSZXNwb25zZSA9IEpTT04uc3RyaW5n
+                aWZ5KHNwZWMucHJlVXBkYXRlQWdlbnRSZXNwb25zZSk7Cn0KaWYoIXNwZWMu
+                YWN0aW9ucyl7CiAgcHJvcGVydGllcy5ibHVlcHJpbnQuYWN0aW9uUmVzcG9u
+                c2UgPSBKU09OLnN0cmluZ2lmeShzcGVjLnByZXZpb3VzX21hbmlmZXN0Lmlu
+                c3RhbmNlX2dyb3Vwc1swXS5qb2JzWzBdLnByb3BlcnRpZXMuYWN0aW9uUmVz
+                cG9uc2UpOwp9CmVsc2V7CiAgcHJvcGVydGllcy5ibHVlcHJpbnQuYWN0aW9u
+                UmVzcG9uc2UgPSBKU09OLnN0cmluZ2lmeShzcGVjLmFjdGlvbnMpOwp9CiU+
+                Ci0gbmFtZTogYmx1ZXByaW50CiAgbWlncmF0ZWRfZnJvbToKICAtIG5hbWU6
+                IGJsdWVwcmludF96MQogICAgYXo6IHoxCiAgaW5zdGFuY2VzOiA8JT0gbWVt
+                YmVycy5sZW5ndGggJT4KICBuZXR3b3JrczoKICAtIG5hbWU6IDwlPSBuZXQu
+                bmFtZSAlPgogICAgc3RhdGljX2lwczogPCU9IEpTT04uc3RyaW5naWZ5KG1l
+                bWJlcnMpICU+CiAgdm1fdHlwZTogPCU9IHAoJ3ZtX3R5cGUnKSAlPgogIHBl
+                cnNpc3RlbnRfZGlza190eXBlOiA8JT0gcCgnZGlza190eXBlJykgJT4KICBh
+                enM6IDwlPSBhenMgJT4KICBzdGVtY2VsbDogPCU9IHN0ZW1jZWxsLmFsaWFz
+                ICU+CiAgam9iczoKICAtIG5hbWU6IGJsdWVwcmludAogICAgcmVsZWFzZTog
+                Ymx1ZXByaW50CiAgICBibHVlcHJpbnQ6ICZibHVlcHJpbnQKICAgIHByb3Bl
+                cnRpZXM6CiAgICAgIHBvcnQ6IDgwODAKICAgICAgYWN0aW9uUmVzcG9uc2U6
+                IDwlPSBwcm9wZXJ0aWVzLmJsdWVwcmludC5hY3Rpb25SZXNwb25zZSAlPgog
+                ICAgICBwcmVVcGRhdGVBZ2VudFJlc3BvbnNlOiA8JT0gcHJvcGVydGllcy5i
+                bHVlcHJpbnQucHJlVXBkYXRlQWdlbnRSZXNwb25zZSAlPgogICAgICBhZG1p
+                bjoKICAgICAgICB1c2VybmFtZTogPCU9IHByb3BlcnRpZXMuYmx1ZXByaW50
+                LmFkbWluLnVzZXJuYW1lICU+CiAgICAgICAgcGFzc3dvcmQ6IDwlPSBwcm9w
+                ZXJ0aWVzLmJsdWVwcmludC5hZG1pbi5wYXNzd29yZCAlPgogIC0gbmFtZTog
+                YnJva2VyLWFnZW50CiAgICByZWxlYXNlOiBibHVlcHJpbnQKICAgIHByb3Bl
+                cnRpZXM6CiAgICAgIHVzZXJuYW1lOiA8JT0gcCgnYWdlbnQuYXV0aC51c2Vy
+                bmFtZScpICU+CiAgICAgIHBhc3N3b3JkOiA8JT0gcCgnYWdlbnQuYXV0aC5w
+                YXNzd29yZCcpICU+CiAgICAgIHByb3ZpZGVyOiA8JT0gSlNPTi5zdHJpbmdp
+                ZnkocCgnYWdlbnQucHJvdmlkZXInKSkgJT4K
+          metadata:
+            bullets:
+            - Dedicated Deployment
+            - 1 VM
+            - 1 vCPUs
+            - 1 GB Memory
+            - 2 GB Disk
+            costs:
+            - amount:
+                usd: 0
+              unit: MONTHLY
+          name: v1.0-dedicated-large
+        tags:
+        - blueprint
+        - no-not-use
+      skip_ssl_validation: true
+      syslog:
+        host: default
+        port: 5514
+      username: broker
+      virtual_host:
+        provider:
+          authUrl: null
+          container: null
+          keystoneAuthVersion: null
+          name: openstack
+          password: null
+          projectDomainName: null
+          region: null
+          strictSSL: false
+          tenantId: null
+          username: null
+    release: service-fabrik
+  - name: service-fabrik-scheduler
+    properties:
+      agenda_collection: agendaJobs
+      default_concurrency: 20
+      default_lock_lifetime: 900000
+      job_history_retention_in_days: 30
+      job_types: ScheduledBackup, ServiceFabrikBackup, ScheduledOobDeploymentBackup,
+        OperationStatusPoller
+      max_concurrency: 50
+      process_every: 3 minutes
+    release: service-fabrik
+  - name: service-fabrik-report
+    properties:
+      report:
+        ip: default
+        ssl:
+          cert: |
+            -----BEGIN CERTIFICATE-----
+            MIIKkzCCCHugAwIBAgIQcWp6STiYZxhMo/7D6w9G/jANBgkqhkiG9w0BAQsFADAa
+            MRgwFgYDVQQDEw9TZXJ2aWNlRmFicmlrQ0EwHhcNMTgwOTEwMTcwMDI1WhcNMjAw
+            MzEwMTcwMDE4WjAtMSswKQYDVQQDEyJzZXJ2aWNlLWZhYnJpay1icm9rZXIud2Rm
+            LnNhcC5jb3JwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2/o2JY/I
+            siTW4KrMtppbNwgj2u9QHMeIqxTGgH7mGQybkq6jkmjDoXYHBwvn1g3zp4+e8+Gv
+            467IY3uMw9/r8kDPQRa1O+yUeyw3bjhmDRvurfWUri5Kbd5T/XTNXkK06Cyoa3oW
+            vvHafXxiszKobb0LhldAY0e4jCNfgiUKizRtFvBB1G+DYNN2c/b9louFTJtR5XSU
+            Qv0grke3sMz0UMa6I5QC05+a2kLl010hqn0fQCQXK8IjrrYlkXkYuEb5uTWKmWMd
+            NFw5oIZrN+Z0U2a0qE+wOdg1+Hs6y24VjxeFTDbhFxglcoVYldUkvUicYxIlTHDx
+            Kr8xLoTjedBe0QIDAQABo4IGwDCCBrwwDgYDVR0PAQH/BAQDAgO4MB0GA1UdJQQW
+            MBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQUvCOGTZ6qMtrXpQrZpIeT
+            J2S95EIwHwYDVR0jBBgwFoAUZ7vSkoCZ1beEX7Hx33W/o1zFd14wggZJBgNVHREE
+            ggZAMIIGPIIic2VydmljZS1mYWJyaWstYnJva2VyLndkZi5zYXAuY29ycIcECvQE
+            AocECvQEA4cEfwAAAYcEAAAAAIcECgvxAIcECgvxAYcECgvxAocECgvxA4cECgvx
+            BIcECgvxBYcECgvxBocECgvxB4cECgvxCIcECgvxCYcECgvxCocECgvxC4cECgvx
+            DIcECgvxDYcECgvxDocECgvxD4cECgvxEIcECgvxEYcECgvxEocECgvxE4cECgvx
+            FIcECgvxFYcECgvxFocECgvxF4cECgvxGIcECgvxGYcECgvxGocECgvxG4cECgvx
+            HIcECgvxHYcECgvxHocECgvxH4cECgvxIIcECgvxIYcECgvxIocECgvxI4cECgvx
+            JIcECgvxJYcECgvxJocECgvxJ4cECgvxKIcECgvxKYcECgvxKocECgvxK4cECgvx
+            LIcECgvxLYcECgvxLocECgvxL4cECgvxMIcECgvxMYcECgvxMocECgvxM4cECgvx
+            NIcECgvxNYcECgvxNocECgvxN4cECgvxOIcECgvxOYcECgvxOocECgvxO4cECgvx
+            PIcECgvxPYcECgvxPocECgvxP4cECgvxQIcECgvxQYcECgvxQocECgvxQ4cECgvx
+            RIcECgvxRYcECgvxRocECgvxR4cECgvxSIcECgvxSYcECgvxSocECgvxS4cECgvx
+            TIcECgvxTYcECgvxTocECgvxT4cECgvxUIcECgvxUYcECgvxUocECgvxU4cECgvx
+            VIcECgvxVYcECgvxVocECgvxV4cECgvxWIcECgvxWYcECgvxWocECgvxW4cECgvx
+            XIcECgvxXYcECgvxXocECgvxX4cECgvxYIcECgvxYYcECgvxYocECgvxY4cECgvx
+            ZIcECgvxZYcECgvxZocECgvxZ4cECgvxaIcECgvxaYcECgvxaocECgvxa4cECgvx
+            bIcECgvxbYcECgvxbocECgvxb4cECgvxcIcECgvxcYcECgvxcocECgvxc4cECgvx
+            dIcECgvxdYcECgvxdocECgvxd4cECgvxeIcECgvxeYcECgvxeocECgvxe4cECgvx
+            fIcECgvxfYcECgvxfocECgvxf4cECgvxgIcECgvxgYcECgvxgocECgvxg4cECgvx
+            hIcECgvxhYcECgvxhocECgvxh4cECgvxiIcECgvxiYcECgvxiocECgvxi4cECgvx
+            jIcECgvxjYcECgvxjocECgvxj4cECgvxkIcECgvxkYcECgvxkocECgvxk4cECgvx
+            lIcECgvxlYcECgvxlocECgvxl4cECgvxmIcECgvxmYcECgvxmocECgvxm4cECgvx
+            nIcECgvxnYcECgvxnocECgvxn4cECgvxoIcECgvxoYcECgvxoocECgvxo4cECgvx
+            pIcECgvxpYcECgvxpocECgvxp4cECgvxqIcECgvxqYcECgvxqocECgvxq4cECgvx
+            rIcECgvxrYcECgvxrocECgvxr4cECgvxsIcECgvxsYcECgvxsocECgvxs4cECgvx
+            tIcECgvxtYcECgvxtocECgvxt4cECgvxuIcECgvxuYcECgvxuocECgvxu4cECgvx
+            vIcECgvxvYcECgvxvocECgvxv4cECgvxwIcECgvxwYcECgvxwocECgvxw4cECgvx
+            xIcECgvxxYcECgvxxocECgvxx4cECgvxyIcECgvxyYcECgvxyocECgvxy4cECgvx
+            zIcECgvxzYcECgvxzocECgvxz4cECgvx0IcECgvx0YcECgvx0ocECgvx04cECgvx
+            1IcECgvx1YcECgvx1ocECgvx14cECgvx2IcECgvx2YcECgvx2ocECgvx24cECgvx
+            3IcECgvx3YcECgvx3ocECgvx34cECgvx4IcECgvx4YcECgvx4ocECgvx44cECgvx
+            5IcECgvx5YcECgvx5ocECgvx54cECgvx6IcECgvx6YcECgvx6ocECgvx64cECgvx
+            7IcECgvx7YcECgvx7ocECgvx74cECgvx8IcECgvx8YcECgvx8ocECgvx84cECgvx
+            9IcECgvx9YcECgvx9ocECgvx94cECgvx+IcECgvx+YcECgvx+ocECgvx+4cECgvx
+            /IcECgvx/YcECgvx/ocECgvx/zANBgkqhkiG9w0BAQsFAAOCAgEAsZmLIZNmHRTE
+            Fly87opktrEP+WCilJjqIYnqh8DS561fXsc+WtAQaPsOqKFZbqZBd5s7bzm4zfjN
+            sYY/fKlfLjNFtVsfF5/yGp2xHA172b55Oi8kgzJfl2w1Pf3IpWmoMYMwlv6Piua/
+            ebsbqRombLkv7rM9ug+QGDdfvakYH9sleCXDm5i/kqUPIVTbaMakFSrnH8FJNBQH
+            4MBcvhOgzhN4IF9kHGreSK7U5XSIEJ1dPcc0RkbXegrb/mt7AvALzRAKv1zlfjB1
+            YdOAuuWHaIWjfn3k692zRSvCKE1ISqHGuYJtVjvSm7Gq6Fhc8pg7pyr8xKyHm1Ln
+            QPA8UszEOwwQQeEQFO/05Mc+YFZB2LxHXViVnGnoWIQcv74OC8qRdmeGhua5oJgH
+            p3lc8nr+5kAiYrOiFmJC3bXJOIMMoifVbQkdgtLE+bEBy6c5QZDwPRznL7mlrI//
+            S1yOIuJDKnRkEmlek1QZ02Oi236V819m/DsXmlmpO7rR5FL/MNQ0oCRtexDILIfi
+            MeOhh4dhd9CxDT3KWHFHTSfJLVvsWoTs4BOHOJhYtF/smPNJKZHKwZRrL/bUYQu3
+            XbNoc2cnSIFm0MusKS3ZZBrNl082gnbSuxKBzgm7UeVxvzZwqSaYPjHr7W2JXxOn
+            PJ3g1NdD1HJQwyQUZBufHrYr5I6DnQs=
+            -----END CERTIFICATE-----
+          key: |
+            -----BEGIN RSA PRIVATE KEY-----
+            MIIEpQIBAAKCAQEA2/o2JY/IsiTW4KrMtppbNwgj2u9QHMeIqxTGgH7mGQybkq6j
+            kmjDoXYHBwvn1g3zp4+e8+Gv467IY3uMw9/r8kDPQRa1O+yUeyw3bjhmDRvurfWU
+            ri5Kbd5T/XTNXkK06Cyoa3oWvvHafXxiszKobb0LhldAY0e4jCNfgiUKizRtFvBB
+            1G+DYNN2c/b9louFTJtR5XSUQv0grke3sMz0UMa6I5QC05+a2kLl010hqn0fQCQX
+            K8IjrrYlkXkYuEb5uTWKmWMdNFw5oIZrN+Z0U2a0qE+wOdg1+Hs6y24VjxeFTDbh
+            FxglcoVYldUkvUicYxIlTHDxKr8xLoTjedBe0QIDAQABAoIBAQDaRbNWoA5PnbhN
+            Y40Pn6fkukIBqrZ+aAsXXtz8gW5F6rmv2XPbAfMkEh41Ar4/KsbbO+pIKmfB7xtN
+            gzmQ3m6biW1dM3APjtdiROSXjITOeynhGS43ix01WYdTloN1BZHGUxGm25UYUJkx
+            LKwvDZQMl6mI2qi8Gl1nSG4rkB+fMUUWDOHYvD8WmtfTlTUpci80bAIxrOwPvC2b
+            lcN8TgQkgizFFlcjMJsyv4z5kvWl8oYGR/MhFWnf3l4nuRmgeRry8aXFIGIWIPzq
+            yDQDtcQUw7r0iacNGhmXGXpB76h85aExBIRARAJJ9WTR7dJuxPP7q6eeAl9YV1NJ
+            wSlA+SkxAoGBAN4JKu4jwcMeIkNcRkmwKFwl1xNSnGE/5gVJaXs9mb6nwtdPFkir
+            IA9F725zFPab7kai5VtZL4jerbCaQkYS/qpw0yENqxu932HL2wIHJ2rkyhkPRarb
+            MnPzYwq3TtPbmFVkAtILePUZikXeW4Hnf5yeAp9ERH/pt1gr3Zjr34gdAoGBAP2g
+            b9N2G6kb/Z8C/q6XOAYRrkVwwpR1bEzF5gfQ5ELboM5Tn2WdiJYYzRSBWLecAtFR
+            /rqnOTXPuJjIDivJP88GUvxHi9bHcRiFA4jrrHXZzRTg9tvUoEJwOUlFmlYINNWQ
+            ou1ZGmDD5yV5TNvK/z90kHcb9KFdmcJatDkoWjtFAoGAWEJmqUDXbbsVvZb5baMz
+            d+Wmx8yH0vR2d9WFs3J6IdpHzhRm9D3pwYh4M3xVce3r2nI4H4alKY/ylQfMnlRA
+            nPm6QyJOyPlByXsiNH0pgwks+Kckd1UoigTOct0I3ZglxpO5t0rOKwea+kj4MPwX
+            subwfeTCIeKCee796CKiuVUCgYEAtIfTsWhbjgb/g4UFNc8rsJ47NvBpgHUIrqka
+            8KtPHwvoLZU2W4VDqNtkdtkPBjrFgqtjrwbC4TvHQPD9rUsl4T22Kh7fOfVi2jor
+            5vUiIAz1PoxXCukRXdk13aLulZhnyzCV2G5ZKVGooXLzM2wOPePBxRagDZBrlv0r
+            VZgUiiUCgYEAvsCLt4Fl8rQJol6fQ5ynK7F3470oXeJNW24sHupNI2EW4lwAvETG
+            fdaZoQv+nlUbzF/DSanW8LiaW/SBzVWESl6VcKKl6s7sjz2uf98MGXqp191W7QyY
+            MwZsqqY3IKODaSzTTGmqaGtsIPMKrfIzokZZLqm3cFknaiS3+IIge4o=
+            -----END RSA PRIVATE KEY-----
+    release: service-fabrik
+  - name: service-fabrik-deployment-hooks
+    properties:
+      actions:
+        Blueprint_PreCreate: ZWNobyAie1wicHJlY3JlYXRlX2lucHV0XCI6IiAiJEAiICJ9Ig==
+        ReserveIps.js: J3VzZSBzdHJpY3QnOwoKY29uc3QgUHJvbWlzZSA9IHJlcXVpcmUoJ2JsdWViaXJkJyk7CmNvbnN0IEJhc2VBY3Rpb24gPSByZXF1aXJlKCcuL0Jhc2VBY3Rpb24nKTsKCmNsYXNzIFJlc2VydmVJcHMgZXh0ZW5kcyBCYXNlQWN0aW9uIHsKICBzdGF0aWMgZXhlY3V0ZVByZUNyZWF0ZShjb250ZXh0KSB7CiAgICByZXR1cm4gUHJvbWlzZS50cnkoKCkgPT4gewogICAgICByZXR1cm4gWycxMC4yNDQuMTEuMjQ3J107CiAgICB9KTsKICB9Cn0KCm1vZHVsZS5leHBvcnRzID0gUmVzZXJ2ZUlwczs=
+      hook:
+        ip: default
+        ssl:
+          cert: |
+            -----BEGIN CERTIFICATE-----
+            MIIKkzCCCHugAwIBAgIQcWp6STiYZxhMo/7D6w9G/jANBgkqhkiG9w0BAQsFADAa
+            MRgwFgYDVQQDEw9TZXJ2aWNlRmFicmlrQ0EwHhcNMTgwOTEwMTcwMDI1WhcNMjAw
+            MzEwMTcwMDE4WjAtMSswKQYDVQQDEyJzZXJ2aWNlLWZhYnJpay1icm9rZXIud2Rm
+            LnNhcC5jb3JwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2/o2JY/I
+            siTW4KrMtppbNwgj2u9QHMeIqxTGgH7mGQybkq6jkmjDoXYHBwvn1g3zp4+e8+Gv
+            467IY3uMw9/r8kDPQRa1O+yUeyw3bjhmDRvurfWUri5Kbd5T/XTNXkK06Cyoa3oW
+            vvHafXxiszKobb0LhldAY0e4jCNfgiUKizRtFvBB1G+DYNN2c/b9louFTJtR5XSU
+            Qv0grke3sMz0UMa6I5QC05+a2kLl010hqn0fQCQXK8IjrrYlkXkYuEb5uTWKmWMd
+            NFw5oIZrN+Z0U2a0qE+wOdg1+Hs6y24VjxeFTDbhFxglcoVYldUkvUicYxIlTHDx
+            Kr8xLoTjedBe0QIDAQABo4IGwDCCBrwwDgYDVR0PAQH/BAQDAgO4MB0GA1UdJQQW
+            MBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQUvCOGTZ6qMtrXpQrZpIeT
+            J2S95EIwHwYDVR0jBBgwFoAUZ7vSkoCZ1beEX7Hx33W/o1zFd14wggZJBgNVHREE
+            ggZAMIIGPIIic2VydmljZS1mYWJyaWstYnJva2VyLndkZi5zYXAuY29ycIcECvQE
+            AocECvQEA4cEfwAAAYcEAAAAAIcECgvxAIcECgvxAYcECgvxAocECgvxA4cECgvx
+            BIcECgvxBYcECgvxBocECgvxB4cECgvxCIcECgvxCYcECgvxCocECgvxC4cECgvx
+            DIcECgvxDYcECgvxDocECgvxD4cECgvxEIcECgvxEYcECgvxEocECgvxE4cECgvx
+            FIcECgvxFYcECgvxFocECgvxF4cECgvxGIcECgvxGYcECgvxGocECgvxG4cECgvx
+            HIcECgvxHYcECgvxHocECgvxH4cECgvxIIcECgvxIYcECgvxIocECgvxI4cECgvx
+            JIcECgvxJYcECgvxJocECgvxJ4cECgvxKIcECgvxKYcECgvxKocECgvxK4cECgvx
+            LIcECgvxLYcECgvxLocECgvxL4cECgvxMIcECgvxMYcECgvxMocECgvxM4cECgvx
+            NIcECgvxNYcECgvxNocECgvxN4cECgvxOIcECgvxOYcECgvxOocECgvxO4cECgvx
+            PIcECgvxPYcECgvxPocECgvxP4cECgvxQIcECgvxQYcECgvxQocECgvxQ4cECgvx
+            RIcECgvxRYcECgvxRocECgvxR4cECgvxSIcECgvxSYcECgvxSocECgvxS4cECgvx
+            TIcECgvxTYcECgvxTocECgvxT4cECgvxUIcECgvxUYcECgvxUocECgvxU4cECgvx
+            VIcECgvxVYcECgvxVocECgvxV4cECgvxWIcECgvxWYcECgvxWocECgvxW4cECgvx
+            XIcECgvxXYcECgvxXocECgvxX4cECgvxYIcECgvxYYcECgvxYocECgvxY4cECgvx
+            ZIcECgvxZYcECgvxZocECgvxZ4cECgvxaIcECgvxaYcECgvxaocECgvxa4cECgvx
+            bIcECgvxbYcECgvxbocECgvxb4cECgvxcIcECgvxcYcECgvxcocECgvxc4cECgvx
+            dIcECgvxdYcECgvxdocECgvxd4cECgvxeIcECgvxeYcECgvxeocECgvxe4cECgvx
+            fIcECgvxfYcECgvxfocECgvxf4cECgvxgIcECgvxgYcECgvxgocECgvxg4cECgvx
+            hIcECgvxhYcECgvxhocECgvxh4cECgvxiIcECgvxiYcECgvxiocECgvxi4cECgvx
+            jIcECgvxjYcECgvxjocECgvxj4cECgvxkIcECgvxkYcECgvxkocECgvxk4cECgvx
+            lIcECgvxlYcECgvxlocECgvxl4cECgvxmIcECgvxmYcECgvxmocECgvxm4cECgvx
+            nIcECgvxnYcECgvxnocECgvxn4cECgvxoIcECgvxoYcECgvxoocECgvxo4cECgvx
+            pIcECgvxpYcECgvxpocECgvxp4cECgvxqIcECgvxqYcECgvxqocECgvxq4cECgvx
+            rIcECgvxrYcECgvxrocECgvxr4cECgvxsIcECgvxsYcECgvxsocECgvxs4cECgvx
+            tIcECgvxtYcECgvxtocECgvxt4cECgvxuIcECgvxuYcECgvxuocECgvxu4cECgvx
+            vIcECgvxvYcECgvxvocECgvxv4cECgvxwIcECgvxwYcECgvxwocECgvxw4cECgvx
+            xIcECgvxxYcECgvxxocECgvxx4cECgvxyIcECgvxyYcECgvxyocECgvxy4cECgvx
+            zIcECgvxzYcECgvxzocECgvxz4cECgvx0IcECgvx0YcECgvx0ocECgvx04cECgvx
+            1IcECgvx1YcECgvx1ocECgvx14cECgvx2IcECgvx2YcECgvx2ocECgvx24cECgvx
+            3IcECgvx3YcECgvx3ocECgvx34cECgvx4IcECgvx4YcECgvx4ocECgvx44cECgvx
+            5IcECgvx5YcECgvx5ocECgvx54cECgvx6IcECgvx6YcECgvx6ocECgvx64cECgvx
+            7IcECgvx7YcECgvx7ocECgvx74cECgvx8IcECgvx8YcECgvx8ocECgvx84cECgvx
+            9IcECgvx9YcECgvx9ocECgvx94cECgvx+IcECgvx+YcECgvx+ocECgvx+4cECgvx
+            /IcECgvx/YcECgvx/ocECgvx/zANBgkqhkiG9w0BAQsFAAOCAgEAsZmLIZNmHRTE
+            Fly87opktrEP+WCilJjqIYnqh8DS561fXsc+WtAQaPsOqKFZbqZBd5s7bzm4zfjN
+            sYY/fKlfLjNFtVsfF5/yGp2xHA172b55Oi8kgzJfl2w1Pf3IpWmoMYMwlv6Piua/
+            ebsbqRombLkv7rM9ug+QGDdfvakYH9sleCXDm5i/kqUPIVTbaMakFSrnH8FJNBQH
+            4MBcvhOgzhN4IF9kHGreSK7U5XSIEJ1dPcc0RkbXegrb/mt7AvALzRAKv1zlfjB1
+            YdOAuuWHaIWjfn3k692zRSvCKE1ISqHGuYJtVjvSm7Gq6Fhc8pg7pyr8xKyHm1Ln
+            QPA8UszEOwwQQeEQFO/05Mc+YFZB2LxHXViVnGnoWIQcv74OC8qRdmeGhua5oJgH
+            p3lc8nr+5kAiYrOiFmJC3bXJOIMMoifVbQkdgtLE+bEBy6c5QZDwPRznL7mlrI//
+            S1yOIuJDKnRkEmlek1QZ02Oi236V819m/DsXmlmpO7rR5FL/MNQ0oCRtexDILIfi
+            MeOhh4dhd9CxDT3KWHFHTSfJLVvsWoTs4BOHOJhYtF/smPNJKZHKwZRrL/bUYQu3
+            XbNoc2cnSIFm0MusKS3ZZBrNl082gnbSuxKBzgm7UeVxvzZwqSaYPjHr7W2JXxOn
+            PJ3g1NdD1HJQwyQUZBufHrYr5I6DnQs=
+            -----END CERTIFICATE-----
+          key: |
+            -----BEGIN RSA PRIVATE KEY-----
+            MIIEpQIBAAKCAQEA2/o2JY/IsiTW4KrMtppbNwgj2u9QHMeIqxTGgH7mGQybkq6j
+            kmjDoXYHBwvn1g3zp4+e8+Gv467IY3uMw9/r8kDPQRa1O+yUeyw3bjhmDRvurfWU
+            ri5Kbd5T/XTNXkK06Cyoa3oWvvHafXxiszKobb0LhldAY0e4jCNfgiUKizRtFvBB
+            1G+DYNN2c/b9louFTJtR5XSUQv0grke3sMz0UMa6I5QC05+a2kLl010hqn0fQCQX
+            K8IjrrYlkXkYuEb5uTWKmWMdNFw5oIZrN+Z0U2a0qE+wOdg1+Hs6y24VjxeFTDbh
+            FxglcoVYldUkvUicYxIlTHDxKr8xLoTjedBe0QIDAQABAoIBAQDaRbNWoA5PnbhN
+            Y40Pn6fkukIBqrZ+aAsXXtz8gW5F6rmv2XPbAfMkEh41Ar4/KsbbO+pIKmfB7xtN
+            gzmQ3m6biW1dM3APjtdiROSXjITOeynhGS43ix01WYdTloN1BZHGUxGm25UYUJkx
+            LKwvDZQMl6mI2qi8Gl1nSG4rkB+fMUUWDOHYvD8WmtfTlTUpci80bAIxrOwPvC2b
+            lcN8TgQkgizFFlcjMJsyv4z5kvWl8oYGR/MhFWnf3l4nuRmgeRry8aXFIGIWIPzq
+            yDQDtcQUw7r0iacNGhmXGXpB76h85aExBIRARAJJ9WTR7dJuxPP7q6eeAl9YV1NJ
+            wSlA+SkxAoGBAN4JKu4jwcMeIkNcRkmwKFwl1xNSnGE/5gVJaXs9mb6nwtdPFkir
+            IA9F725zFPab7kai5VtZL4jerbCaQkYS/qpw0yENqxu932HL2wIHJ2rkyhkPRarb
+            MnPzYwq3TtPbmFVkAtILePUZikXeW4Hnf5yeAp9ERH/pt1gr3Zjr34gdAoGBAP2g
+            b9N2G6kb/Z8C/q6XOAYRrkVwwpR1bEzF5gfQ5ELboM5Tn2WdiJYYzRSBWLecAtFR
+            /rqnOTXPuJjIDivJP88GUvxHi9bHcRiFA4jrrHXZzRTg9tvUoEJwOUlFmlYINNWQ
+            ou1ZGmDD5yV5TNvK/z90kHcb9KFdmcJatDkoWjtFAoGAWEJmqUDXbbsVvZb5baMz
+            d+Wmx8yH0vR2d9WFs3J6IdpHzhRm9D3pwYh4M3xVce3r2nI4H4alKY/ylQfMnlRA
+            nPm6QyJOyPlByXsiNH0pgwks+Kckd1UoigTOct0I3ZglxpO5t0rOKwea+kj4MPwX
+            subwfeTCIeKCee796CKiuVUCgYEAtIfTsWhbjgb/g4UFNc8rsJ47NvBpgHUIrqka
+            8KtPHwvoLZU2W4VDqNtkdtkPBjrFgqtjrwbC4TvHQPD9rUsl4T22Kh7fOfVi2jor
+            5vUiIAz1PoxXCukRXdk13aLulZhnyzCV2G5ZKVGooXLzM2wOPePBxRagDZBrlv0r
+            VZgUiiUCgYEAvsCLt4Fl8rQJol6fQ5ynK7F3470oXeJNW24sHupNI2EW4lwAvETG
+            fdaZoQv+nlUbzF/DSanW8LiaW/SBzVWESl6VcKKl6s7sjz2uf98MGXqp191W7QyY
+            MwZsqqY3IKODaSzTTGmqaGtsIPMKrfIzokZZLqm3cFknaiS3+IIge4o=
+            -----END RSA PRIVATE KEY-----
+    release: service-fabrik
+  - name: swarm_manager
+    properties:
+      common:
+        tls_cacert: |
+          -----BEGIN CERTIFICATE-----
+          MIIE9DCCAtygAwIBAgIBATANBgkqhkiG9w0BAQsFADAaMRgwFgYDVQQDEw9TZXJ2
+          aWNlRmFicmlrQ0EwHhcNMTgwOTEwMTcwMDE5WhcNMjAwMzEwMTcwMDE5WjAaMRgw
+          FgYDVQQDEw9TZXJ2aWNlRmFicmlrQ0EwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAw
+          ggIKAoICAQDF6KZKl2uJpmxrGTVhBeVfyyNvU0JBg+FZSJQ7VzLbqZCDCJ6jYJeC
+          5qr4RdXy0Ovl+20INh9O5nfRJ517s3+FpkQ7TOF5Qkwy2JfzSeGy2QH6sasKyV0u
+          cpeIA3Za6AVAG/tyC5X/BPX7wID/CQy2WAqdLch4SzPCnLmCOw5+2+GoOIehJT1L
+          YL5NlOi78Ef3qbiTXGl8wLVjkurpbzLPNf192GcYJpupdpc5Id5oBJHGy5B2Ypsi
+          eCt3olouXWY2Qcuf9yoY2iDFsrx0BQk0Eb7t8lLcCmA+6mCEkVwypmlsFVGaIojA
+          +zbdEv/g8merwiAp9Y1LurSn5mk6uaGh+JvuxPrCjK9lIObYDtc7Xn7yYGlonsAV
+          JBDqHuKBSic/0H+y9lTEvSvaQyVOquES+/m8+8+NzykZLeL330pepbCysxxM97nB
+          V9iCZNNjSGGnN3RxVLyBzlQR8b81CcIRvDmZHYLvz2vIEAKq7Mo5kwVwGzwb926+
+          KkhwT1NGZCvN4TLcmiX/LrUvz1lKyB6NFGYxjAFMIfvqs6O0qOhcExSEcO5gvKx+
+          3LJIPFULVFnKxstPQCH7eU180UJSszkxOoF1XkTkWVvYZQGx5H1xN1dLnwhxQleQ
+          4nn66vdPZCYNXibButnonOAfzF8lHB8fZyl9aSsGcK4AAqbVZr97twIDAQABo0Uw
+          QzAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQU
+          Z7vSkoCZ1beEX7Hx33W/o1zFd14wDQYJKoZIhvcNAQELBQADggIBABSN9GPpE9z4
+          920uJ0ALZXMbPzONjjiaxXMyDv33+o1mt2CkNNF/iN43nxV2ml2ezxgYVfdB2ny7
+          rMHuLPnzlu/1aSPnvJFl/LVDZhd4WcWO5iWX61v13c1jUQOLUGOsxDteuJpNAIH5
+          cgyZV0YBX/SntsY3C0f1IDyvRXwLHJbzEgOOMdM3DpiiPMbXUhNECiwH6MJKKmLZ
+          sn13JXPR2IgucfZyGAARZFyBCyDBOFMOLDQqBoAbIa+3hcJlNj8qF1Y70PjH7y7u
+          2w7XbxBuedCcT3bQ4TaBJl4FLevNQTQANpyCIPBCoxK+rmJbPz7fvPi+VNW0/Y6p
+          A62jx2Roq1SemFi4ClV9s+JR3/C2o3rcGe57fhqV+4h0SNBFGAY7qFi0dlAqkIw+
+          cn4pUMEcYsnipKTNtQn4YjmjFbJF9J1gzEXFZDZ+n8ygJD6Y/NA098G1cWEANC/Y
+          zjrnbNHrvxCNdJBRi+tC86QsQrI1KQivv7DYeMvbH/RoI8hKlGBnmR0eBRpdlRoS
+          gqymFYKei5lDjTww1dKRoLw1l99iDT5PxX6VarPvff56873Ax0urW5MbPhXcBeSL
+          vK6iDbwPug4tIerZThoFMZR/aAkUzKS2IBw02TGZ9JWL+bESZwnQwgG6AFQ4zYg0
+          cA1BfCPelG8thEMZlIPnamPGdeE0wGl1
+          -----END CERTIFICATE-----
+      swarm:
+        discovery: nodes://10.244.4.3:4243
+        tls: true
+        tls_cert: |
+          -----BEGIN CERTIFICATE-----
+          MIIKkzCCCHugAwIBAgIQcWp6STiYZxhMo/7D6w9G/jANBgkqhkiG9w0BAQsFADAa
+          MRgwFgYDVQQDEw9TZXJ2aWNlRmFicmlrQ0EwHhcNMTgwOTEwMTcwMDI1WhcNMjAw
+          MzEwMTcwMDE4WjAtMSswKQYDVQQDEyJzZXJ2aWNlLWZhYnJpay1icm9rZXIud2Rm
+          LnNhcC5jb3JwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2/o2JY/I
+          siTW4KrMtppbNwgj2u9QHMeIqxTGgH7mGQybkq6jkmjDoXYHBwvn1g3zp4+e8+Gv
+          467IY3uMw9/r8kDPQRa1O+yUeyw3bjhmDRvurfWUri5Kbd5T/XTNXkK06Cyoa3oW
+          vvHafXxiszKobb0LhldAY0e4jCNfgiUKizRtFvBB1G+DYNN2c/b9louFTJtR5XSU
+          Qv0grke3sMz0UMa6I5QC05+a2kLl010hqn0fQCQXK8IjrrYlkXkYuEb5uTWKmWMd
+          NFw5oIZrN+Z0U2a0qE+wOdg1+Hs6y24VjxeFTDbhFxglcoVYldUkvUicYxIlTHDx
+          Kr8xLoTjedBe0QIDAQABo4IGwDCCBrwwDgYDVR0PAQH/BAQDAgO4MB0GA1UdJQQW
+          MBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQUvCOGTZ6qMtrXpQrZpIeT
+          J2S95EIwHwYDVR0jBBgwFoAUZ7vSkoCZ1beEX7Hx33W/o1zFd14wggZJBgNVHREE
+          ggZAMIIGPIIic2VydmljZS1mYWJyaWstYnJva2VyLndkZi5zYXAuY29ycIcECvQE
+          AocECvQEA4cEfwAAAYcEAAAAAIcECgvxAIcECgvxAYcECgvxAocECgvxA4cECgvx
+          BIcECgvxBYcECgvxBocECgvxB4cECgvxCIcECgvxCYcECgvxCocECgvxC4cECgvx
+          DIcECgvxDYcECgvxDocECgvxD4cECgvxEIcECgvxEYcECgvxEocECgvxE4cECgvx
+          FIcECgvxFYcECgvxFocECgvxF4cECgvxGIcECgvxGYcECgvxGocECgvxG4cECgvx
+          HIcECgvxHYcECgvxHocECgvxH4cECgvxIIcECgvxIYcECgvxIocECgvxI4cECgvx
+          JIcECgvxJYcECgvxJocECgvxJ4cECgvxKIcECgvxKYcECgvxKocECgvxK4cECgvx
+          LIcECgvxLYcECgvxLocECgvxL4cECgvxMIcECgvxMYcECgvxMocECgvxM4cECgvx
+          NIcECgvxNYcECgvxNocECgvxN4cECgvxOIcECgvxOYcECgvxOocECgvxO4cECgvx
+          PIcECgvxPYcECgvxPocECgvxP4cECgvxQIcECgvxQYcECgvxQocECgvxQ4cECgvx
+          RIcECgvxRYcECgvxRocECgvxR4cECgvxSIcECgvxSYcECgvxSocECgvxS4cECgvx
+          TIcECgvxTYcECgvxTocECgvxT4cECgvxUIcECgvxUYcECgvxUocECgvxU4cECgvx
+          VIcECgvxVYcECgvxVocECgvxV4cECgvxWIcECgvxWYcECgvxWocECgvxW4cECgvx
+          XIcECgvxXYcECgvxXocECgvxX4cECgvxYIcECgvxYYcECgvxYocECgvxY4cECgvx
+          ZIcECgvxZYcECgvxZocECgvxZ4cECgvxaIcECgvxaYcECgvxaocECgvxa4cECgvx
+          bIcECgvxbYcECgvxbocECgvxb4cECgvxcIcECgvxcYcECgvxcocECgvxc4cECgvx
+          dIcECgvxdYcECgvxdocECgvxd4cECgvxeIcECgvxeYcECgvxeocECgvxe4cECgvx
+          fIcECgvxfYcECgvxfocECgvxf4cECgvxgIcECgvxgYcECgvxgocECgvxg4cECgvx
+          hIcECgvxhYcECgvxhocECgvxh4cECgvxiIcECgvxiYcECgvxiocECgvxi4cECgvx
+          jIcECgvxjYcECgvxjocECgvxj4cECgvxkIcECgvxkYcECgvxkocECgvxk4cECgvx
+          lIcECgvxlYcECgvxlocECgvxl4cECgvxmIcECgvxmYcECgvxmocECgvxm4cECgvx
+          nIcECgvxnYcECgvxnocECgvxn4cECgvxoIcECgvxoYcECgvxoocECgvxo4cECgvx
+          pIcECgvxpYcECgvxpocECgvxp4cECgvxqIcECgvxqYcECgvxqocECgvxq4cECgvx
+          rIcECgvxrYcECgvxrocECgvxr4cECgvxsIcECgvxsYcECgvxsocECgvxs4cECgvx
+          tIcECgvxtYcECgvxtocECgvxt4cECgvxuIcECgvxuYcECgvxuocECgvxu4cECgvx
+          vIcECgvxvYcECgvxvocECgvxv4cECgvxwIcECgvxwYcECgvxwocECgvxw4cECgvx
+          xIcECgvxxYcECgvxxocECgvxx4cECgvxyIcECgvxyYcECgvxyocECgvxy4cECgvx
+          zIcECgvxzYcECgvxzocECgvxz4cECgvx0IcECgvx0YcECgvx0ocECgvx04cECgvx
+          1IcECgvx1YcECgvx1ocECgvx14cECgvx2IcECgvx2YcECgvx2ocECgvx24cECgvx
+          3IcECgvx3YcECgvx3ocECgvx34cECgvx4IcECgvx4YcECgvx4ocECgvx44cECgvx
+          5IcECgvx5YcECgvx5ocECgvx54cECgvx6IcECgvx6YcECgvx6ocECgvx64cECgvx
+          7IcECgvx7YcECgvx7ocECgvx74cECgvx8IcECgvx8YcECgvx8ocECgvx84cECgvx
+          9IcECgvx9YcECgvx9ocECgvx94cECgvx+IcECgvx+YcECgvx+ocECgvx+4cECgvx
+          /IcECgvx/YcECgvx/ocECgvx/zANBgkqhkiG9w0BAQsFAAOCAgEAsZmLIZNmHRTE
+          Fly87opktrEP+WCilJjqIYnqh8DS561fXsc+WtAQaPsOqKFZbqZBd5s7bzm4zfjN
+          sYY/fKlfLjNFtVsfF5/yGp2xHA172b55Oi8kgzJfl2w1Pf3IpWmoMYMwlv6Piua/
+          ebsbqRombLkv7rM9ug+QGDdfvakYH9sleCXDm5i/kqUPIVTbaMakFSrnH8FJNBQH
+          4MBcvhOgzhN4IF9kHGreSK7U5XSIEJ1dPcc0RkbXegrb/mt7AvALzRAKv1zlfjB1
+          YdOAuuWHaIWjfn3k692zRSvCKE1ISqHGuYJtVjvSm7Gq6Fhc8pg7pyr8xKyHm1Ln
+          QPA8UszEOwwQQeEQFO/05Mc+YFZB2LxHXViVnGnoWIQcv74OC8qRdmeGhua5oJgH
+          p3lc8nr+5kAiYrOiFmJC3bXJOIMMoifVbQkdgtLE+bEBy6c5QZDwPRznL7mlrI//
+          S1yOIuJDKnRkEmlek1QZ02Oi236V819m/DsXmlmpO7rR5FL/MNQ0oCRtexDILIfi
+          MeOhh4dhd9CxDT3KWHFHTSfJLVvsWoTs4BOHOJhYtF/smPNJKZHKwZRrL/bUYQu3
+          XbNoc2cnSIFm0MusKS3ZZBrNl082gnbSuxKBzgm7UeVxvzZwqSaYPjHr7W2JXxOn
+          PJ3g1NdD1HJQwyQUZBufHrYr5I6DnQs=
+          -----END CERTIFICATE-----
+        tls_key: |
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEpQIBAAKCAQEA2/o2JY/IsiTW4KrMtppbNwgj2u9QHMeIqxTGgH7mGQybkq6j
+          kmjDoXYHBwvn1g3zp4+e8+Gv467IY3uMw9/r8kDPQRa1O+yUeyw3bjhmDRvurfWU
+          ri5Kbd5T/XTNXkK06Cyoa3oWvvHafXxiszKobb0LhldAY0e4jCNfgiUKizRtFvBB
+          1G+DYNN2c/b9louFTJtR5XSUQv0grke3sMz0UMa6I5QC05+a2kLl010hqn0fQCQX
+          K8IjrrYlkXkYuEb5uTWKmWMdNFw5oIZrN+Z0U2a0qE+wOdg1+Hs6y24VjxeFTDbh
+          FxglcoVYldUkvUicYxIlTHDxKr8xLoTjedBe0QIDAQABAoIBAQDaRbNWoA5PnbhN
+          Y40Pn6fkukIBqrZ+aAsXXtz8gW5F6rmv2XPbAfMkEh41Ar4/KsbbO+pIKmfB7xtN
+          gzmQ3m6biW1dM3APjtdiROSXjITOeynhGS43ix01WYdTloN1BZHGUxGm25UYUJkx
+          LKwvDZQMl6mI2qi8Gl1nSG4rkB+fMUUWDOHYvD8WmtfTlTUpci80bAIxrOwPvC2b
+          lcN8TgQkgizFFlcjMJsyv4z5kvWl8oYGR/MhFWnf3l4nuRmgeRry8aXFIGIWIPzq
+          yDQDtcQUw7r0iacNGhmXGXpB76h85aExBIRARAJJ9WTR7dJuxPP7q6eeAl9YV1NJ
+          wSlA+SkxAoGBAN4JKu4jwcMeIkNcRkmwKFwl1xNSnGE/5gVJaXs9mb6nwtdPFkir
+          IA9F725zFPab7kai5VtZL4jerbCaQkYS/qpw0yENqxu932HL2wIHJ2rkyhkPRarb
+          MnPzYwq3TtPbmFVkAtILePUZikXeW4Hnf5yeAp9ERH/pt1gr3Zjr34gdAoGBAP2g
+          b9N2G6kb/Z8C/q6XOAYRrkVwwpR1bEzF5gfQ5ELboM5Tn2WdiJYYzRSBWLecAtFR
+          /rqnOTXPuJjIDivJP88GUvxHi9bHcRiFA4jrrHXZzRTg9tvUoEJwOUlFmlYINNWQ
+          ou1ZGmDD5yV5TNvK/z90kHcb9KFdmcJatDkoWjtFAoGAWEJmqUDXbbsVvZb5baMz
+          d+Wmx8yH0vR2d9WFs3J6IdpHzhRm9D3pwYh4M3xVce3r2nI4H4alKY/ylQfMnlRA
+          nPm6QyJOyPlByXsiNH0pgwks+Kckd1UoigTOct0I3ZglxpO5t0rOKwea+kj4MPwX
+          subwfeTCIeKCee796CKiuVUCgYEAtIfTsWhbjgb/g4UFNc8rsJ47NvBpgHUIrqka
+          8KtPHwvoLZU2W4VDqNtkdtkPBjrFgqtjrwbC4TvHQPD9rUsl4T22Kh7fOfVi2jor
+          5vUiIAz1PoxXCukRXdk13aLulZhnyzCV2G5ZKVGooXLzM2wOPePBxRagDZBrlv0r
+          VZgUiiUCgYEAvsCLt4Fl8rQJol6fQ5ynK7F3470oXeJNW24sHupNI2EW4lwAvETG
+          fdaZoQv+nlUbzF/DSanW8LiaW/SBzVWESl6VcKKl6s7sjz2uf98MGXqp191W7QyY
+          MwZsqqY3IKODaSzTTGmqaGtsIPMKrfIzokZZLqm3cFknaiS3+IIge4o=
+          -----END RSA PRIVATE KEY-----
+        tls_verify: true
+    release: service-fabrik
+  - name: route_registrar
+    properties:
+      nats:
+        machines:
+        - 10.244.0.129
+        password: OrtJ7laxvaR8IIzeckd5jNN5IojzM8
+        port: 4222
+        user: nats
+      route_registrar:
+        routes:
+        - health_check:
+            name: service-fabrik-broker-health-check
+            script_path: /var/vcap/jobs/service-fabrik-broker/bin/health_check
+            timeout: 5s
+          name: service-fabrik-broker
+          port: 9292
+          registration_interval: 20s
+          tags:
+            component: service-fabrik-broker
+            env: production
+          uris:
+          - service-fabrik-broker.bosh-lite.com
+    release: routing
+  name: broker
+  networks:
+  - name: default
+    static_ips: 10.244.4.2
+  stemcell: default
+  vm_type: minimal
+- azs:
+  - z1
+  instances: 1
+  jobs:
+  - name: docker
+    properties:
+      common:
+        tls_cacert: |
+          -----BEGIN CERTIFICATE-----
+          MIIE9DCCAtygAwIBAgIBATANBgkqhkiG9w0BAQsFADAaMRgwFgYDVQQDEw9TZXJ2
+          aWNlRmFicmlrQ0EwHhcNMTgwOTEwMTcwMDE5WhcNMjAwMzEwMTcwMDE5WjAaMRgw
+          FgYDVQQDEw9TZXJ2aWNlRmFicmlrQ0EwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAw
+          ggIKAoICAQDF6KZKl2uJpmxrGTVhBeVfyyNvU0JBg+FZSJQ7VzLbqZCDCJ6jYJeC
+          5qr4RdXy0Ovl+20INh9O5nfRJ517s3+FpkQ7TOF5Qkwy2JfzSeGy2QH6sasKyV0u
+          cpeIA3Za6AVAG/tyC5X/BPX7wID/CQy2WAqdLch4SzPCnLmCOw5+2+GoOIehJT1L
+          YL5NlOi78Ef3qbiTXGl8wLVjkurpbzLPNf192GcYJpupdpc5Id5oBJHGy5B2Ypsi
+          eCt3olouXWY2Qcuf9yoY2iDFsrx0BQk0Eb7t8lLcCmA+6mCEkVwypmlsFVGaIojA
+          +zbdEv/g8merwiAp9Y1LurSn5mk6uaGh+JvuxPrCjK9lIObYDtc7Xn7yYGlonsAV
+          JBDqHuKBSic/0H+y9lTEvSvaQyVOquES+/m8+8+NzykZLeL330pepbCysxxM97nB
+          V9iCZNNjSGGnN3RxVLyBzlQR8b81CcIRvDmZHYLvz2vIEAKq7Mo5kwVwGzwb926+
+          KkhwT1NGZCvN4TLcmiX/LrUvz1lKyB6NFGYxjAFMIfvqs6O0qOhcExSEcO5gvKx+
+          3LJIPFULVFnKxstPQCH7eU180UJSszkxOoF1XkTkWVvYZQGx5H1xN1dLnwhxQleQ
+          4nn66vdPZCYNXibButnonOAfzF8lHB8fZyl9aSsGcK4AAqbVZr97twIDAQABo0Uw
+          QzAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQU
+          Z7vSkoCZ1beEX7Hx33W/o1zFd14wDQYJKoZIhvcNAQELBQADggIBABSN9GPpE9z4
+          920uJ0ALZXMbPzONjjiaxXMyDv33+o1mt2CkNNF/iN43nxV2ml2ezxgYVfdB2ny7
+          rMHuLPnzlu/1aSPnvJFl/LVDZhd4WcWO5iWX61v13c1jUQOLUGOsxDteuJpNAIH5
+          cgyZV0YBX/SntsY3C0f1IDyvRXwLHJbzEgOOMdM3DpiiPMbXUhNECiwH6MJKKmLZ
+          sn13JXPR2IgucfZyGAARZFyBCyDBOFMOLDQqBoAbIa+3hcJlNj8qF1Y70PjH7y7u
+          2w7XbxBuedCcT3bQ4TaBJl4FLevNQTQANpyCIPBCoxK+rmJbPz7fvPi+VNW0/Y6p
+          A62jx2Roq1SemFi4ClV9s+JR3/C2o3rcGe57fhqV+4h0SNBFGAY7qFi0dlAqkIw+
+          cn4pUMEcYsnipKTNtQn4YjmjFbJF9J1gzEXFZDZ+n8ygJD6Y/NA098G1cWEANC/Y
+          zjrnbNHrvxCNdJBRi+tC86QsQrI1KQivv7DYeMvbH/RoI8hKlGBnmR0eBRpdlRoS
+          gqymFYKei5lDjTww1dKRoLw1l99iDT5PxX6VarPvff56873Ax0urW5MbPhXcBeSL
+          vK6iDbwPug4tIerZThoFMZR/aAkUzKS2IBw02TGZ9JWL+bESZwnQwgG6AFQ4zYg0
+          cA1BfCPelG8thEMZlIPnamPGdeE0wGl1
+          -----END CERTIFICATE-----
+      docker:
+        icc: true
+        tcp_address: 0.0.0.0
+        tls: true
+        tls_cert: |
+          -----BEGIN CERTIFICATE-----
+          MIIKkzCCCHugAwIBAgIQcWp6STiYZxhMo/7D6w9G/jANBgkqhkiG9w0BAQsFADAa
+          MRgwFgYDVQQDEw9TZXJ2aWNlRmFicmlrQ0EwHhcNMTgwOTEwMTcwMDI1WhcNMjAw
+          MzEwMTcwMDE4WjAtMSswKQYDVQQDEyJzZXJ2aWNlLWZhYnJpay1icm9rZXIud2Rm
+          LnNhcC5jb3JwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2/o2JY/I
+          siTW4KrMtppbNwgj2u9QHMeIqxTGgH7mGQybkq6jkmjDoXYHBwvn1g3zp4+e8+Gv
+          467IY3uMw9/r8kDPQRa1O+yUeyw3bjhmDRvurfWUri5Kbd5T/XTNXkK06Cyoa3oW
+          vvHafXxiszKobb0LhldAY0e4jCNfgiUKizRtFvBB1G+DYNN2c/b9louFTJtR5XSU
+          Qv0grke3sMz0UMa6I5QC05+a2kLl010hqn0fQCQXK8IjrrYlkXkYuEb5uTWKmWMd
+          NFw5oIZrN+Z0U2a0qE+wOdg1+Hs6y24VjxeFTDbhFxglcoVYldUkvUicYxIlTHDx
+          Kr8xLoTjedBe0QIDAQABo4IGwDCCBrwwDgYDVR0PAQH/BAQDAgO4MB0GA1UdJQQW
+          MBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQUvCOGTZ6qMtrXpQrZpIeT
+          J2S95EIwHwYDVR0jBBgwFoAUZ7vSkoCZ1beEX7Hx33W/o1zFd14wggZJBgNVHREE
+          ggZAMIIGPIIic2VydmljZS1mYWJyaWstYnJva2VyLndkZi5zYXAuY29ycIcECvQE
+          AocECvQEA4cEfwAAAYcEAAAAAIcECgvxAIcECgvxAYcECgvxAocECgvxA4cECgvx
+          BIcECgvxBYcECgvxBocECgvxB4cECgvxCIcECgvxCYcECgvxCocECgvxC4cECgvx
+          DIcECgvxDYcECgvxDocECgvxD4cECgvxEIcECgvxEYcECgvxEocECgvxE4cECgvx
+          FIcECgvxFYcECgvxFocECgvxF4cECgvxGIcECgvxGYcECgvxGocECgvxG4cECgvx
+          HIcECgvxHYcECgvxHocECgvxH4cECgvxIIcECgvxIYcECgvxIocECgvxI4cECgvx
+          JIcECgvxJYcECgvxJocECgvxJ4cECgvxKIcECgvxKYcECgvxKocECgvxK4cECgvx
+          LIcECgvxLYcECgvxLocECgvxL4cECgvxMIcECgvxMYcECgvxMocECgvxM4cECgvx
+          NIcECgvxNYcECgvxNocECgvxN4cECgvxOIcECgvxOYcECgvxOocECgvxO4cECgvx
+          PIcECgvxPYcECgvxPocECgvxP4cECgvxQIcECgvxQYcECgvxQocECgvxQ4cECgvx
+          RIcECgvxRYcECgvxRocECgvxR4cECgvxSIcECgvxSYcECgvxSocECgvxS4cECgvx
+          TIcECgvxTYcECgvxTocECgvxT4cECgvxUIcECgvxUYcECgvxUocECgvxU4cECgvx
+          VIcECgvxVYcECgvxVocECgvxV4cECgvxWIcECgvxWYcECgvxWocECgvxW4cECgvx
+          XIcECgvxXYcECgvxXocECgvxX4cECgvxYIcECgvxYYcECgvxYocECgvxY4cECgvx
+          ZIcECgvxZYcECgvxZocECgvxZ4cECgvxaIcECgvxaYcECgvxaocECgvxa4cECgvx
+          bIcECgvxbYcECgvxbocECgvxb4cECgvxcIcECgvxcYcECgvxcocECgvxc4cECgvx
+          dIcECgvxdYcECgvxdocECgvxd4cECgvxeIcECgvxeYcECgvxeocECgvxe4cECgvx
+          fIcECgvxfYcECgvxfocECgvxf4cECgvxgIcECgvxgYcECgvxgocECgvxg4cECgvx
+          hIcECgvxhYcECgvxhocECgvxh4cECgvxiIcECgvxiYcECgvxiocECgvxi4cECgvx
+          jIcECgvxjYcECgvxjocECgvxj4cECgvxkIcECgvxkYcECgvxkocECgvxk4cECgvx
+          lIcECgvxlYcECgvxlocECgvxl4cECgvxmIcECgvxmYcECgvxmocECgvxm4cECgvx
+          nIcECgvxnYcECgvxnocECgvxn4cECgvxoIcECgvxoYcECgvxoocECgvxo4cECgvx
+          pIcECgvxpYcECgvxpocECgvxp4cECgvxqIcECgvxqYcECgvxqocECgvxq4cECgvx
+          rIcECgvxrYcECgvxrocECgvxr4cECgvxsIcECgvxsYcECgvxsocECgvxs4cECgvx
+          tIcECgvxtYcECgvxtocECgvxt4cECgvxuIcECgvxuYcECgvxuocECgvxu4cECgvx
+          vIcECgvxvYcECgvxvocECgvxv4cECgvxwIcECgvxwYcECgvxwocECgvxw4cECgvx
+          xIcECgvxxYcECgvxxocECgvxx4cECgvxyIcECgvxyYcECgvxyocECgvxy4cECgvx
+          zIcECgvxzYcECgvxzocECgvxz4cECgvx0IcECgvx0YcECgvx0ocECgvx04cECgvx
+          1IcECgvx1YcECgvx1ocECgvx14cECgvx2IcECgvx2YcECgvx2ocECgvx24cECgvx
+          3IcECgvx3YcECgvx3ocECgvx34cECgvx4IcECgvx4YcECgvx4ocECgvx44cECgvx
+          5IcECgvx5YcECgvx5ocECgvx54cECgvx6IcECgvx6YcECgvx6ocECgvx64cECgvx
+          7IcECgvx7YcECgvx7ocECgvx74cECgvx8IcECgvx8YcECgvx8ocECgvx84cECgvx
+          9IcECgvx9YcECgvx9ocECgvx94cECgvx+IcECgvx+YcECgvx+ocECgvx+4cECgvx
+          /IcECgvx/YcECgvx/ocECgvx/zANBgkqhkiG9w0BAQsFAAOCAgEAsZmLIZNmHRTE
+          Fly87opktrEP+WCilJjqIYnqh8DS561fXsc+WtAQaPsOqKFZbqZBd5s7bzm4zfjN
+          sYY/fKlfLjNFtVsfF5/yGp2xHA172b55Oi8kgzJfl2w1Pf3IpWmoMYMwlv6Piua/
+          ebsbqRombLkv7rM9ug+QGDdfvakYH9sleCXDm5i/kqUPIVTbaMakFSrnH8FJNBQH
+          4MBcvhOgzhN4IF9kHGreSK7U5XSIEJ1dPcc0RkbXegrb/mt7AvALzRAKv1zlfjB1
+          YdOAuuWHaIWjfn3k692zRSvCKE1ISqHGuYJtVjvSm7Gq6Fhc8pg7pyr8xKyHm1Ln
+          QPA8UszEOwwQQeEQFO/05Mc+YFZB2LxHXViVnGnoWIQcv74OC8qRdmeGhua5oJgH
+          p3lc8nr+5kAiYrOiFmJC3bXJOIMMoifVbQkdgtLE+bEBy6c5QZDwPRznL7mlrI//
+          S1yOIuJDKnRkEmlek1QZ02Oi236V819m/DsXmlmpO7rR5FL/MNQ0oCRtexDILIfi
+          MeOhh4dhd9CxDT3KWHFHTSfJLVvsWoTs4BOHOJhYtF/smPNJKZHKwZRrL/bUYQu3
+          XbNoc2cnSIFm0MusKS3ZZBrNl082gnbSuxKBzgm7UeVxvzZwqSaYPjHr7W2JXxOn
+          PJ3g1NdD1HJQwyQUZBufHrYr5I6DnQs=
+          -----END CERTIFICATE-----
+        tls_key: |
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEpQIBAAKCAQEA2/o2JY/IsiTW4KrMtppbNwgj2u9QHMeIqxTGgH7mGQybkq6j
+          kmjDoXYHBwvn1g3zp4+e8+Gv467IY3uMw9/r8kDPQRa1O+yUeyw3bjhmDRvurfWU
+          ri5Kbd5T/XTNXkK06Cyoa3oWvvHafXxiszKobb0LhldAY0e4jCNfgiUKizRtFvBB
+          1G+DYNN2c/b9louFTJtR5XSUQv0grke3sMz0UMa6I5QC05+a2kLl010hqn0fQCQX
+          K8IjrrYlkXkYuEb5uTWKmWMdNFw5oIZrN+Z0U2a0qE+wOdg1+Hs6y24VjxeFTDbh
+          FxglcoVYldUkvUicYxIlTHDxKr8xLoTjedBe0QIDAQABAoIBAQDaRbNWoA5PnbhN
+          Y40Pn6fkukIBqrZ+aAsXXtz8gW5F6rmv2XPbAfMkEh41Ar4/KsbbO+pIKmfB7xtN
+          gzmQ3m6biW1dM3APjtdiROSXjITOeynhGS43ix01WYdTloN1BZHGUxGm25UYUJkx
+          LKwvDZQMl6mI2qi8Gl1nSG4rkB+fMUUWDOHYvD8WmtfTlTUpci80bAIxrOwPvC2b
+          lcN8TgQkgizFFlcjMJsyv4z5kvWl8oYGR/MhFWnf3l4nuRmgeRry8aXFIGIWIPzq
+          yDQDtcQUw7r0iacNGhmXGXpB76h85aExBIRARAJJ9WTR7dJuxPP7q6eeAl9YV1NJ
+          wSlA+SkxAoGBAN4JKu4jwcMeIkNcRkmwKFwl1xNSnGE/5gVJaXs9mb6nwtdPFkir
+          IA9F725zFPab7kai5VtZL4jerbCaQkYS/qpw0yENqxu932HL2wIHJ2rkyhkPRarb
+          MnPzYwq3TtPbmFVkAtILePUZikXeW4Hnf5yeAp9ERH/pt1gr3Zjr34gdAoGBAP2g
+          b9N2G6kb/Z8C/q6XOAYRrkVwwpR1bEzF5gfQ5ELboM5Tn2WdiJYYzRSBWLecAtFR
+          /rqnOTXPuJjIDivJP88GUvxHi9bHcRiFA4jrrHXZzRTg9tvUoEJwOUlFmlYINNWQ
+          ou1ZGmDD5yV5TNvK/z90kHcb9KFdmcJatDkoWjtFAoGAWEJmqUDXbbsVvZb5baMz
+          d+Wmx8yH0vR2d9WFs3J6IdpHzhRm9D3pwYh4M3xVce3r2nI4H4alKY/ylQfMnlRA
+          nPm6QyJOyPlByXsiNH0pgwks+Kckd1UoigTOct0I3ZglxpO5t0rOKwea+kj4MPwX
+          subwfeTCIeKCee796CKiuVUCgYEAtIfTsWhbjgb/g4UFNc8rsJ47NvBpgHUIrqka
+          8KtPHwvoLZU2W4VDqNtkdtkPBjrFgqtjrwbC4TvHQPD9rUsl4T22Kh7fOfVi2jor
+          5vUiIAz1PoxXCukRXdk13aLulZhnyzCV2G5ZKVGooXLzM2wOPePBxRagDZBrlv0r
+          VZgUiiUCgYEAvsCLt4Fl8rQJol6fQ5ynK7F3470oXeJNW24sHupNI2EW4lwAvETG
+          fdaZoQv+nlUbzF/DSanW8LiaW/SBzVWESl6VcKKl6s7sjz2uf98MGXqp191W7QyY
+          MwZsqqY3IKODaSzTTGmqaGtsIPMKrfIzokZZLqm3cFknaiS3+IIge4o=
+          -----END RSA PRIVATE KEY-----
+        tls_verify: true
+        ulimit:
+          nofile: 1000000
+      lvmvd:
+        disabled: true
+    release: service-fabrik
+  name: docker
+  networks:
+  - name: default
+    static_ips:
+    - 10.244.4.3
+  persistent_disk_type: 5GB
+  stemcell: default
+  vm_type: minimal
+name: service-fabrik
+releases:
+- name: routing
+  version: latest
+- name: service-fabrik
+  version: 3.70.0+dev.1
+- name: bpm
+  version: latest
+stemcells:
+- alias: default
+  os: ubuntu-trusty
+  version: latest
+update:
+  canaries: 1
+  canary_watch_time: 1000-60000
+  max_in_flight: 1
+  serial: true
+  update_watch_time: 1000-60000
