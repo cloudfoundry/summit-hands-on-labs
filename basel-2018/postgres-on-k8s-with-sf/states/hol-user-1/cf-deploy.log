@@ -2453,4 +2453,13 @@ Task 42
 
 Task 42 | 11:25:16 | Preparing deployment: Preparing deployment (00:00:30)
 Task 42 | 11:27:01 | Preparing package compilation: Finding packages to compile (00:00:00)
-Task 42 | 11:27:02 | Updating instance consul: consul/0712319f-91b1-41aa-8859-f2f7ceb1f723 (0) (canary)
+Task 42 | 11:27:02 | Updating instance consul: consul/0712319f-91b1-41aa-8859-f2f7ceb1f723 (0) (canary) (00:20:47)
+                   L Error: 'consul/0712319f-91b1-41aa-8859-f2f7ceb1f723 (0)' is not running after update. Review logs for failed jobs: consul_agent
+Task 42 | 11:47:49 | Error: 'consul/0712319f-91b1-41aa-8859-f2f7ceb1f723 (0)' is not running after update. Review logs for failed jobs: consul_agent
+
+Task 42 Started  Sat Oct  6 11:25:16 UTC 2018
+Task 42 Finished Sat Oct  6 11:47:49 UTC 2018
+Task 42 Duration 00:22:33
+Task 42 error
+
+
