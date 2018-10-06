@@ -1,0 +1,5 @@
+step: terraform init
+step: terraform apply
+step: creating jumpbox
+step: created jumpbox
+step: creating bosh director

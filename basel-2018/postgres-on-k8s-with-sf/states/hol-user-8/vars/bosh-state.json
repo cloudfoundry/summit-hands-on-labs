@@ -1,0 +1,28 @@
+{
+    "director_id": "3d8d10b7-de78-4871-6d97-8d158f6be7c9",
+    "installation_id": "1c440ac1-e760-4ef8-5517-d1e701e3caea",
+    "current_vm_cid": "vm-20d38cf2-982f-4e31-54a5-04b27fc09ef3",
+    "current_stemcell_id": "da25244a-64c4-4906-5b67-a55ef1de0a05",
+    "current_disk_id": "5e33ec46-2d26-4423-6f22-4064946b43c0",
+    "current_release_ids": [],
+    "current_manifest_sha": "",
+    "disks": [
+        {
+            "id": "5e33ec46-2d26-4423-6f22-4064946b43c0",
+            "cid": "disk-10d861d2-60cd-4b61-6cd6-7380b974e90b",
+            "size": 65536,
+            "cloud_properties": {
+                "type": "pd-standard"
+            }
+        }
+    ],
+    "stemcells": [
+        {
+            "id": "da25244a-64c4-4906-5b67-a55ef1de0a05",
+            "name": "bosh-google-kvm-ubuntu-trusty-go_agent",
+            "version": "3586.24",
+            "cid": "stemcell-15889108-3c84-4b56-6bda-0cad6daac146"
+        }
+    ],
+    "releases": []
+}
