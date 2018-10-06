@@ -1,1 +1,781 @@
+Using environment 'https://10.0.0.6:25555' as client 'admin'
 
+Using deployment 'service-fabrik'
+
++ azs:
++ - name: z1
++ - name: z2
++ - name: z3
+  
++ vm_types:
++ - name: minimal
++ - name: small
++ - name: small-highmem
++ - name: default
+  
++ vm_extensions:
++ - name: 5GB_ephemeral_disk
++ - name: 10GB_ephemeral_disk
++ - name: 50GB_ephemeral_disk
++ - name: 100GB_ephemeral_disk
++ - name: 500GB_ephemeral_disk
++ - name: 1TB_ephemeral_disk
++ - cloud_properties:
++     ports:
++     - host: 80
++     - host: 443
++     - host: 2222
++   name: ssh-proxy-and-router-lb
++ - cloud_properties:
++     ports:
++     - host: 1024-1123
++   name: cf-tcp-router-network-properties
++ - cloud_properties:
++     ports:
++     - host: 8845
++   name: credhub-lb
+  
++ compilation:
++   az: z1
++   network: default
++   reuse_compilation_vms: true
++   vm_type: minimal
++   workers: 6
+  
++ networks:
++ - name: default
++   subnets:
++   - azs:
++     - z1
++     - z2
++     - z3
++     cloud_properties:
++       name: random
++     gateway: 10.244.0.1
++     range: 10.244.0.0/20
++     reserved:
++     - 10.244.0.1
++     static:
++     - 10.244.0.2 - 10.244.14.254
+  
++ disk_types:
++ - disk_size: 1024
++   name: 1GB
++ - disk_size: 5120
++   name: 5GB
++ - disk_size: 10240
++   name: 10GB
++ - disk_size: 100240
++   name: 100GB
++ - disk_size: 1024
++   name: default
+  
++ stemcells:
++ - alias: default
++   os: ubuntu-trusty
++   version: '3586.42'
+  
++ releases:
++ - name: routing
++   version: 0.182.0
++ - name: service-fabrik
++   version: 3.70.0+dev.1
++ - name: bpm
++   version: 0.12.3
++ - name: bosh-dns
++   sha1: 3b77329a772483d6c949f1a47ba9734976bc2b31
++   url: https://bosh.io/d/github.com/cloudfoundry/bosh-dns-release?v=1.8.0
++   version: 1.8.0
+  
++ update:
++   canaries: 1
++   canary_watch_time: 1000-60000
++   max_in_flight: 1
++   serial: true
++   update_watch_time: 1000-60000
+  
++ addons:
++ - include:
++     stemcell:
++     - os: ubuntu-trusty
++     - os: ubuntu-xenial
++   jobs:
++   - name: bosh-dns
++     properties:
++       api:
++         client:
++           tls: "<redacted>"
++         server:
++           tls: "<redacted>"
++       cache:
++         enabled: "<redacted>"
++       health:
++         client:
++           tls: "<redacted>"
++         enabled: "<redacted>"
++         server:
++           tls: "<redacted>"
++     release: bosh-dns
++   name: bosh-dns
++ - include:
++     stemcell:
++     - os: windows2012R2
++     - os: windows2016
++     - os: windows1803
++   jobs:
++   - name: bosh-dns-windows
++     properties:
++       api:
++         client:
++           tls: "<redacted>"
++         server:
++           tls: "<redacted>"
++       cache:
++         enabled: "<redacted>"
++       health:
++         client:
++           tls: "<redacted>"
++         enabled: "<redacted>"
++         server:
++           tls: "<redacted>"
++     release: bosh-dns
++   name: bosh-dns-windows
+  
++ variables:
++ - name: "/dns_healthcheck_tls_ca"
++   options:
++     common_name: dns-healthcheck-tls-ca
++     is_ca: true
++   type: certificate
++ - name: "/dns_healthcheck_server_tls"
++   options:
++     ca: "/dns_healthcheck_tls_ca"
++     common_name: health.bosh-dns
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: "/dns_healthcheck_client_tls"
++   options:
++     ca: "/dns_healthcheck_tls_ca"
++     common_name: health.bosh-dns
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: "/dns_api_tls_ca"
++   options:
++     common_name: dns-api-tls-ca
++     is_ca: true
++   type: certificate
++ - name: "/dns_api_server_tls"
++   options:
++     ca: "/dns_api_tls_ca"
++     common_name: api.bosh-dns
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: "/dns_api_client_tls"
++   options:
++     ca: "/dns_api_tls_ca"
++     common_name: api.bosh-dns
++     extended_key_usage:
++     - client_auth
++   type: certificate
+  
++ instance_groups:
++ - azs:
++   - z1
++   instances: 1
++   jobs:
++   - name: service-fabrik-apiserver
++     properties:
++       admin-password: "<redacted>"
++       admin-username: "<redacted>"
++       backend_port: "<redacted>"
++       crds:
++         backup.servicefabrik.io_v1alpha1_defaultbackups.yaml: "<redacted>"
++         backup.servicefabrik.io_v1alpha1_defaultrestores.yaml: "<redacted>"
++         bind.servicefabrik.io_v1alpha1_directorbinds.yaml: "<redacted>"
++         bind.servicefabrik.io_v1alpha1_dockerbinds.yaml: "<redacted>"
++         bind.servicefabrik.io_v1alpha1_virtualhostbinds.yaml: "<redacted>"
++         deployment.servicefabrik.io_v1alpha1_directors.yaml: "<redacted>"
++         deployment.servicefabrik.io_v1alpha1_dockers.yaml: "<redacted>"
++         deployment.servicefabrik.io_v1alpha1_virtualhosts.yaml: "<redacted>"
++         lock.servicefabrik.io_v1alpha1_deploymentlocks.yaml: "<redacted>"
++       etcd:
++         ssl:
++           ca: "<redacted>"
++           crt: "<redacted>"
++           key: "<redacted>"
++         url:
++         - "<redacted>"
++         - "<redacted>"
++         - "<redacted>"
++       ip: "<redacted>"
++       port: "<redacted>"
++       tls:
++         apiserver:
++           ca: "<redacted>"
++           certificate: "<redacted>"
++           private_key: "<redacted>"
++     release: service-fabrik
++   - name: bpm
++     release: bpm
++   - name: service-fabrik-backup-manager
++     release: service-fabrik
++   - name: service-fabrik-bosh-manager
++     release: service-fabrik
++   - name: service-fabrik-docker-manager
++     release: service-fabrik
++   - name: service-fabrik-virtualhost-manager
++     release: service-fabrik
++   - name: service-fabrik-broker
++     properties:
++       backup:
++         backup_restore_status_check_every: "<redacted>"
++         backup_restore_status_poller_timeout: "<redacted>"
++         max_num_on_demand_backup: "<redacted>"
++         num_of_allowed_restores: "<redacted>"
++         provider:
++           authUrl: "<redacted>"
++           container: "<redacted>"
++           keystoneAuthVersion: "<redacted>"
++           name: "<redacted>"
++           password: "<redacted>"
++           projectDomainName: "<redacted>"
++           region: "<redacted>"
++           strictSSL: "<redacted>"
++           tenantId: "<redacted>"
++           username: "<redacted>"
++         reschedule_backup_delay_after_restore: "<redacted>"
++         restore_history_days: "<redacted>"
++         retention_period_in_days: "<redacted>"
++       cf:
++         password: "<redacted>"
++         url: "<redacted>"
++         username: "<redacted>"
++       common:
++         tls_cacert: "<redacted>"
++         tls_client_cert: "<redacted>"
++         tls_client_key: "<redacted>"
++       directors:
++       - default_task_poll_interval: "<redacted>"
++         infrastructure:
++           azs:
++           - cloud_properties:
++               name: "<redacted>"
++             name: "<redacted>"
++           - cloud_properties:
++               name: "<redacted>"
++             name: "<redacted>"
++           - cloud_properties:
++               name: "<redacted>"
++             name: "<redacted>"
++           compilation:
++             cloud_properties:
++               name: "<redacted>"
++             network: "<redacted>"
++             reuse_compilation_vms: "<redacted>"
++             workers: "<redacted>"
++           networks:
++           - name: "<redacted>"
++             subnets:
++             - az: "<redacted>"
++               cloud_properties:
++                 name: "<redacted>"
++               range: "<redacted>"
++             - az: "<redacted>"
++               cloud_properties:
++                 name: "<redacted>"
++               range: "<redacted>"
++             - az: "<redacted>"
++               cloud_properties:
++                 name: "<redacted>"
++               range: "<redacted>"
++             type: "<redacted>"
++           - name: "<redacted>"
++             type: "<redacted>"
++           segmentation:
++             capacity: "<redacted>"
++             network_name: "<redacted>"
++             offset: "<redacted>"
++             size: "<redacted>"
++           stemcell:
++             alias: "<redacted>"
++             os: "<redacted>"
++             version: "<redacted>"
++         lock_deployment_max_duration: "<redacted>"
++         name: "<redacted>"
++         password: "<redacted>"
++         primary: "<redacted>"
++         skip_ssl_validation: "<redacted>"
++         support_create: "<redacted>"
++         url: "<redacted>"
++         username: "<redacted>"
++       docker:
++         allocate_docker_host_ports: "<redacted>"
++         url: "<redacted>"
++       external:
++         api_requires_admin_scope: "<redacted>"
++         cookie_secret: "<redacted>"
++         host: "<redacted>"
++         log_event: "<redacted>"
++         port: "<redacted>"
++         trust_proxy: "<redacted>"
++       internal:
++         ip: "<redacted>"
++         log_event: "<redacted>"
++         port: "<redacted>"
++         ssl:
++           cert: "<redacted>"
++           key: "<redacted>"
++       log_level: "<redacted>"
++       mongodb:
++         agent:
++           auth:
++             password: "<redacted>"
++             username: "<redacted>"
++           provider:
++             container: "<redacted>"
++           supported_features:
++           - "<redacted>"
++           - "<redacted>"
++           - "<redacted>"
++           - "<redacted>"
++           - "<redacted>"
++           version: "<redacted>"
++         backup:
++           backup_timeout_time: "<redacted>"
++           schedule_interval: "<redacted>"
++           status_check_every: "<redacted>"
++         deployment_name: "<redacted>"
++         provision:
++           network_index: "<redacted>"
++         record_max_fetch_count: "<redacted>"
++         retry_connect:
++           max_attempt: "<redacted>"
++           min_delay: "<redacted>"
++       name: "<redacted>"
++       nats:
++         machines:
++         - "<redacted>"
++         password: "<redacted>"
++         port: "<redacted>"
++         user: "<redacted>"
++       password: "<redacted>"
++       quota:
++         oauthDomain: "<redacted>"
++         password: "<redacted>"
++         serviceDomain: "<redacted>"
++         username: "<redacted>"
++         whitelist: "<redacted>"
++       riemann:
++         host: "<redacted>"
++         metrics: "<redacted>"
++         port: "<redacted>"
++         prefix: "<redacted>"
++       route_registrar:
++         name: "<redacted>"
++         port: "<redacted>"
++         registration_interval: "<redacted>"
++         routes:
++         - health_check:
++             name: "<redacted>"
++             script_path: "<redacted>"
++             timeout: "<redacted>"
++         tags:
++           component: "<redacted>"
++           env: "<redacted>"
++         uris:
++         - "<redacted>"
++       services:
++       - bindable: "<redacted>"
++         dashboard_client:
++           id: "<redacted>"
++           redirect_uri: "<redacted>"
++           secret: "<redacted>"
++         description: "<redacted>"
++         id: "<redacted>"
++         metadata:
++           displayName: "<redacted>"
++           documentationUrl: "<redacted>"
++           longDescription: "<redacted>"
++           providerDisplayName: "<redacted>"
++           supportUrl: "<redacted>"
++         name: "<redacted>"
++         plan_updateable: "<redacted>"
++         plans:
++         - credentials:
++             password:
++               key: "<redacted>"
++           description: "<redacted>"
++           free: "<redacted>"
++           id: "<redacted>"
++           manager:
++             name: "<redacted>"
++             settings:
++               environment:
++               - "<redacted>"
++               image: "<redacted>"
++               memory: "<redacted>"
++               persistent_volumes:
++               - name: "<redacted>"
++                 path: "<redacted>"
++                 size: "<redacted>"
++               tag: "<redacted>"
++           metadata:
++             bullets:
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             costs:
++             - amount:
++                 usd: "<redacted>"
++               unit: "<redacted>"
++           name: "<redacted>"
++         tags:
++         - "<redacted>"
++         - "<redacted>"
++       - actions: "<redacted>"
++         bindable: "<redacted>"
++         dashboard_client:
++           id: "<redacted>"
++           redirect_uri: "<redacted>"
++           secret: "<redacted>"
++         description: "<redacted>"
++         id: "<redacted>"
++         metadata:
++           displayName: "<redacted>"
++           documentationUrl: "<redacted>"
++           longDescription: "<redacted>"
++           providerDisplayName: "<redacted>"
++           supportUrl: "<redacted>"
++         name: "<redacted>"
++         plan_updateable: "<redacted>"
++         plans:
++         - credentials:
++             password:
++               key: "<redacted>"
++             uri:
++               port: "<redacted>"
++               prefix: "<redacted>"
++             username:
++               key: "<redacted>"
++           description: "<redacted>"
++           free: "<redacted>"
++           id: "<redacted>"
++           manager:
++             name: "<redacted>"
++             resource_mappings:
++               bind:
++                 resource_group: "<redacted>"
++                 resource_type: "<redacted>"
++               resource_group: "<redacted>"
++               resource_type: "<redacted>"
++             settings:
++               image: "<redacted>"
++               memory: "<redacted>"
++               tag: "<redacted>"
++           metadata:
++             bullets:
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             costs:
++             - amount:
++                 usd: "<redacted>"
++               unit: "<redacted>"
++           name: "<redacted>"
++         - credentials:
++             password:
++               key: "<redacted>"
++             uri:
++               port: "<redacted>"
++               prefix: "<redacted>"
++             username:
++               key: "<redacted>"
++           description: "<redacted>"
++           free: "<redacted>"
++           id: "<redacted>"
++           manager:
++             name: "<redacted>"
++             settings:
++               image: "<redacted>"
++               memory: "<redacted>"
++               tag: "<redacted>"
++           metadata:
++             bullets:
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             costs:
++             - amount:
++                 usd: "<redacted>"
++               unit: "<redacted>"
++           name: "<redacted>"
++         - actions: "<redacted>"
++           description: "<redacted>"
++           free: "<redacted>"
++           id: "<redacted>"
++           manager:
++             name: "<redacted>"
++             resource_mappings:
++               backup:
++                 resource_group: "<redacted>"
++                 resource_type: "<redacted>"
++               bind:
++                 resource_group: "<redacted>"
++                 resource_type: "<redacted>"
++               resource_group: "<redacted>"
++               resource_type: "<redacted>"
++             settings:
++               agent:
++                 auth:
++                   password: "<redacted>"
++                   username: "<redacted>"
++                 provider: "<redacted>"
++                 supported_features:
++                 - "<redacted>"
++                 - "<redacted>"
++                 - "<redacted>"
++                 version: "<redacted>"
++               context:
++                 agent:
++                   auth:
++                     password: "<redacted>"
++                     username: "<redacted>"
++                   provider: "<redacted>"
++                   supported_features:
++                   - "<redacted>"
++                   - "<redacted>"
++                   - "<redacted>"
++                   version: "<redacted>"
++                 disk_type: "<redacted>"
++                 vm_type: "<redacted>"
++               dashboard_template: "<redacted>"
++               prefix: "<redacted>"
++               releases:
++               - git: "<redacted>"
++                 name: "<redacted>"
++                 version: "<redacted>"
++               template: "<redacted>"
++           metadata:
++             bullets:
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             costs:
++             - amount:
++                 usd: "<redacted>"
++               unit: "<redacted>"
++           name: "<redacted>"
++         - description: "<redacted>"
++           free: "<redacted>"
++           id: "<redacted>"
++           manager:
++             name: "<redacted>"
++             resource_mappings: "<redacted>"
++             settings:
++               agent:
++                 auth:
++                   password: "<redacted>"
++                   username: "<redacted>"
++                 provider: "<redacted>"
++                 supported_features:
++                 - "<redacted>"
++                 - "<redacted>"
++                 - "<redacted>"
++                 version: "<redacted>"
++               context:
++                 agent:
++                   auth:
++                     password: "<redacted>"
++                     username: "<redacted>"
++                   provider: "<redacted>"
++                   supported_features:
++                   - "<redacted>"
++                   - "<redacted>"
++                   - "<redacted>"
++                   version: "<redacted>"
++                 disk_type: "<redacted>"
++                 vm_type: "<redacted>"
++               prefix: "<redacted>"
++               releases:
++               - git: "<redacted>"
++                 name: "<redacted>"
++                 version: "<redacted>"
++               template: "<redacted>"
++           metadata:
++             bullets:
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             costs:
++             - amount:
++                 usd: "<redacted>"
++               unit: "<redacted>"
++           name: "<redacted>"
++         tags:
++         - "<redacted>"
++         - "<redacted>"
++       skip_ssl_validation: "<redacted>"
++       syslog:
++         host: "<redacted>"
++         port: "<redacted>"
++       username: "<redacted>"
++       virtual_host:
++         provider:
++           authUrl: "<redacted>"
++           container: "<redacted>"
++           keystoneAuthVersion: "<redacted>"
++           name: "<redacted>"
++           password: "<redacted>"
++           projectDomainName: "<redacted>"
++           region: "<redacted>"
++           strictSSL: "<redacted>"
++           tenantId: "<redacted>"
++           username: "<redacted>"
++     release: service-fabrik
++   - name: service-fabrik-scheduler
++     properties:
++       agenda_collection: "<redacted>"
++       default_concurrency: "<redacted>"
++       default_lock_lifetime: "<redacted>"
++       job_history_retention_in_days: "<redacted>"
++       job_types: "<redacted>"
++       max_concurrency: "<redacted>"
++       process_every: "<redacted>"
++     release: service-fabrik
++   - name: service-fabrik-report
++     properties:
++       report:
++         ip: "<redacted>"
++         ssl:
++           cert: "<redacted>"
++           key: "<redacted>"
++     release: service-fabrik
++   - name: service-fabrik-deployment-hooks
++     properties:
++       actions:
++         Blueprint_PreCreate: "<redacted>"
++         ReserveIps.js: "<redacted>"
++       hook:
++         ip: "<redacted>"
++         ssl:
++           cert: "<redacted>"
++           key: "<redacted>"
++     release: service-fabrik
++   - name: swarm_manager
++     properties:
++       common:
++         tls_cacert: "<redacted>"
++       swarm:
++         discovery: "<redacted>"
++         tls: "<redacted>"
++         tls_cert: "<redacted>"
++         tls_key: "<redacted>"
++         tls_verify: "<redacted>"
++     release: service-fabrik
++   - name: route_registrar
++     properties:
++       nats:
++         machines:
++         - "<redacted>"
++         password: "<redacted>"
++         port: "<redacted>"
++         user: "<redacted>"
++       route_registrar:
++         routes:
++         - health_check:
++             name: "<redacted>"
++             script_path: "<redacted>"
++             timeout: "<redacted>"
++           name: "<redacted>"
++           port: "<redacted>"
++           registration_interval: "<redacted>"
++           tags:
++             component: "<redacted>"
++             env: "<redacted>"
++           uris:
++           - "<redacted>"
++     release: routing
++   name: broker
++   networks:
++   - name: default
++     static_ips: 10.244.4.2
++   stemcell: default
++   vm_type: minimal
++ - azs:
++   - z1
++   instances: 1
++   jobs:
++   - name: docker
++     properties:
++       common:
++         tls_cacert: "<redacted>"
++       docker:
++         icc: "<redacted>"
++         tcp_address: "<redacted>"
++         tls: "<redacted>"
++         tls_cert: "<redacted>"
++         tls_key: "<redacted>"
++         tls_verify: "<redacted>"
++         ulimit:
++           nofile: "<redacted>"
++       lvmvd:
++         disabled: "<redacted>"
++     release: service-fabrik
++   name: docker
++   networks:
++   - name: default
++     static_ips:
++     - 10.244.4.3
++   persistent_disk_type: 5GB
++   stemcell: default
++   vm_type: minimal
+  
++ name: service-fabrik
+Task 88
+
+Task 88 | 18:18:24 | Preparing deployment: Preparing deployment (00:00:03)
+Task 88 | 18:18:30 | Preparing package compilation: Finding packages to compile (00:00:01)
+Task 88 | 18:18:31 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065
+Task 88 | 18:18:31 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930
+Task 88 | 18:18:31 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019
+Task 88 | 18:18:31 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e
+Task 88 | 18:18:31 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b
+Task 88 | 18:18:31 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e (00:00:11)
+Task 88 | 18:18:42 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065 (00:00:11)
+Task 88 | 18:18:42 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2
+Task 88 | 18:18:42 | Compiling packages: bosh-helpers/9b13ac3033005fe8e48b3048cf1a420060b2dabe
+Task 88 | 18:18:42 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b (00:00:11)
+Task 88 | 18:18:48 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2 (00:00:06)
+Task 88 | 18:18:48 | Compiling packages: bosh-helpers/9b13ac3033005fe8e48b3048cf1a420060b2dabe (00:00:06)
+Task 88 | 18:18:48 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7
+Task 88 | 18:18:58 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019 (00:00:27)
+Task 88 | 18:19:03 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930 (00:00:32)
+Task 88 | 18:19:03 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2
+Task 88 | 18:19:13 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e (00:00:42)
+Task 88 | 18:19:13 | Compiling packages: lvmvd/b34613c6cbbd78142b495d6959b5fb7d0b52b7e1
+Task 88 | 18:19:13 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b
+Task 88 | 18:19:26 | Compiling packages: lvmvd/b34613c6cbbd78142b495d6959b5fb7d0b52b7e1 (00:00:13)
+Task 88 | 18:19:28 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7 (00:00:40)
+Task 88 | 18:19:40 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2 (00:00:37)
+Task 88 | 18:19:40 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b (00:00:27)
+Task 88 | 18:19:41 | Creating missing vms: docker/9e3a1846-bb4d-4d1c-b386-d9f9dc7d6c2d (0)
+Task 88 | 18:19:41 | Creating missing vms: broker/c9fc783a-80b1-467a-bfcf-ad4a38033a9d (0)
+Task 88 | 18:19:50 | Creating missing vms: docker/9e3a1846-bb4d-4d1c-b386-d9f9dc7d6c2d (0) (00:00:09)
+Task 88 | 18:19:55 | Creating missing vms: broker/c9fc783a-80b1-467a-bfcf-ad4a38033a9d (0) (00:00:14)
+Task 88 | 18:19:55 | Updating instance broker: broker/c9fc783a-80b1-467a-bfcf-ad4a38033a9d (0) (canary) (00:00:56)
+Task 88 | 18:20:51 | Updating instance docker: docker/9e3a1846-bb4d-4d1c-b386-d9f9dc7d6c2d (0) (canary) (00:00:36)
+
+Task 88 Started  Sat Oct  6 18:18:24 UTC 2018
+Task 88 Finished Sat Oct  6 18:21:27 UTC 2018
+Task 88 Duration 00:03:03
+Task 88 done
+
+Succeeded
