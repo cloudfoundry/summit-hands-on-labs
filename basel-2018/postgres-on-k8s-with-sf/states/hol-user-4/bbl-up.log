@@ -1,0 +1,24 @@
+step: terraform init
+step: terraform apply
+step: creating jumpbox
+Extracting release '/root/.bosh/downloads/970729db0f43d777d108d61d60dab0b6e978567e-3fbda22fde33878b54dec77f4182f8044be72687':
+  Constructing release from manifest:
+    - Constructing packages from manifest:
+        - Reading package 'golang' from archive:
+            Extracting package 'golang':
+              Shelling out to tar:
+                Running command: 'tar --no-same-owner -xzf /root/.bosh/installations/a5e09eed-e324-4379-5c05-fac8765e5b6b/tmp/bosh-release687549832/packages/golang.tgz -C /root/.bosh/installations/a5e09eed-e324-4379-5c05-fac8765e5b6b/tmp/bosh-release-pkg043665914', stdout: '', stderr: 'tar: ./golang/go1.8.1.linux-amd64.tar.gz: Wrote only 9216 of 10240 bytes
+tar: ./packaging: Cannot write: No space left on device
+tar: Exiting with failure status due to previous errors
+':
+                  exit status 2
+        - Expected to find package 'golang' since it's a dependency of package 'bosh-google-cpi'
+    - Constructing jobs from manifest:
+        - Reading job 'google_cpi' from archive:
+            Creating temp directory to extract job '/root/.bosh/installations/a5e09eed-e324-4379-5c05-fac8765e5b6b/tmp/bosh-release687549832/jobs/google_cpi.tgz':
+              mkdir /root/.bosh/installations/a5e09eed-e324-4379-5c05-fac8765e5b6b/tmp/bosh-release-job330890001: no space left on device
+
+Exit code 1
+
+
+Create jumpbox: Running /docker-boshlite-workspace/service-fabrik-lab/summit-hands-on-labs/basel-2018/postgres-on-k8s-with-sf/states/hol-user-4/create-jumpbox-override.sh: exit status 1
