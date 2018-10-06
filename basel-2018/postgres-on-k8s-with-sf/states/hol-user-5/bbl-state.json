@@ -19,7 +19,7 @@
 	"vsphere": {},
 	"openstack": {},
 	"jumpbox": {
-		"url": ""
+		"url": "104.155.39.32:22"
 	},
 	"bosh": {
 		"directorName": "",
