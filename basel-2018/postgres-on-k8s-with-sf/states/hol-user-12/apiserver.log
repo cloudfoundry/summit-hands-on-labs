@@ -2,25 +2,21 @@ Using environment 'https://10.0.0.6:25555' as client 'admin'
 
 Using deployment 'apiserver'
 
-Task 38
+Task 58
 
-Task 38 | 07:43:13 | Downloading remote release: Downloading remote release (00:00:01)
-Task 38 | 07:43:14 | Verifying remote release: Verifying remote release (00:00:01)
-Task 38 | 07:43:15 | Extracting release: Extracting release (00:00:01)
-Task 38 | 07:43:16 | Verifying manifest: Verifying manifest (00:00:00)
-Task 38 | 07:43:16 | Resolving package dependencies: Resolving package dependencies (00:00:00)
-Task 38 | 07:43:16 | Creating new packages: bpm/0a45e1dec24a6c923c7851a00a8532186958f37f (00:00:00)
-Task 38 | 07:43:16 | Creating new packages: golang/65c792cb5cb0ba6526742b1a36e57d1b195fe8be (00:00:01)
-Task 38 | 07:43:17 | Creating new packages: test-server/ab972488f8822c7a0c94359290553f4cfe851180 (00:00:00)
-Task 38 | 07:43:17 | Processing 1 existing package: Processing 1 existing package (00:00:00)
-Task 38 | 07:43:17 | Creating new jobs: bpm/4231d5defed38f41166bc19fcd26d5a739f1d60c (00:00:00)
-Task 38 | 07:43:17 | Creating new jobs: test-server/7bf431f910d14259efe2633a922aaf00c9e0def6 (00:00:00)
-Task 38 | 07:43:17 | Release has been created: bpm/0.4.0 (00:00:00)
+Task 58 | 10:43:38 | Downloading remote release: Downloading remote release (00:00:01)
+Task 58 | 10:43:39 | Verifying remote release: Verifying remote release (00:00:00)
+Task 58 | 10:43:39 | Extracting release: Extracting release (00:00:01)
+Task 58 | 10:43:40 | Verifying manifest: Verifying manifest (00:00:00)
+Task 58 | 10:43:40 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 58 | 10:43:40 | Processing 4 existing packages: Processing 4 existing packages (00:00:01)
+Task 58 | 10:43:41 | Processing 2 existing jobs: Processing 2 existing jobs (00:00:00)
+Task 58 | 10:43:41 | Release has been created: bpm/0.4.0 (00:00:00)
 
-Task 38 Started  Sun Oct  7 07:43:13 UTC 2018
-Task 38 Finished Sun Oct  7 07:43:17 UTC 2018
-Task 38 Duration 00:00:04
-Task 38 done
+Task 58 Started  Sun Oct  7 10:43:38 UTC 2018
+Task 58 Finished Sun Oct  7 10:43:41 UTC 2018
+Task 58 Duration 00:00:03
+Task 58 done
 + azs:
 + - name: z1
 + - name: z2
@@ -30,6 +26,7 @@ Task 38 done
 + - name: minimal
 + - name: small
 + - name: small-highmem
++ - name: default
   
 + vm_extensions:
 + - name: 5GB_ephemeral_disk
@@ -85,6 +82,8 @@ Task 38 done
 +   name: 10GB
 + - disk_size: 100240
 +   name: 100GB
++ - disk_size: 1024
++   name: default
   
 + stemcells:
 + - alias: default
@@ -260,27 +259,23 @@ Task 38 done
   
 + name: apiserver
 
-Task 39
+Task 59
 
-Task 39 | 07:43:23 | Preparing deployment: Preparing deployment (00:00:03)
-Task 39 | 07:43:29 | Preparing package compilation: Finding packages to compile (00:00:00)
-Task 39 | 07:43:29 | Compiling packages: etcd/c4dcd8c2b12255ed693871685ff283ff27f74ee9163f34a67cc59b7620d178e0
-Task 39 | 07:43:29 | Compiling packages: apiserver/ee00fa2ff035bd24094425d8b91a730cfa86ab1e
-Task 39 | 07:43:41 | Compiling packages: etcd/c4dcd8c2b12255ed693871685ff283ff27f74ee9163f34a67cc59b7620d178e0 (00:00:12)
-Task 39 | 07:43:48 | Compiling packages: apiserver/ee00fa2ff035bd24094425d8b91a730cfa86ab1e (00:00:19)
-Task 39 | 07:43:49 | Creating missing vms: etcd/3069ad8a-f8e4-4d95-9ebb-b7540fe33227 (1)
-Task 39 | 07:43:49 | Creating missing vms: etcd/f984d637-a6c0-4695-98bf-da8017cfd3cb (0)
-Task 39 | 07:43:49 | Creating missing vms: etcd/baae5732-b519-4732-a698-cb28f3bf9da2 (2)
-Task 39 | 07:44:02 | Creating missing vms: etcd/f984d637-a6c0-4695-98bf-da8017cfd3cb (0) (00:00:13)
-Task 39 | 07:44:02 | Creating missing vms: etcd/baae5732-b519-4732-a698-cb28f3bf9da2 (2) (00:00:13)
-Task 39 | 07:44:03 | Creating missing vms: etcd/3069ad8a-f8e4-4d95-9ebb-b7540fe33227 (1) (00:00:14)
-Task 39 | 07:44:03 | Updating instance etcd: etcd/f984d637-a6c0-4695-98bf-da8017cfd3cb (0) (canary) (00:00:35)
-Task 39 | 07:44:38 | Updating instance etcd: etcd/3069ad8a-f8e4-4d95-9ebb-b7540fe33227 (1) (00:00:46)
-Task 39 | 07:45:24 | Updating instance etcd: etcd/baae5732-b519-4732-a698-cb28f3bf9da2 (2) (00:01:03)
+Task 59 | 10:43:46 | Preparing deployment: Preparing deployment (00:00:03)
+Task 59 | 10:43:51 | Preparing package compilation: Finding packages to compile (00:00:00)
+Task 59 | 10:43:51 | Compiling packages: apiserver/ee00fa2ff035bd24094425d8b91a730cfa86ab1e (00:00:17)
+Task 59 | 10:44:09 | Creating missing vms: etcd/c6c742b4-abd9-459c-9670-5eb9d1d2917c (0)
+Task 59 | 10:44:09 | Creating missing vms: etcd/916760ba-39ed-4574-9425-720a31b64679 (1)
+Task 59 | 10:44:09 | Creating missing vms: etcd/dfeeb925-d44c-45ad-b921-2ec689b2ff97 (2) (00:00:11)
+Task 59 | 10:44:20 | Creating missing vms: etcd/916760ba-39ed-4574-9425-720a31b64679 (1) (00:00:11)
+Task 59 | 10:44:20 | Creating missing vms: etcd/c6c742b4-abd9-459c-9670-5eb9d1d2917c (0) (00:00:11)
+Task 59 | 10:44:20 | Updating instance etcd: etcd/c6c742b4-abd9-459c-9670-5eb9d1d2917c (0) (canary) (00:00:34)
+Task 59 | 10:44:54 | Updating instance etcd: etcd/916760ba-39ed-4574-9425-720a31b64679 (1) (00:00:38)
+Task 59 | 10:45:32 | Updating instance etcd: etcd/dfeeb925-d44c-45ad-b921-2ec689b2ff97 (2) (00:00:41)
 
-Task 39 Started  Sun Oct  7 07:43:23 UTC 2018
-Task 39 Finished Sun Oct  7 07:46:27 UTC 2018
-Task 39 Duration 00:03:04
-Task 39 done
+Task 59 Started  Sun Oct  7 10:43:46 UTC 2018
+Task 59 Finished Sun Oct  7 10:46:13 UTC 2018
+Task 59 Duration 00:02:27
+Task 59 done
 
 Succeeded
