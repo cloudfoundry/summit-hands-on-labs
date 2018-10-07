@@ -2,25 +2,21 @@ Using environment 'https://10.0.0.6:25555' as client 'admin'
 
 Using deployment 'apiserver'
 
-Task 35
+Task 55
 
-Task 35 | 09:45:46 | Downloading remote release: Downloading remote release (00:00:12)
-Task 35 | 09:45:58 | Verifying remote release: Verifying remote release (00:00:01)
-Task 35 | 09:45:59 | Extracting release: Extracting release (00:00:01)
-Task 35 | 09:46:00 | Verifying manifest: Verifying manifest (00:00:00)
-Task 35 | 09:46:00 | Resolving package dependencies: Resolving package dependencies (00:00:00)
-Task 35 | 09:46:00 | Creating new packages: bpm/0a45e1dec24a6c923c7851a00a8532186958f37f (00:00:00)
-Task 35 | 09:46:00 | Creating new packages: golang/65c792cb5cb0ba6526742b1a36e57d1b195fe8be (00:00:01)
-Task 35 | 09:46:01 | Creating new packages: test-server/ab972488f8822c7a0c94359290553f4cfe851180 (00:00:00)
-Task 35 | 09:46:01 | Processing 1 existing package: Processing 1 existing package (00:00:00)
-Task 35 | 09:46:01 | Creating new jobs: bpm/4231d5defed38f41166bc19fcd26d5a739f1d60c (00:00:01)
-Task 35 | 09:46:02 | Creating new jobs: test-server/7bf431f910d14259efe2633a922aaf00c9e0def6 (00:00:00)
-Task 35 | 09:46:02 | Release has been created: bpm/0.4.0 (00:00:00)
+Task 55 | 12:02:14 | Downloading remote release: Downloading remote release (00:00:05)
+Task 55 | 12:02:19 | Verifying remote release: Verifying remote release (00:00:00)
+Task 55 | 12:02:19 | Extracting release: Extracting release (00:00:01)
+Task 55 | 12:02:20 | Verifying manifest: Verifying manifest (00:00:00)
+Task 55 | 12:02:20 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 55 | 12:02:20 | Processing 4 existing packages: Processing 4 existing packages (00:00:00)
+Task 55 | 12:02:20 | Processing 2 existing jobs: Processing 2 existing jobs (00:00:00)
+Task 55 | 12:02:20 | Release has been created: bpm/0.4.0 (00:00:00)
 
-Task 35 Started  Sun Oct  7 09:45:46 UTC 2018
-Task 35 Finished Sun Oct  7 09:46:02 UTC 2018
-Task 35 Duration 00:00:16
-Task 35 done
+Task 55 Started  Sun Oct  7 12:02:14 UTC 2018
+Task 55 Finished Sun Oct  7 12:02:20 UTC 2018
+Task 55 Duration 00:00:06
+Task 55 done
 + azs:
 + - name: z1
 + - name: z2
@@ -30,6 +26,7 @@ Task 35 done
 + - name: minimal
 + - name: small
 + - name: small-highmem
++ - name: default
   
 + vm_extensions:
 + - name: 5GB_ephemeral_disk
@@ -85,6 +82,8 @@ Task 35 done
 +   name: 10GB
 + - disk_size: 100240
 +   name: 100GB
++ - disk_size: 1024
++   name: default
   
 + stemcells:
 + - alias: default
@@ -260,36 +259,23 @@ Task 35 done
   
 + name: apiserver
 
-Task 36
+Task 56
 
-Task 36 | 09:46:07 | Preparing deployment: Preparing deployment (00:00:04)
-Task 36 | 09:46:13 | Preparing package compilation: Finding packages to compile (00:00:00)
-Task 36 | 09:46:13 | Compiling packages: golang/27413c6b5a88ea20a24a9eed74d4b090b7b88331
-Task 36 | 09:46:13 | Compiling packages: bpm-runc/c0b41921c5063378870a7c8867c6dc1aa84e7d85
-Task 36 | 09:46:13 | Compiling packages: etcd/c4dcd8c2b12255ed693871685ff283ff27f74ee9163f34a67cc59b7620d178e0
-Task 36 | 09:46:13 | Compiling packages: apiserver/ee00fa2ff035bd24094425d8b91a730cfa86ab1e
-Task 36 | 09:46:13 | Compiling packages: golang-1-linux/d55c618ac63dfdf4ac457346fb325fb2b04884af
-Task 36 | 09:46:35 | Compiling packages: bpm-runc/c0b41921c5063378870a7c8867c6dc1aa84e7d85 (00:00:22)
-Task 36 | 09:46:37 | Compiling packages: etcd/c4dcd8c2b12255ed693871685ff283ff27f74ee9163f34a67cc59b7620d178e0 (00:00:24)
-Task 36 | 09:46:48 | Compiling packages: apiserver/ee00fa2ff035bd24094425d8b91a730cfa86ab1e (00:00:35)
-Task 36 | 09:47:09 | Compiling packages: golang/27413c6b5a88ea20a24a9eed74d4b090b7b88331 (00:00:56)
-Task 36 | 09:47:09 | Compiling packages: bpm/d139b63561eaa3893976416be9668dea539bf17d
-Task 36 | 09:47:12 | Compiling packages: golang-1-linux/d55c618ac63dfdf4ac457346fb325fb2b04884af (00:00:59)
-Task 36 | 09:47:12 | Compiling packages: bosh-dns/5ee91aab4edcd9399f5f5e78fd06f4fba0190ee9
-Task 36 | 09:47:23 | Compiling packages: bpm/d139b63561eaa3893976416be9668dea539bf17d (00:00:14)
-Task 36 | 09:47:36 | Compiling packages: bosh-dns/5ee91aab4edcd9399f5f5e78fd06f4fba0190ee9 (00:00:24)
-Task 36 | 09:47:37 | Creating missing vms: etcd/834a3d22-a311-41ba-a673-15ee690cbb68 (1)
-Task 36 | 09:47:37 | Creating missing vms: etcd/c0058cf4-8614-425d-b485-82f6f1f24565 (0)
-Task 36 | 09:47:37 | Creating missing vms: etcd/f6dc6f00-647f-4a4b-9253-7d8bf8ab8c7c (2) (00:00:27)
-Task 36 | 09:48:04 | Creating missing vms: etcd/834a3d22-a311-41ba-a673-15ee690cbb68 (1) (00:00:27)
-Task 36 | 09:48:04 | Creating missing vms: etcd/c0058cf4-8614-425d-b485-82f6f1f24565 (0) (00:00:27)
-Task 36 | 09:48:04 | Updating instance etcd: etcd/c0058cf4-8614-425d-b485-82f6f1f24565 (0) (canary) (00:00:34)
-Task 36 | 09:48:38 | Updating instance etcd: etcd/834a3d22-a311-41ba-a673-15ee690cbb68 (1) (00:00:46)
-Task 36 | 09:49:24 | Updating instance etcd: etcd/f6dc6f00-647f-4a4b-9253-7d8bf8ab8c7c (2) (00:00:34)
+Task 56 | 12:02:26 | Preparing deployment: Preparing deployment (00:00:03)
+Task 56 | 12:02:31 | Preparing package compilation: Finding packages to compile (00:00:00)
+Task 56 | 12:02:31 | Compiling packages: apiserver/ee00fa2ff035bd24094425d8b91a730cfa86ab1e (00:00:19)
+Task 56 | 12:02:50 | Creating missing vms: etcd/e51ca68a-1a85-4efe-a393-5a3282330c78 (0)
+Task 56 | 12:02:50 | Creating missing vms: etcd/977a709c-faf6-470a-b225-0b088f848596 (1)
+Task 56 | 12:02:50 | Creating missing vms: etcd/bb4a34da-4135-49ed-8f97-9893c52ed11f (2) (00:00:10)
+Task 56 | 12:03:01 | Creating missing vms: etcd/977a709c-faf6-470a-b225-0b088f848596 (1) (00:00:11)
+Task 56 | 12:03:01 | Creating missing vms: etcd/e51ca68a-1a85-4efe-a393-5a3282330c78 (0) (00:00:11)
+Task 56 | 12:03:02 | Updating instance etcd: etcd/e51ca68a-1a85-4efe-a393-5a3282330c78 (0) (canary) (00:00:38)
+Task 56 | 12:03:40 | Updating instance etcd: etcd/977a709c-faf6-470a-b225-0b088f848596 (1) (00:00:34)
+Task 56 | 12:04:14 | Updating instance etcd: etcd/bb4a34da-4135-49ed-8f97-9893c52ed11f (2) (00:00:34)
 
-Task 36 Started  Sun Oct  7 09:46:07 UTC 2018
-Task 36 Finished Sun Oct  7 09:49:58 UTC 2018
-Task 36 Duration 00:03:51
-Task 36 done
+Task 56 Started  Sun Oct  7 12:02:26 UTC 2018
+Task 56 Finished Sun Oct  7 12:04:48 UTC 2018
+Task 56 Duration 00:02:22
+Task 56 done
 
 Succeeded
