@@ -739,42 +739,42 @@ Using deployment 'service-fabrik'
 +   vm_type: minimal
   
 + name: service-fabrik
-Task 40
+Task 76
 
-Task 40 | 21:00:56 | Preparing deployment: Preparing deployment (00:00:03)
-Task 40 | 21:01:03 | Preparing package compilation: Finding packages to compile (00:00:00)
-Task 40 | 21:01:03 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065
-Task 40 | 21:01:03 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e
-Task 40 | 21:01:03 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930
-Task 40 | 21:01:03 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019
-Task 40 | 21:01:03 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b
-Task 40 | 21:01:03 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e
-Task 40 | 21:01:13 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065 (00:00:10)
-Task 40 | 21:01:13 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2
-Task 40 | 21:01:15 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b (00:00:12)
-Task 40 | 21:01:15 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e (00:00:12)
-Task 40 | 21:01:15 | Compiling packages: bosh-helpers/9b13ac3033005fe8e48b3048cf1a420060b2dabe (00:00:05)
-Task 40 | 21:01:22 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2 (00:00:09)
-Task 40 | 21:01:22 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7
-Task 40 | 21:01:27 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019 (00:00:24)
-Task 40 | 21:01:36 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930 (00:00:33)
-Task 40 | 21:01:36 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2
-Task 40 | 21:01:44 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e (00:00:41)
-Task 40 | 21:01:44 | Compiling packages: lvmvd/b34613c6cbbd78142b495d6959b5fb7d0b52b7e1
-Task 40 | 21:01:44 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b
-Task 40 | 21:01:55 | Compiling packages: lvmvd/b34613c6cbbd78142b495d6959b5fb7d0b52b7e1 (00:00:11)
-Task 40 | 21:02:00 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7 (00:00:38)
-Task 40 | 21:02:08 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b (00:00:24)
-Task 40 | 21:02:11 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2 (00:00:35)
-Task 40 | 21:02:12 | Creating missing vms: broker/7ec9a3d9-4cc0-48fc-92a5-330d264d8354 (0)
-Task 40 | 21:02:12 | Creating missing vms: docker/caac715e-d6ff-42d3-baf5-39ea7d43ff95 (0) (00:00:12)
-Task 40 | 21:02:26 | Creating missing vms: broker/7ec9a3d9-4cc0-48fc-92a5-330d264d8354 (0) (00:00:14)
-Task 40 | 21:02:26 | Updating instance broker: broker/7ec9a3d9-4cc0-48fc-92a5-330d264d8354 (0) (canary) (00:00:45)
-Task 40 | 21:03:11 | Updating instance docker: docker/caac715e-d6ff-42d3-baf5-39ea7d43ff95 (0) (canary) (00:00:27)
+Task 76 | 11:00:12 | Preparing deployment: Preparing deployment (00:00:03)
+Task 76 | 11:00:19 | Preparing package compilation: Finding packages to compile (00:00:00)
+Task 76 | 11:00:19 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065
+Task 76 | 11:00:19 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e
+Task 76 | 11:00:19 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e
+Task 76 | 11:00:19 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019
+Task 76 | 11:00:19 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b
+Task 76 | 11:00:19 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930
+Task 76 | 11:00:30 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065 (00:00:11)
+Task 76 | 11:00:30 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2
+Task 76 | 11:00:31 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b (00:00:12)
+Task 76 | 11:00:31 | Compiling packages: bosh-helpers/9b13ac3033005fe8e48b3048cf1a420060b2dabe
+Task 76 | 11:00:32 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e (00:00:13)
+Task 76 | 11:00:37 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2 (00:00:07)
+Task 76 | 11:00:37 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7
+Task 76 | 11:00:38 | Compiling packages: bosh-helpers/9b13ac3033005fe8e48b3048cf1a420060b2dabe (00:00:07)
+Task 76 | 11:00:47 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019 (00:00:28)
+Task 76 | 11:00:55 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930 (00:00:36)
+Task 76 | 11:00:55 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2
+Task 76 | 11:01:01 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e (00:00:42)
+Task 76 | 11:01:01 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b
+Task 76 | 11:01:01 | Compiling packages: lvmvd/b34613c6cbbd78142b495d6959b5fb7d0b52b7e1 (00:00:13)
+Task 76 | 11:01:24 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7 (00:00:47)
+Task 76 | 11:01:29 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b (00:00:28)
+Task 76 | 11:01:35 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2 (00:00:40)
+Task 76 | 11:01:36 | Creating missing vms: broker/af3eef39-0ddb-4ee8-a3bb-c68547c0ab62 (0)
+Task 76 | 11:01:36 | Creating missing vms: docker/22ecbb59-a8af-4fd0-8f02-f59bc3a76c33 (0) (00:00:12)
+Task 76 | 11:01:50 | Creating missing vms: broker/af3eef39-0ddb-4ee8-a3bb-c68547c0ab62 (0) (00:00:14)
+Task 76 | 11:01:51 | Updating instance broker: broker/af3eef39-0ddb-4ee8-a3bb-c68547c0ab62 (0) (canary) (00:00:53)
+Task 76 | 11:02:44 | Updating instance docker: docker/22ecbb59-a8af-4fd0-8f02-f59bc3a76c33 (0) (canary) (00:00:28)
 
-Task 40 Started  Sat Oct  6 21:00:56 UTC 2018
-Task 40 Finished Sat Oct  6 21:03:38 UTC 2018
-Task 40 Duration 00:02:42
-Task 40 done
+Task 76 Started  Sun Oct  7 11:00:12 UTC 2018
+Task 76 Finished Sun Oct  7 11:03:12 UTC 2018
+Task 76 Duration 00:03:00
+Task 76 done
 
 Succeeded
