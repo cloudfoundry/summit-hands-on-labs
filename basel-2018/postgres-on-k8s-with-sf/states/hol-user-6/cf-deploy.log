@@ -2634,3 +2634,13 @@ Task 53 | 05:57:09 | Updating instance uaa: uaa/93b949a1-4705-456c-984a-f36b4c1f
 Task 53 | 05:59:34 | Updating instance singleton-blobstore: singleton-blobstore/c62aa267-3516-42c5-bfab-d34c6f331f03 (0) (canary) (00:00:56)
 Task 53 | 06:00:30 | Updating instance api: api/f5bdee0c-e310-4ce5-b735-181bf277b5e4 (0) (canary)
 Task 53 | 06:00:30 | Updating instance cc-worker: cc-worker/d88bfea8-21b5-43c4-a564-cfb0d14a72d4 (0) (canary) (00:03:23)
+Task 53 | 06:11:15 | Updating instance api: api/f5bdee0c-e310-4ce5-b735-181bf277b5e4 (0) (canary) (00:10:45)
+                   L Error: Action Failed get_task: Task 001a2946-0fb6-4c5a-6ea9-6191bbc87a83 result: 1 of 6 pre-start scripts failed. Failed Jobs: policy-server. Successful Jobs: cc_uploader, bpm, bosh-dns, consul_agent, cloud_controller_ng.
+Task 53 | 06:11:15 | Error: Action Failed get_task: Task 001a2946-0fb6-4c5a-6ea9-6191bbc87a83 result: 1 of 6 pre-start scripts failed. Failed Jobs: policy-server. Successful Jobs: cc_uploader, bpm, bosh-dns, consul_agent, cloud_controller_ng.
+
+Task 53 Started  Sun Oct  7 05:48:30 UTC 2018
+Task 53 Finished Sun Oct  7 06:11:15 UTC 2018
+Task 53 Duration 00:22:45
+Task 53 error
+
+
