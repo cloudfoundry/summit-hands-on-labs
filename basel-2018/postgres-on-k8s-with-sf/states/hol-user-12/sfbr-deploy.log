@@ -739,43 +739,43 @@ Using deployment 'service-fabrik'
 +   vm_type: minimal
   
 + name: service-fabrik
-Task 42
+Task 64
 
-Task 42 | 07:50:35 | Preparing deployment: Preparing deployment (00:00:03)
-Task 42 | 07:50:41 | Preparing package compilation: Finding packages to compile (00:00:00)
-Task 42 | 07:50:41 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065
-Task 42 | 07:50:41 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019
-Task 42 | 07:50:41 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e
-Task 42 | 07:50:41 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e
-Task 42 | 07:50:41 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930
-Task 42 | 07:50:41 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b
-Task 42 | 07:50:53 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065 (00:00:12)
-Task 42 | 07:50:53 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2
-Task 42 | 07:50:53 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b (00:00:12)
-Task 42 | 07:50:53 | Compiling packages: bosh-helpers/9b13ac3033005fe8e48b3048cf1a420060b2dabe
-Task 42 | 07:50:54 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e (00:00:13)
-Task 42 | 07:51:00 | Compiling packages: bosh-helpers/9b13ac3033005fe8e48b3048cf1a420060b2dabe (00:00:07)
-Task 42 | 07:51:00 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2 (00:00:07)
-Task 42 | 07:51:00 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7
-Task 42 | 07:51:09 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019 (00:00:28)
-Task 42 | 07:51:15 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930 (00:00:34)
-Task 42 | 07:51:15 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2
-Task 42 | 07:51:23 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e (00:00:42)
-Task 42 | 07:51:23 | Compiling packages: lvmvd/b34613c6cbbd78142b495d6959b5fb7d0b52b7e1
-Task 42 | 07:51:23 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b
-Task 42 | 07:51:33 | Compiling packages: lvmvd/b34613c6cbbd78142b495d6959b5fb7d0b52b7e1 (00:00:10)
-Task 42 | 07:51:35 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7 (00:00:35)
-Task 42 | 07:51:46 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2 (00:00:31)
-Task 42 | 07:51:50 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b (00:00:27)
-Task 42 | 07:51:50 | Creating missing vms: broker/4bad2350-bd3e-4bd4-89dd-d6dee89d3847 (0)
-Task 42 | 07:51:50 | Creating missing vms: docker/afaeb396-cd67-4d7e-8b33-c083de15c9ac (0) (00:00:11)
-Task 42 | 07:52:02 | Creating missing vms: broker/4bad2350-bd3e-4bd4-89dd-d6dee89d3847 (0) (00:00:12)
-Task 42 | 07:52:02 | Updating instance broker: broker/4bad2350-bd3e-4bd4-89dd-d6dee89d3847 (0) (canary) (00:00:53)
-Task 42 | 07:52:55 | Updating instance docker: docker/afaeb396-cd67-4d7e-8b33-c083de15c9ac (0) (canary) (00:00:26)
+Task 64 | 11:00:09 | Preparing deployment: Preparing deployment (00:00:04)
+Task 64 | 11:00:16 | Preparing package compilation: Finding packages to compile (00:00:00)
+Task 64 | 11:00:16 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065
+Task 64 | 11:00:16 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e
+Task 64 | 11:00:16 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930
+Task 64 | 11:00:16 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019
+Task 64 | 11:00:16 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b
+Task 64 | 11:00:16 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e
+Task 64 | 11:00:26 | Compiling packages: lvm2/94234aaafde31e917248664480f650b4c2973065 (00:00:10)
+Task 64 | 11:00:26 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2
+Task 64 | 11:00:26 | Compiling packages: yaml2json/3a6b145f3a06f67da0cea0edf3b0d7f22c42fa4e (00:00:10)
+Task 64 | 11:00:26 | Compiling packages: bosh-helpers/9b13ac3033005fe8e48b3048cf1a420060b2dabe
+Task 64 | 11:00:28 | Compiling packages: jq/4eb80201dd552cd4d7406197c2579f2079ca210b (00:00:12)
+Task 64 | 11:00:32 | Compiling packages: bosh-helpers/9b13ac3033005fe8e48b3048cf1a420060b2dabe (00:00:06)
+Task 64 | 11:00:32 | Compiling packages: node/6e8abfa2343654d6a81d1816f82ead8720c986d2 (00:00:06)
+Task 64 | 11:00:32 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7
+Task 64 | 11:00:40 | Compiling packages: docker/6ef4feeaf01ffb4d27b5f2f7094b0380d2624019 (00:00:24)
+Task 64 | 11:00:44 | Compiling packages: libseccomp/472d085dbb87e29e8b0118a02eb92483d5108930 (00:00:28)
+Task 64 | 11:00:44 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2
+Task 64 | 11:00:54 | Compiling packages: golang/b4471eff2367da0891705297096cd4db41e19d5e (00:00:38)
+Task 64 | 11:00:54 | Compiling packages: lvmvd/b34613c6cbbd78142b495d6959b5fb7d0b52b7e1
+Task 64 | 11:00:54 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b
+Task 64 | 11:01:03 | Compiling packages: lvmvd/b34613c6cbbd78142b495d6959b5fb7d0b52b7e1 (00:00:09)
+Task 64 | 11:01:06 | Compiling packages: service-fabrik-broker/17d74727e97fe1b00c40b6be76fa40c1785f72b7 (00:00:34)
+Task 64 | 11:01:14 | Compiling packages: service-fabrik-deployment-hooks/612d20d503d87751fbd6bb2e3481e92b911466a2 (00:00:30)
+Task 64 | 11:01:16 | Compiling packages: swarm/4f38eed641aaa1ecefc94fd74515dd5b00a7b78b (00:00:22)
+Task 64 | 11:01:17 | Creating missing vms: broker/ae56cc35-e6db-4aab-b590-bf8a660166d2 (0)
+Task 64 | 11:01:17 | Creating missing vms: docker/af8882e5-5009-4c29-9398-e370ff6ec6e7 (0) (00:00:10)
+Task 64 | 11:01:28 | Creating missing vms: broker/ae56cc35-e6db-4aab-b590-bf8a660166d2 (0) (00:00:11)
+Task 64 | 11:01:28 | Updating instance broker: broker/ae56cc35-e6db-4aab-b590-bf8a660166d2 (0) (canary) (00:00:50)
+Task 64 | 11:02:18 | Updating instance docker: docker/af8882e5-5009-4c29-9398-e370ff6ec6e7 (0) (canary) (00:00:27)
 
-Task 42 Started  Sun Oct  7 07:50:35 UTC 2018
-Task 42 Finished Sun Oct  7 07:53:21 UTC 2018
-Task 42 Duration 00:02:46
-Task 42 done
+Task 64 Started  Sun Oct  7 11:00:09 UTC 2018
+Task 64 Finished Sun Oct  7 11:02:45 UTC 2018
+Task 64 Duration 00:02:36
+Task 64 done
 
 Succeeded
