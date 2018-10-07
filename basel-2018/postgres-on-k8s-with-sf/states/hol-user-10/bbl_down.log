@@ -1,5 +1,0 @@
-step: generating terraform template
-step: generating terraform variables
-step: terraform init
-step: terraform destroy
-step: finished destroying infrastructure

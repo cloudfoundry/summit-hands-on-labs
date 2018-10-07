@@ -1,5 +1,0 @@
-step: terraform init
-step: terraform apply
-
-
-Executor apply: Some output has been redacted, use `bbl latest-error` to see it or run again with --debug for additional debug output

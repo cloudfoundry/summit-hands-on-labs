@@ -1,5 +1,0 @@
----
-- type: replace
-  path: /networks/name=default/subnets/gateway=10.244.0.1/static
-  value:
-  - 10.244.0.2 - 10.244.14.254
