@@ -1,0 +1,13 @@
+step: terraform init
+step: terraform apply
+step: creating jumpbox
+Deploying:
+  Creating instance 'jumpbox/0':
+    Creating VM:
+      Creating vm with stemcell cid 'stemcell-56c5433d-f718-4a22-592c-ffb9a9a77fdb':
+        CPI 'create_vm' method responded with error: CmdError{"type":"Bosh::Clouds::VMCreationFailed","message":"VM failed to create: googleapi: Error 403: Quota 'CPUS' exceeded. Limit: 72.0 in region europe-west1., quotaExceeded","ok_to_retry":true}
+
+Exit code 1
+
+
+Create jumpbox: Running /docker-boshlite-workspace/service-fabrik-lab/summit-hands-on-labs/basel-2018/postgres-on-k8s-with-sf/states/hol-user-9/create-jumpbox-override.sh: exit status 1
