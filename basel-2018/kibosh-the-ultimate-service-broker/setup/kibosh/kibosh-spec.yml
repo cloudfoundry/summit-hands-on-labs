@@ -99,7 +99,7 @@ kibosh-spec: |
           - name: CF_PASSWORD
             value: ((/concourse/main/cf_password))
           - name: CF_BROKER_URL
-            value: http://((worker-hostname)):8080
+            value: http://((worker-hostname)):30000
           - name: CF_BROKER_NAME
             value: kibosh
           - name: CF_SKIP_SSL_VALIDATION
@@ -117,6 +117,7 @@ kibosh-spec: |
       - targetPort: 8080
         protocol: TCP
         port: 8080
+        nodePort: 30000
     selector:
       name: kibosh
   ---
@@ -131,5 +132,6 @@ kibosh-spec: |
       - targetPort: 8081
         protocol: TCP
         port: 8081
+        nodePort: 30001
     selector:
       name: kibosh
