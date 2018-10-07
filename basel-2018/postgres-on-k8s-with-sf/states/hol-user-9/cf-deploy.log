@@ -3571,3 +3571,5 @@ Task 33 | 06:04:30 | Compiling packages: util-linux/6310f68e8294c980de62481bced2
 Task 33 | 06:04:30 | Compiling packages: xfs-progs/6ce014f88e05f358621a25ce48ee036d78bdb1a935a8eb556974d3de26c8614d
 Task 33 | 06:04:59 | Compiling packages: cloud_controller_ng/a7e73b91c734202ae283165f1386d1a9b2f7d385796bdff21de5a9c25eb49a7a (00:03:04)
 Task 33 | 06:06:25 | Compiling packages: xfs-progs/6ce014f88e05f358621a25ce48ee036d78bdb1a935a8eb556974d3de26c8614d (00:01:55)
+Task 33 | 06:09:17 | Compiling packages: galera/f480a48c26d56d050bc0b579ed60750ccf52dadb (00:06:54)
+Task 33 | 06:09:17 | Compiling packages: mariadb/7baa5c2ab22714f55170e71219b7f0205be0878f

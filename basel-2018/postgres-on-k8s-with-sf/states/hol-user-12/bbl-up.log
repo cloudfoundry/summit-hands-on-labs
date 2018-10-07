@@ -3,3 +3,6 @@ step: terraform apply
 step: creating jumpbox
 step: created jumpbox
 step: creating bosh director
+step: created bosh director
+step: generating cloud config
+step: applying cloud config
