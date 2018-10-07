@@ -11,7 +11,7 @@ kibosh-spec: |
   metadata:
     name: kibosh-helm
     annotations:
-      "rbac.authorization.kubernetes.io/autoupdate": "true"
+      rbac.authorization.kubernetes.io/autoupdate: true
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -93,17 +93,17 @@ kibosh-spec: |
                 name: cluster-addon-deployment-data
                 key: kibosh.password
           - name: CF_API_ADDRESS
-            value: ((/concourse/main/cf_api))
+            value: "((/concourse/main/cf_api))"
           - name: CF_USERNAME
-            value: ((/concourse/main/cf_username))
+            value: "((/concourse/main/cf_username))"
           - name: CF_PASSWORD
-            value: ((/concourse/main/cf_password))
+            value: "((/concourse/main/cf_password))"
           - name: CF_BROKER_URL
-            value: http://((worker-hostname)):30000
+            value: "http://((worker-hostname)):30000"
           - name: CF_BROKER_NAME
-            value: kibosh
+            value: "kibosh"
           - name: CF_SKIP_SSL_VALIDATION
-            value: true
+            value: "true"
 
   ---
   kind: Service
