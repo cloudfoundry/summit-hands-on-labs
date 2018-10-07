@@ -2,13 +2,13 @@ Using environment 'https://10.0.0.6:25555' as client 'admin'
 
 Using deployment 'cf'
 
-Release 'cf-mysql/36.15.0' already exists.
-
-Release 'binary-buildpack/1.0.25' already exists.
-
 Release 'bpm/0.12.3' already exists.
 
+Release 'cf-mysql/36.15.0' already exists.
+
 Release 'cf-networking/2.16.0' already exists.
+
+Release 'binary-buildpack/1.0.25' already exists.
 
 Release 'capi/1.69.0' already exists.
 
@@ -16,11 +16,11 @@ Release 'cf-smoke-tests/40.0.9' already exists.
 
 Release 'cf-syslog-drain/7.1' already exists.
 
-Release 'credhub/1.9.5' already exists.
-
 Release 'cflinuxfs2/1.238.0' already exists.
 
 Release 'consul/196' already exists.
+
+Release 'credhub/1.9.5' already exists.
 
 Release 'diego/2.17.0' already exists.
 
@@ -28,17 +28,17 @@ Release 'dotnet-core-buildpack/2.1.4' already exists.
 
 Release 'garden-runc/1.16.4' already exists.
 
-Release 'java-buildpack/4.15' already exists.
-
 Release 'go-buildpack/1.8.26' already exists.
 
-Release 'nats/26' already exists.
+Release 'java-buildpack/4.15' already exists.
+
+Release 'loggregator/103.2' already exists.
 
 Release 'nodejs-buildpack/1.6.30' already exists.
 
-Release 'php-buildpack/4.3.59' already exists.
+Release 'nats/26' already exists.
 
-Release 'loggregator/103.2' already exists.
+Release 'php-buildpack/4.3.59' already exists.
 
 Release 'python-buildpack/1.6.20' already exists.
 
@@ -46,13 +46,15 @@ Release 'routing/0.182.0' already exists.
 
 Release 'ruby-buildpack/1.7.22' already exists.
 
+Release 'silk/2.16.0' already exists.
+
 Release 'staticfile-buildpack/1.4.31' already exists.
 
 Release 'statsd-injector/1.3.0' already exists.
 
-Release 'silk/2.16.0' already exists.
-
 Release 'uaa/61.0' already exists.
+
+Release 'loggregator-agent/2.2' already exists.
 
 Release 'log-cache/1.4.4' already exists.
 
@@ -60,14 +62,80 @@ Release 'bosh-dns-aliases/0.0.3' already exists.
 
 Release 'cf-cli/1.8.0' already exists.
 
-Release 'loggregator-agent/2.2' already exists.
-
++ azs:
++ - name: z1
++ - name: z2
++ - name: z3
+  
++ vm_types:
++ - name: minimal
++ - name: small
++ - name: small-highmem
++ - name: default
+  
++ vm_extensions:
++ - name: 5GB_ephemeral_disk
++ - name: 10GB_ephemeral_disk
++ - name: 50GB_ephemeral_disk
++ - name: 100GB_ephemeral_disk
++ - name: 500GB_ephemeral_disk
++ - name: 1TB_ephemeral_disk
++ - cloud_properties:
++     ports:
++     - host: 80
++     - host: 443
++     - host: 2222
++   name: ssh-proxy-and-router-lb
++ - cloud_properties:
++     ports:
++     - host: 1024-1123
++   name: cf-tcp-router-network-properties
++ - cloud_properties:
++     ports:
++     - host: 8845
++   name: credhub-lb
+  
++ compilation:
++   az: z1
++   network: default
++   reuse_compilation_vms: true
++   vm_type: minimal
++   workers: 6
+  
++ networks:
++ - name: default
++   subnets:
++   - azs:
++     - z1
++     - z2
++     - z3
++     cloud_properties:
++       name: random
++     gateway: 10.244.0.1
++     range: 10.244.0.0/20
++     reserved:
++     - 10.244.0.1
++     static:
++     - 10.244.0.2 - 10.244.14.254
+  
++ disk_types:
++ - disk_size: 1024
++   name: 1GB
++ - disk_size: 5120
++   name: 5GB
++ - disk_size: 10240
++   name: 10GB
++ - disk_size: 100240
++   name: 100GB
++ - disk_size: 1024
++   name: default
+  
 + stemcells:
 + - alias: default
 +   os: ubuntu-trusty
 +   version: '3586.42'
   
-  releases:
++ releases:
 + - name: binary-buildpack
 +   sha1: 45cb3c91ff51f84d653f7271c3deb140f2349a10
 +   url: https://bosh.io/d/github.com/cloudfoundry/binary-buildpack-release?v=1.0.25
@@ -188,6 +256,10 @@ Release 'loggregator-agent/2.2' already exists.
 +   sha1: 15d0718bc82ff9394efd2c9798873a39bf7eba06
 +   url: https://bosh.io/d/github.com/bosh-packages/cf-cli-release?v=1.8.0
 +   version: 1.8.0
++ - name: bosh-dns
++   sha1: 3b77329a772483d6c949f1a47ba9734976bc2b31
++   url: https://bosh.io/d/github.com/cloudfoundry/bosh-dns-release?v=1.8.0
++   version: 1.8.0
   
 + update:
 +   canaries: 1
@@ -196,7 +268,54 @@ Release 'loggregator-agent/2.2' already exists.
 +   serial: false
 +   update_watch_time: 5000-1200000
   
-  variables:
++ addons:
++ - include:
++     stemcell:
++     - os: ubuntu-trusty
++     - os: ubuntu-xenial
++   jobs:
++   - name: bosh-dns
++     properties:
++       api:
++         client:
++           tls: "<redacted>"
++         server:
++           tls: "<redacted>"
++       cache:
++         enabled: "<redacted>"
++       health:
++         client:
++           tls: "<redacted>"
++         enabled: "<redacted>"
++         server:
++           tls: "<redacted>"
++     release: bosh-dns
++   name: bosh-dns
++ - include:
++     stemcell:
++     - os: windows2012R2
++     - os: windows2016
++     - os: windows1803
++   jobs:
++   - name: bosh-dns-windows
++     properties:
++       api:
++         client:
++           tls: "<redacted>"
++         server:
++           tls: "<redacted>"
++       cache:
++         enabled: "<redacted>"
++       health:
++         client:
++           tls: "<redacted>"
++         enabled: "<redacted>"
++         server:
++           tls: "<redacted>"
++     release: bosh-dns
++   name: bosh-dns-windows
+  
++ variables:
 + - name: blobstore_admin_users_password
 +   type: password
 + - name: blobstore_secure_link_secret
@@ -653,6 +772,44 @@ Release 'loggregator-agent/2.2' already exists.
 +     - credhub.bosh-lite.com
 +     ca: credhub_ca
 +     common_name: credhub.bosh-lite.com
++   type: certificate
++ - name: "/dns_healthcheck_tls_ca"
++   options:
++     common_name: dns-healthcheck-tls-ca
++     is_ca: true
++   type: certificate
++ - name: "/dns_healthcheck_server_tls"
++   options:
++     ca: "/dns_healthcheck_tls_ca"
++     common_name: health.bosh-dns
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: "/dns_healthcheck_client_tls"
++   options:
++     ca: "/dns_healthcheck_tls_ca"
++     common_name: health.bosh-dns
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: "/dns_api_tls_ca"
++   options:
++     common_name: dns-api-tls-ca
++     is_ca: true
++   type: certificate
++ - name: "/dns_api_server_tls"
++   options:
++     ca: "/dns_api_tls_ca"
++     common_name: api.bosh-dns
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: "/dns_api_client_tls"
++   options:
++     ca: "/dns_api_tls_ca"
++     common_name: api.bosh-dns
++     extended_key_usage:
++     - client_auth
 +   type: certificate
   
 + instance_groups:
@@ -2431,17 +2588,67 @@ Release 'loggregator-agent/2.2' already exists.
 + manifest_version: v4.5.0
   
 + name: cf
-Task 62
+Task 67
 
-Task 62 | 09:10:27 | Preparing deployment: Preparing deployment (00:00:30)
-Task 62 | 09:12:13 | Preparing package compilation: Finding packages to compile (00:00:00)
-Task 62 | 09:12:14 | Updating instance api: api/f5bdee0c-e310-4ce5-b735-181bf277b5e4 (0) (canary) (00:10:26)
-                   L Error: Action Failed get_task: Task 99c78f94-7377-4b5a-50c4-ad6b711d56b4 result: 1 of 6 pre-start scripts failed. Failed Jobs: policy-server. Successful Jobs: cc_uploader, bpm, consul_agent, bosh-dns, cloud_controller_ng.
-Task 62 | 09:22:40 | Error: Action Failed get_task: Task 99c78f94-7377-4b5a-50c4-ad6b711d56b4 result: 1 of 6 pre-start scripts failed. Failed Jobs: policy-server. Successful Jobs: cc_uploader, bpm, consul_agent, bosh-dns, cloud_controller_ng.
+Task 67 | 09:44:12 | Preparing deployment: Preparing deployment (00:00:32)
+Task 67 | 09:45:59 | Preparing package compilation: Finding packages to compile (00:00:00)
+Task 67 | 09:45:59 | Creating missing vms: consul/b93b41e2-184b-4389-ac1d-4373047279ea (0)
+Task 67 | 09:45:59 | Creating missing vms: adapter/38a0dcbe-305e-4902-8b06-898308d75f16 (0)
+Task 67 | 09:45:59 | Creating missing vms: api/ca00ed2c-739b-4894-a7d6-29ec23b42f30 (0)
+Task 67 | 09:45:59 | Creating missing vms: singleton-blobstore/2126629b-c538-46de-93bc-5ada70dde3ec (0)
+Task 67 | 09:45:59 | Creating missing vms: log-api/f5f838f4-0d30-4255-bfd9-009600b46ba3 (0)
+Task 67 | 09:45:59 | Creating missing vms: diego-api/45538d65-08f1-4f88-ba5a-0328631a38a7 (0)
+Task 67 | 09:45:59 | Creating missing vms: router/d5becba4-909c-455e-839c-b84dbc653bc9 (0)
+Task 67 | 09:45:59 | Creating missing vms: doppler/e13c1dfd-5b2e-492e-a463-42cb08afef99 (0)
+Task 67 | 09:45:59 | Creating missing vms: credhub/42bb178b-4015-48da-91a9-3a3b08000632 (0)
+Task 67 | 09:45:59 | Creating missing vms: cc-worker/317634f5-eb4e-4836-af98-0939d23c1ae2 (0)
+Task 67 | 09:45:59 | Creating missing vms: nats/65515627-54cd-419a-966f-ccf1849fb1df (0)
+Task 67 | 09:45:59 | Creating missing vms: uaa/7e9dfcf9-a1be-4d58-97c5-dd0ae36c9381 (0)
+Task 67 | 09:45:59 | Creating missing vms: tcp-router/b9340d55-104f-45fe-8469-6d7f11ea0bdf (0)
+Task 67 | 09:45:59 | Creating missing vms: diego-cell/482227e4-07ad-4c1e-b6e6-d1f41e70ec12 (0)
+Task 67 | 09:45:59 | Creating missing vms: database/cf7623b3-0264-484d-ba60-1b1bcdcbd3b7 (0)
+Task 67 | 09:45:59 | Creating missing vms: scheduler/6d28ba0d-fd07-4ce9-938f-43269f6e482e (0)
+Task 67 | 09:47:02 | Creating missing vms: singleton-blobstore/2126629b-c538-46de-93bc-5ada70dde3ec (0) (00:01:03)
+Task 67 | 09:47:05 | Creating missing vms: tcp-router/b9340d55-104f-45fe-8469-6d7f11ea0bdf (0) (00:01:06)
+Task 67 | 09:47:11 | Creating missing vms: nats/65515627-54cd-419a-966f-ccf1849fb1df (0) (00:01:12)
+Task 67 | 09:47:12 | Creating missing vms: adapter/38a0dcbe-305e-4902-8b06-898308d75f16 (0) (00:01:13)
+Task 67 | 09:47:18 | Creating missing vms: credhub/42bb178b-4015-48da-91a9-3a3b08000632 (0) (00:01:19)
+Task 67 | 09:47:22 | Creating missing vms: consul/b93b41e2-184b-4389-ac1d-4373047279ea (0) (00:01:23)
+Task 67 | 09:47:25 | Creating missing vms: router/d5becba4-909c-455e-839c-b84dbc653bc9 (0) (00:01:26)
+Task 67 | 09:47:30 | Creating missing vms: database/cf7623b3-0264-484d-ba60-1b1bcdcbd3b7 (0) (00:01:31)
+Task 67 | 09:47:32 | Creating missing vms: cc-worker/317634f5-eb4e-4836-af98-0939d23c1ae2 (0) (00:01:33)
+Task 67 | 09:47:36 | Creating missing vms: diego-api/45538d65-08f1-4f88-ba5a-0328631a38a7 (0) (00:01:37)
+Task 67 | 09:47:39 | Creating missing vms: log-api/f5f838f4-0d30-4255-bfd9-009600b46ba3 (0) (00:01:40)
+Task 67 | 09:47:41 | Creating missing vms: uaa/7e9dfcf9-a1be-4d58-97c5-dd0ae36c9381 (0) (00:01:42)
+Task 67 | 09:47:47 | Creating missing vms: doppler/e13c1dfd-5b2e-492e-a463-42cb08afef99 (0) (00:01:48)
+Task 67 | 09:47:48 | Creating missing vms: diego-cell/482227e4-07ad-4c1e-b6e6-d1f41e70ec12 (0) (00:01:49)
+Task 67 | 09:47:52 | Creating missing vms: api/ca00ed2c-739b-4894-a7d6-29ec23b42f30 (0) (00:01:53)
+Task 67 | 09:47:53 | Creating missing vms: scheduler/6d28ba0d-fd07-4ce9-938f-43269f6e482e (0) (00:01:54)
+Task 67 | 09:47:54 | Updating instance consul: consul/b93b41e2-184b-4389-ac1d-4373047279ea (0) (canary) (00:00:56)
+Task 67 | 09:48:50 | Updating instance nats: nats/65515627-54cd-419a-966f-ccf1849fb1df (0) (canary)
+Task 67 | 09:48:50 | Updating instance adapter: adapter/38a0dcbe-305e-4902-8b06-898308d75f16 (0) (canary)
+Task 67 | 09:49:43 | Updating instance nats: nats/65515627-54cd-419a-966f-ccf1849fb1df (0) (canary) (00:00:53)
+Task 67 | 09:49:43 | Updating instance adapter: adapter/38a0dcbe-305e-4902-8b06-898308d75f16 (0) (canary) (00:00:53)
+Task 67 | 09:49:43 | Updating instance database: database/cf7623b3-0264-484d-ba60-1b1bcdcbd3b7 (0) (canary) (00:02:18)
+Task 67 | 09:52:01 | Updating instance diego-api: diego-api/45538d65-08f1-4f88-ba5a-0328631a38a7 (0) (canary) (00:00:56)
+Task 67 | 09:52:57 | Updating instance uaa: uaa/7e9dfcf9-a1be-4d58-97c5-dd0ae36c9381 (0) (canary) (00:02:26)
+Task 67 | 09:55:23 | Updating instance singleton-blobstore: singleton-blobstore/2126629b-c538-46de-93bc-5ada70dde3ec (0) (canary) (00:00:57)
+Task 67 | 09:56:20 | Updating instance cc-worker: cc-worker/317634f5-eb4e-4836-af98-0939d23c1ae2 (0) (canary)
+Task 67 | 09:56:20 | Updating instance api: api/ca00ed2c-739b-4894-a7d6-29ec23b42f30 (0) (canary)
+Task 67 | 09:59:51 | Updating instance cc-worker: cc-worker/317634f5-eb4e-4836-af98-0939d23c1ae2 (0) (canary) (00:03:31)
+Task 67 | 10:00:38 | Updating instance api: api/ca00ed2c-739b-4894-a7d6-29ec23b42f30 (0) (canary) (00:04:18)
+Task 67 | 10:00:38 | Updating instance router: router/d5becba4-909c-455e-839c-b84dbc653bc9 (0) (canary) (00:01:13)
+Task 67 | 10:01:51 | Updating instance tcp-router: tcp-router/b9340d55-104f-45fe-8469-6d7f11ea0bdf (0) (canary) (00:00:54)
+Task 67 | 10:02:45 | Updating instance scheduler: scheduler/6d28ba0d-fd07-4ce9-938f-43269f6e482e (0) (canary) (00:01:09)
+Task 67 | 10:03:54 | Updating instance diego-cell: diego-cell/482227e4-07ad-4c1e-b6e6-d1f41e70ec12 (0) (canary)
+Task 67 | 10:03:54 | Updating instance doppler: doppler/e13c1dfd-5b2e-492e-a463-42cb08afef99 (0) (canary) (00:01:03)
+Task 67 | 10:05:35 | Updating instance diego-cell: diego-cell/482227e4-07ad-4c1e-b6e6-d1f41e70ec12 (0) (canary) (00:01:41)
+Task 67 | 10:05:35 | Updating instance log-api: log-api/f5f838f4-0d30-4255-bfd9-009600b46ba3 (0) (canary) (00:01:01)
+Task 67 | 10:06:36 | Updating instance credhub: credhub/42bb178b-4015-48da-91a9-3a3b08000632 (0) (canary) (00:01:17)
 
-Task 62 Started  Sun Oct  7 09:10:27 UTC 2018
-Task 62 Finished Sun Oct  7 09:22:40 UTC 2018
-Task 62 Duration 00:12:13
-Task 62 error
+Task 67 Started  Sun Oct  7 09:44:12 UTC 2018
+Task 67 Finished Sun Oct  7 10:07:53 UTC 2018
+Task 67 Duration 00:23:41
+Task 67 done
 
-
+Succeeded
