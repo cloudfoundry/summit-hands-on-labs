@@ -2453,4 +2453,13 @@ Task 45
 
 Task 45 | 05:08:49 | Preparing deployment: Preparing deployment (00:00:31)
 Task 45 | 05:10:37 | Preparing package compilation: Finding packages to compile (00:00:01)
-Task 45 | 05:10:38 | Updating instance consul: consul/c566cdcb-206d-4149-bf2c-2ea03a690d6f (0) (canary)
+Task 45 | 05:10:38 | Updating instance consul: consul/c566cdcb-206d-4149-bf2c-2ea03a690d6f (0) (canary) (00:20:45)
+                   L Error: 'consul/c566cdcb-206d-4149-bf2c-2ea03a690d6f (0)' is not running after update. Review logs for failed jobs: consul_agent
+Task 45 | 05:31:23 | Error: 'consul/c566cdcb-206d-4149-bf2c-2ea03a690d6f (0)' is not running after update. Review logs for failed jobs: consul_agent
+
+Task 45 Started  Sun Oct  7 05:08:49 UTC 2018
+Task 45 Finished Sun Oct  7 05:31:23 UTC 2018
+Task 45 Duration 00:22:34
+Task 45 error
+
+
