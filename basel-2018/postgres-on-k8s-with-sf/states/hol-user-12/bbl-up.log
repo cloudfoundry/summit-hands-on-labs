@@ -1,0 +1,2 @@
+step: terraform init
+step: terraform apply
