@@ -4,7 +4,7 @@ In this hands on lab, you will deploy a simple application, bind it to a databas
 
 ### Target Audience
 
- Anyone interested in the basics of deploying apps in Cloud Foundry (developers, operators, biz dev, etc).
+Anyone interested in the basics of deploying apps in Cloud Foundry (developers, operators, biz dev, etc).
 
 ### Prerequisites
 
@@ -23,10 +23,15 @@ Learn how to:
 
 ### Using the CLI
 
-We've pre-installed the CF cli (`cf`) for you in the `~/bin` directory.  You can test that it works by running `cf version`:
+We've pre-installed the CF cli (`cf`) for you.  You can test that it works by running `cf version`:
 
 ```
-$ cf version
+cf version
+```
+
+You should see something similar to:
+
+```
 cf version 6.34.1+bbdf81482.2018-01-17
 ```
 
@@ -40,13 +45,15 @@ For example, you can run:
 
 ### Logging In
 
-When using Cloud Foundry, the first thing you need to do is target and log in to a Cloud Foundry instance.  Run the following:
+When using Cloud Foundry, the first thing you need to do is target and log in to a Cloud Foundry instance. You will be using an account set up by your instructor.
+
+Run the following:
 
 ```
-$ cf login -u $PWS_USER -p 'Firstpush1!' -a api.run.pivotal.io
+cf login -u <USER_NAME> -a api.run.pivotal.io
 ```
 
-The `-a` flag specifies the API endpoint for Pivotal Web Services (api.run.pivotal.io).
+You will be prompted for a password. The `-a` flag specifies the API endpoint for Pivotal Web Services (api.run.pivotal.io).
 
 > Note: You can use `cf login --help` for details on how to log in.
 
@@ -58,13 +65,13 @@ If you log in successfully, you should see output similar to below:
 Authenticating...
 OK
 
-Targeted org cloudfoundry-training
+Targeted org rscale-training-1
 
 Targeted space development
 
 API endpoint:   https://api.run.pivotal.io (API version: 2.103.0)
-User:           sgreenberg@rscale.io
-Org:            cloudfoundry-training
+User:           student@rscale.io
+Org:            rscale-training-1
 Space:          development
 ```
 
@@ -75,8 +82,7 @@ Now that you are logged in, you can deploy an application. In Cloud Foundry term
 Now push your application:
 
 ```
-$ cd first-push  # if you're not already there...
-$ cf push first-push -p first-push-app.jar -b java_buildpack --random-route
+cf push first-push -p summit-hands-on-labs/basel-2018/first-push/first-push-app.jar -b java_buildpack --random-route
 ```
 
 > Note: You can use `cf push --help` to see the details of the `push` command.
@@ -125,7 +131,7 @@ The Cloud Foundry marketplace is a collection of services that can be provisione
 Provision a new instance using `cf create-service`:
 
 ```
-$ cf create-service cleardb spark first-push-db
+cf create-service cleardb spark first-push-db
 ```
 
 > Note: You can list all available services in the marketplace by running `cf marketplace`.
@@ -141,8 +147,13 @@ Let's dissect the above command:
 You should be able to see a new service instance using `cf services`:
 
 ```
-$ cf services
-Getting services in org cloudfoundry-training / space development as sgreenberg@rscale.io...
+cf services
+```
+
+You should see output similar to:
+
+```
+Getting services in org rscale-training-1 / space development as sgreenberg@rscale.io...
 OK
 
 name            service   plan    bound apps   last operation
@@ -154,13 +165,13 @@ first-push-db   cleardb   spark                create succeeded
 Now that you have a database instance, you need to tell your application about it:
 
 ```
-$ cf bind-service first-push first-push-db
+cf bind-service first-push first-push-db
 ```
 
 Now restart your application so that it picks up the change:
 
 ```
-$ cf restart first-push
+cf restart first-push
 ```
 
 Binding passes credentials for the database instance to your app through environment variables.
@@ -170,8 +181,13 @@ Binding passes credentials for the database instance to your app through environ
 If you re-run `cf services` you should see your app now bound to your database.
 
 ```
-$ cf services
-Getting services in org cloudfoundry-training / space development as sgreenberg@rscale.io...
+cf services
+```
+
+You should see output similar to:
+
+```
+Getting services in org rscale-training-1 / space development as sgreenberg@rscale.io...
 OK
 
 name            service   plan    bound apps   last operation
@@ -185,7 +201,7 @@ You can also refresh your app in the browser and should see it is now using MySQ
 Now that you have state moved to an external service, we can safely scale our application up to more than one instance:
 
 ```
-$ cf scale first-push -i 2
+cf scale first-push -i 2
 ```
 
 #### Checking Your Work
@@ -193,8 +209,13 @@ $ cf scale first-push -i 2
 You can see the status of your app by running `cf app first-push`:
 
 ```
-$ cf app first-push
-Showing health and status for app first-push in org cloudfoundry-training / space development as sgreenberg@rscale.io...
+cf app first-push
+```
+
+You should see output similar to:
+
+```
+Showing health and status for app first-push in org rscale-training-1 / space development as sgreenberg@rscale.io...
 
 name:              first-push
 requested state:   started
@@ -214,16 +235,16 @@ If you refresh your app in a browser multiple times, you will see the `App Insta
 
 ### Resiliency
 
-Behind the scenes, Cloud Foundry is also ensuring your application instances are running. To watch this, we will use the Pivotal Web Services console called `Apps Manager`.
+Behind the scenes, Cloud Foundry is also ensuring your application instances are running. To watch this, we will use a unix utility called `watch` to poll the status of our running app. In a terminal window start `watch` with:
 
 ```
-$ watch -n 1 cf app first-push
+watch -n 1 cf app first-push
 ```
 
-The application has an endpoint that will programmatically kill the instance answering the request. You will access this endpoint in one browser window before quickly switching back to the `Apps Manager` window.
+The application has an endpoint that will programmatically kill the instance answering the request. You will access this endpoint in one browser window before quickly switching back to the terminal window.
 
 1. Go to your application in a browser. Tack on `/kill` to the URL and hit enter.
-1. Switch back to the `Apps Manager` window to see the crash and subsequent recovery.
+1. Switch back to the terminal window to see the crash and subsequent recovery.
 1. You can also continue to access your root application URL (not the `/kill` endpoint) and see that you are routed to the live, running instance.
 
 ## Learning Objectives Review
