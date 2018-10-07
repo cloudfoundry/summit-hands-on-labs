@@ -1,0 +1,19 @@
+{
+    "director_id": "dd86ddb4-6c0b-4514-406e-623081026f09",
+    "installation_id": "010a448d-581e-4d82-7bd9-b9d5cccf4da3",
+    "current_vm_cid": "",
+    "current_stemcell_id": "",
+    "current_disk_id": "",
+    "current_release_ids": [],
+    "current_manifest_sha": "",
+    "disks": null,
+    "stemcells": [
+        {
+            "id": "2068ef92-ae4d-4e71-4a45-4b329902ddb6",
+            "name": "bosh-google-kvm-ubuntu-trusty-go_agent",
+            "version": "3586.24",
+            "cid": "stemcell-af612efa-e2e9-4891-5785-ef9aa14fc63b"
+        }
+    ],
+    "releases": []
+}

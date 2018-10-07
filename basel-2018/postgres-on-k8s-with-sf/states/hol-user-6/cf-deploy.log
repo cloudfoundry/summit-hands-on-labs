@@ -2630,4 +2630,7 @@ Task 53 | 05:53:05 | Updating instance nats: nats/d182bbf2-fef1-453f-a05f-864d12
 Task 53 | 05:53:58 | Updating instance adapter: adapter/56f51a55-f4e0-438b-a3da-15c8b4dff91c (0) (canary) (00:00:53)
 Task 53 | 05:53:58 | Updating instance database: database/891c2b4b-6753-483a-bf30-4db658336b80 (0) (canary) (00:02:16)
 Task 53 | 05:56:14 | Updating instance diego-api: diego-api/c1f86dfe-a159-46de-89b9-028ee934c20d (0) (canary) (00:00:55)
-Task 53 | 05:57:09 | Updating instance uaa: uaa/93b949a1-4705-456c-984a-f36b4c1f09b5 (0) (canary)
+Task 53 | 05:57:09 | Updating instance uaa: uaa/93b949a1-4705-456c-984a-f36b4c1f09b5 (0) (canary) (00:02:25)
+Task 53 | 05:59:34 | Updating instance singleton-blobstore: singleton-blobstore/c62aa267-3516-42c5-bfab-d34c6f331f03 (0) (canary) (00:00:56)
+Task 53 | 06:00:30 | Updating instance api: api/f5bdee0c-e310-4ce5-b735-181bf277b5e4 (0) (canary)
+Task 53 | 06:00:30 | Updating instance cc-worker: cc-worker/d88bfea8-21b5-43c4-a564-cfb0d14a72d4 (0) (canary) (00:03:23)

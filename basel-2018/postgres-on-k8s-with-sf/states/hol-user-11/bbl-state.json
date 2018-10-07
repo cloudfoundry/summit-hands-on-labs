@@ -1,0 +1,41 @@
+{
+	"version": 14,
+	"bblVersion": "6.9.16",
+	"iaas": "gcp",
+	"id": "32c5bca3-951c-4d79-5f34-6986a46ef3c7",
+	"envID": "hol-user-11",
+	"noDirector": false,
+	"aws": {},
+	"azure": {},
+	"gcp": {
+		"zone": "europe-west3-a",
+		"region": "europe-west3",
+		"zones": [
+			"europe-west3-a",
+			"europe-west3-b",
+			"europe-west3-c"
+		]
+	},
+	"vsphere": {},
+	"openstack": {},
+	"jumpbox": {
+		"url": "35.234.92.97:22"
+	},
+	"bosh": {
+		"directorName": "",
+		"directorUsername": "",
+		"directorPassword": "",
+		"directorAddress": "",
+		"directorSSLCA": "",
+		"directorSSLCertificate": "",
+		"directorSSLPrivateKey": ""
+	},
+	"tfState": "",
+	"lb": {
+		"type": "",
+		"cert": "",
+		"key": "",
+		"chain": ""
+	},
+	"latestTFOutput": ""
+}

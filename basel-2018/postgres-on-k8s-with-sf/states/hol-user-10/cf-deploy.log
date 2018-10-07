@@ -1,0 +1,3424 @@
+Using environment 'https://10.0.0.6:25555' as client 'admin'
+
+Using deployment 'cf'
+
+Task 4
+Task 3
+Task 5
+Task 7
+Task 6
+Task 3 | 05:59:19 | Downloading remote release: Downloading remote release
+Task 4 | 05:59:19 | Downloading remote release: Downloading remote release
+Task 5 | 05:59:19 | Downloading remote release: Downloading remote release
+Task 3 | 05:59:21 | Downloading remote release: Downloading remote release (00:00:02)
+Task 3 | 05:59:21 | Verifying remote release: Verifying remote release (00:00:00)
+Task 3 | 05:59:21 | Extracting release: Extracting release
+Task 4 | 05:59:22 | Downloading remote release: Downloading remote release (00:00:03)
+Task 4 | 05:59:22 | Verifying remote release: Verifying remote release (00:00:01)
+Task 4 | 05:59:23 | Extracting release: Extracting release
+Task 3 | 05:59:23 | Extracting release: Extracting release (00:00:02)
+Task 3 | 05:59:23 | Verifying manifest: Verifying manifest (00:00:00)
+Task 4 | 05:59:25 | Extracting release: Extracting release (00:00:02)
+Task 4 | 05:59:25 | Verifying manifest: Verifying manifest (00:00:00)
+Task 4 | 05:59:25 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 4 | 05:59:25 | Creating new packages: blobstore_url_signer/5f7248ec7d324ab048c7e25baa95b4e5b0a60424d55790dae6f384006af4fed0 (00:00:00)
+Task 4 | 05:59:25 | Creating new packages: capi_utils/0f77e341bdf4d96acd8b84182c125c81e2b50c07be1b4dfa703bf7125ba6a787
+Task 5 | 05:59:25 | Downloading remote release: Downloading remote release (00:00:06)
+Task 5 | 05:59:25 | Verifying remote release: Verifying remote release
+Task 3 | 05:59:24 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 3 | 05:59:24 | Creating new packages: bpm/d139b63561eaa3893976416be9668dea539bf17d (00:00:00)
+Task 3 | 05:59:24 | Creating new packages: bpm-runc/c0b41921c5063378870a7c8867c6dc1aa84e7d85 (00:00:00)
+Task 3 | 05:59:24 | Creating new packages: golang/27413c6b5a88ea20a24a9eed74d4b090b7b88331
+Task 4 | 05:59:26 | Creating new packages: capi_utils/0f77e341bdf4d96acd8b84182c125c81e2b50c07be1b4dfa703bf7125ba6a787 (00:00:01)
+Task 5 | 05:59:25 | Verifying remote release: Verifying remote release (00:00:00)
+Task 5 | 05:59:26 | Extracting release: Extracting release
+Task 4 | 05:59:27 | Creating new packages: cc_uploader/db664ee261d1c8992b4aa35e27edc24e1bfbcb753ed40c00e330d48e9c85ecf2 (00:00:01)
+Task 3 | 05:59:27 | Creating new packages: golang/27413c6b5a88ea20a24a9eed74d4b090b7b88331 (00:00:03)
+Task 3 | 05:59:28 | Creating new packages: test-server/f09be8f1bb19854024504f4abd74747760b9302c
+Task 4 | 05:59:29 | Creating new packages: cloud_controller_ng/a7e73b91c734202ae283165f1386d1a9b2f7d385796bdff21de5a9c25eb49a7a
+Task 5 | 05:59:30 | Extracting release: Extracting release (00:00:04)
+Task 5 | 05:59:30 | Verifying manifest: Verifying manifest
+Task 3 | 05:59:29 | Creating new packages: test-server/f09be8f1bb19854024504f4abd74747760b9302c (00:00:01)
+Task 3 | 05:59:30 | Creating new jobs: bpm/f18421d8c21c425e94bdb3b2df00f3eca2daef29
+Task 4 | 05:59:31 | Creating new packages: cloud_controller_ng/a7e73b91c734202ae283165f1386d1a9b2f7d385796bdff21de5a9c25eb49a7a (00:00:02)
+Task 4 | 05:59:31 | Creating new packages: golang1.10/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f
+Task 6 | 05:59:32 | Downloading remote release: Downloading remote release (00:00:00)
+Task 6 | 05:59:32 | Verifying remote release: Verifying remote release (00:00:00)
+Task 6 | 05:59:32 | Extracting release: Extracting release (00:00:00)
+Task 6 | 05:59:32 | Verifying manifest: Verifying manifest (00:00:00)
+Task 5 | 05:59:30 | Verifying manifest: Verifying manifest (00:00:00)
+Task 5 | 05:59:31 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 5 | 05:59:31 | Creating new packages: acceptance-tests/eb26bf3d396607454068cea0215d8b96d0a188dd (00:00:01)
+Task 5 | 05:59:32 | Creating new packages: boost/da228a9d552a039c63123f2a77e0901676a71e52
+Task 3 | 05:59:31 | Creating new jobs: bpm/f18421d8c21c425e94bdb3b2df00f3eca2daef29 (00:00:01)
+Task 3 | 05:59:31 | Creating new jobs: test-errand/1ccf9ec7a47043218a7d080a5d674077bfc28529 (00:00:00)
+Task 3 | 05:59:31 | Creating new jobs: test-server/80db4f3e3ef3ce7301c5a256357dd158df147a70 (00:00:00)
+Task 3 | 05:59:31 | Release has been created: bpm/0.12.3 (00:00:00)
+
+Task 3 Started  Sun Oct  7 05:59:19 UTC 2018
+Task 3 Finished Sun Oct  7 05:59:31 UTC 2018
+Task 3 Duration 00:00:12
+Task 3 done
+
+Task 4 | 05:59:33 | Creating new packages: golang1.10/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f (00:00:02)
+Task 4 | 05:59:33 | Creating new packages: libpq/211d57d6b1cb796a123433fb736bec6b09fd7a322667c9b9010b970ff78d9bce (00:00:00)
+Task 4 | 05:59:33 | Creating new packages: mariadb_connector_c/214543bbb1d7499acdbdb44a7323430a635a77fa004f4fd4dbaf4e544291b072 (00:00:00)
+Task 4 | 05:59:33 | Creating new packages: nfs-debs/f89315135046369328a63309e936b6577df59876f5e372032e255cfc2f2e3959 (00:00:00)
+Task 4 | 05:59:33 | Creating new packages: nginx/9dfaa5ca530563d7c5446171522a92080e4ac1b517e50183e740647a6255aaca (00:00:00)
+Task 4 | 05:59:33 | Creating new packages: nginx_newrelic_plugin/70737ccb2088b16e99e9f59a60ce36e8d5037c3a40b1d960bef02f51391f1fa4 (00:00:00)
+Task 4 | 05:59:33 | Creating new packages: nginx_webdav/219bbff55c17e25e5ccf090491cb9ffee77f4eefc12e2d21e7ed1d520f6b01be (00:00:01)
+Task 4 | 05:59:34 | Creating new packages: ruby-2.4/3039953c744ddbd4f337ad9561efe37cc707c02f97638b6554c3aecb36953051 (00:00:00)
+Task 4 | 05:59:34 | Creating new packages: tps/87405e0b41a2a36f0031df7b663d4918fe734101c70fe35a5cb44f24203b4de4
+Task 6 | 05:59:32 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 6 | 05:59:32 | Creating new packages: binary-buildpack-cflinuxfs2/aa20ebfc04036683eaee56cb75f30a6b23bec1e8 (00:00:01)
+Task 6 | 05:59:33 | Creating new packages: binary-buildpack-cflinuxfs3/1479b59f3e3498f8ac0aed3d8c6d7b2b6217f955 (00:00:00)
+Task 6 | 05:59:33 | Creating new packages: binary-buildpack-windows2012R2/44f552bf41b7a434bd2784ef9ef91271506eb96e (00:00:00)
+Task 6 | 05:59:33 | Creating new packages: binary-buildpack-windows2016/8a98ceac8d83515fccfeca9cb7b0f3f3fd4b295e (00:00:00)
+Task 6 | 05:59:33 | Creating new jobs: binary-buildpack/68cc82adc0d4ba05b502132443ca60fcc07cc201 (00:00:00)
+Task 6 | 05:59:33 | Release has been created: binary-buildpack/1.0.25 (00:00:00)
+
+Task 6 Started  Sun Oct  7 05:59:32 UTC 2018
+Task 6 Finished Sun Oct  7 05:59:33 UTC 2018
+Task 6 Duration 00:00:01
+Task 6 done
+
+Task 7 | 05:59:34 | Downloading remote release: Downloading remote release
+Task 5 | 05:59:33 | Creating new packages: boost/da228a9d552a039c63123f2a77e0901676a71e52 (00:00:01)
+Task 5 | 05:59:33 | Creating new packages: bootstrap/4f60fd28357e6c1d167b503f7983b8ce246a8557 (00:00:00)
+Task 5 | 05:59:33 | Creating new packages: cf-mysql-broker/1b0b2209ec032a662bbe6122d03abbbb40675710 (00:00:00)
+Task 5 | 05:59:33 | Creating new packages: cf-mysql-cluster-health-logger/19dc5675219358b70d90ed438b68e745ec0a2a73 (00:00:00)
+Task 5 | 05:59:33 | Creating new packages: cf-mysql-common/b0dd848055e84c2014b1bdafd02384d639cb08e0 (00:00:01)
+Task 5 | 05:59:34 | Creating new packages: check/d6811f25e9d56428a9b942631c27c9b24f5064dc (00:00:00)
+Task 5 | 05:59:34 | Creating new packages: cli/ffcc6e2f36ba09da3e082d4e0ad2a6ee76b9c1f8 (00:00:00)
+Task 5 | 05:59:34 | Creating new packages: cluster-schema-verifier/a2f8659250e5b51a7f5d0b0fdff5dbdc5ee98895
+Task 4 | 05:59:34 | Creating new packages: tps/87405e0b41a2a36f0031df7b663d4918fe734101c70fe35a5cb44f24203b4de4 (00:00:00)
+Task 4 | 05:59:34 | Creating new jobs: bbr-cloudcontrollerdb/d99f56ad84b82fb036ae09b6fc19a1b17d109f514a39c0a147244b4badf228db (00:00:01)
+Task 4 | 05:59:35 | Creating new jobs: blobstore/bfb859489434c69efc1e7a65e2b403a3607f75abe4dbeb9973071ab4c5ea5442 (00:00:00)
+Task 4 | 05:59:35 | Creating new jobs: cc_deployment_updater/edffdda680d77e48afcfc71ab38cfd803e36bac939165fa7933286591a86dcc6 (00:00:00)
+Task 4 | 05:59:35 | Creating new jobs: cc_route_syncer/9ffacc766119fad5cf8151b1ccd2de580bbe74e9fe344c1124c26fa0bf129755 (00:00:00)
+Task 4 | 05:59:35 | Creating new jobs: cc_uploader/48a27d57a9f2734d80a4d91028dac176dff87d75a445beed5ed3a15493f0b560 (00:00:00)
+Task 4 | 05:59:35 | Creating new jobs: cloud_controller_clock/a7704923ca032da7340f528f23267c4592125f821cd3995f1570b9d34992f38f (00:00:00)
+Task 4 | 05:59:35 | Creating new jobs: cloud_controller_ng/4ef5a0e4bcdbb2dca57f689ea6bdd98e9291fc546aae3ad93ea7f4e378b9beaa (00:00:00)
+Task 4 | 05:59:35 | Creating new jobs: cloud_controller_worker/a4e83c521ea5bfdeb5afaf79fd7ce270177d80c65f9ac77d97a5a4183e77ca14 (00:00:00)
+Task 4 | 05:59:35 | Creating new jobs: nfs_mounter/aded03099c1546e4f989457b671728a9fbf61247825345536fc89037871f7721 (00:00:00)
+Task 4 | 05:59:35 | Creating new jobs: rotate_cc_database_key/e6d7be08d0de74fe85de51989d78d218480883d47996f2756e66e08b2364430d (00:00:00)
+Task 4 | 05:59:35 | Creating new jobs: tps/1d9f1d0bc8d2ac40e88792a27a119d1807a7e0e2b88335a1c798855af5df4ad6 (00:00:00)
+Task 4 | 05:59:35 | Release has been created: capi/1.69.0 (00:00:00)
+Task 7 | 05:59:35 | Downloading remote release: Downloading remote release (00:00:01)
+Task 7 | 05:59:35 | Verifying remote release: Verifying remote release (00:00:01)
+Task 7 | 05:59:36 | Extracting release: Extracting release
+Task 5 | 05:59:34 | Creating new packages: cluster-schema-verifier/a2f8659250e5b51a7f5d0b0fdff5dbdc5ee98895 (00:00:00)
+Task 5 | 05:59:34 | Creating new packages: galera/f480a48c26d56d050bc0b579ed60750ccf52dadb (00:00:01)
+Task 5 | 05:59:35 | Creating new packages: galera-healthcheck/ea0e2e6288d084a9d23632f99711f85e1670bb60 (00:00:00)
+Task 5 | 05:59:35 | Creating new packages: generate-auto-tune-mysql/f41b75e326fab5af34f2c488b6be873a1a8ee40b (00:00:00)
+Task 5 | 05:59:35 | Creating new packages: golang/1e3f14023f54867deaf02dc187fc59f0afdae03b
+Task 8
+
+Task 4 Started  Sun Oct  7 05:59:19 UTC 2018
+Task 4 Finished Sun Oct  7 05:59:35 UTC 2018
+Task 4 Duration 00:00:16
+Task 4 done
+
+Task 7 | 05:59:37 | Extracting release: Extracting release (00:00:01)
+Task 7 | 05:59:37 | Verifying manifest: Verifying manifest (00:00:00)
+Task 7 | 05:59:37 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 7 | 05:59:37 | Creating new packages: bosh-dns-adapter/8bbba21c882ca6d2e7fb7124b9d91779be3c4327 (00:00:00)
+Task 7 | 05:59:37 | Creating new packages: golang-1.10-linux/84480dd6f6ab2d61546f28c05ed2705c9c642607
+Task 5 | 05:59:36 | Creating new packages: golang/1e3f14023f54867deaf02dc187fc59f0afdae03b (00:00:01)
+Task 5 | 05:59:36 | Creating new packages: gra-log-purger/2cbbd66b8161a503378af6486f2a0d0ccc987fec (00:00:00)
+Task 5 | 05:59:36 | Creating new packages: mariadb/7baa5c2ab22714f55170e71219b7f0205be0878f (00:00:01)
+Task 5 | 05:59:37 | Creating new packages: mariadb_ctrl/aa2d98f62993e091cc3cc0c5017db775953bd5bb (00:00:00)
+Task 5 | 05:59:37 | Creating new packages: mysqlclient/ce95f8ac566f76b650992987d5282ee473356e43 (00:00:00)
+Task 5 | 05:59:37 | Creating new packages: python/16de14b5e51a2eb13a9201ded0b7517c8e98f153
+Task 8 | 05:59:36 | Downloading remote release: Downloading remote release (00:00:01)
+Task 8 | 05:59:37 | Verifying remote release: Verifying remote release (00:00:01)
+Task 8 | 05:59:38 | Extracting release: Extracting release
+Task 9
+Task 5 | 05:59:38 | Creating new packages: python/16de14b5e51a2eb13a9201ded0b7517c8e98f153 (00:00:01)
+Task 5 | 05:59:38 | Creating new packages: quota-enforcer/e338890e54acdeeb32af25d5db688e99a8043a90 (00:00:00)
+Task 5 | 05:59:38 | Creating new packages: ruby/3461e66d227ee011f9d931f623bd599843ace3b5 (00:00:00)
+Task 5 | 05:59:38 | Creating new packages: scons/dbd49f7f2517cdb1853cd5e08eb59219731eb4c6 (00:00:00)
+Task 5 | 05:59:38 | Creating new packages: switchboard/96c4273ecad574f8e448d1d7fb3927efdd57e007 (00:00:00)
+Task 5 | 05:59:39 | Creating new packages: xtrabackup/e3be0425981cfbd68ce5971505962bf526ae02a4
+Task 7 | 05:59:38 | Creating new packages: golang-1.10-linux/84480dd6f6ab2d61546f28c05ed2705c9c642607 (00:00:01)
+Task 7 | 05:59:38 | Creating new packages: networking-ctl-utils/53debda29bc074c9b9753624ef97f142020288d4 (00:00:01)
+Task 7 | 05:59:39 | Creating new packages: performance-test-sd/2bdc3cc4d619def4e57844ac88f4373506108fc4 (00:00:00)
+Task 7 | 05:59:39 | Creating new packages: policy-server/37e57421b272c5cc946ddbcccbb05b29bb9e0a99 (00:00:00)
+Task 7 | 05:59:39 | Creating new packages: runc-cni/6ff28e7a63f1df1b1dbc4320a2bb87d8a98a65e1 (00:00:00)
+Task 7 | 05:59:39 | Creating new packages: service-discovery-controller/82c460d237b2a9a119cc2377c08cb9dc1ade0ed8 (00:00:00)
+Task 7 | 05:59:39 | Creating new jobs: bbr-cfnetworkingdb/d11aa9ec1aaf8c7bb50f7aa2737a5b6189c57427 (00:00:00)
+Task 7 | 05:59:39 | Creating new jobs: bosh-dns-adapter/26f0811d713650439adbfa87d11115c215c290af (00:00:00)
+Task 7 | 05:59:39 | Creating new jobs: garden-cni/7a026dddb789f0ab3eb11e6881c13705f14e6b52 (00:00:00)
+Task 7 | 05:59:39 | Creating new jobs: performance-test-sd/8a77241724a9c9a9e15350d98d4b463978c22e07
+Task 8 | 05:59:39 | Extracting release: Extracting release (00:00:01)
+Task 8 | 05:59:39 | Verifying manifest: Verifying manifest (00:00:00)
+Task 8 | 05:59:39 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 8 | 05:59:39 | Creating new packages: golang/e6771b55504d8f11d6ef82fa89d61c730ff7e002
+Task 5 | 05:59:40 | Creating new packages: xtrabackup/e3be0425981cfbd68ce5971505962bf526ae02a4 (00:00:01)
+Task 5 | 05:59:41 | Creating new jobs: arbitrator/bf8d40ef35c0d1aa5b814065bd2ff41fc32d78d7
+Task 7 | 05:59:40 | Creating new jobs: performance-test-sd/8a77241724a9c9a9e15350d98d4b463978c22e07 (00:00:01)
+Task 7 | 05:59:40 | Creating new jobs: policy-server/c0f5ea6a8578430fcb056bdf3a6a046d55b9b802
+Task 8 | 05:59:42 | Creating new packages: golang/e6771b55504d8f11d6ef82fa89d61c730ff7e002 (00:00:03)
+Task 8 | 05:59:43 | Creating new packages: smoke_tests/f194704e496cac261102c15243ce8404e917b375
+Task 10
+Task 5 | 05:59:43 | Creating new jobs: arbitrator/bf8d40ef35c0d1aa5b814065bd2ff41fc32d78d7 (00:00:02)
+Task 5 | 05:59:43 | Creating new jobs: bootstrap/4ca12ef06b2236261da2984bd956c0507e4a75ef
+Task 7 | 05:59:43 | Creating new jobs: policy-server/c0f5ea6a8578430fcb056bdf3a6a046d55b9b802 (00:00:03)
+Task 7 | 05:59:43 | Creating new jobs: policy-server-internal/6807a0e670489693f96e3631bad7dafe59870199
+Task 8 | 05:59:44 | Creating new packages: smoke_tests/f194704e496cac261102c15243ce8404e917b375 (00:00:01)
+Task 8 | 05:59:44 | Creating new jobs: smoke_tests/64c3aa84a8eb9a10cb0f15f077a5683a4554dc57
+Task 9 | 05:59:46 | Downloading remote release: Downloading remote release
+Task 5 | 05:59:45 | Creating new jobs: bootstrap/4ca12ef06b2236261da2984bd956c0507e4a75ef (00:00:02)
+Task 5 | 05:59:45 | Creating new jobs: broker-registrar/842ab0cbc443c0c5929f6a7a7c2833a7a3be1893 (00:00:01)
+Task 5 | 05:59:46 | Creating new jobs: cf-mysql-broker/5cfb1fc7132306dff6a2f036d12bfa0dc0d2ffc7 (00:00:00)
+Task 5 | 05:59:46 | Creating new jobs: cf-mysql-broker-user/0cbe66c733d68c0c71711d5b139532a7728aa8d8 (00:00:00)
+Task 5 | 05:59:46 | Creating new jobs: deregister-and-purge-instances/94c073d24dac8393925181f85a6207498c7d0e61 (00:00:00)
+Task 5 | 05:59:46 | Creating new jobs: mysql/cefd477981d3d28bee244fdb4acb7f3f1d2bf20f (00:00:00)
+Task 5 | 05:59:46 | Creating new jobs: proxy/55ac0132cc7354288deb9291f1b06487f489cbf7 (00:00:00)
+Task 5 | 05:59:46 | Creating new jobs: rejoin-unsafe/a2b1c9c5017fbe80ff25e1921975026af6bc924a (00:00:00)
+Task 5 | 05:59:46 | Creating new jobs: smoke-tests/cabc2f763eb0556e526096a53ab96b15a977f92f (00:00:00)
+Task 5 | 05:59:46 | Creating new jobs: smoke-tests-user/a836a949e081486fd44a61db352d6d9bd335f1d0 (00:00:00)
+Task 5 | 05:59:46 | Creating new jobs: verify-cluster-schemas/2a049bb02c5a0e76582c6c90d4e06f510fb2638a (00:00:00)
+Task 5 | 05:59:46 | Release has been created: cf-mysql/36.15.0 (00:00:00)
+Task 7 | 05:59:45 | Creating new jobs: policy-server-internal/6807a0e670489693f96e3631bad7dafe59870199 (00:00:02)
+Task 7 | 05:59:45 | Creating new jobs: service-discovery-controller/aaf56bf4bac709cb9d83f4bd1dc20bc0c87fb34b (00:00:01)
+Task 7 | 05:59:46 | Release has been created: cf-networking/2.16.0 (00:00:00)
+
+Task 7 Started  Sun Oct  7 05:59:34 UTC 2018
+Task 7 Finished Sun Oct  7 05:59:46 UTC 2018
+Task 7 Duration 00:00:12
+Task 7 done
+
+Task 8 | 05:59:46 | Creating new jobs: smoke_tests/64c3aa84a8eb9a10cb0f15f077a5683a4554dc57 (00:00:02)
+Task 8 | 05:59:46 | Release has been created: cf-smoke-tests/40.0.9 (00:00:00)
+
+Task 8 Started  Sun Oct  7 05:59:36 UTC 2018
+Task 8 Finished Sun Oct  7 05:59:46 UTC 2018
+Task 8 Duration 00:00:10
+Task 8 done
+
+Task 10 | 05:59:46 | Downloading remote release: Downloading remote release
+Task 9 | 05:59:48 | Downloading remote release: Downloading remote release (00:00:02)
+Task 9 | 05:59:48 | Verifying remote release: Verifying remote release (00:00:00)
+Task 9 | 05:59:48 | Extracting release: Extracting release
+
+Task 5 Started  Sun Oct  7 05:59:19 UTC 2018
+Task 5 Finished Sun Oct  7 05:59:46 UTC 2018
+Task 5 Duration 00:00:27
+Task 5 done
+
+Task 10 | 05:59:50 | Downloading remote release: Downloading remote release (00:00:04)
+Task 10 | 05:59:50 | Verifying remote release: Verifying remote release
+Task 9 | 05:59:49 | Extracting release: Extracting release (00:00:01)
+Task 9 | 05:59:49 | Verifying manifest: Verifying manifest (00:00:00)
+Task 9 | 05:59:49 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 9 | 05:59:49 | Creating new packages: adapter/ac84952221cdf00f6c4d826e43c3bb962b6ff3db51fd88a7a19fc3fd997ef20c (00:00:00)
+Task 9 | 05:59:49 | Creating new packages: fake_consumer/4aec5e73a74d09dd024c9008f4f19809f213c5b008b47f25d11bc50c729383ec (00:00:00)
+Task 9 | 05:59:49 | Creating new packages: fake_cups_provider/b72c076347c40720715ce068dc1e0d5d460d6b56dd642901fac1a16205fe8894 (00:00:00)
+Task 9 | 05:59:49 | Creating new packages: fake_logs_provider/10e7b7ce8cf1cd1e188ef22d7673bbed9e5feac298c7c3ee6123acc5726bc8fa (00:00:00)
+Task 9 | 05:59:49 | Creating new packages: golang1.10.3/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f
+Task 11
+Task 10 | 05:59:50 | Verifying remote release: Verifying remote release (00:00:00)
+Task 10 | 05:59:50 | Extracting release: Extracting release
+Task 12
+Task 11 | 05:59:51 | Downloading remote release: Downloading remote release
+Task 13
+Task 10 | 05:59:52 | Extracting release: Extracting release (00:00:02)
+Task 10 | 05:59:52 | Verifying manifest: Verifying manifest (00:00:00)
+Task 10 | 05:59:52 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 10 | 05:59:52 | Creating new packages: cflinuxfs2/1c7a1b7f94b9a0be4a965eeff422bcbb023eb22a
+Task 9 | 05:59:55 | Creating new packages: golang1.10.3/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f (00:00:06)
+Task 9 | 05:59:55 | Creating new packages: scheduler/08878130259ebf628ea42065ad894503489e03036e9be575d0cfa9148334755b (00:00:00)
+Task 9 | 05:59:55 | Creating new jobs: adapter/aa1e9f2bb1917c9ebfca251735a7b47bc15bf79e6b2652f977747914a4f17de6 (00:00:00)
+Task 9 | 05:59:55 | Creating new jobs: fake_consumer/04a1c5e55b40828d54150e3a5796341fa71d769a04e81b457ec65af42ac1ab51 (00:00:00)
+Task 9 | 05:59:55 | Creating new jobs: fake_cups_provider/dcede6087f4d57b2a23fa458ae3d082dfe82de7befffd28df438b2b0fa5cdd55 (00:00:01)
+Task 9 | 05:59:56 | Creating new jobs: fake_logs_provider/4c46ea83e5d89c10c958a82b0abfe554af00d56c8c2189f9f89b810109cd1421 (00:00:00)
+Task 9 | 05:59:56 | Creating new jobs: scheduler/8455ed350dd92d86a0bc67dbcd2a66119475710b6c1d736959da388a37818ee4 (00:00:00)
+Task 9 | 05:59:56 | Release has been created: cf-syslog-drain/7.1
+Task 11 | 05:59:54 | Downloading remote release: Downloading remote release (00:00:03)
+Task 11 | 05:59:55 | Verifying remote release: Verifying remote release (00:00:00)
+Task 11 | 05:59:55 | Extracting release: Extracting release
+Task 10 | 05:59:56 | Creating new packages: cflinuxfs2/1c7a1b7f94b9a0be4a965eeff422bcbb023eb22a (00:00:04)
+Task 10 | 05:59:56 | Creating new jobs: cflinuxfs2-rootfs-setup/db642f93f71de482f049b7289487160fac2c9d3c (00:00:00)
+Task 10 | 05:59:56 | Creating new jobs: cflinuxfs2-smoke-test/1fb4c1f9a4781f0a94fc4a7f10d2762361e8d3a5 (00:00:00)
+Task 10 | 05:59:56 | Release has been created: cflinuxfs2/1.238.0 (00:00:00)
+
+Task 10 Started  Sun Oct  7 05:59:46 UTC 2018
+Task 10 Finished Sun Oct  7 05:59:56 UTC 2018
+Task 10 Duration 00:00:10
+Task 10 done
+
+Task 13 | 05:59:57 | Downloading remote release: Downloading remote release
+Task 12 | 05:59:57 | Downloading remote release: Downloading remote release
+Task 9 | 05:59:56 | Release has been created: cf-syslog-drain/7.1 (00:00:00)
+
+Task 9 Started  Sun Oct  7 05:59:46 UTC 2018
+Task 9 Finished Sun Oct  7 05:59:56 UTC 2018
+Task 9 Duration 00:00:10
+Task 9 done
+
+Task 11 | 05:59:58 | Extracting release: Extracting release (00:00:03)
+Task 11 | 05:59:58 | Verifying manifest: Verifying manifest (00:00:00)
+Task 11 | 05:59:58 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 11 | 05:59:58 | Creating new packages: acceptance-tests/d730e9bb3b7764f972876fd7ceef96e6b873cb619696eaf3b5907f3bdcf42819 (00:00:01)
+Task 11 | 05:59:59 | Creating new packages: acceptance-tests-windows/07d70885811df1977cbb7bdfb9cbeb2b9a74edc25a05cd8bb1a28c6f386206ec
+Task 12 | 05:59:59 | Downloading remote release: Downloading remote release (00:00:02)
+Task 12 | 06:00:00 | Verifying remote release: Verifying remote release
+Task 13 | 06:00:00 | Downloading remote release: Downloading remote release (00:00:03)
+Task 13 | 06:00:00 | Verifying remote release: Verifying remote release
+Task 11 | 06:00:00 | Creating new packages: acceptance-tests-windows/07d70885811df1977cbb7bdfb9cbeb2b9a74edc25a05cd8bb1a28c6f386206ec (00:00:01)
+Task 11 | 06:00:00 | Creating new packages: confab/fa5c57dcb567e965a51bb3e444d3375fe46ca10a7c3516e1c6bb05377e0e8931 (00:00:01)
+Task 11 | 06:00:01 | Creating new packages: confab-windows/939e5ff88e71167371c187e44d6f5dc6e6b08ab3b760cd9ecfa6bbb35fe1a6bc (00:00:00)
+Task 11 | 06:00:01 | Creating new packages: consul/aa267a2e570e051b5b24b0029f8dc9ee3bccc443e4e6c8db7a90bbde04586054
+Task 15
+Task 13 | 06:00:01 | Verifying remote release: Verifying remote release (00:00:01)
+Task 13 | 06:00:01 | Extracting release: Extracting release
+Task 12 | 06:00:01 | Verifying remote release: Verifying remote release (00:00:01)
+Task 12 | 06:00:01 | Extracting release: Extracting release
+Task 16
+Task 11 | 06:00:02 | Creating new packages: consul/aa267a2e570e051b5b24b0029f8dc9ee3bccc443e4e6c8db7a90bbde04586054 (00:00:01)
+Task 11 | 06:00:02 | Creating new packages: consul-windows/ed50fbfcfef13de31c13e68048861dd8b28b9eb7f55309745703704abb68ce7f
+Task 13 | 06:00:03 | Extracting release: Extracting release (00:00:02)
+Task 13 | 06:00:04 | Verifying manifest: Verifying manifest
+Task 12 | 06:00:02 | Extracting release: Extracting release (00:00:01)
+Task 12 | 06:00:03 | Verifying manifest: Verifying manifest (00:00:00)
+Task 11 | 06:00:04 | Creating new packages: consul-windows/ed50fbfcfef13de31c13e68048861dd8b28b9eb7f55309745703704abb68ce7f (00:00:02)
+Task 11 | 06:00:04 | Creating new packages: golang-1-linux/d55c618ac63dfdf4ac457346fb325fb2b04884af
+Task 13 | 06:00:04 | Verifying manifest: Verifying manifest (00:00:00)
+Task 12 | 06:00:07 | Resolving package dependencies: Resolving package dependencies
+Task 13 | 06:00:11 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 13 | 06:00:11 | Creating new packages: auctioneer/fed968b14fc8ebf556447df59e05afcd4486928e3038daa2dfacce2dc86e0097
+Task 12 | 06:00:09 | Resolving package dependencies: Resolving package dependencies (00:00:02)
+Task 12 | 06:00:10 | Creating new packages: configurator/0d632a3a9b06f3777bea07d61807ca06ece24dee
+Task 11 | 06:00:12 | Creating new packages: golang-1-linux/d55c618ac63dfdf4ac457346fb325fb2b04884af (00:00:08)
+Task 11 | 06:00:12 | Creating new packages: golang-1-windows/db3472d3474d0e599c51f07058e171ec295a89a2
+Task 12 | 06:00:12 | Creating new packages: configurator/0d632a3a9b06f3777bea07d61807ca06ece24dee (00:00:02)
+Task 12 | 06:00:12 | Creating new packages: credhub/31910de76153bd0158eff3fb185777026b4ff154 (00:00:01)
+Task 12 | 06:00:13 | Creating new packages: golang-1.9-linux/8d6c67abda8684ce454f0bc74050a213456573ff (00:00:01)
+Task 12 | 06:00:14 | Creating new packages: lunaclient/b922e045db5246ec742f0c4d1496844942d6167a (00:00:00)
+Task 12 | 06:00:14 | Creating new packages: openjdk_1.8.0/c8846344bf802835ce8b1229de8fa2028d06f603 (00:00:01)
+Task 12 | 06:00:15 | Creating new jobs: bbr-credhubdb/89fd3efdc47e492258e6fa0e3fcec9c1c2bd97ca (00:00:02)
+Task 13 | 06:00:17 | Creating new packages: auctioneer/fed968b14fc8ebf556447df59e05afcd4486928e3038daa2dfacce2dc86e0097 (00:00:06)
+Task 13 | 06:00:18 | Creating new packages: bbs/6086e6ee199101582550f26558f75c538e523df22d101d282eb3729578e2d9a8
+Task 12 | 06:00:17 | Creating new jobs: credhub/985151fd964e886f4e60237c4f7ff970ee401dc4
+Task 13 | 06:00:19 | Creating new packages: bbs/6086e6ee199101582550f26558f75c538e523df22d101d282eb3729578e2d9a8 (00:00:01)
+Task 11 | 06:00:19 | Creating new packages: golang-1-windows/db3472d3474d0e599c51f07058e171ec295a89a2 (00:00:07)
+Task 11 | 06:00:20 | Creating new jobs: acceptance-tests/fad3cbef6e7d07b87a968aab6fcd712df22e2faa87070d6e483cd41c38dcf1b1
+Task 12 | 06:00:19 | Creating new jobs: credhub/985151fd964e886f4e60237c4f7ff970ee401dc4 (00:00:02)
+Task 12 | 06:00:19 | Release has been created: credhub/1.9.5 (00:00:01)
+Task 13 | 06:00:20 | Creating new packages: benchmark-bbs/43a405af2d8ef4f462e3e68a5d49720f09f78dba7915c445701ea5dfc713a5da
+Task 15 | 06:00:25 | Downloading remote release: Downloading remote release (00:00:01)
+Task 15 | 06:00:26 | Verifying remote release: Verifying remote release (00:00:00)
+Task 15 | 06:00:26 | Extracting release: Extracting release (00:00:00)
+Task 15 | 06:00:26 | Verifying manifest: Verifying manifest (00:00:00)
+Task 15 | 06:00:26 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 15 | 06:00:26 | Creating new packages: dotnet-core-buildpack-cflinuxfs2/2372bd94a852520115db555937bd85f7b114f43f
+Task 13 | 06:00:23 | Creating new packages: benchmark-bbs/43a405af2d8ef4f462e3e68a5d49720f09f78dba7915c445701ea5dfc713a5da (00:00:03)
+Task 13 | 06:00:24 | Creating new packages: buildpack_app_lifecycle/3c44a5edf39d30c6a825f522660a9e9dff915a2540238568a2968b3941c4acc1 (00:00:01)
+Task 13 | 06:00:25 | Creating new packages: certsplitter/fe1cfa89d614a8438e4cbcff5a7b5d56d333e19278a992a433c596ddad9b737d (00:00:00)
+Task 13 | 06:00:25 | Creating new packages: certsplitter_windows/af843d808049d1a0fb53d2bb97e93b91ea34931dee827f425731d8c121cb6675 (00:00:00)
+Task 13 | 06:00:25 | Creating new packages: cfdot/30edaf96b41851c08b719d1d26bec4839ec04b47d0ecb61de6c1aeebe6a09709 (00:00:00)
+Task 13 | 06:00:25 | Creating new packages: diego-sshd/ec2d3611c09d4e1e5050e822e871dc04acac037c7ad4a3bf7d65a9440693beb1 (00:00:00)
+Task 13 | 06:00:25 | Creating new packages: docker_app_lifecycle/9c43d1638b91523c8cfe11f93da3c592702061e854dceb260c8ac807e7124520 (00:00:01)
+Task 13 | 06:00:26 | Creating new packages: file_server/6ab29d44cf55315abd7a63a37fd289664aff8c836c0a1bddca6d39732eb5071e (00:00:00)
+Task 13 | 06:00:26 | Creating new packages: golang-1-linux/d55c618ac63dfdf4ac457346fb325fb2b04884af
+Task 11 | 06:00:23 | Creating new jobs: acceptance-tests/fad3cbef6e7d07b87a968aab6fcd712df22e2faa87070d6e483cd41c38dcf1b1 (00:00:03)
+Task 11 | 06:00:24 | Creating new jobs: consul-test-consumer/683fd76e52f413cb97f759f8333baf7809a17afa340941b1ca7681de2566bbca (00:00:01)
+Task 11 | 06:00:25 | Creating new jobs: consul-test-consumer-windows/21ba1939056dde71518892b518ad8ad3b4aeb082f882d46a09b9ec06f74a7b2b (00:00:00)
+Task 11 | 06:00:25 | Creating new jobs: consul_agent/4d9f62c27ad733c2de3ebb7ebd4005c6ddfd73f34f3e7481f04431adcbab5de0 (00:00:00)
+Task 11 | 06:00:25 | Creating new jobs: consul_agent_windows/30c0bde7c87c8273d6d0b8a348882a8151b4c267f4509b092abb87dc569dfce3 (00:00:00)
+Task 11 | 06:00:25 | Creating new jobs: fake-dns-server/66c04aa3958499f7f3abe8455286e13a1e7e9818057f32494e61cd8e510991f7 (00:00:00)
+Task 11 | 06:00:25 | Release has been created: consul/196 (00:00:00)
+
+Task 11 Started  Sun Oct  7 05:59:51 UTC 2018
+Task 11 Finished Sun Oct  7 06:00:25 UTC 2018
+Task 11 Duration 00:00:34
+Task 11 done
+
+
+Task 12 Started  Sun Oct  7 05:59:57 UTC 2018
+Task 12 Finished Sun Oct  7 06:00:20 UTC 2018
+Task 12 Duration 00:00:23
+Task 12 done
+
+Task 15 | 06:00:26 | Creating new packages: dotnet-core-buildpack-cflinuxfs2/2372bd94a852520115db555937bd85f7b114f43f (00:00:00)
+Task 15 | 06:00:26 | Creating new packages: dotnet-core-buildpack-cflinuxfs3/896a1a14e824fb6d02e9b0670ce271680a860e1e (00:00:00)
+Task 15 | 06:00:26 | Creating new jobs: dotnet-core-buildpack/e461c627d7067e7bb788efa8a51f148621c62e7d (00:00:00)
+Task 15 | 06:00:26 | Release has been created: dotnet-core-buildpack/2.1.4 (00:00:00)
+
+Task 15 Started  Sun Oct  7 06:00:25 UTC 2018
+Task 15 Finished Sun Oct  7 06:00:26 UTC 2018
+Task 15 Duration 00:00:01
+Task 15 done
+
+Task 16 | 06:00:26 | Downloading remote release: Downloading remote release (00:00:04)
+Task 17
+Task 18
+Task 13 | 06:00:33 | Creating new packages: golang-1-linux/d55c618ac63dfdf4ac457346fb325fb2b04884af (00:00:07)
+Task 13 | 06:00:33 | Creating new packages: golang-1-windows/db3472d3474d0e599c51f07058e171ec295a89a2
+Task 17 | 06:00:33 | Downloading remote release: Downloading remote release (00:00:00)
+Task 17 | 06:00:33 | Verifying remote release: Verifying remote release (00:00:00)
+Task 17 | 06:00:33 | Extracting release: Extracting release (00:00:00)
+Task 17 | 06:00:33 | Verifying manifest: Verifying manifest (00:00:00)
+Task 17 | 06:00:33 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 17 | 06:00:33 | Creating new packages: go-buildpack-cflinuxfs2/1312bc3d3c7a944eb93e505f48171d12164b1c42
+Task 16 | 06:00:31 | Verifying remote release: Verifying remote release (00:00:02)
+Task 16 | 06:00:33 | Extracting release: Extracting release
+Task 18 | 06:00:34 | Downloading remote release: Downloading remote release
+Task 19
+Task 17 | 06:00:33 | Creating new packages: go-buildpack-cflinuxfs2/1312bc3d3c7a944eb93e505f48171d12164b1c42 (00:00:00)
+Task 17 | 06:00:33 | Creating new packages: go-buildpack-cflinuxfs3/c8ae32aae2e3e751ef37fd3185c135a9d48f51c7 (00:00:01)
+Task 17 | 06:00:34 | Creating new jobs: go-buildpack/29b9d8977df6a6f589251956d531347b0db647dd (00:00:00)
+Task 17 | 06:00:34 | Release has been created: go-buildpack/1.8.26 (00:00:00)
+
+Task 17 Started  Sun Oct  7 06:00:33 UTC 2018
+Task 17 Finished Sun Oct  7 06:00:34 UTC 2018
+Task 17 Duration 00:00:01
+Task 17 done
+
+Task 19 | 06:00:35 | Downloading remote release: Downloading remote release
+Task 18 | 06:00:34 | Downloading remote release: Downloading remote release (00:00:00)
+Task 18 | 06:00:34 | Verifying remote release: Verifying remote release (00:00:00)
+Task 18 | 06:00:34 | Extracting release: Extracting release (00:00:00)
+Task 18 | 06:00:34 | Verifying manifest: Verifying manifest (00:00:00)
+Task 18 | 06:00:34 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 18 | 06:00:34 | Creating new packages: java-buildpack-cflinuxfs2/afb99a4c844168336dda24c189d9b779dcd82159 (00:00:00)
+Task 18 | 06:00:34 | Creating new packages: java-buildpack-cflinuxfs3/3263d32b02319292a57f687b6f96e97f1a224f7a (00:00:00)
+Task 18 | 06:00:34 | Creating new jobs: java-buildpack/48d0e82f5e4251fb782b18b908995e55a68988cd (00:00:01)
+Task 18 | 06:00:35 | Release has been created: java-buildpack/4.15 (00:00:00)
+
+Task 18 Started  Sun Oct  7 06:00:34 UTC 2018
+Task 18 Finished Sun Oct  7 06:00:35 UTC 2018
+Task 18 Duration 00:00:01
+Task 18 done
+
+Task 16 | 06:00:35 | Extracting release: Extracting release (00:00:02)
+Task 16 | 06:00:35 | Verifying manifest: Verifying manifest (00:00:00)
+Task 16 | 06:00:35 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 16 | 06:00:35 | Creating new packages: apparmor/0133a2288b0f71d05d89bd117c957297ad19cd19c0253236ba0ce4dedeb27186 (00:00:00)
+Task 16 | 06:00:35 | Creating new packages: autoconf/4f8914a0ada02006da32066d2e374e2a065d3acafbceb60ffd45ea146df7af1f (00:00:01)
+Task 16 | 06:00:36 | Creating new packages: automake/f11b0c20f9b9a5de955bbe1cb877e836a8841ddf88407b25ebbe9d31e3992858 (00:00:00)
+Task 16 | 06:00:36 | Creating new packages: busybox/02b86e9e891e78294e366cfc3361514b752308952f56b954f7a6ae31961f859c (00:00:00)
+Task 16 | 06:00:36 | Creating new packages: containerd/1eb394d0042c3fa5b8446bd9e9b0d455f9264879e2313ae0cd7caa3a80cfdac4 (00:00:00)
+Task 16 | 06:00:36 | Creating new packages: garden-idmapper/1ef383f9edc4ea3704bc8e306c8a3986598676b03e1ba6eb8e5302f0a6027935 (00:00:00)
+Task 16 | 06:00:36 | Creating new packages: golang/16d30b2f9b19b8c6b38bdab2445c763208f162a3acd9eae69efe2c70e17132c5 (00:00:02)
+Task 16 | 06:00:38 | Creating new packages: golang-windows/ba57d2ab623b13b1532da21f46fc407a51980b20349136d9967a877844accf26
+Task 19 | 06:00:38 | Downloading remote release: Downloading remote release (00:00:03)
+Task 19 | 06:00:38 | Verifying remote release: Verifying remote release (00:00:01)
+Task 19 | 06:00:39 | Extracting release: Extracting release
+Task 20
+Task 16 | 06:00:40 | Creating new packages: golang-windows/ba57d2ab623b13b1532da21f46fc407a51980b20349136d9967a877844accf26 (00:00:02)
+Task 16 | 06:00:40 | Creating new packages: greenskeeper/d97ffa6f9c80773df6eb625784ce32522c5105d52016f4a3d691a9ac5344999f (00:00:00)
+Task 16 | 06:00:40 | Creating new packages: grootfs/f7b4ee3937c3d2a5328fc87acee77be31d45ecee6f680981977a1475c83446a8
+Task 13 | 06:00:39 | Creating new packages: golang-1-windows/db3472d3474d0e599c51f07058e171ec295a89a2 (00:00:06)
+Task 13 | 06:00:39 | Creating new packages: healthcheck/4e2e7c1a8da89599b75b90754381f78c51afa173c6e68a143e692bd1d5103a3d (00:00:00)
+Task 13 | 06:00:39 | Creating new packages: healthcheck_windows/69d73f4d739140b7a47fbc42c8aad77cf607aecc5c3371ee476bcf1d72887340 (00:00:00)
+Task 13 | 06:00:39 | Creating new packages: locket/6b53e78830595136c29e7a985c4f316113656c9debaf9605f3df5c095c65eab5 (00:00:00)
+Task 13 | 06:00:39 | Creating new packages: pid_utils/fbac6dd5889d4c4b0d5a7190cea8a36b9fc6fef8e78ce094c04f66129681ec9a (00:00:00)
+Task 13 | 06:00:39 | Creating new packages: proxy/8ec116448b211df572bcc108cb9c42f7bbb064180d1011a0520ba1d9e96d0735 (00:00:00)
+Task 13 | 06:00:39 | Creating new packages: rep/70f6b91af1856126065b194b792525e4feb1e8e03812034bdef89f6f0e1db537 (00:00:00)
+Task 13 | 06:00:39 | Creating new packages: rep_windows/dad40c29551bbe16e97453d372b74de69090c470ef905f492cd2e1aead6b1fc4 (00:00:00)
+Task 13 | 06:00:39 | Creating new packages: route_emitter/2f77ee032ce1812a906e000d11abccd64933b439f9593da35945361e644248eb (00:00:00)
+Task 13 | 06:00:39 | Creating new packages: route_emitter_windows/179da584ff3a889e44eeb3b2088c3af7a51330299473b05ea0ad425f65d8f097 (00:00:00)
+Task 13 | 06:00:40 | Creating new packages: ssh_proxy/787e9cc60cef36da36c9c5ada8a6fb936d570e3ce4691a158c71e621739bdfd8 (00:00:00)
+Task 13 | 06:00:40 | Creating new packages: vizzini/2e91e49802738edc7aa0b872e05df1e4cdfb255d783ada77ef938be8910530d5 (00:00:00)
+Task 13 | 06:00:40 | Creating new packages: windows_app_lifecycle/ae397a64384eb88f442ca2f897e77a4e4041a2a864b4a798f1a3fcc84694d795 (00:00:00)
+Task 13 | 06:00:40 | Creating new jobs: auctioneer/3ca6e0f09e77cff6215d22a86dd5cedd3f13a457ec159fef67d6866cc0771d5c (00:00:00)
+Task 13 | 06:00:40 | Creating new jobs: bbs/f472cc296757f36e6cde320877df9faa4f351ec6fa51f7df2fe7c567ad10fb65 (00:00:00)
+Task 13 | 06:00:40 | Creating new jobs: benchmark-bbs/47bf16987861fbdaed78a532000088bd7b67fac000f4cc338926db2744183076 (00:00:00)
+Task 13 | 06:00:40 | Creating new jobs: cfdot/1c44126b45b0899d89182ca7dc098d16bd8a598701bb6390180a37f1f40909c5 (00:00:00)
+Task 13 | 06:00:40 | Creating new jobs: file_server/8693095591528cafd72f0409be8cebeb9d8ed27f807abffa7d01c5ec2f50e1f8 (00:00:00)
+Task 13 | 06:00:40 | Creating new jobs: locket/b41688bbda9eafe423b97bfaed29b4f1d07bd8735eb3d432a0b8705862735124 (00:00:00)
+Task 13 | 06:00:40 | Creating new jobs: rep/9603f88ec786c935ce952a0f4579bc2e26c9bc52b2624d348ec63e4b101802e8 (00:00:00)
+Task 13 | 06:00:40 | Creating new jobs: rep_windows/e92c69d7c122062b031879269e3ae3552b0f3d4980e6af7740e2c1e0f484f9d6 (00:00:00)
+Task 13 | 06:00:40 | Creating new jobs: route_emitter/df326f7739a2b4b9380f898ae03d826ab3558f30956dd5f848ec3d13851ebe16 (00:00:00)
+Task 13 | 06:00:40 | Creating new jobs: route_emitter_windows/bfa63b7a17e0481aea043556d6ee052b1bd0fad96be43a1cfbe0f2d2788c6289
+Task 21
+Task 20 | 06:00:41 | Downloading remote release: Downloading remote release
+Task 16 | 06:00:41 | Creating new packages: grootfs/f7b4ee3937c3d2a5328fc87acee77be31d45ecee6f680981977a1475c83446a8 (00:00:01)
+Task 16 | 06:00:41 | Creating new packages: guardian/a347729f504e165947e0eeaed3c6f48f6f77e057cd6954f1e08fdbf745fb99d5 (00:00:00)
+Task 16 | 06:00:41 | Creating new packages: guardian-windows/082a9186bbe53b001aa017d99f2283667a8fc48a191f07fdac1374eda7759ee3 (00:00:00)
+Task 16 | 06:00:41 | Creating new packages: iptables/7a3108e45160133ba44434781ff364f395c197ba2c92db6b31cced950cf7a37a (00:00:01)
+Task 16 | 06:00:42 | Creating new packages: libseccomp/11f3a8e12b881d4d6f660d84df70d3fe99b12e1621f9e93ff66e120aec12ec96 (00:00:00)
+Task 16 | 06:00:42 | Creating new packages: libtool/3e211ee9e3aab09a9e8a9ff55ab9ce9ba81590d945640e2d29c078597db33a94 (00:00:00)
+Task 16 | 06:00:42 | Creating new packages: lzo/7ec718ef29da337d56f08e90534f561c138c2c88b576dc5da5185d85fdd42b20 (00:00:00)
+Task 16 | 06:00:42 | Creating new packages: netplugin-shim/cbdab762cda43c1ac92f2b4937d3a4d5d9f14912048c8db97f8abc6047ad5896 (00:00:00)
+Task 16 | 06:00:42 | Creating new packages: pkg-config/278dbe10dcc428102e39936da0c7ddd2254cb0029ec0c9b06f545b228484187a (00:00:00)
+Task 16 | 06:00:42 | Creating new packages: runc/b6bd6df5d5f9ede56bbeddc78b3e34aa0fef1433e4897c9072757bce948e234f (00:00:00)
+Task 16 | 06:00:42 | Creating new packages: tar/f922f97b27619f8331332e4186c1f9c63fa5b4ddd213c4a02c7ed7cf68fced21
+Task 13 | 06:00:40 | Creating new jobs: route_emitter_windows/bfa63b7a17e0481aea043556d6ee052b1bd0fad96be43a1cfbe0f2d2788c6289 (00:00:00)
+Task 13 | 06:00:40 | Creating new jobs: ssh_proxy/3b129b50923db10dd1a5f0c8ea206bbcdd147df271c24df0b21c87ea8dc3cd12 (00:00:00)
+Task 13 | 06:00:40 | Creating new jobs: vizzini/a4280cdeaa57c167d396688faf6d94c2bb4034100ad11893f82f1f9ebdc91efa (00:00:01)
+Task 13 | 06:00:41 | Release has been created: diego/2.17.0 (00:00:00)
+
+Task 13 Started  Sun Oct  7 05:59:57 UTC 2018
+Task 13 Finished Sun Oct  7 06:00:41 UTC 2018
+Task 13 Duration 00:00:44
+Task 13 done
+
+Task 19 | 06:00:41 | Extracting release: Extracting release (00:00:02)
+Task 19 | 06:00:41 | Verifying manifest: Verifying manifest (00:00:00)
+Task 19 | 06:00:41 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 19 | 06:00:41 | Creating new packages: doppler/48f16179bb459b078b2429ddd469d166b053c3cc110806ea3539032fa44117ea (00:00:00)
+Task 19 | 06:00:41 | Creating new packages: golang1.10.3/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f
+Task 20 | 06:00:43 | Downloading remote release: Downloading remote release (00:00:02)
+Task 20 | 06:00:43 | Verifying remote release: Verifying remote release (00:00:00)
+Task 20 | 06:00:43 | Extracting release: Extracting release
+Task 21 | 06:00:43 | Downloading remote release: Downloading remote release (00:00:01)
+Task 21 | 06:00:44 | Verifying remote release: Verifying remote release (00:00:00)
+Task 21 | 06:00:44 | Extracting release: Extracting release
+Task 16 | 06:00:42 | Creating new packages: tar/f922f97b27619f8331332e4186c1f9c63fa5b4ddd213c4a02c7ed7cf68fced21 (00:00:00)
+Task 16 | 06:00:42 | Creating new packages: thresholder/f4e483ede3a933f7aae30e29b3f4d1490768bba3aaf620290c8ed0b18ad71ff3 (00:00:00)
+Task 16 | 06:00:42 | Creating new packages: util-linux/6310f68e8294c980de62481bced2fc915f449e3a2cc2d13a7a2a49c4a612d825 (00:00:00)
+Task 16 | 06:00:42 | Creating new packages: xfs-progs/6ce014f88e05f358621a25ce48ee036d78bdb1a935a8eb556974d3de26c8614d (00:00:00)
+Task 16 | 06:00:42 | Creating new packages: zlib/98e4e7f5eebfe3831cf312d32a44f71281fcbc2577770fffd7b9601991ab31de (00:00:00)
+Task 16 | 06:00:42 | Creating new jobs: containerd/d754663fa745c088de771ec8f957c38b313334bd9812f9eb3256d8b245580dae (00:00:01)
+Task 16 | 06:00:43 | Creating new jobs: garden/a19e6589e60b14cafafbb80f6484e452c9ec9bf1c2c182169f33fc8c30e9073e (00:00:00)
+Task 16 | 06:00:43 | Creating new jobs: garden-windows/95c331801e24ab5bc3ea23096e2ad859a92f3dc2997595984ea30d059cb727d3 (00:00:00)
+Task 16 | 06:00:43 | Creating new jobs: netplugin-server/984c4150dbf15dc0ad48df1f7401ae17323f943a908e7f1c2f61e83809990ae4 (00:00:00)
+Task 16 | 06:00:43 | Release has been created: garden-runc/1.16.4 (00:00:00)
+
+Task 16 Started  Sun Oct  7 06:00:26 UTC 2018
+Task 16 Finished Sun Oct  7 06:00:43 UTC 2018
+Task 16 Duration 00:00:17
+Task 16 done
+
+Task 20 | 06:00:44 | Extracting release: Extracting release (00:00:01)
+Task 20 | 06:00:44 | Verifying manifest: Verifying manifest (00:00:00)
+Task 20 | 06:00:44 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 20 | 06:00:44 | Creating new packages: gnatsd/9b75b0f42352f739d8352f00e5867263afadbcf4 (00:00:00)
+Task 20 | 06:00:44 | Creating new packages: golang-1-linux/d55c618ac63dfdf4ac457346fb325fb2b04884af
+Task 21 | 06:00:44 | Extracting release: Extracting release (00:00:00)
+Task 21 | 06:00:44 | Verifying manifest: Verifying manifest (00:00:00)
+Task 21 | 06:00:44 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 21 | 06:00:44 | Creating new packages: nodejs-buildpack-cflinuxfs2/38c5fd7c09d604d52c0bf1d0bc6408804c0d54d6 (00:00:00)
+Task 21 | 06:00:44 | Creating new packages: nodejs-buildpack-cflinuxfs3/02656f5f841be39b97c70239b13c60823c1a6025
+Task 22
+Task 19 | 06:00:47 | Creating new packages: golang1.10.3/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f (00:00:06)
+Task 19 | 06:00:47 | Creating new packages: golang1.10.3-windows/89d217c6be9274d7e6a41bb6d6b065801ed76467537a3d5e49c6675e85935bbb
+Task 23
+Task 19 | 06:00:49 | Creating new packages: golang1.10.3-windows/89d217c6be9274d7e6a41bb6d6b065801ed76467537a3d5e49c6675e85935bbb (00:00:02)
+Task 19 | 06:00:49 | Creating new packages: loggregator_trafficcontroller/e25b00da7d82f351131fc12e3f20c882ed1b644d944b9fdcb50a494e21faefe1 (00:00:00)
+Task 19 | 06:00:49 | Creating new packages: metron_agent/2f0339b04b177edacdb2d76be72efca2ca1990e8dec8e5d712fd62bf3294e8a3 (00:00:01)
+Task 19 | 06:00:50 | Creating new packages: metron_agent_windows/8dfc2fa00828cc3da4711f209cbcfed6ba7dcd1ff46f16a0e1c1c7023758f3e7 (00:00:00)
+Task 19 | 06:00:50 | Creating new packages: profiler/0b90246ed70dcefd609de5c2fb4bb6d2944e7ef0d3947a319891aff813ec8c97 (00:00:00)
+Task 19 | 06:00:50 | Creating new packages: reverse_log_proxy/4138a5ba5e2f6895c3737471f4d04f12377b87e1b25e0d52071adcffa7355027 (00:00:00)
+Task 19 | 06:00:50 | Creating new packages: reverse_log_proxy_gateway/3a41e805a2cfb963783213593dae8ade1645070c858844fe8760045d96452beb (00:00:00)
+Task 19 | 06:00:50 | Creating new jobs: doppler/15070fd57315c5ed31e751cab0cc445be7e053e2564e9f0c3d56eaf902c20b1c (00:00:00)
+Task 19 | 06:00:50 | Creating new jobs: loggregator_trafficcontroller/0abcd175bf741ab5a66ef50192f6495e800b53e98c48f6694a38fe933f914171 (00:00:00)
+Task 19 | 06:00:50 | Creating new jobs: metron_agent/4c5f92c54115900128d7083bde917c60a3a899a3197c2ba034a99f1b884736bd (00:00:00)
+Task 19 | 06:00:50 | Creating new jobs: metron_agent_windows/95089e06f108387a2c40c59f7a32fdad4ba3dbfc48bd031a11588d5187a1adcc
+Task 20 | 06:00:49 | Creating new packages: golang-1-linux/d55c618ac63dfdf4ac457346fb325fb2b04884af (00:00:05)
+Task 20 | 06:00:49 | Creating new packages: nats-smoke/81b8c1ba924073de24ed74dc9e7eabf97fc42673 (00:00:01)
+Task 20 | 06:00:50 | Creating new jobs: nats/bb1419155d3b683f777fed33d62fbbbd119a8eea (00:00:00)
+Task 20 | 06:00:50 | Creating new jobs: smoke-tests/5218ef64ed85ad23bc555c0fa477895adfca2007 (00:00:00)
+Task 20 | 06:00:50 | Release has been created: nats/26 (00:00:00)
+Task 21 | 06:00:49 | Creating new packages: nodejs-buildpack-cflinuxfs3/02656f5f841be39b97c70239b13c60823c1a6025 (00:00:05)
+Task 21 | 06:00:49 | Creating new jobs: nodejs-buildpack/5ba46f4195a4b17b060ac70b0320235dca335203 (00:00:00)
+Task 21 | 06:00:49 | Release has been created: nodejs-buildpack/1.6.30 (00:00:00)
+
+Task 21 Started  Sun Oct  7 06:00:43 UTC 2018
+Task 21 Finished Sun Oct  7 06:00:49 UTC 2018
+Task 21 Duration 00:00:06
+Task 21 done
+
+Task 22 | 06:00:50 | Downloading remote release: Downloading remote release (00:00:00)
+Task 22 | 06:00:50 | Verifying remote release: Verifying remote release (00:00:00)
+Task 22 | 06:00:50 | Extracting release: Extracting release (00:00:00)
+Task 22 | 06:00:50 | Verifying manifest: Verifying manifest (00:00:00)
+Task 22 | 06:00:50 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 22 | 06:00:50 | Creating new packages: php-buildpack-cflinuxfs2/a531d8407b9c7b7cc1341a64a3db24da8a203ea7 (00:00:00)
+Task 22 | 06:00:50 | Creating new packages: php-buildpack-cflinuxfs3/59a53c195e13f7e3d21167580fb207b51c229026 (00:00:00)
+Task 22 | 06:00:50 | Creating new jobs: php-buildpack/85a129503dc8370c1d090bab932acb6981626f44 (00:00:00)
+Task 22 | 06:00:50 | Release has been created: php-buildpack/4.3.59 (00:00:00)
+
+Task 22 Started  Sun Oct  7 06:00:50 UTC 2018
+Task 22 Finished Sun Oct  7 06:00:50 UTC 2018
+Task 22 Duration 00:00:00
+Task 22 done
+
+Task 23 | 06:00:50 | Downloading remote release: Downloading remote release (00:00:00)
+Task 23 | 06:00:50 | Verifying remote release: Verifying remote release (00:00:00)
+Task 23 | 06:00:50 | Extracting release: Extracting release (00:00:01)
+Task 23 | 06:00:51 | Verifying manifest: Verifying manifest (00:00:00)
+Task 23 | 06:00:51 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 23 | 06:00:51 | Creating new packages: python-buildpack-cflinuxfs2/efc783665b26e801618fd40e3781048172f3fbfb (00:00:00)
+Task 23 | 06:00:51 | Creating new packages: python-buildpack-cflinuxfs3/0d4fb329c3d14f1532400319c8d4dff75e9b2afb (00:00:00)
+Task 23 | 06:00:51 | Creating new jobs: python-buildpack/64d4a12b92900df47b186eee469c7d84b141d0cd (00:00:00)
+Task 23 | 06:00:51 | Release has been created: python-buildpack/1.6.20 (00:00:00)
+
+Task 20 Started  Sun Oct  7 06:00:41 UTC 2018
+Task 20 Finished Sun Oct  7 06:00:50 UTC 2018
+Task 20 Duration 00:00:09
+Task 20 done
+
+Task 19 | 06:00:50 | Creating new jobs: metron_agent_windows/95089e06f108387a2c40c59f7a32fdad4ba3dbfc48bd031a11588d5187a1adcc (00:00:00)
+Task 19 | 06:00:50 | Creating new jobs: reverse_log_proxy/794ad902768e1ae62e28d1a66329958a8b2b22fad72c7d320a48298ff6526909 (00:00:00)
+Task 19 | 06:00:50 | Creating new jobs: reverse_log_proxy_gateway/04116fe9a418506e550ece58bfcc8ebce19587005a17f7a024467870da2ef7dd (00:00:00)
+Task 19 | 06:00:50 | Release has been created: loggregator/103.2 (00:00:00)
+
+Task 19 Started  Sun Oct  7 06:00:35 UTC 2018
+Task 19 Finished Sun Oct  7 06:00:50 UTC 2018
+Task 19 Duration 00:00:15
+Task 19 done
+
+
+Task 23 Started  Sun Oct  7 06:00:50 UTC 2018
+Task 23 Finished Sun Oct  7 06:00:51 UTC 2018
+Task 23 Duration 00:00:01
+Task 23 done
+
+Task 24
+Task 25
+Task 26
+Task 24 | 06:00:56 | Downloading remote release: Downloading remote release
+Task 27
+Task 25 | 06:00:56 | Downloading remote release: Downloading remote release (00:00:01)
+Task 25 | 06:00:57 | Verifying remote release: Verifying remote release
+Task 26 | 06:00:57 | Downloading remote release: Downloading remote release
+Task 28
+Task 24 | 06:00:58 | Downloading remote release: Downloading remote release (00:00:02)
+Task 24 | 06:00:58 | Verifying remote release: Verifying remote release (00:00:01)
+Task 24 | 06:00:59 | Extracting release: Extracting release
+Task 25 | 06:00:58 | Verifying remote release: Verifying remote release (00:00:01)
+Task 25 | 06:00:58 | Extracting release: Extracting release (00:00:00)
+Task 25 | 06:00:58 | Verifying manifest: Verifying manifest (00:00:00)
+Task 25 | 06:00:58 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 25 | 06:00:58 | Creating new packages: ruby-buildpack-cflinuxfs2/ffe2d93d1f9a97b67edff3f29ca955abd75aad29 (00:00:01)
+Task 25 | 06:00:59 | Creating new packages: ruby-buildpack-cflinuxfs3/eceed970dec65fd1613808b173b0160080b200d4 (00:00:00)
+Task 25 | 06:00:59 | Creating new jobs: ruby-buildpack/d9d44a16b06f88607fbc26e8c4c430b8469dd5d3 (00:00:00)
+Task 25 | 06:00:59 | Release has been created: ruby-buildpack/1.7.22 (00:00:00)
+
+Task 25 Started  Sun Oct  7 06:00:56 UTC 2018
+Task 25 Finished Sun Oct  7 06:00:59 UTC 2018
+Task 25 Duration 00:00:03
+Task 25 done
+
+Task 26 | 06:01:00 | Downloading remote release: Downloading remote release (00:00:03)
+Task 26 | 06:01:00 | Verifying remote release: Verifying remote release
+Task 27 | 06:00:59 | Downloading remote release: Downloading remote release (00:00:01)
+Task 27 | 06:01:00 | Verifying remote release: Verifying remote release (00:00:00)
+Task 27 | 06:01:00 | Extracting release: Extracting release (00:00:00)
+Task 27 | 06:01:00 | Verifying manifest: Verifying manifest (00:00:00)
+Task 27 | 06:01:00 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 27 | 06:01:00 | Creating new packages: staticfile-buildpack-cflinuxfs2/b5b83715e98cb0de468757f48f56a081e56b94e6 (00:00:00)
+Task 27 | 06:01:00 | Creating new packages: staticfile-buildpack-cflinuxfs3/ca111c707af9964da383d464742627987072fc1a (00:00:01)
+Task 27 | 06:01:01 | Creating new jobs: staticfile-buildpack/609e6f2b4c16adf44be603640f1a93502944a5a6 (00:00:00)
+Task 27 | 06:01:01 | Release has been created: staticfile-buildpack/1.4.31 (00:00:00)
+Task 24 | 06:01:00 | Extracting release: Extracting release (00:00:01)
+Task 24 | 06:01:00 | Verifying manifest: Verifying manifest (00:00:00)
+Task 24 | 06:01:00 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 24 | 06:01:00 | Creating new packages: acceptance_tests/084ba1a487afc38b76ac2def5ac5bfc5ea759f29d594b5a4289fe0ded42ec903 (00:00:00)
+Task 24 | 06:01:00 | Creating new packages: cf-cli-6-linux/befd4c245c53f8e59948ed7693d2372d3841c08d (00:00:01)
+Task 24 | 06:01:01 | Creating new packages: golang-1-linux/8fb48ae1b653b7d0b49d0cbcea856bb8da8a5700
+Task 28 | 06:01:01 | Downloading remote release: Downloading remote release
+Task 26 | 06:01:00 | Verifying remote release: Verifying remote release (00:00:00)
+Task 26 | 06:01:00 | Extracting release: Extracting release (00:00:02)
+Task 26 | 06:01:02 | Verifying manifest: Verifying manifest (00:00:00)
+Task 26 | 06:01:02 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 26 | 06:01:02 | Creating new packages: golang-1.10-linux/84480dd6f6ab2d61546f28c05ed2705c9c642607
+
+Task 27 Started  Sun Oct  7 06:00:59 UTC 2018
+Task 27 Finished Sun Oct  7 06:01:01 UTC 2018
+Task 27 Duration 00:00:02
+Task 27 done
+
+Task 24 | 06:01:02 | Creating new packages: golang-1-linux/8fb48ae1b653b7d0b49d0cbcea856bb8da8a5700 (00:00:01)
+Task 24 | 06:01:02 | Creating new packages: gorouter/13c386686a495917c6a40d9a2929d622a64dd822db059e363b31388b73f9c034 (00:00:00)
+Task 24 | 06:01:02 | Creating new packages: haproxy/a573fdd5c50a47c1a649c356beed073e27534ddf5fdd1aea9e8c890eddf83780 (00:00:00)
+Task 24 | 06:01:02 | Creating new packages: route_registrar/5205ea1a4c7b5258d6bbe7e27d37a48f664bd9bc3372a4cdb97ad93018bcd49a (00:00:00)
+Task 24 | 06:01:02 | Creating new packages: routing-api/e48eef5dee5ebd121571b3c016e9a89fa17eaed2768bf646e1f1bf67fb3501ed (00:00:00)
+Task 24 | 06:01:02 | Creating new packages: routing_utils/ee6362cf2ec3efbb0269e99dcb98606a485a17abb3e749c3039426d7e09f6e97 (00:00:00)
+Task 24 | 06:01:02 | Creating new packages: rtr/c0622d6a22d07ad853f05822c04ef4e1cc9f633632186eb3e59b3958ba12c2c8 (00:00:01)
+Task 24 | 06:01:03 | Creating new packages: tcp_router/08e9e93cb14e13da3d0e2ac1f048b821144cf014eefb71c6bd9000a6fa315c26 (00:00:00)
+Task 24 | 06:01:03 | Creating new jobs: acceptance_tests/90da9f9e6226d976512801243e1d85e6c43bb89922dd5d70a29f8707af0c2234
+Task 28 | 06:01:02 | Downloading remote release: Downloading remote release (00:00:01)
+Task 28 | 06:01:02 | Verifying remote release: Verifying remote release (00:00:01)
+Task 28 | 06:01:03 | Extracting release: Extracting release (00:00:00)
+Task 28 | 06:01:03 | Verifying manifest: Verifying manifest (00:00:00)
+Task 28 | 06:01:03 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 28 | 06:01:03 | Creating new packages: golang1.9.4/56d6cf267fef3a0a12c73da875e374ea19d6f23975808d813230cb904466404f
+Task 29
+Task 24 | 06:01:03 | Creating new jobs: acceptance_tests/90da9f9e6226d976512801243e1d85e6c43bb89922dd5d70a29f8707af0c2234 (00:00:00)
+Task 24 | 06:01:03 | Creating new jobs: bbr-routingdb/794530916f5308c8baf8cfb5630ec37ac850264ca3d544e31d21fbca4397e3fa (00:00:00)
+Task 24 | 06:01:03 | Creating new jobs: gorouter/9b74b5bb341d28c61ac9dab608139f143a4f6ebb99bb08ca71289936f627eee6 (00:00:00)
+Task 24 | 06:01:03 | Creating new jobs: route_registrar/bfec00eddc7d74e68615e0a4ddea881ea0052ff7ee12dafd4dc43907d5e8db25 (00:00:00)
+Task 24 | 06:01:03 | Creating new jobs: routing-api/66f6250e8fb8d25800bd5ce9038a93e8c0b353c7323c0a25d9c679be4bf37650 (00:00:00)
+Task 24 | 06:01:03 | Creating new jobs: smoke_tests/cc082a4d62756ae3cafb870fcdd79889cd77b15f9579a050195228ee3f10ca50 (00:00:00)
+Task 24 | 06:01:03 | Creating new jobs: tcp_router/ba5f0949247c94dbf58addff51e9c65055bce03452df68df1a2bc2bcda74b577 (00:00:00)
+Task 24 | 06:01:03 | Release has been created: routing/0.182.0 (00:00:00)
+
+Task 24 Started  Sun Oct  7 06:00:56 UTC 2018
+Task 24 Finished Sun Oct  7 06:01:03 UTC 2018
+Task 24 Duration 00:00:07
+Task 24 done
+
+Task 29 | 06:01:04 | Downloading remote release: Downloading remote release
+Task 28 | 06:01:05 | Creating new packages: golang1.9.4/56d6cf267fef3a0a12c73da875e374ea19d6f23975808d813230cb904466404f (00:00:02)
+Task 28 | 06:01:05 | Creating new packages: statsd_injector/0a87e3580066d3ad0ddad93b853ad2ac0c6af638aaf6fbc902176b2398eeb5b0 (00:00:00)
+Task 28 | 06:01:05 | Creating new jobs: statsd_injector/59cdb3bb81ba2db9745b206929e7c32a32efd3f5b17b510a49b4bfffa053c3eb (00:00:00)
+Task 28 | 06:01:05 | Release has been created: statsd-injector/1.3.0 (00:00:00)
+Task 30
+
+Task 28 Started  Sun Oct  7 06:01:01 UTC 2018
+Task 28 Finished Sun Oct  7 06:01:05 UTC 2018
+Task 28 Duration 00:00:04
+Task 28 done
+
+Task 30 | 06:01:06 | Downloading remote release: Downloading remote release
+Task 29 | 06:01:07 | Downloading remote release: Downloading remote release (00:00:03)
+Task 29 | 06:01:07 | Verifying remote release: Verifying remote release (00:00:01)
+Task 29 | 06:01:08 | Extracting release: Extracting release
+Task 26 | 06:01:07 | Creating new packages: golang-1.10-linux/84480dd6f6ab2d61546f28c05ed2705c9c642607 (00:00:05)
+Task 26 | 06:01:07 | Creating new packages: iptables-logger/415f3c5f261383b8e4c4f09fa31f07f3a077a81b (00:00:00)
+Task 26 | 06:01:07 | Creating new packages: netmon/664ea30869e681c5cddc6c0379c1a8e391e2492f (00:00:00)
+Task 26 | 06:01:07 | Creating new packages: silk-cni/0d2bf0c3c8ae2a1f8790776f25cc7ba7b219a0c1 (00:00:01)
+Task 26 | 06:01:08 | Creating new packages: silk-controller/b793002b15bc1b4c7f6ba895eb9e3bb7421f2f78 (00:00:00)
+Task 26 | 06:01:08 | Creating new packages: silk-ctl-utils/ca3d37b0be703c97306066da19e8105c92676f60 (00:00:00)
+Task 26 | 06:01:08 | Creating new packages: silk-daemon/fde54a2b78906a5a665cff941d81b7c3d2637218 (00:00:00)
+Task 26 | 06:01:08 | Creating new packages: vxlan-policy-agent/4424fa8c784245a7f7859a4527e306ae952b7d3b (00:00:00)
+Task 26 | 06:01:08 | Creating new jobs: iptables-logger/16c8087b618f19b13f35a65be39a2c75b966fcd4 (00:00:01)
+Task 31
+Task 30 | 06:01:09 | Downloading remote release: Downloading remote release (00:00:03)
+Task 30 | 06:01:09 | Verifying remote release: Verifying remote release (00:00:00)
+Task 30 | 06:01:09 | Extracting release: Extracting release
+Task 31 | 06:01:10 | Downloading remote release: Downloading remote release
+Task 29 | 06:01:10 | Extracting release: Extracting release (00:00:02)
+Task 29 | 06:01:10 | Verifying manifest: Verifying manifest (00:00:00)
+Task 29 | 06:01:10 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 29 | 06:01:10 | Creating new packages: golang-1.10-linux/1baefde79e99ed3d1df72084315333032a294e59
+Task 26 | 06:01:09 | Creating new jobs: netmon/0c26fd5765708d031474ac13f71eab35751b1046 (00:00:00)
+Task 26 | 06:01:09 | Creating new jobs: silk-cni/9ae6d187c20e91c99b1ea4f2c0a10b9e906aa443 (00:00:00)
+Task 26 | 06:01:09 | Creating new jobs: silk-controller/747328e11346e2531f412839ee4ba999cb64185f (00:00:00)
+Task 26 | 06:01:09 | Creating new jobs: silk-daemon/a465e0d39ae8dd27fc1abf30c246fefe00d3737b (00:00:00)
+Task 26 | 06:01:09 | Creating new jobs: vxlan-policy-agent/0d2d0c43f80aa6609c5f1e7339a835baae2ec479 (00:00:00)
+Task 26 | 06:01:09 | Release has been created: silk/2.16.0 (00:00:00)
+
+Task 26 Started  Sun Oct  7 06:00:57 UTC 2018
+Task 26 Finished Sun Oct  7 06:01:09 UTC 2018
+Task 26 Duration 00:00:12
+Task 26 done
+
+Task 32
+Task 30 | 06:01:11 | Extracting release: Extracting release (00:00:02)
+Task 30 | 06:01:11 | Verifying manifest: Verifying manifest (00:00:00)
+Task 30 | 06:01:11 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 30 | 06:01:11 | Creating new packages: golang1.10.3/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f
+Task 31 | 06:01:12 | Downloading remote release: Downloading remote release (00:00:02)
+Task 31 | 06:01:12 | Verifying remote release: Verifying remote release (00:00:00)
+Task 31 | 06:01:12 | Extracting release: Extracting release
+Task 29 | 06:01:12 | Creating new packages: golang-1.10-linux/1baefde79e99ed3d1df72084315333032a294e59 (00:00:02)
+Task 29 | 06:01:12 | Creating new packages: uaa/4d93e57129b9bb25c90fdbc9e98de4ebf078ad0f
+Task 31 | 06:01:13 | Extracting release: Extracting release (00:00:01)
+Task 31 | 06:01:13 | Verifying manifest: Verifying manifest (00:00:00)
+Task 31 | 06:01:13 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 31 | 06:01:13 | Creating new packages: golang1.10.3/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f
+Task 29 | 06:01:13 | Creating new packages: uaa/4d93e57129b9bb25c90fdbc9e98de4ebf078ad0f (00:00:01)
+Task 29 | 06:01:13 | Creating new packages: uaa_postgres/42df2bc21212094a1b61e3db697ab1c61260cb59
+Task 33
+Task 29 | 06:01:20 | Creating new packages: uaa_postgres/42df2bc21212094a1b61e3db697ab1c61260cb59 (00:00:07)
+Task 30 | 06:01:22 | Creating new packages: golang1.10.3/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f (00:00:11)
+Task 30 | 06:01:22 | Creating new packages: golang1.10.3-windows/89d217c6be9274d7e6a41bb6d6b065801ed76467537a3d5e49c6675e85935bbb
+Task 31 | 06:01:22 | Creating new packages: golang1.10.3/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f (00:00:09)
+Task 31 | 06:01:22 | Creating new packages: log-cache/863642d1689e66a971cfa40d1b2077343f78fb833b7f768dc42fb3e2e0c582e1 (00:00:01)
+Task 31 | 06:01:23 | Creating new packages: log-cache-blackbox/e21933f0d72b524650a2dda2ca3c8bf02abcf4880c3a3f501258fcaebbf8985c (00:00:00)
+Task 31 | 06:01:23 | Creating new packages: log-cache-cf-auth-proxy/a5b058b102ac5b4c8a12844839061cbbb95f6eecf9ad3fe4d39102c6ccec6bc1 (00:00:00)
+Task 31 | 06:01:23 | Creating new packages: log-cache-expvar-forwarder/bc149b3011c6f5313308203b6584f92c589caa47c0aab1b5a7de1eadaa58e107 (00:00:00)
+Task 31 | 06:01:23 | Creating new packages: log-cache-gateway/94077cc495a390699f447c39b116868810d356ec7bc77e4245eb7d514ce68bc9
+Task 29 | 06:01:21 | Creating new packages: uaa_rotator/ea93fb4e077cc3886a5dbfb402e6480f94321af1 (00:00:01)
+Task 29 | 06:01:22 | Creating new packages: uaa_utils/90097ea98715a560867052a2ff0916ec3460aabb (00:00:00)
+Task 29 | 06:01:22 | Creating new jobs: bbr-uaadb/3a3b455d3de6d7f3e5196f5fe8efe63f1b18b160 (00:00:00)
+Task 29 | 06:01:22 | Creating new jobs: uaa/df45d79c2845e194adffd246a9905520443077e5 (00:00:01)
+Task 29 | 06:01:23 | Creating new jobs: uaa_key_rotator/9f01e290f1086570487a3664a14ca86040d55141 (00:00:00)
+Task 29 | 06:01:23 | Creating new jobs: uaa_postgres/79fe0a96f112f08932b265cabc43f473c77e607c (00:00:00)
+Task 29 | 06:01:23 | Release has been created: uaa/61.0 (00:00:00)
+Task 32 | 06:01:23 | Downloading remote release: Downloading remote release (00:00:01)
+Task 32 | 06:01:24 | Verifying remote release: Verifying remote release (00:00:00)
+Task 32 | 06:01:24 | Extracting release: Extracting release (00:00:00)
+Task 32 | 06:01:24 | Verifying manifest: Verifying manifest (00:00:00)
+Task 31 | 06:01:23 | Creating new packages: log-cache-gateway/94077cc495a390699f447c39b116868810d356ec7bc77e4245eb7d514ce68bc9 (00:00:00)
+Task 31 | 06:01:23 | Creating new packages: log-cache-group-reader/17dbeff1a0b7bffada102b4420ef10b83063cbc5081e92ce8443fcc1d0762d43 (00:00:00)
+Task 31 | 06:01:23 | Creating new packages: log-cache-nozzle/72039b419d7e770324175cdd52c2801c04ee8915afb8f8b6b3a76a6e699b8415 (00:00:00)
+Task 31 | 06:01:23 | Creating new packages: log-cache-scheduler/af0279c499fc6439e8c26b3330732b557fbcc57a66b45075ddb32d79c9ef8a12 (00:00:00)
+Task 31 | 06:01:23 | Creating new jobs: log-cache/40c7db0d5c2e214d3b563431ad544e695950e9b6eb2e5c5e79bfdfff92dc8039 (00:00:00)
+Task 31 | 06:01:23 | Creating new jobs: log-cache-blackbox/6d84acc57e850e5a188fabbde1a27cabed80e03871112ce9cac5cd74a7ccfb37 (00:00:01)
+Task 31 | 06:01:24 | Creating new jobs: log-cache-cf-auth-proxy/fe60b584cbcf5a35455ab1b44cacae8f981f5046db6801713feb37c15200ed86 (00:00:00)
+Task 31 | 06:01:24 | Creating new jobs: log-cache-expvar-forwarder/70cb90529c5303edc9bbf7428455c6ad47445325fc0cd9100f67814950de7147 (00:00:00)
+Task 31 | 06:01:24 | Creating new jobs: log-cache-gateway/0c7b17bf31e818cfdada4847f1212d4052794562756a57d425f86e9dc003cd7e (00:00:00)
+Task 31 | 06:01:24 | Creating new jobs: log-cache-group-reader/b42cfab15b4fc3149bb6fb4e56ae9c2c1d55cb97cbf517688da8aef82bb16fde (00:00:00)
+Task 31 | 06:01:24 | Creating new jobs: log-cache-nozzle/39be0cbef45bed51b771c6026413db62a2939d826091b79ae13c67251f294f9a (00:00:00)
+Task 31 | 06:01:24 | Creating new jobs: log-cache-scheduler/87a19d16eb1f1409fe6d67f144e5c22ab63645a10f7a03f4c7b024b7f4002a35 (00:00:00)
+Task 31 | 06:01:24 | Release has been created: log-cache/1.4.4 (00:00:00)
+
+Task 31 Started  Sun Oct  7 06:01:10 UTC 2018
+Task 31 Finished Sun Oct  7 06:01:24 UTC 2018
+Task 31 Duration 00:00:14
+Task 31 done
+
+
+Task 29 Started  Sun Oct  7 06:01:04 UTC 2018
+Task 29 Finished Sun Oct  7 06:01:23 UTC 2018
+Task 29 Duration 00:00:19
+Task 29 done
+
+Task 32 | 06:01:24 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 32 | 06:01:24 | Creating new jobs: bosh-dns-aliases/49c14fa1edcc0c2cf7b43f4f8c4d44f96ce1d91a (00:00:00)
+Task 32 | 06:01:24 | Creating new jobs: bosh-dns-handlers/92cc86ca4cdb5c48a1653f6466ba351d4fc9074e (00:00:00)
+Task 32 | 06:01:24 | Release has been created: bosh-dns-aliases/0.0.3 (00:00:00)
+
+Task 32 Started  Sun Oct  7 06:01:23 UTC 2018
+Task 32 Finished Sun Oct  7 06:01:24 UTC 2018
+Task 32 Duration 00:00:01
+Task 32 done
+
+Task 33 | 06:01:24 | Downloading remote release: Downloading remote release (00:00:01)
+Task 33 | 06:01:25 | Verifying remote release: Verifying remote release (00:00:00)
+Task 33 | 06:01:25 | Extracting release: Extracting release (00:00:00)
+Task 33 | 06:01:25 | Verifying manifest: Verifying manifest (00:00:00)
+Task 33 | 06:01:25 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+Task 33 | 06:01:25 | Creating new packages: cf-cli-6-linux/cab61fce958ba82c79b189c3d3da79f21fef1f9c (00:00:00)
+Task 33 | 06:01:25 | Creating new jobs: cf-cli-6-linux/c6b27391a0492eafa81edf554c991db3a6947db0 (00:00:00)
+Task 33 | 06:01:25 | Creating new jobs: cf-cli-6-linux-test/10160b5404849e20927ad7a927ad35fcfe42327b (00:00:00)
+Task 33 | 06:01:25 | Release has been created: cf-cli/1.8.0 (00:00:00)
+
+Task 33 Started  Sun Oct  7 06:01:24 UTC 2018
+Task 33 Finished Sun Oct  7 06:01:25 UTC 2018
+Task 33 Duration 00:00:01
+Task 33 done
+
+Task 30 | 06:01:30 | Creating new packages: golang1.10.3-windows/89d217c6be9274d7e6a41bb6d6b065801ed76467537a3d5e49c6675e85935bbb (00:00:08)
+Task 30 | 06:01:30 | Creating new packages: loggregator_agent/055e17e04394102719ba19bd13b52882793c48dec776c15b03edb44e006392c0 (00:00:02)
+Task 30 | 06:01:32 | Creating new packages: loggregator_agent_windows/59fd91dac5a2976dbf7fbc403a8ad9bbe3c88884f22f28066bd9f9924a2cb9b4 (00:00:01)
+Task 30 | 06:01:33 | Creating new packages: prom_scraper/ad5f05d511aa333418b0eaeed63dcfa4b167206aa0f4e8960240da4fbdd9e90e (00:00:00)
+Task 30 | 06:01:33 | Creating new jobs: loggregator_agent/78fb48fba69c6f402ed76afd0e5b0bdafcdf45088d8aa103285474023fe61fdd (00:00:00)
+Task 30 | 06:01:33 | Creating new jobs: loggregator_agent_windows/2b18e3821ef50cae1e29c14e065469ab97f70aadbb26af1d4d5f85a6684ebe5a (00:00:00)
+Task 30 | 06:01:33 | Creating new jobs: prom_scraper/2dd5c397fcfdc61283714b48f8245a79f0b60976018690b7df294cd4ce1010f3 (00:00:00)
+Task 30 | 06:01:33 | Release has been created: loggregator-agent/2.2 (00:00:00)
+
+Task 30 Started  Sun Oct  7 06:01:06 UTC 2018
+Task 30 Finished Sun Oct  7 06:01:33 UTC 2018
+Task 30 Duration 00:00:27
+Task 30 done
++ azs:
++ - name: z1
++ - name: z2
++ - name: z3
+  
++ vm_types:
++ - name: minimal
++ - name: small
++ - name: small-highmem
+  
++ vm_extensions:
++ - name: 5GB_ephemeral_disk
++ - name: 10GB_ephemeral_disk
++ - name: 50GB_ephemeral_disk
++ - name: 100GB_ephemeral_disk
++ - name: 500GB_ephemeral_disk
++ - name: 1TB_ephemeral_disk
++ - cloud_properties:
++     ports:
++     - host: 80
++     - host: 443
++     - host: 2222
++   name: ssh-proxy-and-router-lb
++ - cloud_properties:
++     ports:
++     - host: 1024-1123
++   name: cf-tcp-router-network-properties
++ - cloud_properties:
++     ports:
++     - host: 8845
++   name: credhub-lb
+  
++ compilation:
++   az: z1
++   network: default
++   reuse_compilation_vms: true
++   vm_type: minimal
++   workers: 6
+  
++ networks:
++ - name: default
++   subnets:
++   - azs:
++     - z1
++     - z2
++     - z3
++     cloud_properties:
++       name: random
++     gateway: 10.244.0.1
++     range: 10.244.0.0/20
++     reserved:
++     - 10.244.0.1
++     static:
++     - 10.244.0.2 - 10.244.0.127
++     - 10.244.1.0 - 10.244.1.127
++     - 10.244.2.0 - 10.244.2.127
++     - 10.244.3.0 - 10.244.3.127
+  
++ disk_types:
++ - disk_size: 1024
++   name: 1GB
++ - disk_size: 5120
++   name: 5GB
++ - disk_size: 10240
++   name: 10GB
++ - disk_size: 100240
++   name: 100GB
+  
++ stemcells:
++ - alias: default
++   os: ubuntu-trusty
++   version: '3586.42'
+  
++ releases:
++ - name: binary-buildpack
++   sha1: 45cb3c91ff51f84d653f7271c3deb140f2349a10
++   url: https://bosh.io/d/github.com/cloudfoundry/binary-buildpack-release?v=1.0.25
++   version: 1.0.25
++ - name: bpm
++   sha1: 313664d2e6d8485ffa0683979a401f7722f63a50
++   url: https://bosh.io/d/github.com/cloudfoundry-incubator/bpm-release?v=0.12.3
++   version: 0.12.3
++ - name: capi
++   sha1: 3bd8102025f26f1ee803d4b6c4b96207081ab381
++   url: https://bosh.io/d/github.com/cloudfoundry/capi-release?v=1.69.0
++   version: 1.69.0
++ - name: cf-mysql
++   sha1: 0764d9d6aae7cefd10019437ed83e7715e614633
++   url: https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release?v=36.15.0
++   version: 36.15.0
++ - name: cf-networking
++   sha1: 9f34333f6a41c66b39fdde1971b03ed466a248d3
++   url: https://bosh.io/d/github.com/cloudfoundry/cf-networking-release?v=2.16.0
++   version: 2.16.0
++ - name: cf-smoke-tests
++   sha1: be3df152b4767115222d63b6081e5e00b6b34f37
++   url: https://bosh.io/d/github.com/cloudfoundry/cf-smoke-tests-release?v=40.0.9
++   version: 40.0.9
++ - name: cf-syslog-drain
++   sha1: 7e9648f44c6513ea5cb84531c9c5d1ae0730f202
++   url: https://bosh.io/d/github.com/cloudfoundry/cf-syslog-drain-release?v=7.1
++   version: '7.1'
++ - name: cflinuxfs2
++   sha1: 353bdf06ded654ab6f1172adac2f53a02febabfd
++   url: https://bosh.io/d/github.com/cloudfoundry/cflinuxfs2-release?v=1.238.0
++   version: 1.238.0
++ - name: consul
++   sha1: 84f149761929e59699d6ac3892b0cd806652c7b8
++   url: https://bosh.io/d/github.com/cloudfoundry-incubator/consul-release?v=196
++   version: '196'
++ - name: credhub
++   sha1: 2390e855f092b0fb9c58f9cb88853ea938e87a3e
++   url: https://bosh.io/d/github.com/pivotal-cf/credhub-release?v=1.9.5
++   version: 1.9.5
++ - name: diego
++   sha1: cb67d79a28a90abafc0a46bd3dfb5bcfd9433868
++   url: https://bosh.io/d/github.com/cloudfoundry/diego-release?v=2.17.0
++   version: 2.17.0
++ - name: dotnet-core-buildpack
++   sha1: dc92805765ed73604d5c542d736aea7bffed8b11
++   url: https://bosh.io/d/github.com/cloudfoundry/dotnet-core-buildpack-release?v=2.1.4
++   version: 2.1.4
++ - name: garden-runc
++   sha1: dd02cad84283fdc282005b78624864e5976de209
++   url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=1.16.4
++   version: 1.16.4
++ - name: go-buildpack
++   sha1: 2a11862007592ba34e768e7b9544a9698de59a17
++   url: https://bosh.io/d/github.com/cloudfoundry/go-buildpack-release?v=1.8.26
++   version: 1.8.26
++ - name: java-buildpack
++   sha1: 78face238cf11ea5b1f13eebb7b7befcddb365dc
++   url: https://bosh.io/d/github.com/cloudfoundry/java-buildpack-release?v=4.15
++   version: '4.15'
++ - name: loggregator
++   sha1: 1e247c2657fc36194d2e755291097e98a77145b7
++   url: https://bosh.io/d/github.com/cloudfoundry/loggregator-release?v=103.2
++   version: '103.2'
++ - name: nats
++   sha1: 2f2c27acdfff81f3519968921686522518ab5783
++   url: https://bosh.io/d/github.com/cloudfoundry/nats-release?v=26
++   version: '26'
++ - name: nodejs-buildpack
++   sha1: b9d2d4f516a95a3f6de179a829dec4deaa155828
++   url: https://bosh.io/d/github.com/cloudfoundry/nodejs-buildpack-release?v=1.6.30
++   version: 1.6.30
++ - name: php-buildpack
++   sha1: f1c6ebf8538aa6de07055cf919246caad695eb3a
++   url: https://bosh.io/d/github.com/cloudfoundry/php-buildpack-release?v=4.3.59
++   version: 4.3.59
++ - name: python-buildpack
++   sha1: db9ab75edf8d96172d3f15a07799f8faf15b24d7
++   url: https://bosh.io/d/github.com/cloudfoundry/python-buildpack-release?v=1.6.20
++   version: 1.6.20
++ - name: routing
++   sha1: 6e341a527a0dd2c920b54dea82156ae9bc0b29eb
++   url: https://bosh.io/d/github.com/cloudfoundry-incubator/cf-routing-release?v=0.182.0
++   version: 0.182.0
++ - name: ruby-buildpack
++   sha1: 8b2baf552d6f51933fbf37ccacbabbcbd9c7ae6d
++   url: https://bosh.io/d/github.com/cloudfoundry/ruby-buildpack-release?v=1.7.22
++   version: 1.7.22
++ - name: silk
++   sha1: 022d325d412c6af04c426a5c9f8f69556d38a291
++   url: https://bosh.io/d/github.com/cloudfoundry/silk-release?v=2.16.0
++   version: 2.16.0
++ - name: staticfile-buildpack
++   sha1: 7371d1b2b4c1e677e8364ce5e1bc325158796b38
++   url: https://bosh.io/d/github.com/cloudfoundry/staticfile-buildpack-release?v=1.4.31
++   version: 1.4.31
++ - name: statsd-injector
++   sha1: 5b9357484032e5217cead8f20362f5802c751de0
++   url: https://bosh.io/d/github.com/cloudfoundry/statsd-injector-release?v=1.3.0
++   version: 1.3.0
++ - name: uaa
++   sha1: f919a8037334adfc4e219f06ea4335dc28bf1245
++   url: https://bosh.io/d/github.com/cloudfoundry/uaa-release?v=61.0
++   version: '61.0'
++ - name: loggregator-agent
++   sha1: c998634337c826f95247b6da4f1772dcac8bb2b1
++   url: https://bosh.io/d/github.com/cloudfoundry/loggregator-agent-release?v=2.2
++   version: '2.2'
++ - name: log-cache
++   sha1: 34a97ff98e9fbd2b167b4a0f6b7773fe120995f7
++   url: https://bosh.io/d/github.com/cloudfoundry/log-cache-release?v=1.4.4
++   version: 1.4.4
++ - name: bosh-dns-aliases
++   sha1: b0d0a0350ed87f1ded58b2ebb469acea0e026ccc
++   url: https://bosh.io/d/github.com/cloudfoundry/bosh-dns-aliases-release?v=0.0.3
++   version: 0.0.3
++ - name: cf-cli
++   sha1: 15d0718bc82ff9394efd2c9798873a39bf7eba06
++   url: https://bosh.io/d/github.com/bosh-packages/cf-cli-release?v=1.8.0
++   version: 1.8.0
++ - name: bosh-dns
++   sha1: 3b77329a772483d6c949f1a47ba9734976bc2b31
++   url: https://bosh.io/d/github.com/cloudfoundry/bosh-dns-release?v=1.8.0
++   version: 1.8.0
+  
++ update:
++   canaries: 1
++   canary_watch_time: 30000-1200000
++   max_in_flight: 1
++   serial: false
++   update_watch_time: 5000-1200000
+  
++ addons:
++ - include:
++     stemcell:
++     - os: ubuntu-trusty
++     - os: ubuntu-xenial
++   jobs:
++   - name: bosh-dns
++     properties:
++       api:
++         client:
++           tls: "<redacted>"
++         server:
++           tls: "<redacted>"
++       cache:
++         enabled: "<redacted>"
++       health:
++         client:
++           tls: "<redacted>"
++         enabled: "<redacted>"
++         server:
++           tls: "<redacted>"
++     release: bosh-dns
++   name: bosh-dns
++ - include:
++     stemcell:
++     - os: windows2012R2
++     - os: windows2016
++     - os: windows1803
++   jobs:
++   - name: bosh-dns-windows
++     properties:
++       api:
++         client:
++           tls: "<redacted>"
++         server:
++           tls: "<redacted>"
++       cache:
++         enabled: "<redacted>"
++       health:
++         client:
++           tls: "<redacted>"
++         enabled: "<redacted>"
++         server:
++           tls: "<redacted>"
++     release: bosh-dns
++   name: bosh-dns-windows
+  
++ variables:
++ - name: blobstore_admin_users_password
++   type: password
++ - name: blobstore_secure_link_secret
++   type: password
++ - name: cc_bulk_api_password
++   type: password
++ - name: cc_db_encryption_key
++   type: password
++ - name: cc_internal_api_password
++   type: password
++ - name: cc_staging_upload_password
++   type: password
++ - name: cf_mysql_mysql_admin_password
++   type: password
++ - name: cf_mysql_mysql_cluster_health_password
++   type: password
++ - name: cf_mysql_mysql_galera_healthcheck_endpoint_password
++   type: password
++ - name: cf_mysql_mysql_galera_healthcheck_password
++   type: password
++ - name: cf_mysql_proxy_api_password
++   type: password
++ - name: cc_database_password
++   type: password
++ - name: credhub_database_password
++   type: password
++ - name: diego_database_password
++   type: password
++ - name: uaa_database_password
++   type: password
++ - name: routing_api_database_password
++   type: password
++ - name: network_policy_database_password
++   type: password
++ - name: network_connectivity_database_password
++   type: password
++ - name: uaa_default_encryption_passphrase
++   type: password
++ - name: silk_ca
++   options:
++     common_name: silk-ca
++     is_ca: true
++   type: certificate
++ - name: silk_controller
++   options:
++     ca: silk_ca
++     common_name: silk-controller.service.cf.internal
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: silk_daemon
++   options:
++     ca: silk_ca
++     common_name: silk-daemon
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: network_policy_ca
++   options:
++     common_name: networkPolicyCA
++     is_ca: true
++   type: certificate
++ - name: network_policy_server
++   options:
++     ca: network_policy_ca
++     common_name: policy-server.service.cf.internal
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: network_policy_client
++   options:
++     ca: network_policy_ca
++     common_name: clientName
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: uaa_clients_routing_api_client_secret
++   type: password
++ - name: uaa_clients_tcp_emitter_secret
++   type: password
++ - name: nats_password
++   type: password
++ - name: router_status_password
++   type: password
++ - name: cf_admin_password
++   type: password
++ - name: cf_bosh_password
++   type: password
++ - name: router_route_services_secret
++   type: password
++ - name: uaa_admin_client_secret
++   type: password
++ - name: uaa_clients_cc-routing_secret
++   type: password
++ - name: uaa_clients_cc-service-dashboards_secret
++   type: password
++ - name: uaa_clients_cc_service_key_client_secret
++   type: password
++ - name: uaa_clients_cloud_controller_username_lookup_secret
++   type: password
++ - name: uaa_clients_doppler_secret
++   type: password
++ - name: uaa_clients_gorouter_secret
++   type: password
++ - name: uaa_clients_network_policy_secret
++   type: password
++ - name: uaa_clients_ssh-proxy_secret
++   type: password
++ - name: uaa_clients_tcp_router_secret
++   type: password
++ - name: diego_bbs_encryption_keys_passphrase
++   type: password
++ - name: consul_encrypt_key
++   type: password
++ - name: credhub_encryption_password
++   type: password
++ - name: credhub_admin_client_secret
++   type: password
++ - name: diego_ssh_proxy_host_key
++   type: ssh
++ - name: uaa_jwt_signing_key
++   type: rsa
++ - name: service_cf_internal_ca
++   options:
++     common_name: internalCA
++     is_ca: true
++   type: certificate
++ - name: blobstore_tls
++   options:
++     ca: service_cf_internal_ca
++     common_name: blobstore.service.cf.internal
++   type: certificate
++ - name: consul_agent_ca
++   options:
++     common_name: consulCA
++     is_ca: true
++   type: certificate
++ - name: consul_agent
++   options:
++     alternative_names:
++     - 127.0.0.1
++     ca: consul_agent_ca
++     common_name: consul_agent
++     extended_key_usage:
++     - client_auth
++     - server_auth
++   type: certificate
++ - name: consul_server
++   options:
++     ca: consul_agent_ca
++     common_name: server.dc1.cf.internal
++     extended_key_usage:
++     - client_auth
++     - server_auth
++   type: certificate
++ - name: diego_auctioneer_client
++   options:
++     ca: service_cf_internal_ca
++     common_name: auctioneer client
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: diego_auctioneer_server
++   options:
++     alternative_names:
++     - "*.auctioneer.service.cf.internal"
++     - auctioneer.service.cf.internal
++     ca: service_cf_internal_ca
++     common_name: auctioneer.service.cf.internal
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: diego_bbs_client
++   options:
++     ca: service_cf_internal_ca
++     common_name: bbs client
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: diego_bbs_server
++   options:
++     alternative_names:
++     - "*.bbs.service.cf.internal"
++     - bbs.service.cf.internal
++     ca: service_cf_internal_ca
++     common_name: bbs.service.cf.internal
++     extended_key_usage:
++     - server_auth
++     - client_auth
++   type: certificate
++ - name: diego_rep_client
++   options:
++     ca: service_cf_internal_ca
++     common_name: rep client
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: diego_rep_agent_v2
++   options:
++     alternative_names:
++     - "*.cell.service.cf.internal"
++     - cell.service.cf.internal
++     - 127.0.0.1
++     - localhost
++     ca: service_cf_internal_ca
++     common_name: cell.service.cf.internal
++     extended_key_usage:
++     - client_auth
++     - server_auth
++   type: certificate
++ - name: loggregator_ca
++   options:
++     common_name: loggregatorCA
++     is_ca: true
++   type: certificate
++ - name: loggregator_tls_statsdinjector
++   options:
++     ca: loggregator_ca
++     common_name: statsdinjector
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: loggregator_tls_agent
++   options:
++     ca: loggregator_ca
++     common_name: metron
++     extended_key_usage:
++     - client_auth
++     - server_auth
++   type: certificate
++ - name: loggregator_tls_doppler
++   options:
++     ca: loggregator_ca
++     common_name: doppler
++     extended_key_usage:
++     - client_auth
++     - server_auth
++   type: certificate
++ - name: loggregator_tls_tc
++   options:
++     ca: loggregator_ca
++     common_name: trafficcontroller
++     extended_key_usage:
++     - client_auth
++     - server_auth
++   type: certificate
++ - name: loggregator_tls_cc_tc
++   options:
++     ca: service_cf_internal_ca
++     common_name: trafficcontroller
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: loggregator_rlp_gateway_tls_cc
++   options:
++     ca: service_cf_internal_ca
++     common_name: rlp-gateway
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: loggregator_tls_rlp
++   options:
++     ca: loggregator_ca
++     common_name: reverselogproxy
++     extended_key_usage:
++     - client_auth
++     - server_auth
++   type: certificate
++ - name: loggregator_rlp_gateway
++   options:
++     ca: loggregator_ca
++     common_name: rlp_gateway
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: adapter_rlp_tls
++   options:
++     ca: loggregator_ca
++     common_name: ss-adapter-rlp
++     extended_key_usage:
++     - client_auth
++     - server_auth
++   type: certificate
++ - name: scheduler_api_tls
++   options:
++     ca: service_cf_internal_ca
++     common_name: ss-scheduler
++     extended_key_usage:
++     - client_auth
++     - server_auth
++   type: certificate
++ - name: adapter_tls
++   options:
++     ca: loggregator_ca
++     common_name: ss-adapter
++     extended_key_usage:
++     - server_auth
++     - client_auth
++   type: certificate
++ - name: scheduler_client_tls
++   options:
++     ca: loggregator_ca
++     common_name: ss-scheduler
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: logs_provider
++   options:
++     ca: loggregator_ca
++     common_name: log-cache
++     extended_key_usage:
++     - client_auth
++     - server_auth
++   type: certificate
++ - name: log_cache_ca
++   options:
++     common_name: log-cache
++     is_ca: true
++   type: certificate
++ - name: log_cache
++   options:
++     alternative_names:
++     - log_cache
++     - log-cache
++     - logcache
++     ca: log_cache_ca
++     common_name: log-cache
++     extended_key_usage:
++     - client_auth
++     - server_auth
++   type: certificate
++ - name: log_cache_tls_cc_auth_proxy
++   options:
++     ca: service_cf_internal_ca
++     common_name: log-cache
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: router_ca
++   options:
++     common_name: routerCA
++     is_ca: true
++   type: certificate
++ - name: router_ssl
++   options:
++     alternative_names:
++     - bosh-lite.com
++     - "*.bosh-lite.com"
++     ca: router_ca
++     common_name: routerSSL
++   type: certificate
++ - name: uaa_ca
++   options:
++     common_name: uaaCA
++     is_ca: true
++   type: certificate
++ - name: uaa_ssl
++   options:
++     alternative_names:
++     - uaa.service.cf.internal
++     ca: uaa_ca
++     common_name: uaa.service.cf.internal
++   type: certificate
++ - name: uaa_login_saml
++   options:
++     ca: uaa_ca
++     common_name: uaa_login_saml
++   type: certificate
++ - name: cc_tls
++   options:
++     ca: service_cf_internal_ca
++     common_name: cloud-controller-ng.service.cf.internal
++     extended_key_usage:
++     - client_auth
++     - server_auth
++   type: certificate
++ - name: cc_public_tls
++   options:
++     alternative_names:
++     - api.bosh-lite.com
++     - cloud-controller-ng.service.cf.internal
++     ca: service_cf_internal_ca
++     common_name: api.bosh-lite.com
++   type: certificate
++ - name: cc_bridge_tps
++   options:
++     ca: service_cf_internal_ca
++     common_name: tps_watcher
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: cc_bridge_cc_uploader
++   options:
++     ca: service_cf_internal_ca
++     common_name: cc_uploader
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: cc_bridge_cc_uploader_server
++   options:
++     ca: service_cf_internal_ca
++     common_name: cc-uploader.service.cf.internal
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: diego_locket_server
++   options:
++     alternative_names:
++     - "*.locket.service.cf.internal"
++     - locket.service.cf.internal
++     ca: service_cf_internal_ca
++     common_name: locket.service.cf.internal
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: diego_locket_client
++   options:
++     ca: service_cf_internal_ca
++     common_name: locket client
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: locket_database_password
++   type: password
++ - name: application_ca
++   options:
++     common_name: appRootCA
++     is_ca: true
++   type: certificate
++ - name: diego_instance_identity_ca
++   options:
++     ca: application_ca
++     common_name: instanceIdentityCA
++     is_ca: true
++   type: certificate
++ - name: gorouter_backend_tls
++   options:
++     alternative_names:
++     - gorouter.service.cf.internal
++     ca: service_cf_internal_ca
++     common_name: gorouter_backend_tls
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: credhub_ca
++   options:
++     common_name: credhubServerCa
++     is_ca: true
++   type: certificate
++ - name: credhub_tls
++   options:
++     alternative_names:
++     - credhub.service.cf.internal
++     - credhub.bosh-lite.com
++     ca: credhub_ca
++     common_name: credhub.bosh-lite.com
++   type: certificate
++ - name: "/dns_healthcheck_tls_ca"
++   options:
++     common_name: dns-healthcheck-tls-ca
++     is_ca: true
++   type: certificate
++ - name: "/dns_healthcheck_server_tls"
++   options:
++     ca: "/dns_healthcheck_tls_ca"
++     common_name: health.bosh-dns
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: "/dns_healthcheck_client_tls"
++   options:
++     ca: "/dns_healthcheck_tls_ca"
++     common_name: health.bosh-dns
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: "/dns_api_tls_ca"
++   options:
++     common_name: dns-api-tls-ca
++     is_ca: true
++   type: certificate
++ - name: "/dns_api_server_tls"
++   options:
++     ca: "/dns_api_tls_ca"
++     common_name: api.bosh-dns
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: "/dns_api_client_tls"
++   options:
++     ca: "/dns_api_tls_ca"
++     common_name: api.bosh-dns
++     extended_key_usage:
++     - client_auth
++   type: certificate
+  
++ instance_groups:
++ - azs:
++   - z1
++   instances: 1
++   jobs:
++   - name: smoke_tests
++     properties:
++       smoke_tests:
++         api: "<redacted>"
++         apps_domain: "<redacted>"
++         cf_dial_timeout_in_seconds: "<redacted>"
++         org: "<redacted>"
++         password: "<redacted>"
++         skip_ssl_validation: "<redacted>"
++         space: "<redacted>"
++         user: "<redacted>"
++     release: cf-smoke-tests
++   - name: cf-cli-6-linux
++     release: cf-cli
++   lifecycle: errand
++   name: smoke-tests
++   networks:
++   - name: default
++   stemcell: default
++   update:
++     serial: true
++   vm_type: minimal
++ - azs:
++   - z1
++   - z2
++   - z3
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server:
++         from: consul_server_link
++     name: consul_agent
++     properties:
++       consul:
++         agent:
++           domain: "<redacted>"
++           mode: "<redacted>"
++         agent_cert: "<redacted>"
++         agent_key: "<redacted>"
++         ca_cert: "<redacted>"
++         encrypt_keys:
++         - "<redacted>"
++         server_cert: "<redacted>"
++         server_key: "<redacted>"
++     provides:
++       consul_client:
++         as: consul_client_link
++         shared: true
++       consul_common:
++         as: consul_common_link
++         shared: true
++       consul_server:
++         as: consul_server_link
++         shared: true
++     release: consul
++   name: consul
++   networks:
++   - name: default
++   persistent_disk_type: 5GB
++   stemcell: default
++   update:
++     serial: true
++   vm_type: minimal
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     release: consul
++   - name: nats
++     properties:
++       nats:
++         password: "<redacted>"
++         user: "<redacted>"
++     provides:
++       nats:
++         as: nats
++         shared: true
++     release: nats
++   name: nats
++   networks:
++   - name: default
++   stemcell: default
++   vm_type: minimal
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     release: consul
++   - name: adapter
++     properties:
++       scalablesyslog:
++         adapter:
++           logs:
++             addr: "<redacted>"
++           tls:
++             ca: "<redacted>"
++             cert: "<redacted>"
++             cn: "<redacted>"
++             key: "<redacted>"
++         adapter_rlp:
++           tls:
++             ca: "<redacted>"
++             cert: "<redacted>"
++             cn: "<redacted>"
++             key: "<redacted>"
++     release: cf-syslog-drain
++   name: adapter
++   networks:
++   - name: default
++   stemcell: default
++   vm_type: minimal
++ - azs:
++   - z1
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     properties:
++       consul:
++         agent:
++           services:
++             sql-db:
++               check:
++                 http: "<redacted>"
++                 interval: "<redacted>"
++     release: consul
++   - name: mysql
++     properties:
++       cf_mysql:
++         mysql:
++           admin_password: "<redacted>"
++           binlog_enabled: "<redacted>"
++           cluster_health:
++             password: "<redacted>"
++           galera_healthcheck:
++             db_password: "<redacted>"
++             endpoint_password: "<redacted>"
++             endpoint_username: "<redacted>"
++           port: "<redacted>"
++           seeded_databases:
++           - name: "<redacted>"
++             password: "<redacted>"
++             username: "<redacted>"
++           - name: "<redacted>"
++             password: "<redacted>"
++             username: "<redacted>"
++           - name: "<redacted>"
++             password: "<redacted>"
++             username: "<redacted>"
++           - name: "<redacted>"
++             password: "<redacted>"
++             username: "<redacted>"
++           - name: "<redacted>"
++             password: "<redacted>"
++             username: "<redacted>"
++           - name: "<redacted>"
++             password: "<redacted>"
++             username: "<redacted>"
++           - name: "<redacted>"
++             password: "<redacted>"
++             username: "<redacted>"
++           - name: "<redacted>"
++             password: "<redacted>"
++             username: "<redacted>"
++     release: cf-mysql
++   - name: proxy
++     properties:
++       cf_mysql:
++         proxy:
++           api_password: "<redacted>"
++     release: cf-mysql
++   migrated_from:
++   - name: mysql
++   - name: singleton-database
++   name: database
++   networks:
++   - name: default
++   persistent_disk_type: 10GB
++   stemcell: default
++   update:
++     serial: true
++   vm_type: small
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     properties:
++       consul:
++         agent:
++           services:
++             silk-controller:
++               name: "<redacted>"
++     release: consul
++   - name: cfdot
++     properties:
++       tls:
++         ca_certificate: "<redacted>"
++         certificate: "<redacted>"
++         private_key: "<redacted>"
++     release: diego
++   - name: bbs
++     properties:
++       bpm:
++         enabled: "<redacted>"
++       diego:
++         bbs:
++           active_key_label: "<redacted>"
++           auctioneer:
++             ca_cert: "<redacted>"
++             client_cert: "<redacted>"
++             client_key: "<redacted>"
++           ca_cert: "<redacted>"
++           detect_consul_cell_registrations: "<redacted>"
++           encryption_keys:
++           - label: "<redacted>"
++             passphrase: "<redacted>"
++           rep:
++             ca_cert: "<redacted>"
++             client_cert: "<redacted>"
++             client_key: "<redacted>"
++             require_tls: "<redacted>"
++           server_cert: "<redacted>"
++           server_key: "<redacted>"
++           skip_consul_lock: "<redacted>"
++           sql:
++             db_driver: "<redacted>"
++             db_host: "<redacted>"
++             db_password: "<redacted>"
++             db_port: "<redacted>"
++             db_schema: "<redacted>"
++             db_username: "<redacted>"
++       logging:
++         format:
++           timestamp: "<redacted>"
++       loggregator:
++         ca_cert: "<redacted>"
++         cert: "<redacted>"
++         key: "<redacted>"
++         use_v2_api: "<redacted>"
++       set_kernel_parameters: "<redacted>"
++     release: diego
++   - name: silk-controller
++     properties:
++       ca_cert: "<redacted>"
++       database:
++         host: "<redacted>"
++         name: "<redacted>"
++         password: "<redacted>"
++         port: "<redacted>"
++         type: "<redacted>"
++         username: "<redacted>"
++       server_cert: "<redacted>"
++       server_key: "<redacted>"
++       silk_daemon:
++         ca_cert: "<redacted>"
++         client_cert: "<redacted>"
++         client_key: "<redacted>"
++     release: silk
++   - name: locket
++     properties:
++       bpm:
++         enabled: "<redacted>"
++       diego:
++         locket:
++           sql:
++             db_driver: "<redacted>"
++             db_host: "<redacted>"
++             db_password: "<redacted>"
++             db_port: "<redacted>"
++             db_schema: "<redacted>"
++             db_username: "<redacted>"
++       logging:
++         format:
++           timestamp: "<redacted>"
++       loggregator:
++         ca_cert: "<redacted>"
++         cert: "<redacted>"
++         key: "<redacted>"
++         use_v2_api: "<redacted>"
++       set_kernel_parameters: "<redacted>"
++       tls:
++         ca_cert: "<redacted>"
++         cert: "<redacted>"
++         key: "<redacted>"
++     release: diego
++   migrated_from:
++   - name: diego-bbs
++   name: diego-api
++   networks:
++   - name: default
++   stemcell: default
++   update:
++     serial: true
++   vm_type: small
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     properties:
++       consul:
++         agent:
++           services:
++             uaa: {}
++     release: consul
++   - name: uaa
++     properties:
++       bpm:
++         enabled: "<redacted>"
++       encryption:
++         active_key_label: "<redacted>"
++         encryption_keys:
++         - label: "<redacted>"
++           passphrase: "<redacted>"
++       login:
++         saml:
++           activeKeyId: "<redacted>"
++           keys:
++             key-1:
++               certificate: "<redacted>"
++               key: "<redacted>"
++               passphrase: "<redacted>"
++       uaa:
++         admin:
++           client_secret: "<redacted>"
++         clients:
++           cc-service-dashboards:
++             authorities: "<redacted>"
++             authorized-grant-types: "<redacted>"
++             scope: "<redacted>"
++             secret: "<redacted>"
++           cc_routing:
++             authorities: "<redacted>"
++             authorized-grant-types: "<redacted>"
++             secret: "<redacted>"
++           cc_service_key_client:
++             authorities: "<redacted>"
++             authorized-grant-types: "<redacted>"
++             secret: "<redacted>"
++           cf:
++             access-token-validity: "<redacted>"
++             authorities: "<redacted>"
++             authorized-grant-types: "<redacted>"
++             override: "<redacted>"
++             refresh-token-validity: "<redacted>"
++             scope: "<redacted>"
++             secret: "<redacted>"
++           cloud_controller_username_lookup:
++             authorities: "<redacted>"
++             authorized-grant-types: "<redacted>"
++             secret: "<redacted>"
++           credhub_admin_client:
++             authorities: "<redacted>"
++             authorized-grant-types: "<redacted>"
++             secret: "<redacted>"
++           doppler:
++             authorities: "<redacted>"
++             authorized-grant-types: "<redacted>"
++             override: "<redacted>"
++             secret: "<redacted>"
++           gorouter:
++             authorities: "<redacted>"
++             authorized-grant-types: "<redacted>"
++             secret: "<redacted>"
++           network-policy:
++             authorities: "<redacted>"
++             authorized-grant-types: "<redacted>"
++             secret: "<redacted>"
++           routing_api_client:
++             authorities: "<redacted>"
++             authorized-grant-types: "<redacted>"
++             secret: "<redacted>"
++           ssh-proxy:
++             authorized-grant-types: "<redacted>"
++             autoapprove: "<redacted>"
++             override: "<redacted>"
++             redirect-uri: "<redacted>"
++             scope: "<redacted>"
++             secret: "<redacted>"
++           tcp_emitter:
++             authorities: "<redacted>"
++             authorized-grant-types: "<redacted>"
++             secret: "<redacted>"
++           tcp_router:
++             authorities: "<redacted>"
++             authorized-grant-types: "<redacted>"
++             secret: "<redacted>"
++         jwt:
++           policy:
++             active_key_id: "<redacted>"
++             keys:
++               key-1:
++                 signingKey: "<redacted>"
++         logging_level: "<redacted>"
++         scim:
++           users:
++           - groups:
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             name: "<redacted>"
++             password: "<redacted>"
++           - groups:
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             name: "<redacted>"
++             password: "<redacted>"
++         sslCertificate: "<redacted>"
++         sslPrivateKey: "<redacted>"
++         url: "<redacted>"
++         zones:
++           internal:
++             hostnames:
++             - "<redacted>"
++       uaadb:
++         databases:
++         - name: "<redacted>"
++           tag: "<redacted>"
++         db_scheme: "<redacted>"
++         port: "<redacted>"
++         roles:
++         - name: "<redacted>"
++           password: "<redacted>"
++           tag: "<redacted>"
++     release: uaa
++   - name: route_registrar
++     properties:
++       route_registrar:
++         routes:
++         - health_check:
++             name: "<redacted>"
++             script_path: "<redacted>"
++           name: "<redacted>"
++           port: "<redacted>"
++           registration_interval: "<redacted>"
++           tags:
++             component: "<redacted>"
++           uris:
++           - "<redacted>"
++           - "<redacted>"
++           - "<redacted>"
++           - "<redacted>"
++     release: routing
++   - name: statsd_injector
++     properties:
++       loggregator:
++         tls:
++           ca_cert: "<redacted>"
++           statsd_injector:
++             cert: "<redacted>"
++             key: "<redacted>"
++     release: statsd-injector
++   name: uaa
++   networks:
++   - name: default
++   stemcell: default
++   vm_type: minimal
++ - azs:
++   - z1
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     properties:
++       consul:
++         agent:
++           services:
++             blobstore: {}
++     release: consul
++   - name: blobstore
++     properties:
++       blobstore:
++         admin_users:
++         - password: "<redacted>"
++           username: "<redacted>"
++         secure_link:
++           secret: "<redacted>"
++         tls:
++           cert: "<redacted>"
++           private_key: "<redacted>"
++       bpm:
++         enabled: "<redacted>"
++       system_domain: "<redacted>"
++     release: capi
++   - name: route_registrar
++     properties:
++       route_registrar:
++         routes:
++         - name: "<redacted>"
++           port: "<redacted>"
++           registration_interval: "<redacted>"
++           tags:
++             component: "<redacted>"
++           uris:
++           - "<redacted>"
++     release: routing
++   migrated_from:
++   - name: blobstore
++   name: singleton-blobstore
++   networks:
++   - name: default
++   persistent_disk_type: 100GB
++   stemcell: default
++   update:
++     serial: true
++   vm_type: small
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     properties:
++       consul:
++         agent:
++           services:
++             cloud_controller_ng: {}
++             policy-server-internal:
++               name: "<redacted>"
++             routing-api: {}
++     release: consul
++   - name: cloud_controller_ng
++     properties:
++       app_domains:
++       - "<redacted>"
++       app_ssh:
++         host_key_fingerprint: "<redacted>"
++       bpm:
++         enabled: "<redacted>"
++       cc:
++         buildpacks:
++           blobstore_type: "<redacted>"
++           webdav_config:
++             blobstore_timeout: "<redacted>"
++             ca_cert: "<redacted>"
++             password: "<redacted>"
++             private_endpoint: "<redacted>"
++             public_endpoint: "<redacted>"
++             username: "<redacted>"
++         bulk_api_password: "<redacted>"
++         database_encryption:
++           current_key_label: "<redacted>"
++           keys:
++             encryption_key_0: "<redacted>"
++         db_encryption_key: "<redacted>"
++         default_app_memory: "<redacted>"
++         default_running_security_groups:
++         - "<redacted>"
++         - "<redacted>"
++         - "<redacted>"
++         default_staging_security_groups:
++         - "<redacted>"
++         - "<redacted>"
++         droplets:
++           blobstore_type: "<redacted>"
++           webdav_config:
++             blobstore_timeout: "<redacted>"
++             ca_cert: "<redacted>"
++             password: "<redacted>"
++             private_endpoint: "<redacted>"
++             public_endpoint: "<redacted>"
++             username: "<redacted>"
++         install_buildpacks:
++         - name: "<redacted>"
++           package: "<redacted>"
++         - name: "<redacted>"
++           package: "<redacted>"
++         - name: "<redacted>"
++           package: "<redacted>"
++         - name: "<redacted>"
++           package: "<redacted>"
++         - name: "<redacted>"
++           package: "<redacted>"
++         - name: "<redacted>"
++           package: "<redacted>"
++         - name: "<redacted>"
++           package: "<redacted>"
++         - name: "<redacted>"
++           package: "<redacted>"
++         - name: "<redacted>"
++           package: "<redacted>"
++         internal_api_password: "<redacted>"
++         mutual_tls:
++           ca_cert: "<redacted>"
++           private_key: "<redacted>"
++           public_cert: "<redacted>"
++         packages:
++           blobstore_type: "<redacted>"
++           webdav_config:
++             blobstore_timeout: "<redacted>"
++             ca_cert: "<redacted>"
++             password: "<redacted>"
++             private_endpoint: "<redacted>"
++             public_endpoint: "<redacted>"
++             username: "<redacted>"
++         public_tls:
++           ca_cert: "<redacted>"
++           certificate: "<redacted>"
++           private_key: "<redacted>"
++         resource_pool:
++           blobstore_type: "<redacted>"
++           webdav_config:
++             blobstore_timeout: "<redacted>"
++             ca_cert: "<redacted>"
++             password: "<redacted>"
++             private_endpoint: "<redacted>"
++             public_endpoint: "<redacted>"
++             username: "<redacted>"
++         security_group_definitions:
++         - name: "<redacted>"
++           rules:
++           - destination: "<redacted>"
++             protocol: "<redacted>"
++           - destination: "<redacted>"
++             protocol: "<redacted>"
++           - destination: "<redacted>"
++             protocol: "<redacted>"
++           - destination: "<redacted>"
++             protocol: "<redacted>"
++           - destination: "<redacted>"
++             protocol: "<redacted>"
++         - name: "<redacted>"
++           rules:
++           - destination: "<redacted>"
++             ports: "<redacted>"
++             protocol: "<redacted>"
++           - destination: "<redacted>"
++             ports: "<redacted>"
++             protocol: "<redacted>"
++         - name: "<redacted>"
++           rules:
++           - destination: "<redacted>"
++             protocol: "<redacted>"
++         stacks:
++         - description: "<redacted>"
++           name: "<redacted>"
++         staging_upload_password: "<redacted>"
++         staging_upload_user: "<redacted>"
++       ccdb:
++         databases:
++         - name: "<redacted>"
++           tag: "<redacted>"
++         db_scheme: "<redacted>"
++         port: "<redacted>"
++         roles:
++         - name: "<redacted>"
++           password: "<redacted>"
++           tag: "<redacted>"
++       credhub_api:
++         ca_cert: "<redacted>"
++       router:
++         route_services_secret: "<redacted>"
++       routing_api:
++         enabled: "<redacted>"
++       ssl:
++         skip_cert_verify: "<redacted>"
++       system_domain: "<redacted>"
++       uaa:
++         ca_cert: "<redacted>"
++         clients:
++           cc-service-dashboards:
++             secret: "<redacted>"
++           cc_routing:
++             secret: "<redacted>"
++           cc_service_key_client:
++             secret: "<redacted>"
++           cloud_controller_username_lookup:
++             secret: "<redacted>"
++         url: "<redacted>"
++     provides:
++       cloud_controller:
++         as: cloud_controller
++         shared: true
++     release: capi
++   - name: binary-buildpack
++     release: binary-buildpack
++   - name: dotnet-core-buildpack
++     release: dotnet-core-buildpack
++   - name: go-buildpack
++     release: go-buildpack
++   - name: java-buildpack
++     release: java-buildpack
++   - name: nodejs-buildpack
++     release: nodejs-buildpack
++   - name: php-buildpack
++     release: php-buildpack
++   - name: python-buildpack
++     release: python-buildpack
++   - name: ruby-buildpack
++     release: ruby-buildpack
++   - name: staticfile-buildpack
++     release: staticfile-buildpack
++   - name: route_registrar
++     properties:
++       route_registrar:
++         routes:
++         - health_check:
++             name: "<redacted>"
++             script_path: "<redacted>"
++             timeout: "<redacted>"
++           name: "<redacted>"
++           port: "<redacted>"
++           registration_interval: "<redacted>"
++           server_cert_domain_san: "<redacted>"
++           tags:
++             component: "<redacted>"
++           tls_port: "<redacted>"
++           uris:
++           - "<redacted>"
++         - name: "<redacted>"
++           port: "<redacted>"
++           registration_interval: "<redacted>"
++           uris:
++           - "<redacted>"
++     release: routing
++   - name: statsd_injector
++     properties:
++       loggregator:
++         tls:
++           ca_cert: "<redacted>"
++           statsd_injector:
++             cert: "<redacted>"
++             key: "<redacted>"
++     release: statsd-injector
++   - name: file_server
++     properties:
++       bpm:
++         enabled: "<redacted>"
++       logging:
++         format:
++           timestamp: "<redacted>"
++       loggregator:
++         ca_cert: "<redacted>"
++         cert: "<redacted>"
++         key: "<redacted>"
++         use_v2_api: "<redacted>"
++       set_kernel_parameters: "<redacted>"
++     release: diego
++   - name: routing-api
++     properties:
++       routing_api:
++         locket:
++           api_location: "<redacted>"
++           ca_cert: "<redacted>"
++           client_cert: "<redacted>"
++           client_key: "<redacted>"
++         router_groups:
++         - name: "<redacted>"
++           reservable_ports: "<redacted>"
++           type: "<redacted>"
++         skip_consul_lock: "<redacted>"
++         sqldb:
++           host: "<redacted>"
++           password: "<redacted>"
++           port: "<redacted>"
++           schema: "<redacted>"
++           type: "<redacted>"
++           username: "<redacted>"
++         system_domain: "<redacted>"
++       uaa:
++         ca_cert: "<redacted>"
++         tls_port: "<redacted>"
++     release: routing
++   - name: policy-server
++     properties:
++       database:
++         host: "<redacted>"
++         name: "<redacted>"
++         password: "<redacted>"
++         port: "<redacted>"
++         type: "<redacted>"
++         username: "<redacted>"
++       uaa_ca: "<redacted>"
++       uaa_client_secret: "<redacted>"
++     release: cf-networking
++   - name: policy-server-internal
++     properties:
++       ca_cert: "<redacted>"
++       server_cert: "<redacted>"
++       server_key: "<redacted>"
++     release: cf-networking
++   - name: cc_uploader
++     properties:
++       bpm:
++         enabled: "<redacted>"
++       capi:
++         cc_uploader:
++           cc:
++             ca_cert: "<redacted>"
++             client_cert: "<redacted>"
++             client_key: "<redacted>"
++           mutual_tls:
++             ca_cert: "<redacted>"
++             server_cert: "<redacted>"
++             server_key: "<redacted>"
++     release: capi
++   name: api
++   networks:
++   - name: default
++   stemcell: default
++   vm_extensions:
++   - 50GB_ephemeral_disk
++   vm_type: small
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     release: consul
++   - name: cloud_controller_worker
++     properties:
++       bpm:
++         enabled: "<redacted>"
++       cc:
++         buildpacks:
++           blobstore_type: "<redacted>"
++           webdav_config:
++             blobstore_timeout: "<redacted>"
++             ca_cert: "<redacted>"
++             password: "<redacted>"
++             private_endpoint: "<redacted>"
++             public_endpoint: "<redacted>"
++             username: "<redacted>"
++         database_encryption:
++           current_key_label: "<redacted>"
++           keys:
++             encryption_key_0: "<redacted>"
++         db_encryption_key: "<redacted>"
++         droplets:
++           blobstore_type: "<redacted>"
++           webdav_config:
++             blobstore_timeout: "<redacted>"
++             ca_cert: "<redacted>"
++             password: "<redacted>"
++             private_endpoint: "<redacted>"
++             public_endpoint: "<redacted>"
++             username: "<redacted>"
++         internal_api_password: "<redacted>"
++         mutual_tls:
++           ca_cert: "<redacted>"
++           private_key: "<redacted>"
++           public_cert: "<redacted>"
++         packages:
++           blobstore_type: "<redacted>"
++           webdav_config:
++             blobstore_timeout: "<redacted>"
++             ca_cert: "<redacted>"
++             password: "<redacted>"
++             private_endpoint: "<redacted>"
++             public_endpoint: "<redacted>"
++             username: "<redacted>"
++         resource_pool:
++           blobstore_type: "<redacted>"
++           webdav_config:
++             blobstore_timeout: "<redacted>"
++             ca_cert: "<redacted>"
++             password: "<redacted>"
++             private_endpoint: "<redacted>"
++             public_endpoint: "<redacted>"
++             username: "<redacted>"
++         staging_upload_password: "<redacted>"
++         staging_upload_user: "<redacted>"
++       ccdb:
++         databases:
++         - name: "<redacted>"
++           tag: "<redacted>"
++         db_scheme: "<redacted>"
++         port: "<redacted>"
++         roles:
++         - name: "<redacted>"
++           password: "<redacted>"
++           tag: "<redacted>"
++       routing_api:
++         enabled: "<redacted>"
++       ssl:
++         skip_cert_verify: "<redacted>"
++       system_domain: "<redacted>"
++       uaa:
++         ca_cert: "<redacted>"
++         clients:
++           cc-service-dashboards:
++             secret: "<redacted>"
++           cc_routing:
++             secret: "<redacted>"
++     release: capi
++   name: cc-worker
++   networks:
++   - name: default
++   stemcell: default
++   vm_type: minimal
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     properties:
++       consul:
++         agent:
++           services:
++             gorouter: {}
++     release: consul
++   - name: gorouter
++     properties:
++       router:
++         backends:
++           cert_chain: "<redacted>"
++           enable_tls: "<redacted>"
++           private_key: "<redacted>"
++         ca_certs: "<redacted>"
++         enable_ssl: "<redacted>"
++         route_services_secret: "<redacted>"
++         status:
++           password: "<redacted>"
++           user: "<redacted>"
++         tls_pem:
++         - cert_chain: "<redacted>"
++           private_key: "<redacted>"
++         tracing:
++           enable_zipkin: "<redacted>"
++       routing_api:
++         enabled: "<redacted>"
++       uaa:
++         ca_cert: "<redacted>"
++         clients:
++           gorouter:
++             secret: "<redacted>"
++         ssl:
++           port: "<redacted>"
++     release: routing
++   - name: ssh_proxy
++     properties:
++       diego:
++         ssh_proxy:
++           bbs:
++             ca_cert: "<redacted>"
++             client_cert: "<redacted>"
++             client_key: "<redacted>"
++           enable_cf_auth: "<redacted>"
++           host_key: "<redacted>"
++           uaa_secret: "<redacted>"
++         ssl:
++           skip_cert_verify: "<redacted>"
++       logging:
++         format:
++           timestamp: "<redacted>"
++       loggregator:
++         ca_cert: "<redacted>"
++         cert: "<redacted>"
++         key: "<redacted>"
++         use_v2_api: "<redacted>"
++     release: diego
++   name: router
++   networks:
++   - name: default
++     static_ips:
++     - 10.244.0.34
++   stemcell: default
++   update:
++     serial: true
++   vm_extensions:
++   - ssh-proxy-and-router-lb
++   vm_type: minimal
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     release: consul
++   - name: tcp_router
++     properties:
++       tcp_router:
++         oauth_secret: "<redacted>"
++         router_group: "<redacted>"
++       uaa:
++         ca_cert: "<redacted>"
++         tls_port: "<redacted>"
++     release: routing
++   name: tcp-router
++   networks:
++   - name: default
++   stemcell: default
++   vm_extensions:
++   - cf-tcp-router-network-properties
++   vm_type: minimal
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     release: consul
++   - name: cfdot
++     properties:
++       tls:
++         ca_certificate: "<redacted>"
++         certificate: "<redacted>"
++         private_key: "<redacted>"
++     release: diego
++   - name: auctioneer
++     properties:
++       bpm:
++         enabled: "<redacted>"
++       diego:
++         auctioneer:
++           bbs:
++             ca_cert: "<redacted>"
++             client_cert: "<redacted>"
++             client_key: "<redacted>"
++           ca_cert: "<redacted>"
++           rep:
++             ca_cert: "<redacted>"
++             client_cert: "<redacted>"
++             client_key: "<redacted>"
++             require_tls: "<redacted>"
++           server_cert: "<redacted>"
++           server_key: "<redacted>"
++           skip_consul_lock: "<redacted>"
++       logging:
++         format:
++           timestamp: "<redacted>"
++       loggregator:
++         ca_cert: "<redacted>"
++         cert: "<redacted>"
++         key: "<redacted>"
++         use_v2_api: "<redacted>"
++     release: diego
++   - name: cloud_controller_clock
++     properties:
++       bpm:
++         enabled: "<redacted>"
++       cc:
++         buildpacks:
++           blobstore_type: "<redacted>"
++           webdav_config:
++             blobstore_timeout: "<redacted>"
++             ca_cert: "<redacted>"
++             password: "<redacted>"
++             private_endpoint: "<redacted>"
++             public_endpoint: "<redacted>"
++             username: "<redacted>"
++         database_encryption:
++           current_key_label: "<redacted>"
++           keys:
++             encryption_key_0: "<redacted>"
++         db_encryption_key: "<redacted>"
++         droplets:
++           blobstore_type: "<redacted>"
++           webdav_config:
++             blobstore_timeout: "<redacted>"
++             ca_cert: "<redacted>"
++             password: "<redacted>"
++             private_endpoint: "<redacted>"
++             public_endpoint: "<redacted>"
++             username: "<redacted>"
++         internal_api_password: "<redacted>"
++         mutual_tls:
++           ca_cert: "<redacted>"
++           private_key: "<redacted>"
++           public_cert: "<redacted>"
++         packages:
++           blobstore_type: "<redacted>"
++           webdav_config:
++             blobstore_timeout: "<redacted>"
++             ca_cert: "<redacted>"
++             password: "<redacted>"
++             private_endpoint: "<redacted>"
++             public_endpoint: "<redacted>"
++             username: "<redacted>"
++         resource_pool:
++           blobstore_type: "<redacted>"
++           webdav_config:
++             blobstore_timeout: "<redacted>"
++             ca_cert: "<redacted>"
++             password: "<redacted>"
++             private_endpoint: "<redacted>"
++             public_endpoint: "<redacted>"
++             username: "<redacted>"
++         staging_upload_password: "<redacted>"
++         staging_upload_user: "<redacted>"
++       ccdb:
++         databases:
++         - name: "<redacted>"
++           tag: "<redacted>"
++         db_scheme: "<redacted>"
++         port: "<redacted>"
++         roles:
++         - name: "<redacted>"
++           password: "<redacted>"
++           tag: "<redacted>"
++       routing_api:
++         enabled: "<redacted>"
++       system_domain: "<redacted>"
++       uaa:
++         ca_cert: "<redacted>"
++         clients:
++           cc-service-dashboards:
++             secret: "<redacted>"
++           cc_routing:
++             secret: "<redacted>"
++         ssl:
++           port: "<redacted>"
++     release: capi
++   - name: statsd_injector
++     properties:
++       loggregator:
++         tls:
++           ca_cert: "<redacted>"
++           statsd_injector:
++             cert: "<redacted>"
++             key: "<redacted>"
++     release: statsd-injector
++   - name: tps
++     properties:
++       bpm:
++         enabled: "<redacted>"
++       capi:
++         tps:
++           bbs:
++             ca_cert: "<redacted>"
++             client_cert: "<redacted>"
++             client_key: "<redacted>"
++           cc:
++             ca_cert: "<redacted>"
++             client_cert: "<redacted>"
++             client_key: "<redacted>"
++           listener_enabled: "<redacted>"
++           watcher:
++             locket:
++               api_location: "<redacted>"
++             skip_consul_lock: "<redacted>"
++     release: capi
++   - name: scheduler
++     properties:
++       scalablesyslog:
++         scheduler:
++           api:
++             url: "<redacted>"
++           tls:
++             api:
++               ca: "<redacted>"
++               cert: "<redacted>"
++               cn: "<redacted>"
++               key: "<redacted>"
++             client:
++               adapter_cn: "<redacted>"
++               ca: "<redacted>"
++               cert: "<redacted>"
++               key: "<redacted>"
++     release: cf-syslog-drain
++   - name: log-cache-scheduler
++     release: log-cache
++   - name: log-cache-expvar-forwarder
++     properties:
++       counters: []
++       gauges: []
++       maps:
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++     release: log-cache
++   migrated_from:
++   - name: cc-bridge
++   - name: cc-clock
++   - name: diego-brain
++   name: scheduler
++   networks:
++   - name: default
++   stemcell: default
++   update:
++     serial: true
++   vm_type: minimal
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     properties:
++       consul:
++         agent:
++           services:
++             doppler:
++               name: "<redacted>"
++     release: consul
++   - name: doppler
++     properties:
++       loggregator:
++         tls:
++           ca_cert: "<redacted>"
++           doppler:
++             cert: "<redacted>"
++             key: "<redacted>"
++     provides:
++       doppler:
++         as: doppler
++         shared: true
++     release: loggregator
++   - name: log-cache
++     properties:
++       egress_port: "<redacted>"
++       health_addr: "<redacted>"
++       tls:
++         ca_cert: "<redacted>"
++         cert: "<redacted>"
++         key: "<redacted>"
++     provides:
++       log-cache:
++         shared: true
++     release: log-cache
++   - name: log-cache-gateway
++     properties:
++       gateway_addr: "<redacted>"
++     release: log-cache
++   - name: log-cache-group-reader
++     properties:
++       port: "<redacted>"
++     release: log-cache
++   - consumes:
++       reverse_log_proxy:
++         from: reverse_log_proxy
++     name: log-cache-nozzle
++     properties:
++       logs_provider:
++         tls:
++           ca_cert: "<redacted>"
++           cert: "<redacted>"
++           key: "<redacted>"
++     release: log-cache
++   - name: log-cache-expvar-forwarder
++     properties:
++       counters:
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       gauges:
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       - addr: "<redacted>"
++         name: "<redacted>"
++         source_id: "<redacted>"
++         template: "<redacted>"
++       maps: []
++     release: log-cache
++   - name: route_registrar
++     properties:
++       route_registrar:
++         routes:
++         - name: "<redacted>"
++           port: "<redacted>"
++           registration_interval: "<redacted>"
++           uris:
++           - "<redacted>"
++           - "<redacted>"
++     release: routing
++   - name: log-cache-cf-auth-proxy
++     properties:
++       cc:
++         ca_cert: "<redacted>"
++         capi_internal_addr: "<redacted>"
++         cert: "<redacted>"
++         common_name: "<redacted>"
++         key: "<redacted>"
++       proxy_port: "<redacted>"
++       uaa:
++         ca_cert: "<redacted>"
++         client_id: "<redacted>"
++         client_secret: "<redacted>"
++         internal_addr: "<redacted>"
++     release: log-cache
++   name: doppler
++   networks:
++   - name: default
++   stemcell: default
++   vm_type: minimal
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     properties:
++       consul:
++         agent:
++           node_name_includes_id: "<redacted>"
++     release: consul
++   - name: cflinuxfs2-rootfs-setup
++     properties:
++       cflinuxfs2-rootfs:
++         trusted_certs: "<redacted>"
++     release: cflinuxfs2
++   - name: garden
++     properties:
++       garden:
++         cleanup_process_dirs_on_wait: "<redacted>"
++         debug_listen_address: "<redacted>"
++         default_container_grace_time: "<redacted>"
++         deny_networks:
++         - "<redacted>"
++         destroy_containers_on_start: "<redacted>"
++         network_plugin: "<redacted>"
++         network_plugin_extra_args:
++         - "<redacted>"
++         persistent_image_list:
++         - "<redacted>"
++       grootfs:
++         reserved_space_for_other_jobs_in_mb: "<redacted>"
++       logging:
++         format:
++           timestamp: "<redacted>"
++     release: garden-runc
++   - name: rep
++     properties:
++       bpm:
++         enabled: "<redacted>"
++       containers:
++         trusted_ca_certificates:
++         - "<redacted>"
++         - "<redacted>"
++         - "<redacted>"
++       diego:
++         executor:
++           instance_identity_ca_cert: "<redacted>"
++           instance_identity_key: "<redacted>"
++         rep:
++           evacuation_timeout_in_seconds: "<redacted>"
++           preloaded_rootfses:
++           - "<redacted>"
++       enable_declarative_healthcheck: "<redacted>"
++       logging:
++         format:
++           timestamp: "<redacted>"
++       loggregator:
++         ca_cert: "<redacted>"
++         cert: "<redacted>"
++         key: "<redacted>"
++         use_v2_api: "<redacted>"
++       set_kernel_parameters: "<redacted>"
++       tls:
++         ca_cert: "<redacted>"
++         cert: "<redacted>"
++         key: "<redacted>"
++     release: diego
++   - name: cfdot
++     properties:
++       tls:
++         ca_certificate: "<redacted>"
++         certificate: "<redacted>"
++         private_key: "<redacted>"
++     release: diego
++   - name: route_emitter
++     properties:
++       bpm:
++         enabled: "<redacted>"
++       diego:
++         route_emitter:
++           bbs:
++             ca_cert: "<redacted>"
++             client_cert: "<redacted>"
++             client_key: "<redacted>"
++           local_mode: "<redacted>"
++       logging:
++         format:
++           timestamp: "<redacted>"
++       loggregator:
++         ca_cert: "<redacted>"
++         cert: "<redacted>"
++         key: "<redacted>"
++         use_v2_api: "<redacted>"
++       tcp:
++         enabled: "<redacted>"
++       uaa:
++         ca_cert: "<redacted>"
++         client_secret: "<redacted>"
++     release: diego
++   - name: garden-cni
++     properties:
++       cni_config_dir: "<redacted>"
++       cni_plugin_dir: "<redacted>"
++     release: cf-networking
++   - name: netmon
++     release: silk
++   - name: vxlan-policy-agent
++     properties:
++       ca_cert: "<redacted>"
++       client_cert: "<redacted>"
++       client_key: "<redacted>"
++     release: silk
++   - name: silk-daemon
++     properties:
++       ca_cert: "<redacted>"
++       client_cert: "<redacted>"
++       client_key: "<redacted>"
++     release: silk
++   - name: silk-cni
++     properties:
++       dns_servers:
++       - "<redacted>"
++     release: silk
++   name: diego-cell
++   networks:
++   - name: default
++   stemcell: default
++   vm_extensions:
++   - 100GB_ephemeral_disk
++   vm_type: small-highmem
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     properties:
++       consul:
++         agent:
++           services:
++             loggregator_trafficcontroller: {}
++             reverse_log_proxy: {}
++     release: consul
++   - consumes:
++       doppler:
++         from: doppler
++     name: loggregator_trafficcontroller
++     properties:
++       cc:
++         internal_service_hostname: "<redacted>"
++         mutual_tls:
++           ca_cert: "<redacted>"
++         tls_port: "<redacted>"
++       loggregator:
++         tls:
++           ca_cert: "<redacted>"
++           cc_trafficcontroller:
++             cert: "<redacted>"
++             key: "<redacted>"
++           trafficcontroller:
++             cert: "<redacted>"
++             key: "<redacted>"
++         uaa:
++           client_secret: "<redacted>"
++       ssl:
++         skip_cert_verify: "<redacted>"
++       system_domain: "<redacted>"
++       uaa:
++         ca_cert: "<redacted>"
++         internal_url: "<redacted>"
++     release: loggregator
++   - name: reverse_log_proxy
++     properties:
++       loggregator:
++         tls:
++           ca_cert: "<redacted>"
++           reverse_log_proxy:
++             cert: "<redacted>"
++             key: "<redacted>"
++     provides:
++       reverse_log_proxy:
++         as: reverse_log_proxy
++         shared: true
++     release: loggregator
++   - name: reverse_log_proxy_gateway
++     properties:
++       cc:
++         ca_cert: "<redacted>"
++         capi_internal_addr: "<redacted>"
++         cert: "<redacted>"
++         common_name: "<redacted>"
++         key: "<redacted>"
++       http:
++         address: "<redacted>"
++       logs_provider:
++         ca_cert: "<redacted>"
++         client_cert: "<redacted>"
++         client_key: "<redacted>"
++       uaa:
++         ca_cert: "<redacted>"
++         client_id: "<redacted>"
++         client_secret: "<redacted>"
++         internal_addr: "<redacted>"
++     release: loggregator
++   - name: route_registrar
++     properties:
++       route_registrar:
++         routes:
++         - name: "<redacted>"
++           port: "<redacted>"
++           registration_interval: "<redacted>"
++           uris:
++           - "<redacted>"
++         - name: "<redacted>"
++           port: "<redacted>"
++           registration_interval: "<redacted>"
++           uris:
++           - "<redacted>"
++           - "<redacted>"
++         - name: "<redacted>"
++           port: "<redacted>"
++           registration_interval: "<redacted>"
++           uris:
++           - "<redacted>"
++           - "<redacted>"
++     release: routing
++   name: log-api
++   networks:
++   - name: default
++   stemcell: default
++   update:
++     serial: true
++   vm_type: minimal
++ - azs:
++   - z1
++   - z2
++   instances: 1
++   jobs:
++   - consumes:
++       consul_client:
++         from: consul_client_link
++       consul_common:
++         from: consul_common_link
++       consul_server: nil
++     name: consul_agent
++     properties:
++       consul:
++         agent:
++           services:
++             credhub: {}
++     release: consul
++   - name: credhub
++     properties:
++       credhub:
++         authentication:
++           mutual_tls:
++             trusted_cas:
++             - "<redacted>"
++           uaa:
++             ca_certs:
++             - "<redacted>"
++             url: "<redacted>"
++             verification_key: "<redacted>"
++         authorization:
++           acls:
++             enabled: "<redacted>"
++           permissions:
++           - actors:
++             - "<redacted>"
++             operations:
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             - "<redacted>"
++             path: "<redacted>"
++           - actors:
++             - "<redacted>"
++             operations:
++             - "<redacted>"
++             path: "<redacted>"
++         data_storage:
++           database: "<redacted>"
++           host: "<redacted>"
++           password: "<redacted>"
++           port: "<redacted>"
++           require_tls: "<redacted>"
++           type: "<redacted>"
++           username: "<redacted>"
++         encryption:
++           keys:
++           - active: "<redacted>"
++             key_properties:
++               encryption_password: "<redacted>"
++             provider_name: "<redacted>"
++           providers:
++           - name: "<redacted>"
++             type: "<redacted>"
++         tls: "<redacted>"
++     release: credhub
++   name: credhub
++   networks:
++   - name: default
++   stemcell: default
++   vm_type: minimal
++ - azs:
++   - z1
++   instances: 1
++   jobs:
++   - name: rotate_cc_database_key
++     properties: {}
++     release: capi
++   lifecycle: errand
++   name: rotate-cc-database-key
++   networks:
++   - name: default
++   stemcell: default
++   vm_type: minimal
+  
++ manifest_version: v4.5.0
+  
++ name: cf
+
+Task 34
+
+Task 34 | 06:01:42 | Preparing deployment: Preparing deployment (00:00:35)
+Task 34 | 06:03:32 | Preparing package compilation: Finding packages to compile (00:00:00)
+Task 34 | 06:03:32 | Compiling packages: lunaclient/b922e045db5246ec742f0c4d1496844942d6167a
+Task 34 | 06:03:32 | Compiling packages: golang-1.9-linux/8d6c67abda8684ce454f0bc74050a213456573ff
+Task 34 | 06:03:32 | Compiling packages: openjdk_1.8.0/c8846344bf802835ce8b1229de8fa2028d06f603
+Task 34 | 06:03:32 | Compiling packages: autoconf/4f8914a0ada02006da32066d2e374e2a065d3acafbceb60ffd45ea146df7af1f
+Task 34 | 06:03:32 | Compiling packages: libtool/3e211ee9e3aab09a9e8a9ff55ab9ce9ba81590d945640e2d29c078597db33a94
+Task 34 | 06:03:32 | Compiling packages: proxy/8ec116448b211df572bcc108cb9c42f7bbb064180d1011a0520ba1d9e96d0735
+Task 34 | 06:03:50 | Compiling packages: lunaclient/b922e045db5246ec742f0c4d1496844942d6167a (00:00:18)
+Task 34 | 06:03:50 | Compiling packages: proxy/8ec116448b211df572bcc108cb9c42f7bbb064180d1011a0520ba1d9e96d0735 (00:00:18)
+Task 34 | 06:03:50 | Compiling packages: tar/f922f97b27619f8331332e4186c1f9c63fa5b4ddd213c4a02c7ed7cf68fced21
+Task 34 | 06:03:50 | Compiling packages: busybox/02b86e9e891e78294e366cfc3361514b752308952f56b954f7a6ae31961f859c
+Task 34 | 06:03:51 | Compiling packages: autoconf/4f8914a0ada02006da32066d2e374e2a065d3acafbceb60ffd45ea146df7af1f (00:00:19)
+Task 34 | 06:03:51 | Compiling packages: apparmor/0133a2288b0f71d05d89bd117c957297ad19cd19c0253236ba0ce4dedeb27186
+Task 34 | 06:03:51 | Compiling packages: busybox/02b86e9e891e78294e366cfc3361514b752308952f56b954f7a6ae31961f859c (00:00:01)
+Task 34 | 06:03:51 | Compiling packages: libseccomp/11f3a8e12b881d4d6f660d84df70d3fe99b12e1621f9e93ff66e120aec12ec96
+Task 34 | 06:04:02 | Compiling packages: openjdk_1.8.0/c8846344bf802835ce8b1229de8fa2028d06f603 (00:00:30)
+Task 34 | 06:04:03 | Compiling packages: pkg-config/278dbe10dcc428102e39936da0c7ddd2254cb0029ec0c9b06f545b228484187a
+Task 34 | 06:04:08 | Compiling packages: libtool/3e211ee9e3aab09a9e8a9ff55ab9ce9ba81590d945640e2d29c078597db33a94 (00:00:36)
+Task 34 | 06:04:08 | Compiling packages: golang/16d30b2f9b19b8c6b38bdab2445c763208f162a3acd9eae69efe2c70e17132c5
+Task 34 | 06:04:18 | Compiling packages: golang-1.9-linux/8d6c67abda8684ce454f0bc74050a213456573ff (00:00:46)
+Task 34 | 06:04:18 | Compiling packages: cflinuxfs2/1c7a1b7f94b9a0be4a965eeff422bcbb023eb22a
+Task 34 | 06:04:22 | Compiling packages: libseccomp/11f3a8e12b881d4d6f660d84df70d3fe99b12e1621f9e93ff66e120aec12ec96 (00:00:31)
+Task 34 | 06:04:22 | Compiling packages: profiler/0b90246ed70dcefd609de5c2fb4bb6d2944e7ef0d3947a319891aff813ec8c97 (00:00:01)
+Task 34 | 06:04:23 | Compiling packages: golang1.10.3/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f
+Task 34 | 06:04:47 | Compiling packages: apparmor/0133a2288b0f71d05d89bd117c957297ad19cd19c0253236ba0ce4dedeb27186 (00:00:56)
+Task 34 | 06:04:47 | Compiling packages: golang1.10.3/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f
+Task 34 | 06:04:47 | Compiling packages: golang/16d30b2f9b19b8c6b38bdab2445c763208f162a3acd9eae69efe2c70e17132c5 (00:00:39)
+Task 34 | 06:04:47 | Compiling packages: haproxy/a573fdd5c50a47c1a649c356beed073e27534ddf5fdd1aea9e8c890eddf83780
+Task 34 | 06:04:58 | Compiling packages: cflinuxfs2/1c7a1b7f94b9a0be4a965eeff422bcbb023eb22a (00:00:40)
+Task 34 | 06:04:58 | Compiling packages: networking-ctl-utils/53debda29bc074c9b9753624ef97f142020288d4 (00:00:03)
+Task 34 | 06:05:01 | Compiling packages: golang-1.10-linux/84480dd6f6ab2d61546f28c05ed2705c9c642607
+Task 34 | 06:05:04 | Compiling packages: golang1.10.3/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f (00:00:41)
+Task 34 | 06:05:04 | Compiling packages: staticfile-buildpack-cflinuxfs3/ca111c707af9964da383d464742627987072fc1a (00:00:01)
+Task 34 | 06:05:05 | Compiling packages: staticfile-buildpack-cflinuxfs2/b5b83715e98cb0de468757f48f56a081e56b94e6 (00:00:02)
+Task 34 | 06:05:07 | Compiling packages: ruby-buildpack-cflinuxfs3/eceed970dec65fd1613808b173b0160080b200d4 (00:00:01)
+Task 34 | 06:05:08 | Compiling packages: ruby-buildpack-cflinuxfs2/ffe2d93d1f9a97b67edff3f29ca955abd75aad29 (00:00:02)
+Task 34 | 06:05:10 | Compiling packages: python-buildpack-cflinuxfs3/0d4fb329c3d14f1532400319c8d4dff75e9b2afb (00:00:01)
+Task 34 | 06:05:11 | Compiling packages: python-buildpack-cflinuxfs2/efc783665b26e801618fd40e3781048172f3fbfb (00:00:01)
+Task 34 | 06:05:12 | Compiling packages: php-buildpack-cflinuxfs3/59a53c195e13f7e3d21167580fb207b51c229026 (00:00:01)
+Task 34 | 06:05:13 | Compiling packages: php-buildpack-cflinuxfs2/a531d8407b9c7b7cc1341a64a3db24da8a203ea7 (00:00:01)
+Task 34 | 06:05:14 | Compiling packages: nodejs-buildpack-cflinuxfs3/02656f5f841be39b97c70239b13c60823c1a6025 (00:00:01)
+Task 34 | 06:05:15 | Compiling packages: nodejs-buildpack-cflinuxfs2/38c5fd7c09d604d52c0bf1d0bc6408804c0d54d6 (00:00:01)
+Task 34 | 06:05:16 | Compiling packages: java-buildpack-cflinuxfs3/3263d32b02319292a57f687b6f96e97f1a224f7a (00:00:01)
+Task 34 | 06:05:17 | Compiling packages: java-buildpack-cflinuxfs2/afb99a4c844168336dda24c189d9b779dcd82159 (00:00:02)
+Task 34 | 06:05:19 | Compiling packages: go-buildpack-cflinuxfs3/c8ae32aae2e3e751ef37fd3185c135a9d48f51c7 (00:00:02)
+Task 34 | 06:05:21 | Compiling packages: go-buildpack-cflinuxfs2/1312bc3d3c7a944eb93e505f48171d12164b1c42 (00:00:01)
+Task 34 | 06:05:22 | Compiling packages: dotnet-core-buildpack-cflinuxfs3/896a1a14e824fb6d02e9b0670ce271680a860e1e
+Task 34 | 06:05:22 | Compiling packages: golang1.10.3/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f (00:00:59)
+Task 34 | 06:05:22 | Compiling packages: dotnet-core-buildpack-cflinuxfs2/2372bd94a852520115db555937bd85f7b114f43f
+Task 34 | 06:05:23 | Compiling packages: dotnet-core-buildpack-cflinuxfs3/896a1a14e824fb6d02e9b0670ce271680a860e1e (00:00:01)
+Task 34 | 06:05:23 | Compiling packages: binary-buildpack-windows2016/8a98ceac8d83515fccfeca9cb7b0f3f3fd4b295e
+Task 34 | 06:05:24 | Compiling packages: dotnet-core-buildpack-cflinuxfs2/2372bd94a852520115db555937bd85f7b114f43f (00:00:02)
+Task 34 | 06:05:24 | Compiling packages: binary-buildpack-windows2012R2/44f552bf41b7a434bd2784ef9ef91271506eb96e
+Task 34 | 06:05:24 | Compiling packages: binary-buildpack-windows2016/8a98ceac8d83515fccfeca9cb7b0f3f3fd4b295e (00:00:01)
+Task 34 | 06:05:24 | Compiling packages: binary-buildpack-cflinuxfs3/1479b59f3e3498f8ac0aed3d8c6d7b2b6217f955
+Task 34 | 06:05:25 | Compiling packages: binary-buildpack-windows2012R2/44f552bf41b7a434bd2784ef9ef91271506eb96e (00:00:01)
+Task 34 | 06:05:25 | Compiling packages: binary-buildpack-cflinuxfs2/aa20ebfc04036683eaee56cb75f30a6b23bec1e8
+Task 34 | 06:05:25 | Compiling packages: binary-buildpack-cflinuxfs3/1479b59f3e3498f8ac0aed3d8c6d7b2b6217f955 (00:00:01)
+Task 34 | 06:05:25 | Compiling packages: nginx/9dfaa5ca530563d7c5446171522a92080e4ac1b517e50183e740647a6255aaca
+Task 34 | 06:05:26 | Compiling packages: binary-buildpack-cflinuxfs2/aa20ebfc04036683eaee56cb75f30a6b23bec1e8 (00:00:01)
+Task 34 | 06:05:26 | Compiling packages: ruby-2.4/3039953c744ddbd4f337ad9561efe37cc707c02f97638b6554c3aecb36953051
+Task 34 | 06:05:31 | Compiling packages: pkg-config/278dbe10dcc428102e39936da0c7ddd2254cb0029ec0c9b06f545b228484187a (00:01:28)
+Task 34 | 06:05:32 | Compiling packages: mariadb_connector_c/214543bbb1d7499acdbdb44a7323430a635a77fa004f4fd4dbaf4e544291b072
+Task 34 | 06:05:36 | Compiling packages: golang-1.10-linux/84480dd6f6ab2d61546f28c05ed2705c9c642607 (00:00:35)
+Task 34 | 06:05:36 | Compiling packages: libpq/211d57d6b1cb796a123433fb736bec6b09fd7a322667c9b9010b970ff78d9bce
+Task 34 | 06:05:51 | Compiling packages: haproxy/a573fdd5c50a47c1a649c356beed073e27534ddf5fdd1aea9e8c890eddf83780 (00:01:04)
+Task 34 | 06:05:51 | Compiling packages: capi_utils/0f77e341bdf4d96acd8b84182c125c81e2b50c07be1b4dfa703bf7125ba6a787 (00:00:01)
+Task 34 | 06:05:52 | Compiling packages: golang1.10/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f
+Task 34 | 06:05:54 | Compiling packages: tar/f922f97b27619f8331332e4186c1f9c63fa5b4ddd213c4a02c7ed7cf68fced21 (00:02:04)
+Task 34 | 06:05:54 | Compiling packages: nginx_webdav/219bbff55c17e25e5ccf090491cb9ffee77f4eefc12e2d21e7ed1d520f6b01be
+Task 34 | 06:06:17 | Compiling packages: mariadb_connector_c/214543bbb1d7499acdbdb44a7323430a635a77fa004f4fd4dbaf4e544291b072 (00:00:45)
+Task 34 | 06:06:17 | Compiling packages: golang1.9.4/56d6cf267fef3a0a12c73da875e374ea19d6f23975808d813230cb904466404f
+Task 34 | 06:06:21 | Compiling packages: libpq/211d57d6b1cb796a123433fb736bec6b09fd7a322667c9b9010b970ff78d9bce (00:00:45)
+Task 34 | 06:06:21 | Compiling packages: golang-1-linux/8fb48ae1b653b7d0b49d0cbcea856bb8da8a5700
+Task 34 | 06:06:26 | Compiling packages: golang1.10/16aae7c4e2c51b6514102f00ea9ddf8e6958369da918d2b6a0a112def105b06f (00:00:34)
+Task 34 | 06:06:26 | Compiling packages: routing_utils/ee6362cf2ec3efbb0269e99dcb98606a485a17abb3e749c3039426d7e09f6e97 (00:00:01)
+Task 34 | 06:06:27 | Compiling packages: uaa/4d93e57129b9bb25c90fdbc9e98de4ebf078ad0f
+Task 34 | 06:06:36 | Compiling packages: nginx/9dfaa5ca530563d7c5446171522a92080e4ac1b517e50183e740647a6255aaca (00:01:11)
+Task 34 | 06:06:36 | Compiling packages: uaa_utils/90097ea98715a560867052a2ff0916ec3460aabb (00:00:02)
+Task 34 | 06:06:38 | Compiling packages: silk-ctl-utils/ca3d37b0be703c97306066da19e8105c92676f60 (00:00:01)
+Task 34 | 06:06:39 | Compiling packages: golang-1.10-linux/84480dd6f6ab2d61546f28c05ed2705c9c642607
+Task 34 | 06:06:50 | Compiling packages: golang1.9.4/56d6cf267fef3a0a12c73da875e374ea19d6f23975808d813230cb904466404f (00:00:33)
+Task 34 | 06:06:50 | Compiling packages: pid_utils/fbac6dd5889d4c4b0d5a7190cea8a36b9fc6fef8e78ce094c04f66129681ec9a (00:00:01)
+Task 34 | 06:06:51 | Compiling packages: golang-1-linux/d55c618ac63dfdf4ac457346fb325fb2b04884af
+Task 34 | 06:06:56 | Compiling packages: uaa/4d93e57129b9bb25c90fdbc9e98de4ebf078ad0f (00:00:29)
+Task 34 | 06:06:56 | Compiling packages: cf-mysql-common/b0dd848055e84c2014b1bdafd02384d639cb08e0 (00:00:02)
+Task 34 | 06:06:59 | Compiling packages: golang/1e3f14023f54867deaf02dc187fc59f0afdae03b
+Task 34 | 06:07:00 | Compiling packages: golang-1-linux/8fb48ae1b653b7d0b49d0cbcea856bb8da8a5700 (00:00:39)
+Task 34 | 06:07:01 | Compiling packages: check/d6811f25e9d56428a9b942631c27c9b24f5064dc
+Task 34 | 06:07:17 | Compiling packages: golang-1.10-linux/84480dd6f6ab2d61546f28c05ed2705c9c642607 (00:02:16)
+Task 34 | 06:07:18 | Compiling packages: boost/da228a9d552a039c63123f2a77e0901676a71e52
+Task 34 | 06:07:30 | Compiling packages: golang-1-linux/d55c618ac63dfdf4ac457346fb325fb2b04884af (00:00:39)
+Task 34 | 06:07:30 | Compiling packages: python/16de14b5e51a2eb13a9201ded0b7517c8e98f153

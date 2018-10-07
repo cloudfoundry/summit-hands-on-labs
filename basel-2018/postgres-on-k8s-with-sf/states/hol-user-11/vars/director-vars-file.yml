@@ -1,0 +1,12 @@
+director_address: https://35.234.92.97:25555
+director_name: bosh-hol-user-11
+external_ip: 35.234.98.36
+internal_cidr: 10.0.0.0/16
+internal_gw: 10.0.0.1
+internal_ip: 10.0.0.6
+internal_tag_name: hol-user-11-internal
+jumpbox_url: 35.234.92.97:22
+network: hol-user-11-network
+subnetwork: hol-user-11-subnet
+tags:
+- hol-user-11-bosh-director
