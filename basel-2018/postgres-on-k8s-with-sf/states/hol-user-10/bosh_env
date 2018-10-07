@@ -64,6 +64,6 @@ PGfvvjMKBgSAunq+9yqm/L8MHrpKJbFVKaclCYbcnT+e8yuFHH8kWJVZM4+SlxYU
 C04EFAXJBox/L/+13KzvAw==
 -----END CERTIFICATE-----
 '
-export JUMPBOX_PRIVATE_KEY=/tmp/bosh-jumpbox317869640/bosh_jumpbox_private.key
-export BOSH_ALL_PROXY=ssh+socks5://jumpbox@35.198.98.37:22?private-key=/tmp/bosh-jumpbox317869640/bosh_jumpbox_private.key
-export CREDHUB_PROXY=ssh+socks5://jumpbox@35.198.98.37:22?private-key=/tmp/bosh-jumpbox317869640/bosh_jumpbox_private.key
+export JUMPBOX_PRIVATE_KEY=/tmp/bosh-jumpbox102149676/bosh_jumpbox_private.key
+export BOSH_ALL_PROXY=ssh+socks5://jumpbox@35.198.98.37:22?private-key=/tmp/bosh-jumpbox102149676/bosh_jumpbox_private.key
+export CREDHUB_PROXY=ssh+socks5://jumpbox@35.198.98.37:22?private-key=/tmp/bosh-jumpbox102149676/bosh_jumpbox_private.key

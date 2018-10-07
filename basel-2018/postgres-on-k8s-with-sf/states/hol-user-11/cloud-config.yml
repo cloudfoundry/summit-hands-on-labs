@@ -17,8 +17,6 @@ disk_types:
   name: 10GB
 - disk_size: 100240
   name: 100GB
-- disk_size: 1024
-  name: default
 networks:
 - name: default
   subnets:
@@ -33,7 +31,10 @@ networks:
     reserved:
     - 10.244.0.1
     static:
-    - 10.244.0.2 - 10.244.14.254
+    - 10.244.0.2 - 10.244.0.127
+    - 10.244.1.0 - 10.244.1.127
+    - 10.244.2.0 - 10.244.2.127
+    - 10.244.3.0 - 10.244.3.127
 vm_extensions:
 - name: 5GB_ephemeral_disk
 - name: 10GB_ephemeral_disk
@@ -59,4 +60,3 @@ vm_types:
 - name: minimal
 - name: small
 - name: small-highmem
-- name: default

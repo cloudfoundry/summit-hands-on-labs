@@ -2,35 +2,37 @@ Using environment 'https://10.0.0.6:25555' as client 'admin'
 
 Using deployment 'cf'
 
-Release 'bpm/0.12.3' already exists.
-
-Release 'binary-buildpack/1.0.25' already exists.
-
-Release 'cf-mysql/36.15.0' already exists.
-
 Release 'capi/1.69.0' already exists.
+
+Release 'bpm/0.12.3' already exists.
 
 Release 'cf-networking/2.16.0' already exists.
 
-Release 'consul/196' already exists.
+Release 'cf-mysql/36.15.0' already exists.
+
+Release 'binary-buildpack/1.0.25' already exists.
+
+Release 'cf-smoke-tests/40.0.9' already exists.
 
 Release 'cf-syslog-drain/7.1' already exists.
 
-Release 'cflinuxfs2/1.238.0' already exists.
+Release 'consul/196' already exists.
 
-Release 'cf-smoke-tests/40.0.9' already exists.
+Release 'cflinuxfs2/1.238.0' already exists.
 
 Release 'credhub/1.9.5' already exists.
 
 Release 'diego/2.17.0' already exists.
 
-Release 'garden-runc/1.16.4' already exists.
-
 Release 'dotnet-core-buildpack/2.1.4' already exists.
+
+Release 'garden-runc/1.16.4' already exists.
 
 Release 'go-buildpack/1.8.26' already exists.
 
 Release 'java-buildpack/4.15' already exists.
+
+Release 'loggregator/103.2' already exists.
 
 Release 'nats/26' already exists.
 
@@ -38,36 +40,102 @@ Release 'php-buildpack/4.3.59' already exists.
 
 Release 'nodejs-buildpack/1.6.30' already exists.
 
-Release 'loggregator/103.2' already exists.
-
 Release 'python-buildpack/1.6.20' already exists.
-
-Release 'staticfile-buildpack/1.4.31' already exists.
 
 Release 'routing/0.182.0' already exists.
 
+Release 'ruby-buildpack/1.7.22' already exists.
+
 Release 'silk/2.16.0' already exists.
 
-Release 'statsd-injector/1.3.0' already exists.
+Release 'staticfile-buildpack/1.4.31' already exists.
 
-Release 'ruby-buildpack/1.7.22' already exists.
+Release 'statsd-injector/1.3.0' already exists.
 
 Release 'log-cache/1.4.4' already exists.
 
 Release 'uaa/61.0' already exists.
 
-Release 'loggregator-agent/2.2' already exists.
-
 Release 'bosh-dns-aliases/0.0.3' already exists.
+
+Release 'loggregator-agent/2.2' already exists.
 
 Release 'cf-cli/1.8.0' already exists.
 
++ azs:
++ - name: z1
++ - name: z2
++ - name: z3
+  
++ vm_types:
++ - name: minimal
++ - name: small
++ - name: small-highmem
++ - name: default
+  
++ vm_extensions:
++ - name: 5GB_ephemeral_disk
++ - name: 10GB_ephemeral_disk
++ - name: 50GB_ephemeral_disk
++ - name: 100GB_ephemeral_disk
++ - name: 500GB_ephemeral_disk
++ - name: 1TB_ephemeral_disk
++ - cloud_properties:
++     ports:
++     - host: 80
++     - host: 443
++     - host: 2222
++   name: ssh-proxy-and-router-lb
++ - cloud_properties:
++     ports:
++     - host: 1024-1123
++   name: cf-tcp-router-network-properties
++ - cloud_properties:
++     ports:
++     - host: 8845
++   name: credhub-lb
+  
++ compilation:
++   az: z1
++   network: default
++   reuse_compilation_vms: true
++   vm_type: minimal
++   workers: 6
+  
++ networks:
++ - name: default
++   subnets:
++   - azs:
++     - z1
++     - z2
++     - z3
++     cloud_properties:
++       name: random
++     gateway: 10.244.0.1
++     range: 10.244.0.0/20
++     reserved:
++     - 10.244.0.1
++     static:
++     - 10.244.0.2 - 10.244.14.254
+  
++ disk_types:
++ - disk_size: 1024
++   name: 1GB
++ - disk_size: 5120
++   name: 5GB
++ - disk_size: 10240
++   name: 10GB
++ - disk_size: 100240
++   name: 100GB
++ - disk_size: 1024
++   name: default
+  
 + stemcells:
 + - alias: default
 +   os: ubuntu-trusty
 +   version: '3586.42'
   
-  releases:
++ releases:
 + - name: binary-buildpack
 +   sha1: 45cb3c91ff51f84d653f7271c3deb140f2349a10
 +   url: https://bosh.io/d/github.com/cloudfoundry/binary-buildpack-release?v=1.0.25
@@ -188,6 +256,10 @@ Release 'cf-cli/1.8.0' already exists.
 +   sha1: 15d0718bc82ff9394efd2c9798873a39bf7eba06
 +   url: https://bosh.io/d/github.com/bosh-packages/cf-cli-release?v=1.8.0
 +   version: 1.8.0
++ - name: bosh-dns
++   sha1: 3b77329a772483d6c949f1a47ba9734976bc2b31
++   url: https://bosh.io/d/github.com/cloudfoundry/bosh-dns-release?v=1.8.0
++   version: 1.8.0
   
 + update:
 +   canaries: 1
@@ -196,7 +268,54 @@ Release 'cf-cli/1.8.0' already exists.
 +   serial: false
 +   update_watch_time: 5000-1200000
   
-  variables:
++ addons:
++ - include:
++     stemcell:
++     - os: ubuntu-trusty
++     - os: ubuntu-xenial
++   jobs:
++   - name: bosh-dns
++     properties:
++       api:
++         client:
++           tls: "<redacted>"
++         server:
++           tls: "<redacted>"
++       cache:
++         enabled: "<redacted>"
++       health:
++         client:
++           tls: "<redacted>"
++         enabled: "<redacted>"
++         server:
++           tls: "<redacted>"
++     release: bosh-dns
++   name: bosh-dns
++ - include:
++     stemcell:
++     - os: windows2012R2
++     - os: windows2016
++     - os: windows1803
++   jobs:
++   - name: bosh-dns-windows
++     properties:
++       api:
++         client:
++           tls: "<redacted>"
++         server:
++           tls: "<redacted>"
++       cache:
++         enabled: "<redacted>"
++       health:
++         client:
++           tls: "<redacted>"
++         enabled: "<redacted>"
++         server:
++           tls: "<redacted>"
++     release: bosh-dns
++   name: bosh-dns-windows
+  
++ variables:
 + - name: blobstore_admin_users_password
 +   type: password
 + - name: blobstore_secure_link_secret
@@ -653,6 +772,44 @@ Release 'cf-cli/1.8.0' already exists.
 +     - credhub.bosh-lite.com
 +     ca: credhub_ca
 +     common_name: credhub.bosh-lite.com
++   type: certificate
++ - name: "/dns_healthcheck_tls_ca"
++   options:
++     common_name: dns-healthcheck-tls-ca
++     is_ca: true
++   type: certificate
++ - name: "/dns_healthcheck_server_tls"
++   options:
++     ca: "/dns_healthcheck_tls_ca"
++     common_name: health.bosh-dns
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: "/dns_healthcheck_client_tls"
++   options:
++     ca: "/dns_healthcheck_tls_ca"
++     common_name: health.bosh-dns
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: "/dns_api_tls_ca"
++   options:
++     common_name: dns-api-tls-ca
++     is_ca: true
++   type: certificate
++ - name: "/dns_api_server_tls"
++   options:
++     ca: "/dns_api_tls_ca"
++     common_name: api.bosh-dns
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: "/dns_api_client_tls"
++   options:
++     ca: "/dns_api_tls_ca"
++     common_name: api.bosh-dns
++     extended_key_usage:
++     - client_auth
 +   type: certificate
   
 + instance_groups:
@@ -2431,17 +2588,6 @@ Release 'cf-cli/1.8.0' already exists.
 + manifest_version: v4.5.0
   
 + name: cf
-Task 46
+Task 51
 
-Task 46 | 11:13:44 | Preparing deployment: Preparing deployment (00:00:31)
-Task 46 | 11:15:29 | Preparing package compilation: Finding packages to compile (00:00:01)
-Task 46 | 11:15:31 | Updating instance api: api/885ac13a-0852-4bab-927d-b3a9edfeafb1 (0) (canary) (00:10:23)
-                   L Error: Action Failed get_task: Task 7be9d3cf-08be-4a3a-7c32-1760c454dad5 result: 1 of 6 pre-start scripts failed. Failed Jobs: policy-server. Successful Jobs: cc_uploader, bpm, bosh-dns, consul_agent, cloud_controller_ng.
-Task 46 | 11:25:54 | Error: Action Failed get_task: Task 7be9d3cf-08be-4a3a-7c32-1760c454dad5 result: 1 of 6 pre-start scripts failed. Failed Jobs: policy-server. Successful Jobs: cc_uploader, bpm, bosh-dns, consul_agent, cloud_controller_ng.
-
-Task 46 Started  Sun Oct  7 11:13:44 UTC 2018
-Task 46 Finished Sun Oct  7 11:25:54 UTC 2018
-Task 46 Duration 00:12:10
-Task 46 error
-
-
+Task 51 | 11:38:13 | Preparing deployment: Preparing deployment (00:00:32)
