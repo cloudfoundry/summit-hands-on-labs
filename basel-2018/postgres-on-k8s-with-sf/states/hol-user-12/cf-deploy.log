@@ -2453,4 +2453,13 @@ Task 46
 
 Task 46 | 09:18:10 | Preparing deployment: Preparing deployment (00:00:32)
 Task 46 | 09:20:05 | Preparing package compilation: Finding packages to compile (00:00:01)
-Task 46 | 09:20:06 | Updating instance consul: consul/57dc105e-8394-430d-a83f-419f50343fc1 (0) (canary)
+Task 46 | 09:20:06 | Updating instance consul: consul/57dc105e-8394-430d-a83f-419f50343fc1 (0) (canary) (00:20:38)
+                   L Error: 'consul/57dc105e-8394-430d-a83f-419f50343fc1 (0)' is not running after update. Review logs for failed jobs: consul_agent
+Task 46 | 09:40:44 | Error: 'consul/57dc105e-8394-430d-a83f-419f50343fc1 (0)' is not running after update. Review logs for failed jobs: consul_agent
+
+Task 46 Started  Sun Oct  7 09:18:10 UTC 2018
+Task 46 Finished Sun Oct  7 09:40:44 UTC 2018
+Task 46 Duration 00:22:34
+Task 46 error
+
+
