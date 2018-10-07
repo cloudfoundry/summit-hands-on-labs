@@ -4,3 +4,6 @@
 [submodule "basel-2018/kibosh-the-ultimate-service-broker/setup/bucc"]
 	path = basel-2018/kibosh-the-ultimate-service-broker/setup/bucc
 	url = https://github.com/starkandwayne/bucc
+[submodule "basel-2018/postgres-on-k8s-with-sf/cf-deployment"]
+	path = basel-2018/postgres-on-k8s-with-sf/cf-deployment
+	url = https://github.com/cloudfoundry/cf-deployment
