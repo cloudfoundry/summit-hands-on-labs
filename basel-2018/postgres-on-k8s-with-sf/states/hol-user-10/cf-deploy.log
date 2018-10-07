@@ -2,21 +2,21 @@ Using environment 'https://10.0.0.6:25555' as client 'admin'
 
 Using deployment 'cf'
 
-Release 'capi/1.69.0' already exists.
-
-Release 'cf-mysql/36.15.0' already exists.
-
 Release 'bpm/0.12.3' already exists.
 
 Release 'binary-buildpack/1.0.25' already exists.
 
+Release 'capi/1.69.0' already exists.
+
 Release 'cf-networking/2.16.0' already exists.
 
-Release 'cf-syslog-drain/7.1' already exists.
+Release 'cf-mysql/36.15.0' already exists.
 
 Release 'cf-smoke-tests/40.0.9' already exists.
 
 Release 'cflinuxfs2/1.238.0' already exists.
+
+Release 'cf-syslog-drain/7.1' already exists.
 
 Release 'consul/196' already exists.
 
@@ -34,11 +34,11 @@ Release 'java-buildpack/4.15' already exists.
 
 Release 'loggregator/103.2' already exists.
 
+Release 'nats/26' already exists.
+
 Release 'nodejs-buildpack/1.6.30' already exists.
 
 Release 'php-buildpack/4.3.59' already exists.
-
-Release 'nats/26' already exists.
 
 Release 'python-buildpack/1.6.20' already exists.
 
@@ -62,21 +62,71 @@ Release 'bosh-dns-aliases/0.0.3' already exists.
 
 Release 'cf-cli/1.8.0' already exists.
 
-  vm_types:
++ azs:
++ - name: z1
++ - name: z2
++ - name: z3
+  
++ vm_types:
++ - name: minimal
++ - name: small
++ - name: small-highmem
 + - name: default
   
-  networks:
-  - name: default
-    subnets:
-    - range: 10.244.0.0/20
-      static:
-+     - 10.244.0.2 - 10.244.14.254
--     - 10.244.0.2 - 10.244.0.127
--     - 10.244.1.0 - 10.244.1.127
--     - 10.244.2.0 - 10.244.2.127
--     - 10.244.3.0 - 10.244.3.127
++ vm_extensions:
++ - name: 5GB_ephemeral_disk
++ - name: 10GB_ephemeral_disk
++ - name: 50GB_ephemeral_disk
++ - name: 100GB_ephemeral_disk
++ - name: 500GB_ephemeral_disk
++ - name: 1TB_ephemeral_disk
++ - cloud_properties:
++     ports:
++     - host: 80
++     - host: 443
++     - host: 2222
++   name: ssh-proxy-and-router-lb
++ - cloud_properties:
++     ports:
++     - host: 1024-1123
++   name: cf-tcp-router-network-properties
++ - cloud_properties:
++     ports:
++     - host: 8845
++   name: credhub-lb
   
-  disk_types:
++ compilation:
++   az: z1
++   network: default
++   reuse_compilation_vms: true
++   vm_type: minimal
++   workers: 6
+  
++ networks:
++ - name: default
++   subnets:
++   - azs:
++     - z1
++     - z2
++     - z3
++     cloud_properties:
++       name: random
++     gateway: 10.244.0.1
++     range: 10.244.0.0/20
++     reserved:
++     - 10.244.0.1
++     static:
++     - 10.244.0.2 - 10.244.14.254
+  
++ disk_types:
++ - disk_size: 1024
++   name: 1GB
++ - disk_size: 5120
++   name: 5GB
++ - disk_size: 10240
++   name: 10GB
++ - disk_size: 100240
++   name: 100GB
 + - disk_size: 1024
 +   name: default
   
@@ -85,7 +135,7 @@ Release 'cf-cli/1.8.0' already exists.
 +   os: ubuntu-trusty
 +   version: '3586.42'
   
-  releases:
++ releases:
 + - name: binary-buildpack
 +   sha1: 45cb3c91ff51f84d653f7271c3deb140f2349a10
 +   url: https://bosh.io/d/github.com/cloudfoundry/binary-buildpack-release?v=1.0.25
@@ -206,6 +256,10 @@ Release 'cf-cli/1.8.0' already exists.
 +   sha1: 15d0718bc82ff9394efd2c9798873a39bf7eba06
 +   url: https://bosh.io/d/github.com/bosh-packages/cf-cli-release?v=1.8.0
 +   version: 1.8.0
++ - name: bosh-dns
++   sha1: 3b77329a772483d6c949f1a47ba9734976bc2b31
++   url: https://bosh.io/d/github.com/cloudfoundry/bosh-dns-release?v=1.8.0
++   version: 1.8.0
   
 + update:
 +   canaries: 1
@@ -214,7 +268,54 @@ Release 'cf-cli/1.8.0' already exists.
 +   serial: false
 +   update_watch_time: 5000-1200000
   
-  variables:
++ addons:
++ - include:
++     stemcell:
++     - os: ubuntu-trusty
++     - os: ubuntu-xenial
++   jobs:
++   - name: bosh-dns
++     properties:
++       api:
++         client:
++           tls: "<redacted>"
++         server:
++           tls: "<redacted>"
++       cache:
++         enabled: "<redacted>"
++       health:
++         client:
++           tls: "<redacted>"
++         enabled: "<redacted>"
++         server:
++           tls: "<redacted>"
++     release: bosh-dns
++   name: bosh-dns
++ - include:
++     stemcell:
++     - os: windows2012R2
++     - os: windows2016
++     - os: windows1803
++   jobs:
++   - name: bosh-dns-windows
++     properties:
++       api:
++         client:
++           tls: "<redacted>"
++         server:
++           tls: "<redacted>"
++       cache:
++         enabled: "<redacted>"
++       health:
++         client:
++           tls: "<redacted>"
++         enabled: "<redacted>"
++         server:
++           tls: "<redacted>"
++     release: bosh-dns
++   name: bosh-dns-windows
+  
++ variables:
 + - name: blobstore_admin_users_password
 +   type: password
 + - name: blobstore_secure_link_secret
@@ -671,6 +772,44 @@ Release 'cf-cli/1.8.0' already exists.
 +     - credhub.bosh-lite.com
 +     ca: credhub_ca
 +     common_name: credhub.bosh-lite.com
++   type: certificate
++ - name: "/dns_healthcheck_tls_ca"
++   options:
++     common_name: dns-healthcheck-tls-ca
++     is_ca: true
++   type: certificate
++ - name: "/dns_healthcheck_server_tls"
++   options:
++     ca: "/dns_healthcheck_tls_ca"
++     common_name: health.bosh-dns
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: "/dns_healthcheck_client_tls"
++   options:
++     ca: "/dns_healthcheck_tls_ca"
++     common_name: health.bosh-dns
++     extended_key_usage:
++     - client_auth
++   type: certificate
++ - name: "/dns_api_tls_ca"
++   options:
++     common_name: dns-api-tls-ca
++     is_ca: true
++   type: certificate
++ - name: "/dns_api_server_tls"
++   options:
++     ca: "/dns_api_tls_ca"
++     common_name: api.bosh-dns
++     extended_key_usage:
++     - server_auth
++   type: certificate
++ - name: "/dns_api_client_tls"
++   options:
++     ca: "/dns_api_tls_ca"
++     common_name: api.bosh-dns
++     extended_key_usage:
++     - client_auth
 +   type: certificate
   
 + instance_groups:
@@ -2449,17 +2588,66 @@ Release 'cf-cli/1.8.0' already exists.
 + manifest_version: v4.5.0
   
 + name: cf
-Task 45
+Task 53
 
-Task 45 | 09:12:23 | Preparing deployment: Preparing deployment (00:00:32)
-Task 45 | 09:14:11 | Preparing package compilation: Finding packages to compile (00:00:01)
-Task 45 | 09:14:12 | Updating instance consul: consul/b453a8b1-1888-4044-9ff1-02bec4bfb487 (0) (canary) (00:20:44)
-                   L Error: 'consul/b453a8b1-1888-4044-9ff1-02bec4bfb487 (0)' is not running after update. Review logs for failed jobs: consul_agent
-Task 45 | 09:34:56 | Error: 'consul/b453a8b1-1888-4044-9ff1-02bec4bfb487 (0)' is not running after update. Review logs for failed jobs: consul_agent
+Task 53 | 09:49:38 | Preparing deployment: Preparing deployment (00:00:31)
+Task 53 | 09:51:23 | Preparing package compilation: Finding packages to compile (00:00:00)
+Task 53 | 09:51:23 | Creating missing vms: adapter/682630f2-ea9f-4465-ae17-fb2edaecf299 (0)
+Task 53 | 09:51:23 | Creating missing vms: router/a75f1826-81fa-4c2a-80c1-4f53c2fe4ebb (0)
+Task 53 | 09:51:23 | Creating missing vms: consul/ffe28298-44aa-45df-9253-42e1b70e78b1 (0)
+Task 53 | 09:51:23 | Creating missing vms: nats/e0592cfa-7d1f-47b4-a088-25017ada7800 (0)
+Task 53 | 09:51:23 | Creating missing vms: doppler/2e169832-3187-483d-8959-cf8a35aab1c6 (0)
+Task 53 | 09:51:23 | Creating missing vms: api/fa84b284-db37-4e75-abba-5f64ce49ba4b (0)
+Task 53 | 09:51:23 | Creating missing vms: uaa/16356027-fbaa-44f4-a59b-9a42124e6f0d (0)
+Task 53 | 09:51:23 | Creating missing vms: log-api/13a90d93-2283-44df-92a4-3dc273540eb1 (0)
+Task 53 | 09:51:23 | Creating missing vms: diego-api/886bf173-29ca-4026-ae9d-4e1c81f8f1a9 (0)
+Task 53 | 09:51:23 | Creating missing vms: tcp-router/9690c961-a58e-4a2f-be78-892497fcb584 (0)
+Task 53 | 09:51:23 | Creating missing vms: diego-cell/b650ddec-8651-4f11-ad38-b5021ecdd649 (0)
+Task 53 | 09:51:23 | Creating missing vms: scheduler/a86929fb-c119-45ed-824d-aadec3932715 (0)
+Task 53 | 09:51:23 | Creating missing vms: cc-worker/fee6f84a-a16e-480b-9b08-ce6523fa7b44 (0)
+Task 53 | 09:51:23 | Creating missing vms: database/f9f11301-e2f0-4868-8b8a-70303bfe667e (0)
+Task 53 | 09:51:23 | Creating missing vms: singleton-blobstore/6f69a665-bb56-4739-bc43-0ebb4649e1bc (0)
+Task 53 | 09:51:23 | Creating missing vms: credhub/f6a39a9b-c053-4750-b682-9f4666437c69 (0)
+Task 53 | 09:52:21 | Creating missing vms: tcp-router/9690c961-a58e-4a2f-be78-892497fcb584 (0) (00:00:58)
+Task 53 | 09:52:27 | Creating missing vms: adapter/682630f2-ea9f-4465-ae17-fb2edaecf299 (0) (00:01:04)
+Task 53 | 09:52:31 | Creating missing vms: credhub/f6a39a9b-c053-4750-b682-9f4666437c69 (0) (00:01:08)
+Task 53 | 09:52:32 | Creating missing vms: nats/e0592cfa-7d1f-47b4-a088-25017ada7800 (0) (00:01:09)
+Task 53 | 09:52:38 | Creating missing vms: consul/ffe28298-44aa-45df-9253-42e1b70e78b1 (0) (00:01:15)
+Task 53 | 09:52:38 | Creating missing vms: singleton-blobstore/6f69a665-bb56-4739-bc43-0ebb4649e1bc (0) (00:01:15)
+Task 53 | 09:52:50 | Creating missing vms: database/f9f11301-e2f0-4868-8b8a-70303bfe667e (0) (00:01:27)
+Task 53 | 09:52:52 | Creating missing vms: cc-worker/fee6f84a-a16e-480b-9b08-ce6523fa7b44 (0) (00:01:29)
+Task 53 | 09:52:55 | Creating missing vms: router/a75f1826-81fa-4c2a-80c1-4f53c2fe4ebb (0) (00:01:32)
+Task 53 | 09:52:55 | Creating missing vms: uaa/16356027-fbaa-44f4-a59b-9a42124e6f0d (0) (00:01:32)
+Task 53 | 09:52:56 | Creating missing vms: log-api/13a90d93-2283-44df-92a4-3dc273540eb1 (0) (00:01:33)
+Task 53 | 09:53:02 | Creating missing vms: diego-api/886bf173-29ca-4026-ae9d-4e1c81f8f1a9 (0) (00:01:39)
+Task 53 | 09:53:08 | Creating missing vms: doppler/2e169832-3187-483d-8959-cf8a35aab1c6 (0) (00:01:45)
+Task 53 | 09:53:09 | Creating missing vms: diego-cell/b650ddec-8651-4f11-ad38-b5021ecdd649 (0) (00:01:46)
+Task 53 | 09:53:11 | Creating missing vms: scheduler/a86929fb-c119-45ed-824d-aadec3932715 (0) (00:01:48)
+Task 53 | 09:53:13 | Creating missing vms: api/fa84b284-db37-4e75-abba-5f64ce49ba4b (0) (00:01:50)
+Task 53 | 09:53:13 | Updating instance consul: consul/ffe28298-44aa-45df-9253-42e1b70e78b1 (0) (canary) (00:00:54)
+Task 53 | 09:54:07 | Updating instance nats: nats/e0592cfa-7d1f-47b4-a088-25017ada7800 (0) (canary)
+Task 53 | 09:54:07 | Updating instance adapter: adapter/682630f2-ea9f-4465-ae17-fb2edaecf299 (0) (canary) (00:00:52)
+Task 53 | 09:54:59 | Updating instance nats: nats/e0592cfa-7d1f-47b4-a088-25017ada7800 (0) (canary) (00:00:52)
+Task 53 | 09:54:59 | Updating instance database: database/f9f11301-e2f0-4868-8b8a-70303bfe667e (0) (canary) (00:02:10)
+Task 53 | 09:57:09 | Updating instance diego-api: diego-api/886bf173-29ca-4026-ae9d-4e1c81f8f1a9 (0) (canary) (00:00:55)
+Task 53 | 09:58:04 | Updating instance uaa: uaa/16356027-fbaa-44f4-a59b-9a42124e6f0d (0) (canary) (00:02:04)
+Task 53 | 10:00:08 | Updating instance singleton-blobstore: singleton-blobstore/6f69a665-bb56-4739-bc43-0ebb4649e1bc (0) (canary) (00:00:56)
+Task 53 | 10:01:04 | Updating instance api: api/fa84b284-db37-4e75-abba-5f64ce49ba4b (0) (canary)
+Task 53 | 10:01:04 | Updating instance cc-worker: cc-worker/fee6f84a-a16e-480b-9b08-ce6523fa7b44 (0) (canary) (00:02:37)
+Task 53 | 10:04:18 | Updating instance api: api/fa84b284-db37-4e75-abba-5f64ce49ba4b (0) (canary) (00:03:14)
+Task 53 | 10:04:18 | Updating instance router: router/a75f1826-81fa-4c2a-80c1-4f53c2fe4ebb (0) (canary) (00:01:12)
+Task 53 | 10:05:30 | Updating instance tcp-router: tcp-router/9690c961-a58e-4a2f-be78-892497fcb584 (0) (canary) (00:00:52)
+Task 53 | 10:06:22 | Updating instance scheduler: scheduler/a86929fb-c119-45ed-824d-aadec3932715 (0) (canary) (00:01:04)
+Task 53 | 10:07:26 | Updating instance doppler: doppler/2e169832-3187-483d-8959-cf8a35aab1c6 (0) (canary)
+Task 53 | 10:07:26 | Updating instance diego-cell: diego-cell/b650ddec-8651-4f11-ad38-b5021ecdd649 (0) (canary)
+Task 53 | 10:08:22 | Updating instance doppler: doppler/2e169832-3187-483d-8959-cf8a35aab1c6 (0) (canary) (00:00:56)
+Task 53 | 10:08:57 | Updating instance diego-cell: diego-cell/b650ddec-8651-4f11-ad38-b5021ecdd649 (0) (canary) (00:01:31)
+Task 53 | 10:08:57 | Updating instance log-api: log-api/13a90d93-2283-44df-92a4-3dc273540eb1 (0) (canary) (00:00:55)
+Task 53 | 10:09:52 | Updating instance credhub: credhub/f6a39a9b-c053-4750-b682-9f4666437c69 (0) (canary) (00:01:02)
 
-Task 45 Started  Sun Oct  7 09:12:23 UTC 2018
-Task 45 Finished Sun Oct  7 09:34:56 UTC 2018
-Task 45 Duration 00:22:33
-Task 45 error
+Task 53 Started  Sun Oct  7 09:49:38 UTC 2018
+Task 53 Finished Sun Oct  7 10:10:54 UTC 2018
+Task 53 Duration 00:21:16
+Task 53 done
 
-
+Succeeded
