@@ -93,7 +93,7 @@ kibosh-spec: |
                 name: cluster-addon-deployment-data
                 key: kibosh.password
           - name: CF_API_ADDRESS
-            value: "((/concourse/main/cf_api))"
+            value: "https://((/concourse/main/cf_api)):443"
           - name: CF_USERNAME
             value: "((/concourse/main/cf_username))"
           - name: CF_PASSWORD
