@@ -1,0 +1,91 @@
+#!/bin/bash
+
+USAGE="
+Usage:
+$0 <USER>
+Example:
+$0 hol-user-2
+"
+USER=$1
+
+if [[ -z "$USER" ]]; then
+  echo "Provide user (user[1-10])"
+  echo "$USAGE"
+  exit
+fi
+
+# Update ssh config to disable host checking
+mkdir -p ~/.ssh
+touch ~/.ssh/config
+cat << EOF >> ~/.ssh/config
+Host *
+  StrictHostKeyChecking no
+EOF
+
+# Install bbl
+bbl_filename="/usr/bin/bbl"
+echo "## Installing and setting up bbl..."
+if [[ -f "$bbl_filename" ]] || [[ -f "/usr/local/bin/bbl" ]] ; then
+  echo "## bbl already installed..."
+else
+  curl -sLo ./bbl https://github.com/cloudfoundry/bosh-bootloader/releases/download/v6.9.16/bbl-v6.9.16_linux_x86-64
+  chmod +x ./bbl
+  sudo mv ./bbl "$bbl_filename"
+fi
+echo "## bbl install success, bbl version: $(bbl --version)"
+
+# Install expect
+echo "## Installing expect..."
+dpkg -s "expect" &> /dev/null
+
+if [ $? -eq 0 ]; then
+    echo "## expect is already installed..."
+else
+    echo "## expect is not installed..."
+    sudo apt-get update -qq
+    sudo apt-get install -y expect -qq
+fi
+echo "## expect install success, expect version: $(expect -v)"
+
+cd ~/summit-hands-on-labs/basel-2018/postgres-on-k8s-with-sf/states/"$USER"
+username=$(head -1 < cf_creds.txt)
+password=$(tail -1 < cf_creds.txt)
+eval "$(bbl print-env)"
+
+expect -c '
+  set timeout 600
+
+  spawn bbl ssh --jumpbox
+  expect "$ "
+  
+  send "bash\n"
+  expect "$ "
+
+  send "cd ~/summit-hands-on-labs/basel-2018/postgres-on-k8s-with-sf/states/'"$USER"'\n"
+  expect "$ "
+
+  send "eval \"\$(bbl print-env)\"\n"
+  expect "$ "
+
+  send "bosh deployments\n"
+  expect "$ "
+
+  send "cf api https://api.bosh-lite.com --skip-ssl-validation\n"
+  expect "$ "
+
+  send "cf login -u '"$username"' -p '"$password"' -o system\n"
+  expect "$ "
+
+  send "cf target -o service-fabrik -s labs\n"
+  expect "$ "
+
+  send "cf services\n"
+  expect "$ "
+
+  send "kubectl get services\n"
+  expect "$ "
+
+  interact
+  '
+
+
