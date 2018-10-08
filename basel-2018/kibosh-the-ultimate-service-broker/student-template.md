@@ -9,10 +9,10 @@ In this lab you will explore Kibosh and learn to deploy Helm Charts as Services 
 
 
 ## Lets go :)
-#### First lets get a container that contains everything we need 
+#### First lets get a container that contains almost everything we need and put it in the background
 
 
-`docker run -it nouseforaname/kibosh-lab-cloud-shell`
+`docker run -it nouseforaname/kibosh-lab-cloud-shell&`
 
 ####  Now we need to go into the container, so let us find out the ID
 
