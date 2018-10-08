@@ -285,7 +285,7 @@ With `jq` you can get the `access_token` and store it in an environment variable
 
 ```plain
 access_token=$(uaa context | jq -r .access_token)
-curl -sH "Authorization: bearer ${access_token}" http://localhost:9292 | jq length
+curl -sSH "Authorization: bearer ${access_token}" http://localhost:9292 | jq length
 ```
 
 The result will be `297` since the authorized user's access token contains the `airports.all` scope.
@@ -385,6 +385,8 @@ decoder = CF::UAA::TokenCoder.decode(access_token, info: uaa_info)
 Other languages might not have this behaviour refactored into a shared library and might need to implement it themselves. Or refactor it into a shared library for everyone else.
 
 ## Learning Objectives Review
+
+The UAA is many things to many people. We've only covered one small subset of its feature set - OAuth2.
 
 ## Beyond the Lab
 
