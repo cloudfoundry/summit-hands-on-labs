@@ -4,6 +4,7 @@ jobs:
   - aggregate:
     - get: stemcell
     - get: cf-deployment
+    - get: scale-cf-opsfile
   - put: deploy
     params:
       manifest: cf-deployment/cf-deployment.yml
@@ -11,6 +12,7 @@ jobs:
       ops_files:
       - cf-deployment/operations/scale-to-one-az.yml
       - cf-deployment/operations/use-compiled-releases.yml
+      - scale-cf-opsfile/scale.yml
       vars:
         system_domain: 35.241.26.200.sslip.io
 
@@ -20,6 +22,16 @@ resources:
   source:
     uri: https://github.com/cloudfoundry/cf-deployment.git
     branch: master
+    tag_filter: v*
+
+- name: scale-cf-opsfile
+  type: file
+  source:
+    filename: scale.yml
+    content:
+      - type: replace
+        path: /instance_groups/name=diego-cell/instances
+        value: 4
 
 - name: stemcell
   type: bosh-io-stemcell
@@ -40,4 +52,10 @@ resource_types:
   type: docker-image
   source:
     repository: cloudfoundry/bosh-deployment-resource
+    tag: latest
+
+- name: file
+  type: docker-image
+  source:
+    repository: aequitas/concourse-file-resource
     tag: latest
