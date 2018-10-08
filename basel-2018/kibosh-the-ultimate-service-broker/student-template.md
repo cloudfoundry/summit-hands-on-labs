@@ -33,7 +33,11 @@ In this lab you will explore Kibosh and learn to deploy Helm Charts as Services 
 
 `mkdir "/$STUDENT_NAME" && cd "/$STUDENT_NAME" && tar -xzf /kibosh-lab/lab/rabbitmq.tgz && mv rabbitmq "${STUDENT_NAME}_rabbit"`
 
-#### The first step to do is to define our plans
+#### The first step to do is to define our new Service name. The name of the folder that contains your files, needs to match with the charts name param in Chart.yml
+
+`vi ${STUDENT_NAME}_rabbit/Chart.yaml`
+
+#### Now we need to define our plans
 
 `vi ${STUDENT_NAME}_rabbit/plans.yaml`
 
@@ -73,9 +77,7 @@ rmq:
 #### By specifying plans we can override defaults from the values.yaml. By doing this we build and define how our service instances are provisioned
 #### For the rabbitmq chart this is already enough for us to be able create a service instance, let us package our Service Chart
 
-` cd "/${STUDENT_NAME}" && tar -czf "${STUDENT_NAME}_rabbit.tgz" ${STUDENT_NAME}_rabbit`
-
-
+`cd "/${STUDENT_NAME}" && tar -czf "${STUDENT_NAME}_rabbit.tgz" ${STUDENT_NAME}_rabbit`
 
 ## Uploading and Managing Service Charts
 
@@ -86,17 +88,23 @@ rmq:
 `eden catalog`
 
 #### Upload to the bazaar endpoint
-`bazaar -t $BAZAAR_URL-u $BAZAAR_USER -p $BAZAAR_PASSWORD save "${STUDENT_NAME}_rabbit.tgz"`
+`bazaar -t $BAZAAR_URL -u $BAZAAR_USER -p $BAZAAR_PASSWORD save "${STUDENT_NAME}_rabbit.tgz"`
 #### Check if succeeded
-`bazaar -t $BAZAAR_URL-u $BAZAAR_USER -p $BAZAAR_PASSWORD list`
+`bazaar -t $BAZAAR_URL -u $BAZAAR_USER -p $BAZAAR_PASSWORD list`
 
 `eden catalog`
 
 `eden provision -s "${STUDENT_NAME}_rabbit" -p ha`
 
+#### After provisioning is done you can view your Service Instance with
+`eden services`
+
 #### Eden will output a service ID that we can use to create a binding
 `eden bind -s <service_id_from_previous command>`
 
+#### The Last Command output a JSON with external IPs and port Config. Since our Environment is Loadbalanced, we only need to look for the respective "nodePort" fields, e.g. for the http Endpoint. 
+
+#### Open 35.234.80.160:<your_http_node_port> to access RabbitMqs WebMgmt
 
 
 ## Learning Objectives Review
