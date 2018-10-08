@@ -88,7 +88,7 @@ rmq:
 `eden catalog`
 
 #### Upload to the bazaar endpoint
-`bazaar -t $BAZAAR_URL -u $BAZAAR_USER -p $BAZAAR_PASSWORD save "${STUDENT_NAME}_rabbit.tgz"`
+`bazaar -t $BAZAAR_URL -u $BAZAAR_USER -p $BAZAAR_PASSWORD save ./"${STUDENT_NAME}_rabbit.tgz"`
 #### Check if succeeded
 `bazaar -t $BAZAAR_URL -u $BAZAAR_USER -p $BAZAAR_PASSWORD list`
 
