@@ -79,6 +79,9 @@ watch cf service pg-test
 ### Check PostgreSQL instance resources in K8S Cluster
 A deployment and a service will be created as part of create instance call in K8S cluster and can be identified with instance guid in CF.
 ```
+cf service pg-test
+```
+```
 kubectl get deployments
 ```
 ```
@@ -94,13 +97,19 @@ cf service-key pg-test bindingKey
 ```
 
 ### Connect to PostgreSQL service using obtained service keys
+Set variables for connecting to postgresql.
+```
+hostname= #hostname from above binding key
+username= #username from above binding key
+db= #db from above binding key
+```
+Connect to postgresql, enter password from above binding key.
 ```
 psql -h $hostname -p 5432 -U $username -d $db
 ```
+Perform basic SQL queries.
 ```
 \dt
-```
-```
 \q
 ```
 
