@@ -20,6 +20,10 @@ Target lab environment would be a separate environment for each participant comp
 # Setup
 
 As described in above section, each Student will get own Bosh-Lite environment with CF and Service Fabrik deployed. To access the Bosh-Lite environment, bbl and bbl state repository should be setup on each Student chromebook.
+Open Cloud Shell with below url:
+
+https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fcloudfoundry%2Fsummit-hands-on-labs&cloudshell_working_dir=basel-2018%2Fpostgres-on-k8s-with-sf&cloudshell_tutorial=student-template.md
+
 
 # Issues
 Nothing yet.
