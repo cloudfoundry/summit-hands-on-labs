@@ -21,7 +21,10 @@ cd ~/summit-hands-on-labs/basel-2018/postgres-on-k8s-with-sf
 
 You can start with running an initial script, which will install required packages (bbl, expect) if required and login to jumpbox. The script will also setup CF and BOSH environment so that you can readily start working on lab. 
 ```
-./scripts/student-setup hol-user-[2-11]
+user= #hol-user-[2-11]
+```
+```
+./scripts/student-setup $user
 ```
 
 ### Check avaialble services
