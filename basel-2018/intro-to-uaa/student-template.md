@@ -62,7 +62,9 @@ To run the example applications requires:
 1. Example application source code:
 
     ```plain
-    git clone https://github.com/starkandwayne/ultimate-guide-to-uaa-examples ~/workspace/ultimate-guide-to-uaa-examples
+    git clone https://github.com/starkandwayne/ultimate-guide-to-uaa-examples \
+        ~/workspace/ultimate-guide-to-uaa-examples
+    cd ~/workspace/ultimate-guide-to-uaa-examples
     ```
 
 ## Lab
