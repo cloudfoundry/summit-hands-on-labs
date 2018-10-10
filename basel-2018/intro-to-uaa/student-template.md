@@ -209,7 +209,12 @@ That is, we need a UAA client in order to request an access token.
 The `uaa clients` command shows that initially we only have one client `uaa_admin`, but it has scope `uaa.none` (which will prevent users from using it):
 
 ```plain
-$ uaa get-client uaa_admin
+uaa get-client uaa_admin
+```
+
+The output will look similar to:
+
+```json
 {
   "client_id": "uaa_admin",
   "scope": [
@@ -233,14 +238,18 @@ The client `airports` has a trivial secret `airports`. It is assumed this client
 Our user can now use the `uaa` CLI to request an access token:
 
 ```plain
-$ uaa get-password-token airports -s airports -u tutorialuser -p tutorialsecret
-Access token successfully fetched and added to context.
+uaa get-password-token airports -s airports -u tutorialuser -p tutorialsecret
 ```
 
 To get our access token from the `uaa` client application it provides a handy `uaa context` command:
 
 ```plain
-$ uaa context
+uaa context
+```
+
+Output will look like:
+
+```json
 {
   "client_id": "airports",
   "grant_type": "password",
@@ -301,7 +310,12 @@ The result will be `297` since the authorized user's access token contains the `
 With https://jwt.io or a `jwt` CLI, inspect the user's access token:
 
 ```plain
-$ jwt decode "${access_token}"
+jwt decode "${access_token}"
+```
+
+The output will be like:
+
+```plain
 Token header
 ------------
 {
@@ -363,7 +377,12 @@ The decoded JWT access token has a header section that contains:
 NOTE: the JWT token `jku` URL for public keys forced into `https` protocol scheme. If your UAA is not running under `https` then change the URL yourself to `http://`:
 
 ```plain
-$ curl http://192.168.50.1:8080/token_keys
+curl http://192.168.50.1:8080/token_keys
+```
+
+Output sample:
+
+```json
 {
   "keys": [
     {
@@ -398,4 +417,6 @@ The UAA is many things to many people. We've only covered one small subset of it
 
 ## Beyond the Lab
 
+* [Quaa - Quick UAA](https://github.com/starkandwayne/quaa)
+* Example apps https://github.com/starkandwayne/ultimate-guide-to-uaa-examples
 * WIP book - [Ultimate Guide to UAA](https://www-staging.ultimateguidetouaa.com/)
