@@ -157,8 +157,13 @@ We will use the [`uaa` CLI](https://github.com/cloudfoundry-incubator/uaa-cli) t
 The `quaa` CLI makes it easy to setup the `uaa` CLI for our UAA:
 
 ```plain
-$ eval "$(~/workspace/quick*/bin/quaa env)"
-$ quaa auth-client
+eval "$(~/workspace/quick*/bin/quaa env)"
+quaa auth-client
+```
+
+The output will look like:
+
+```plain
 Target set to http://localhost:8080
 Access token successfully fetched and added to context.
 ```
