@@ -1,6 +1,6 @@
 ---
 applications:
-- name: bazel-04
+- name: basel-03
   instances: 1
   memory: 10M
   buildpack: go_buildpack

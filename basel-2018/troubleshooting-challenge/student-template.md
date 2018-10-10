@@ -9,7 +9,7 @@ In this lab you need to find and fix as many defects in the configuration, code 
 Learning Objectives
 -------------------
 
-Teach the common techniques and tools for troubleshooting Cloud Foundry applications.
+The lab teaches common techniques and tools for troubleshooting Cloud Foundry applications.
 
 Prerequisites
 -------------
@@ -23,21 +23,37 @@ Lab
 
 You have only 30 minutes before the demo and 5 apps failing to start. Hurry up! Repair as many apps as you can.
 
+### Setting up the enviornment
+
+Configure the environment. Don't look inside the script!
+
+```
+$ source config.sh
+```
+
+### Push the first app
+
 First of all verify that you can push the reference app:
 
 ```
-$ cd app
+$ cd 01
 $ cf push
 $ cf apps
 ```
 
 If it is not up and running call instructor - something happened.
 
-Now go through the challenges one by one. `cd` each of five directories `01` - `05` and try to push with `cf push`. It fails. Your task is to figure out why and fix the issue.
+### Hints and Solution
 
 If you are stuck you may get hint with `hint`. Some challenges have additional hints: use `one-more-hint` to show it!
 
 Review the solution with `solution` command. But don't run it too early!
+
+Try them now with the application 00.
+
+### Troubleshooting
+
+Now go through the challenges one by one. `cd` each of five directories `01` - `05` and try to push with `cf push`. It fails. Your task is to figure out why and fix the issue.
 
 The challenge is done when the app from this challenge is up and running (as reported by `cf apps`).
 

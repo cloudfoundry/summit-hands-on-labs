@@ -14,8 +14,7 @@ Shared Cloud Foundry environment with a space per attendee.
 Setup
 -----
 
-1. Run `make prepare` from `setup` folder once to setup lab
-1. Run `setup/configure-laptop.sh` for each enviornment
+1. Run app from the exercise 03 in the `system` org
 
 Exercises
 ---------

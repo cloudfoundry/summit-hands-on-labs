@@ -1,3 +1,6 @@
+
+== Solution ==
+
 Tell the app to use randomly generated route
 
 + random-route: true

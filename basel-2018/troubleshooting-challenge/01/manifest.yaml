@@ -1,8 +1,9 @@
 ---
 applications:
-- name: bazel-01
+- name: basel-01
   instances: 1
   memory: 10M
+  random-route: true
   buildpack: go_buildpack
   env:
       GOPACKAGENAME: github.com/lexsys27/bazel-sample-app

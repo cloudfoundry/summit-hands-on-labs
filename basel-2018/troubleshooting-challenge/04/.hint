@@ -1,0 +1,8 @@
+
+==Hint==
+
+What does the logs say?
+
+```
+$ cf logs basel-04 --recent
+```

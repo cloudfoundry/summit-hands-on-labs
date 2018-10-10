@@ -1,4 +1,0 @@
-
-==Hint==
-
-Look at application code. Does the aplication listen on the port from the OS "$PORT" variable?
