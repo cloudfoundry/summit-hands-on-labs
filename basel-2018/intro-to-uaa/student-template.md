@@ -95,7 +95,7 @@ cd ~/workspace/quick-uaa-local
 Either run `direnv allow` if prompted, or:
 
 ```plain
-eval "$(bin/quaa env)"
+eval "$(~/workspace/quick*/bin/quaa env)"
 ```
 
 On both:
@@ -157,6 +157,7 @@ We will use the [`uaa` CLI](https://github.com/cloudfoundry-incubator/uaa-cli) t
 The `quaa` CLI makes it easy to setup the `uaa` CLI for our UAA:
 
 ```plain
+$ eval "$(~/workspace/quick*/bin/quaa env)"
 $ quaa auth-client
 Target set to http://localhost:8080
 Access token successfully fetched and added to context.
