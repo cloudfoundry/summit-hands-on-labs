@@ -1,6 +1,6 @@
 
 ==Hint==
 
-Check the application logs using `cf logs bazel-03`. 
+Check the application logs using `cf logs basel-03 --recent`. 
 
 What command does Cloud Foundry use to start the app?
