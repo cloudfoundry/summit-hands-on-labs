@@ -75,7 +75,7 @@ Lab steps:
 1. Run a "resource server" for anonymous users
 1. Create UAA user and authenticate with password
 
-### Quickly run UAA locally
+## Quickly run UAA locally
 
 We will use the [Quick UAA Local](https://github.com/starkandwayne/quick-uaa-local/) project to download all remaining dependencies and run a local UAA.
 
@@ -106,7 +106,7 @@ To run a local UAA:
 quaa up
 ```
 
-### Run a "resource server" for anonymous users
+## Run a "resource server" for anonymous users
 
 The example resource server (data API to be protected by UAA later) is a list of Australian Airports.
 
@@ -150,7 +150,7 @@ $ curl localhost:9292 | jq length
 
 See the [Ruby example source code](https://github.com/starkandwayne/ultimate-guide-to-uaa-examples/blob/master/ruby/resource-server/config.ru#L24-L27)
 
-### Create UAA user and authenticate with password
+## Create UAA user and authenticate with password
 
 We will use the [`uaa` CLI](https://github.com/cloudfoundry-incubator/uaa-cli) to configure our UAA and create a user for you.
 
@@ -257,7 +257,7 @@ curl -H 'Authorization: bearer eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vbG9jYWxob
 
 The result will be 20. The example resource server was implemented to expand the number of results returned if a valid access token was passed via an `Authorization: bearer <token>` header.
 
-### Enhance Access Token with Scopes
+## Enhance Access Token with Scopes
 
 Update the `airports` client to also support two new scopes: `airports.all`, and `airports.50`. These are already supported within the code base.
 
@@ -335,7 +335,7 @@ Token claims
 }
 ```
 
-### Trusting an access token
+## Trusting an access token
 
 The Airports API resource server is receiving an access token - an easily decodable JSON Web Token string - and using its contents to determine what response it should give the request (in the Airports API resource server this decision is "how many results to return"; but for a normal app it might decide "who's data should I return?" or "is this user allowed to edit this data?")
 
