@@ -117,14 +117,14 @@ We will use environment variables to configure the application with our local UA
 ```plain
 quaa env
 
-eval "$(quaa env)"
+eval "$(~/workspace/quick*/bin/quaa env)"
 echo $UAA_URL
 ```
 
 Either run with Docker, or investigate the [different Ruby/Golang implementations](https://github.com/starkandwayne/ultimate-guide-to-uaa-examples)
 
 ```plain
-docker run -ti -p 9292:9292 -e UAA_URL=$UAA_URL -e UAA_CA_CERT=$UAA_CA_CERT starkandwayne/uaa-example-resource-server
+docker run -ti -p 9292:9292 -e "UAA_URL=$UAA_URL" -e "UAA_CA_CERT=$UAA_CA_CERT" starkandwayne/uaa-example-resource-server
 ```
 
 The Airport API resource server application is now running on port `:9292`. We can interact with it using `curl`:
@@ -295,7 +295,7 @@ The result will be `297` since the authorized user's access token contains the `
 With https://jwt.io or a `jwt` CLI, inspect the user's access token:
 
 ```plain
-$ jwt decode ${access_token}
+$ jwt decode "${access_token}"
 Token header
 ------------
 {
