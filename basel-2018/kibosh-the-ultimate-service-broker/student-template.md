@@ -33,8 +33,7 @@ In this lab you will explore Kibosh and learn to deploy Helm Charts as Services 
 
 `mkdir "/$STUDENT_NAME" && cd "/$STUDENT_NAME" && tar -xzf /kibosh-lab/lab/rabbitmq.tgz && mv rabbitmq "${STUDENT_NAME}_rabbit"`
 
-#### The first step to do is to define our new Service name. The name of the folder that contains your files, needs to match with the charts name param in Chart.yml
-
+#### The first step to do is to define our new Service name. The name of the folder that contains your files, needs to match with the charts name param in Chart.yml. e.g. <your_name>_rabbit
 `vi ${STUDENT_NAME}_rabbit/Chart.yaml`
 
 #### Now we need to define our plans
@@ -100,7 +99,7 @@ rmq:
 `eden services`
 
 #### Eden will output a service ID that we can use to create a binding
-`eden bind -s <service_id_from_previous command>`
+`eden bind -i <service_id_from_previous command>`
 
 #### The Last Command output a JSON with external IPs and port Config. Since our Environment is Loadbalanced, we only need to look for the respective "nodePort" fields, e.g. for the http Endpoint. 
 
