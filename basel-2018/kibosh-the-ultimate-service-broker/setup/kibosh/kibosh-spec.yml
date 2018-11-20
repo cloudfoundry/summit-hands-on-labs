@@ -86,6 +86,19 @@ kibosh-spec: |
                # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
                 name: cluster-addon-deployment-data
                 key: kibosh.user
+         - name: KIBOSHCONFIG_KIBOSH_USER_NAME
+            valueFrom:
+              configMapKeyRef:
+               # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
+                name: cluster-addon-deployment-data
+                key: kibosh.user
+          - name: KIBOSHCONFIG_KIBOSH_USER_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+               # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
+                name: cluster-addon-deployment-data
+                key: kibosh.password
+
           - name: KIBOSH_PASSWORD
             valueFrom:
               configMapKeyRef:
