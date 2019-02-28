@@ -1,17 +1,17 @@
 Summit Hands-On Labs
 ====================
 
-Welcome to the Hands-on Labs for CF Summit Basel '18!
+Welcome to the Hands-on Labs for CF Summit Philadelphia '19!
 
 Useful info
 -----------
 
 - Slack channel: #handsonlabs-basel-18
-- Summit dates: Oct 10-11, 2018
+- Summit dates: April 3-4, 2019
 - Slot duration: 30 minutes
 - Number of slots: 12
 - Infrastructure provider: Google Cloud, ?
-- Laptops: chromebooks
+- Laptops: student provided
 - Number of students: up to 10
 
 Teams
@@ -22,9 +22,10 @@ Each team has two slots. They can do one lab two times, two separate labs or two
 1. Resilient Scale
 1. Stark & Wayne
 1. Altoros
-1. SAP
+1. SAP 1
+1. SAP 2
 1. Pivotal
-1. ?
+1. Dynatrace
 
 Timeline
 --------
