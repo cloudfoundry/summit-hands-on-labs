@@ -44,7 +44,7 @@ pipeline {
             sh "rm -rf spring-music"
             sh "git config --global user.email ${env.GITHUB_USER_EMAIL}"
             sh "git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/johannes-b/spring-music"
-            sh "cp spring-music/spring-music-1.0.jar ${env.PROJECT}
+            sh "cp spring-music/spring-music-1.0.jar ${env.PROJECT}"
           }
         }
       }
