@@ -64,7 +64,7 @@ After authorizing the cli and creating a project, you are ready to onboard the f
 1. Onboard the `spring-music` app using the `keptn onboard service` command. As project, please reference your project you created before.
 
     ```console
-    $ keptn onboard service --project=keptn-lab-XY --manifest=manifest.yaml
+    $ keptn onboard service --project=keptn-lab-XY --manifest=manifest.yml
     ```
 
 ### Step 3. Create a new artifact
