@@ -24,23 +24,58 @@ Understand how:
 
 ## Lab
 
-### Step 1. Using the keptn CLI
+### Step 1. Authenticate keptn CLI
+
+1. Authentication against the keptn installation using the `keptn auth` command:
+
+    ```console
+    $ keptn auth --endpoint=https://keptn-endpoint --api-token=***
+    ```
+
+## Step 2: Create project for your app
+
+Before creating a project, you need to define a *shipyard* file that describes the multi-stage environment you want to use for your project. Such a *shipyard* files defines the name, deployment strategy and test strategy of each stage. In this lab, you will rely on following multi-stage environment: 
+
+```yaml
+stages:
+  - name: "dev"
+    deployment_strategy: "direct"
+    test_strategy: "functional"
+  - name: "staging"
+    deployment_strategy: "direct"
+    test_strategy: "performance"
+  - name: "production"
+    deployment_strategy: "direct"
+```
+
+1. Create a new project for your app using the `keptn create project` command. In this example, the project is called *keptn-lab-XY*.
+
+    ```console
+    $ ls
+    $ keptn create project keptn-lab-XY shipyard.yaml
+    ```
 
 ### Step 2. Onboard a new app
 
-After authorizing the cli, you are ready to onboard the first app.
+After authorizing the cli and creating a project, you are ready to onboard the first app.
 
-1. Onboard the `carts` app using the `keptn onboard service` command.
+1. Change the manifest file to a unique app name.
+
+1. Onboard the `spring-music` app using the `keptn onboard service` command. As project, please reference your project you created before.
 
     ```console
-    $ keptn onboard service --project=sockshop --manifest=manifest_carts.yaml
+    $ keptn onboard service --project=keptn-lab-XY --manifest=manifest.yaml
     ```
 
 ### Step 3. Create a new artifact
 
-1. After creating onboarding a app, open Jenkins and go to **carts** > **master** > **Build Now**.
+After onboarding an app, a new artifact need to be created. To keep this lab focused on the main aspects, the artefact has already been created. However, you need to update the reference to this new artifact in the configuration of your application. Therefore, a simple Jenkins pipeline is provided.
 
-### Step 4. Watch keptn deploying the app
+1. Use a browser to open Jenkins with the url `jenkins.keptn.EXTERNAL-IP.xip.io` and login using the default Jenkins credentials: `admin` / `AiTx4u8VyUV8tCKk`.
+
+1. Select the XY pipeline and click on *Build Now*.
+
+### Step 4. Watch keptn deploying the application
 
 1. Go back to the Jenkins dashboard to see how the invidiual steps of the CD pipeline get triggered.
 
