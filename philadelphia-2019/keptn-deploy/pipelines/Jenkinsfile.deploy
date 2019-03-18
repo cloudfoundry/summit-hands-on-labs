@@ -17,9 +17,9 @@ pipeline {
   parameters {
     string(name: 'GITHUBORG', defaultValue: 'keptn-tiger', description: 'The name of the GitHub organization.', trim: true)
     string(name: 'PROJECT', defaultValue: 'cf-summit', description: 'The name of the entire project.', trim: true)
-    string(name: 'STAGE', defaultValue: 'dev', description: 'The stage to deploy the service to.', trim: true)
-    string(name: 'SERVICE', defaultValue: 'spring-music', description: 'The name of the service to deploy.', trim: true)
-    string(name: 'VERSION', defaultValue: '0.1', description: 'The image of the new service.', trim: true)
+    string(name: 'STAGE', defaultValue: 'dev', description: 'The stage to deploy the app to.', trim: true)
+    string(name: 'APP', defaultValue: 'spring-music', description: 'The name of the app to deploy.', trim: true)
+    string(name: 'VERSION', defaultValue: '0.1', description: 'The image of the new app.', trim: true)
   }
   agent {
     label 'deploy-cf'
@@ -49,7 +49,7 @@ pipeline {
         }
       }
     }
-    stage('Deploy service') {
+    stage('Push app') {
       steps {
         container('cf') {
           sh "cf --version"
@@ -69,7 +69,7 @@ pipeline {
             [key: 'githuborg', value: "${env.GITHUBORG}"],
             [key: 'project', value: "${env.PROJECT}"],
             [key: 'stage', value: "${env.STAGE}"],
-            [key: 'service', value: "${env.SERVICE}"],
+            [key: 'app', value: "${env.APP}"],
             [key: 'version', value: "${env.VERSION}"]
           ]
         )
