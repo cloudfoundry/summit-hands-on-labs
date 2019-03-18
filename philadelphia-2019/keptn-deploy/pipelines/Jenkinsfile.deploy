@@ -53,7 +53,7 @@ pipeline {
       steps {
         container('cf') {
           sh "cf --version"
-          sh "cd ${env.PROJECT} && cf push"
+          sh "cd ${env.PROJECT} && ls && cf push"
         }
       }
     }
