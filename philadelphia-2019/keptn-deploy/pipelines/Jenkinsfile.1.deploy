@@ -1,0 +1,117 @@
+@Library('dynatrace@master') _
+
+def tagMatchRules = [
+  [
+    meTypes: [
+      [meType: 'SERVICE']
+    ],
+    tags : [
+      [context: 'ENVIRONMENT', key: 'application', value: ''],
+      [context: 'CONTEXTLESS', key: 'service', value: ''],
+      [context: 'CONTEXTLESS', key: 'environment', value: '']
+    ]
+  ]
+]
+
+def IMAGE_TAG = 'UNKNOWN'
+def PULL_REQUEST = 'UNKNOWN'
+def STABLE_TAG = 'UNKNOWN'
+
+pipeline {
+  parameters {
+    string(name: 'GITHUBORG', defaultValue: '', description: 'The name of the GitHub organization.', trim: true)
+    string(name: 'PROJECT', defaultValue: '', description: 'The name of the entire project.', trim: true)
+    string(name: 'TESTSTRATEGY', defaultValue: '', description: 'The test strategy for this stage.', trim: true)
+    string(name: 'DEPLOYMENTSTRATEGY', defaultValue: '', description: 'The deployment strategy for this stage.', trim: true)
+    string(name: 'STAGE', defaultValue: '', description: 'The stage to deploy the service to.', trim: true)
+    string(name: 'SERVICE', defaultValue: '', description: 'The name of the service to deploy.', trim: true)
+    string(name: 'IMAGE', defaultValue: '', description: 'The image of the new service.', trim: true)
+    string(name: 'TAG', defaultValue: '', description: 'The tag of the new service.', trim: true)
+  }
+  agent {
+    label 'kubegit'
+  }
+  stages {
+    stage('Checkout configuration') {
+      steps {
+        container('git') {
+          withCredentials([usernamePassword(credentialsId: 'git-credentials-acm', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+            sh "rm -rf ${env.PROJECT}"
+            sh "git config --global user.email ${env.GITHUB_USER_EMAIL}"
+            sh "git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${env.GITHUBORG}/${env.PROJECT}"
+            sh "cd ${env.PROJECT} && git checkout ${env.STAGE}"
+          }
+        }
+      }
+    }
+    stage('Deploy service - direct') {
+      when {
+        expression {
+          return env.DEPLOYMENTSTRATEGY ==~ 'direct' 
+        }
+      }
+      steps {
+        container('helm') {
+          sh "helm init --client-only"
+          sh "cd ${env.PROJECT} && helm dep update helm-chart/"
+          sh "cd ${env.PROJECT} && helm upgrade --install ${env.PROJECT}-${env.STAGE} ./helm-chart --namespace ${env.STAGE}"
+        }
+      }
+    }
+    stage('Deploy service - blue/green') {
+      when {
+        expression {
+          return env.DEPLOYMENTSTRATEGY ==~ 'blue_green_service' 
+        }
+      }
+      steps {
+        container('helm') {
+          sh "helm init --client-only"
+          sh "cd ${env.PROJECT} && helm dep update helm-chart/"
+          sh "cd ${env.PROJECT} && helm upgrade --install ${env.PROJECT}-${env.STAGE} ./helm-chart --namespace ${env.STAGE}"
+        }
+      }
+    }
+    stage('DT deploy event') {
+      steps {
+        container("curl") {
+          script {
+            tagMatchRules[0].tags[0].value = "${env.PROJECT}"
+            tagMatchRules[0].tags[1].value = "${env.SERVICE}"
+            tagMatchRules[0].tags[2].value = "${env.STAGE}"
+            def status = pushDynatraceDeploymentEvent (
+              tagRule : tagMatchRules,
+              deploymentVersion : "${env.TAG}",
+              deploymentName : "${env.SERVICE}",
+              deploymentProject : "${env.PROJECT}", 
+              customProperties : [
+                [key: 'Jenkins Build Number', value: "${env.BUILD_ID}"],
+              ]
+            )
+          }
+        }
+      }
+    }
+  }
+  post {
+    always {
+      container("curl") {
+        sendCloudEvent(
+          receiver: 'event-broker.keptn.svc.cluster.local/keptn',
+          type: 'sh.keptn.events.deployment-finished',
+          source: 'Jenkins', 
+          data: [
+            [key: 'githuborg', value: "${env.GITHUBORG}"],
+            [key: 'project', value: "${env.PROJECT}"],
+            [key: 'teststategy', value: "${env.TESTSTRATEGY}"],
+            [key: 'deploymentstrategy', value: "${env.DEPLOYMENTSTRATEGY}"],
+            [key: 'stage', value: "${env.STAGE}"],
+            [key: 'service', value: "${env.SERVICE}"],
+            [key: 'image', value: "${env.IMAGE}"],
+            [key: 'tag', value: "${env.TAG}"]
+          ]
+        )
+      }
+    }
+  }
+}
