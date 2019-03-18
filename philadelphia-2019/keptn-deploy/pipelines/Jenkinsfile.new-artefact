@@ -21,7 +21,7 @@ pipeline {
             sh "git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${env.GITHUBORG}/${env.PROJECT}"
             sh "cd ${env.PROJECT} && git checkout ${env.STAGE}"
 
-            sh "cd ${env.PROJECT} && sed -i \"s#path: .*#path: ${APP}-${VERSION}#\" springMusic_manifest.yml && cat ${APP}_manifest.yml"
+            sh "cd ${env.PROJECT} && sed -i \"s#        path: .*#        path: ${APP}-${VERSION}#\" springMusic_manifest.yml && cat ${APP}_manifest.yml"
 
             sh "cd ${env.PROJECT} && git add ."
             sh "cd ${env.PROJECT} && git commit -am '[keptn] Updated config for: ${env.APP}'"

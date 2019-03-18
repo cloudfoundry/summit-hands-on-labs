@@ -3,4 +3,4 @@ applications:
 - name: spring-music
   memory: 1G
   random-route: true
-  path: .\spring-music-1.0.jar
+  path: spring-music-1.0.jar
