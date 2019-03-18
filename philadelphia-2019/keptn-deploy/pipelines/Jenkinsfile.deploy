@@ -1,0 +1,79 @@
+@Library('dynatrace@master') _
+
+def tagMatchRules = [
+  [
+    meTypes: [
+      [meType: 'SERVICE']
+    ],
+    tags : [
+      [context: 'ENVIRONMENT', key: 'application', value: ''],
+      [context: 'CONTEXTLESS', key: 'service', value: ''],
+      [context: 'CONTEXTLESS', key: 'environment', value: '']
+    ]
+  ]
+]
+
+pipeline {
+  parameters {
+    string(name: 'GITHUBORG', defaultValue: 'cf-summit', description: 'The name of the GitHub organization.', trim: true)
+    string(name: 'PROJECT', defaultValue: 'keptn-lab', description: 'The name of the entire project.', trim: true)
+    string(name: 'STAGE', defaultValue: 'dev', description: 'The stage to deploy the service to.', trim: true)
+    string(name: 'SERVICE', defaultValue: 'spring-music', description: 'The name of the service to deploy.', trim: true)
+    string(name: 'VERSION', defaultValue: '0.1', description: 'The image of the new service.', trim: true)
+  }
+  agent {
+    label 'deploy-cf'
+  }
+  stages {
+    stage('Checkout configuration') {
+      steps {
+        container('git') {
+          withCredentials([usernamePassword(credentialsId: 'git-credentials-acm', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+            sh "rm -rf ${env.PROJECT}"
+            sh "git config --global user.email ${env.GITHUB_USER_EMAIL}"
+            sh "git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${env.GITHUBORG}/${env.PROJECT}"
+            sh "cd ${env.PROJECT} && git checkout ${env.STAGE}"
+          }
+        }
+      }
+    }
+    stage('Checkout artefact') {
+      steps {
+        container('git') {
+          withCredentials([usernamePassword(credentialsId: 'git-credentials-acm', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+            sh "rm -rf spring-music"
+            sh "git config --global user.email ${env.GITHUB_USER_EMAIL}"
+            sh "git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/johannes-b/spring-music"
+            sh "cp spring-music/spring-music-1.0.jar ${env.PROJECT}
+          }
+        }
+      }
+    }
+    stage('Deploy service') {
+      steps {
+        container('cf') {
+          sh "cf --version"
+          sh "cd ${env.PROJECT} && cf push"
+        }
+      }
+    }
+  }
+  post {
+    always {
+      container("curl") {
+        sendCloudEvent(
+          receiver: 'event-broker.keptn.svc.cluster.local/keptn',
+          type: 'sh.keptn.events.new-artefact',
+          source: 'Jenkins', 
+          data: [
+            [key: 'githuborg', value: "${env.GITHUBORG}"],
+            [key: 'project', value: "${env.PROJECT}"],
+            [key: 'stage', value: "${env.STAGE}"],
+            [key: 'service', value: "${env.SERVICE}"],
+            [key: 'version', value: "${env.VERSION}"]
+          ]
+        )
+      }
+    }
+  }
+}

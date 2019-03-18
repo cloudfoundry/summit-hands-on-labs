@@ -17,15 +17,12 @@ Useful info
 Teams
 -----
 
-Each team has two slots. They can do one lab two times, two separate labs or two parts of the same lab.
-
 1. Resilient Scale
-1. Stark & Wayne
-1. Altoros
-1. SAP 1
-1. SAP 2
-1. Pivotal
-1. Dynatrace
+2. Stark & Wayne
+3. Altoros
+4. SAP
+5. Pivotal
+6. Dynatrace
 
 Timeline
 --------
