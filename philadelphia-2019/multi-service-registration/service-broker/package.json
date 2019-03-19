@@ -1,0 +1,38 @@
+{
+  "name": "overview-broker",
+  "version": "1.0.0",
+  "description": "A service broker providing an overview of platform connections for debugging.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "NODE_ENV=testing mocha --recursive --timeout 10000 --exit tests"
+  },
+  "author": "Matthew McNeeney <mmcneeney@pivotal.io>",
+  "repository": "https://github.com/mattmcneeney/overview-broker",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "latest",
+    "cfenv": "^1.2.0",
+    "express": "^4.16.4",
+    "express-basic-auth": "^1.1.6",
+    "express-validator": "^5.3.1",
+    "jsonschema": "latest",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "npm": "^6.8.0",
+    "pug": "latest",
+    "randomstring": "^1.1.5",
+    "request": "^2.88.0",
+    "sha256": "latest",
+    "uuid": "latest"
+  },
+  "devDependencies": {
+    "assert": "latest",
+    "mocha": "^6.0.2",
+    "should": "^13.2.3",
+    "supertest": "^3.4.2"
+  },
+  "engines": {
+    "node": "10.x.x"
+  }
+}
