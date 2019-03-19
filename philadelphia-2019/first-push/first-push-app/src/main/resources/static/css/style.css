@@ -1,0 +1,11 @@
+.logo {
+	max-height: 200px;
+	margin-bottom: 50px;
+	margin-top: 10px;
+}
+
+.app-details {
+	border-top: 1px solid gray;
+	margin-top: 10px;
+	padding-top: 10px;
+}
