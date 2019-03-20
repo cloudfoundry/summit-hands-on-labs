@@ -83,7 +83,7 @@ pipeline {
     stage('Send event for production') {
       when {
         expression {
-          return env.STAGE ==~ 'dev' 
+          return env.STAGE ==~ 'staging' 
         }
       }
       steps {

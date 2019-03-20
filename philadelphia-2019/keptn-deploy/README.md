@@ -52,7 +52,7 @@ stages:
 
     ```console
     $ ls
-    $ keptn create project keptn-hol-JB shipyard.yaml
+    $ keptn create project keptn-hol-JB shipyard.yml
     ```
 
 ### Step 2. Onboard a new app
