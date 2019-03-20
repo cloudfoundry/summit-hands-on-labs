@@ -38,7 +38,7 @@ pipeline {
       container("curl") {
         sendCloudEvent(
           receiver: 'event-broker.keptn.svc.cluster.local/keptn',
-          type: 'sh.keptn.events.new-artefact',
+          type: 'sh.keptn.events.configuration-changed',
           source: 'Jenkins', 
           data: [
             [key: 'githuborg', value: "${env.GITHUBORG}"],

@@ -4,7 +4,7 @@ In this hands-on lab, you will learn how to automatically deploy an app - and ne
 
 ### Target Audience
 
- Anyone interested in the basics of deploying apps in Cloud Foundry (developers, operators, biz dev, etc).
+Anyone interested in the basics of deploying apps in Cloud Foundry (developers, operators, biz dev, etc).
 
 ### Prerequisites
 
@@ -48,11 +48,11 @@ stages:
     deployment_strategy: "direct"
 ```
 
-1. Create a new project for your app using the `keptn create project` command. In this example, the project is called *keptn-lab-XY*.
+1. Create a new project for your app using the `keptn create project` command. In this example, the project is called *keptn-hol* and please add your initials, e.g.: *keptn-hol-JB*
 
     ```console
     $ ls
-    $ keptn create project keptn-lab-XY shipyard.yaml
+    $ keptn create project keptn-hol-JB shipyard.yaml
     ```
 
 ### Step 2. Onboard a new app
@@ -64,7 +64,7 @@ After authorizing the cli and creating a project, you are ready to onboard the f
 1. Onboard the `spring-music` app using the `keptn onboard service` command. As project, please reference your project you created before.
 
     ```console
-    $ keptn onboard service --project=keptn-lab-XY --manifest=manifest.yml
+    $ keptn onboard service --project=keptn-hol-JB --manifest=manifest.yml
     ```
 
 ### Step 3. Create a new artifact
@@ -73,7 +73,7 @@ After onboarding an app, a new artifact need to be created. To keep this lab foc
 
 1. Use a browser to open Jenkins with the url `jenkins.keptn.EXTERNAL-IP.xip.io` and login using the default Jenkins credentials: `admin` / `AiTx4u8VyUV8tCKk`.
 
-1. Select the XY pipeline and click on *Build Now*.
+1. Select the new-artefact pipeline and click on *Build Now*.
 
 ### Step 4. Watch keptn deploying the application
 
