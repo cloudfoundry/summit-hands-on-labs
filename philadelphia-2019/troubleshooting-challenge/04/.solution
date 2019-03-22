@@ -1,7 +1,0 @@
-
-==Solution==
-
-Increase memory limit in the manifest
-
--  memory: 10M
-+  memory: 20M

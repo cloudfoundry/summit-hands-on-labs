@@ -1,0 +1,10 @@
+---
+applications:
+- name: moderate-02
+  instances: 1
+  memory: 100M
+  buildpacks:
+  - nodejs_buildpack
+  command: node main.js
+  env:
+    GOPACKAGENAME: main

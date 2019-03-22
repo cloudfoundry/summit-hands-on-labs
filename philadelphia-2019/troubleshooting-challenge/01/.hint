@@ -1,8 +1,0 @@
-
-==Hint==
-
-How much space does current directory consume? 
-
-What consumes this space?
-
-You may use `ls -lah` command to find this out!

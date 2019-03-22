@@ -1,6 +1,0 @@
-
-==Hint==
-
-List routes in the org:
-
-$ cf routes --orglevel

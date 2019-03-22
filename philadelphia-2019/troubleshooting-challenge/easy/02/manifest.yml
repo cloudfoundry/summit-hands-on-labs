@@ -1,0 +1,7 @@
+---
+applications:
+- name: easy-02
+  instances: 1
+  memory: 10M
+  buildpacks: 
+  - go_buildpack

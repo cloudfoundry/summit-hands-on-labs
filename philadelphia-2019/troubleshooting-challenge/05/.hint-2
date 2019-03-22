@@ -1,8 +1,0 @@
-
-==Hint==
-
-Look at application code. Does the aplication listen on the port from the OS "$PORT" variable?
-
-You can read enviornmental variables in Go like this:
-
-os.Getenv("PORT");
