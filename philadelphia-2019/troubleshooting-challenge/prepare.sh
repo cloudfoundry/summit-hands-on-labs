@@ -9,4 +9,4 @@ done
 echo "Done"
 
 ACC=`gcloud config get-value account`
-cf login -a api.phillyhol.starkandwayne.com -u $ACC -p $ACC -o troubleshooting-challenge -s $AAC
+cf login -a api.phillyhol.starkandwayne.com -u $ACC -p $ACC -o troubleshooting-challenge -s $ACC --skip-ssl-validation
