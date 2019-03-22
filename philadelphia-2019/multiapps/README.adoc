@@ -1,0 +1,35 @@
+## Introduction
+
+With this tutorial, by deploying the 'fortune teller' application in CF,You can experience both - the classic `cf push` way of doing this and the multiapps `cf deploy` or `cf bg-depoploy`. Utilize mta archives and parallelized deployment with tha later. Even do a zero downtime update of the app with `cf bg-deploy`.   
+
+## Learning Objectives
+ - try declarative ways of deploying and connecting apps & services 
+ - experience the native cf push in managing simple interlinked applications
+ - see additional automation & benefits the multiapps deployment brings
+   - automatic linking between 
+   - faster, parallel deployment
+   - blue green deployment
+   - versioned artefacts consistently deployed across spaces/orgs/landscapes
+
+## Prerequisites
+
+NOTE: For the sessions taking place during CFNA Summit in Philadelphia, all preqrequisites are taken care of.
+
+To setup the lab using private resoruces at any time, please follow prerequisites[instructions here]
+
+## Lab
+
+TODO: port https://github.com/ddonchev/fortune-teller/blob/master/README.adoc[hands-on description] here
+
+## Learning Objectives Review
+
+You now have broader knowledge about the advantages of the declarative modelling of cf deployments. The advantages the Multiapps model brings and additional platform entities it can manage. The improvements in performance and zero-down-time updates the mta deployment brings. You can now decide in better context for which cases to use cf push and for which cf deploy/bg-deploy. 
+
+## Beyond the Lab
+
+Find out more about the topic:
+
+- https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/d04fc0e2ad894545aebfd7126384307c.html[Sap Cloud Platform documentation]
+- https://cloudfoundry-incubator.github.io/multiapps-controller/[project homepage]
+- https://github.com/cloudfoundry-incubator?utf8=%E2%9C%93&q=multiapps[project @ github.com]
+- https://www.youtube.com/watch?v=d07DZCuUXyk[youtube]
