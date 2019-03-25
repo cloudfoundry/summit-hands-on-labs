@@ -52,8 +52,11 @@ pipeline {
     stage('Push app') {
       steps {
         container('cf') {
-          sh "cf --version"
-          sh "cd ${env.PROJECT} && ls && cf push"
+          withCredentials([usernamePassword(credentialsId: 'cf-credentials', passwordVariable: 'CF_PASSWORD', usernameVariable: 'CF_USERNAME')]) {
+            sh "cf --version"
+            sh "cf login -a https://api.phillyhol.starkandwayne.com -u ${CF_USERNAME} -p ${CF_PASSWORD} -o keptn-deploy -s ${env.STAGE}"
+            sh "cd ${env.PROJECT} && cf push"
+          }
         }
       }
     }
