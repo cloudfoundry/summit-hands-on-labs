@@ -16,7 +16,7 @@ def tagMatchRules = [
 pipeline {
   parameters {
     string(name: 'GITHUBORG', defaultValue: 'keptn-tiger', description: 'The name of the GitHub organization.', trim: true)
-    string(name: 'PROJECT', defaultValue: 'cf-summit', description: 'The name of the entire project.', trim: true)
+    string(name: 'PROJECT', defaultValue: 'keptn-hol-JB', description: 'The name of the entire project.', trim: true)
     string(name: 'STAGE', defaultValue: 'dev', description: 'The stage to deploy the app to.', trim: true)
     string(name: 'APP', defaultValue: 'spring-music', description: 'The name of the app to deploy.', trim: true)
     string(name: 'VERSION', defaultValue: '0.1', description: 'The image of the new app.', trim: true)
@@ -55,7 +55,7 @@ pipeline {
           withCredentials([usernamePassword(credentialsId: 'cf-credentials', passwordVariable: 'CF_PASSWORD', usernameVariable: 'CF_USERNAME')]) {
             sh "cf --version"
             sh "cf login --skip-ssl-validation -a https://api.phillyhol.starkandwayne.com -u ${CF_USERNAME} -p ${CF_PASSWORD} -o keptn-deploy -s ${env.STAGE}"
-            sh "cd ${env.PROJECT} && cf push"
+            sh "cd ${env.PROJECT} && ls && cf push -f ${env.SERVICE}_manifest.yml"
           }
         }
       }
