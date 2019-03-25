@@ -31,7 +31,7 @@ resources:
     content:
       - type: replace
         path: /instance_groups/name=diego-cell/instances
-        value: 6
+        value: 12
       - type: replace
         path: /instance_groups/name=diego-cell/vm_extensions
         value: [ 50GB_ephemeral_disk ]
