@@ -44,7 +44,7 @@ pipeline {
             sh "rm -rf spring-music"
             sh "git config --global user.email ${env.GITHUB_USER_EMAIL}"
             sh "git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/johannes-b/spring-music"
-            sh "cp spring-music/spring-music-1.0.jar ${env.PROJECT}"
+            sh "cp spring-music/spring-music-1.0.jar ${env.PROJECT}/${env.APP}-1.0.jar"
           }
         }
       }
@@ -55,7 +55,7 @@ pipeline {
           withCredentials([usernamePassword(credentialsId: 'cf-credentials', passwordVariable: 'CF_PASSWORD', usernameVariable: 'CF_USERNAME')]) {
             sh "cf --version"
             sh "cf login --skip-ssl-validation -a https://api.phillyhol.starkandwayne.com -u ${CF_USERNAME} -p ${CF_PASSWORD} -o keptn-deploy -s ${env.STAGE}"
-            /*sh "cd ${env.PROJECT} && ls && cf push -f ${env.APP}_manifest.yml"*/
+            sh "cd ${env.PROJECT} && ls && cf push -f ${env.APP}_manifest.yml"
           }
         }
       }
