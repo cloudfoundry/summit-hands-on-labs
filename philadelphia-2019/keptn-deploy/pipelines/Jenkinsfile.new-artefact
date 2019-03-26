@@ -7,7 +7,7 @@ pipeline {
     string(name: 'GITHUBORG', defaultValue: 'keptn-tiger', description: 'The name of the GitHub organization.', trim: true)
     string(name: 'PROJECT', defaultValue: 'keptn-hol-JB', description: 'The name of the entire project.', trim: true)
     string(name: 'STAGE', defaultValue: 'dev', description: 'The stage to deploy the service to.', trim: true)
-    string(name: 'APP', defaultValue: 'spring-music', description: 'The name of the service to deploy.', trim: true)
+    string(name: 'APP', defaultValue: 'spring-music-JB', description: 'The name of the service to deploy.', trim: true)
     string(name: 'VERSION', defaultValue: '1.0', description: 'The image of the new service.', trim: true)
   }
   agent {
