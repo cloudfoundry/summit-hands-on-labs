@@ -99,6 +99,8 @@ After onboarding an app, a new artifact need to be created. To keep this lab foc
 
 ### Step 4. Watch keptn deploying the application
 
+Deploying the application into the *dev*, *staging* and *production* environment takes about 6 minutes. In the meanwhile your instruct will explain you how keptn works behind the scene. 
+
 1. Verify the configuration change in your GitHub repository.
 
 1. Go back to the Jenkins dashboard to see how the invidiual steps of the CD pipeline get triggered.
