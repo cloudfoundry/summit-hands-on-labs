@@ -1,6 +1,6 @@
 ## Introduction
 
-In this hands-on lab, you will learn how to automatically deploy an app - and new artifacts of this app - into a multi-stage environment using [keptn](keptn.sh). Therefore, keptn relies on the GitOps approach and maintains the stage configurations in a separate GitHub repository. In more details, each stage is represented by an individual branch that contains the entire configuration (e.g., app manifests) for the stage. After creating the repository, the app that is going to be managed by keptn need to be onboarded. Therefore, keptn provides the functionality to upload the manifest of the onboarded app to each stage. 
+In this hands-on lab, you will learn how to automatically deploy an app - and new artifacts of this app - into a multi-stage environment using [keptn](keptn.sh). Therefore, keptn relies on the GitOps approach and maintains the stage configurations in a separate GitHub repository. In more details, each stage is represented by an individual branch that contains the entire configuration (e.g., app manifests) for the stage. After creating the repository, the app that is going to be managed by keptn needs to be onboarded. Therefore, keptn provides the functionality to upload the manifest of the onboarded app to each stage. 
 
 ### Target Audience
 
@@ -13,13 +13,13 @@ Anyone interested in the basics of deploying apps in Cloud Foundry (developers, 
 ### Learning Objectives
 
 Learn how to:
-* set up the configuration for a multi-stage environment
+* set up the configuration for a multi-stage CF environment
 * deploy an application to Cloud Foundry using keptn
-* trigger the continous delivery pipeline by providing a new artefact
+* trigger the continuous delivery pipeline by providing a new artefact
 
 Understand how:
 * keptn uses the GitOps approach to manage the app configurations
-* keptn uses an event-driven approach to launch continous delivery tasks
+* keptn uses an event-driven approach to launch continuous delivery tasks
 
 ## Lab
 
@@ -61,7 +61,7 @@ stages:
 
 After authorizing the cli and creating a project, you are ready to onboard the first app. In this lab, you will onboard the [spring-music](https://github.com/cloudfoundry-samples/spring-music) app based on the following steps.
 
-1. Change the manifest file to a unique app name by adding your initilas, e.g.: *spring-music-JB*
+1. Change the manifest file to a unique app name by adding your initials, e.g.: *spring-music-JB*
 
     ```console
     $ vi manifest.yml
@@ -85,9 +85,13 @@ After authorizing the cli and creating a project, you are ready to onboard the f
     * Click on your repository: `keptn-hol-JB`
     * Click on the **Branch: master** button to switch to the *dev* branch. There you will find the manifest for your app.
 
-### Step 3. Create a new artifact
+### Step 3. Learn about the GitOps approach
 
-After onboarding an app, a new artifact need to be created. To keep this lab focused on the main aspects, the artefact has already been created. However, you need to update the reference to this new artifact in the configuration of your application. Therefore, a simple Jenkins pipeline is provided.
+Your instructor will explain the basic concepts behind GitOps approach and how to apply it for managing your configurations.
+
+### Step 4. Create a new artifact
+
+After onboarding an app, a new artifact needs to be created. To keep this lab focused on the main aspects, the artefact has already been created. However, you need to update the reference to this new artifact in the configuration of your application. Therefore, a simple Jenkins pipeline is provided.
 
 1. Use a browser to open Jenkins with the url `jenkins.keptn.EXTERNAL-IP.xip.io` and login with the following Jenkins credentials: `admin` / `AiTx4u8VyUV8tCKk`.
 
@@ -97,20 +101,22 @@ After onboarding an app, a new artifact need to be created. To keep this lab foc
     * **PROJECT**: specify your project, e.g.: *keptn-hol-JB*
     * **APP**: specify your spring-music app, e.g.: *spring-music-JB*
 
-### Step 4. Watch keptn deploying the application
+### Step 5. Watch keptn deploying the application
 
-Deploying the application into the *dev*, *staging* and *production* environment takes about 6 minutes. In the meanwhile your instruct will explain you how keptn works behind the scene. 
+Deploying the application into the *dev*, *staging* and *production* environment takes about 6 minutes. In the meanwhile, your instruct will explain you how keptn works behind the scene.
 
 1. Verify the configuration change in your GitHub repository.
 
-1. Go back to the Jenkins dashboard to see how the invidiual steps of the CD pipeline get triggered.
+1. Go back to the Jenkins dashboard to see how the individual steps of the CD pipeline get triggered.
 
 ## Learning Objectives Review
 
 In this lab, you:
 
-* ...
+* Set up the configuration for a multi-stage environment using `keptn create project`
+* Onboarded an app to your project using `keptn onboard service`
+* Triggered the continuous delivery pipeline by providing a new artefact
 
 ## Beyond the Lab
 
-[Keptn](keptn.sh) is an open-source project with the goal to build an enterprise-grade framework for shipping and running cloud-native applications. Find more information on [GitHub](https://github.com/keptn/keptn) or on the keptn website.
+[Keptn](keptn.sh) is an open-source project with the goal to build an enterprise-grade framework for shipping and running cloud-native applications. Find more information on [GitHub](https://github.com/keptn/keptn) or on the keptn website. **Feel free to contribute!**
