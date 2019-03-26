@@ -119,4 +119,4 @@ In this lab, you:
 
 ## Beyond the Lab
 
-[Keptn](keptn.sh) is an open-source project with the goal to build an enterprise-grade framework for shipping and running cloud-native applications. Find more information on [GitHub](https://github.com/keptn/keptn) or on the keptn website.
+[Keptn](keptn.sh) is an open-source project with the goal to build an enterprise-grade framework for shipping and running cloud-native applications. Find more information on [GitHub](https://github.com/keptn/keptn) or on the keptn website. **Feel free to contribute!**
