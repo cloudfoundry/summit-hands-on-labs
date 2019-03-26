@@ -1,6 +1,0 @@
-cf create-org keptn-deploy
-cf target -o keptn-deploy
-
-cf create-space dev -o keptn-deploy
-cf create-space staging -o keptn-deploy
-cf create-space production -o keptn-deploy
