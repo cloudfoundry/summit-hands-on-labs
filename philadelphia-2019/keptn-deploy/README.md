@@ -48,14 +48,14 @@ stages:
 1. Create a new project for your app using the `keptn create project` command. In this example, the project is called *keptn-hol* and please add your initials, e.g.: *keptn-hol-JB*
 
     ```console
-    $ ls
+    $ cat shipyard.yml
     $ keptn create project keptn-hol-JB shipyard.yml
     ```
 
 1. Verify the project creation by navigating to your GitHub repository in the `keptn-deploy` organization.
-    * Go to: `http://github.com/keptn-deploy`
+    * Go to: `https://github.com/keptn-deploy`
     * Click on your repository: `keptn-hol-JB`
-    * Click on the **Branch: master** button to see the three branches for your multi-stage environment.
+    * Click on the **Branch: master** button to see the three branches for your multi-stage environment that are: *dev*, *staging*, and *production*.
 
 ### Step 2. Onboard a new app
 
@@ -64,7 +64,14 @@ After authorizing the cli and creating a project, you are ready to onboard the f
 1. Change the manifest file to a unique app name by adding your initilas, e.g.: *spring-music-JB*
 
     ```console
-    $ vi manifest.yaml
+    $ vi manifest.yml
+    $ cat manifest.yml
+    ---
+    applications:
+    - name: spring-music-JB
+      memory: 1G
+      random-route: true
+      path: spring-music.jar
     ```
 
 1. Onboard the `spring-music` app using the `keptn onboard service` command. For the project option, please reference your project you created in step 2.
@@ -72,6 +79,11 @@ After authorizing the cli and creating a project, you are ready to onboard the f
     ```console
     $ keptn onboard service --project=keptn-hol-JB --manifest=manifest.yml
     ```
+
+1. Verify the app onboarding by navigating to your GitHub repository in the `keptn-deploy` organization.
+    * Go to: `https://github.com/keptn-deploy`
+    * Click on your repository: `keptn-hol-JB`
+    * Click on the **Branch: master** button to switch to the *dev* branch. There you will find the manifest for your app.
 
 ### Step 3. Create a new artifact
 
