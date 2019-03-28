@@ -18,3 +18,8 @@ cf org-users $name -a
 cf space-users $name dev
 cf space-users $name prod
 done
+
+# Register the hosted overview broker
+
+cf create-service-broker overview-broker admin password https://the-best-broker.cfapps.io
+cf enable-service-access overview-service
