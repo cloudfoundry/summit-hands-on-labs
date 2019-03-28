@@ -35,9 +35,17 @@ If you run the command `ls`, you should see a folder called `service-broker`.
 We have created a Cloud Foundry user for you to use throughout this lab with the Space Developer role. This role allows you to push applications
 and create space scoped service brokers. 
 
-Target your organization. The organization name, is the same as your user name
+Let's begin! First off please login to your Cloud Foundry Account.
 
->> this may change.
+```
+cf login -a api.phillyhol.starkandwayne.com --skip-ssl-validation
+```
+
+At the prompt, enter your designated music genre as the username, and the password is password.
+
+---
+
+Target your organization. The organization name, is the same as your user name
 
 ```
 cf target -o <your-user-name>
@@ -152,8 +160,6 @@ overview-service-volume-mount   simple, complex   Provides an example volume mou
 ```
 
 The marketplace gives a description of each service, and tells us what plans are available for each service. This comes directly from the catalog endpoint of the service broker.
-
->> Should we create an instance in this space before we move on?
 
 #### Register the Service Broker in another space
 
