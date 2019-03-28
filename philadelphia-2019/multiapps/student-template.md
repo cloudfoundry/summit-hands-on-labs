@@ -17,17 +17,16 @@ NOTE: For the sessions taking place during CFNA Summit in Philadelphia, all requ
 
 ## Lab
 
-Table Of Contents
------------------
--  <<About the fortune teller>>
--  <<1. workspace/account setup>>
--  <<2. Do the cf push>>
--  <<3. Do the mta build & cf deploy>>
--  <<4. Do the blue-green deploy>>
--  <<5. Do the undeploy>>
 
-About the fortune teller
-------------------------
+-  [About the fortune teller](#aboutft)
+-  [1. workspace/account setup](#setup)
+-  [2. Do the cf push](#push)
+-  [3. Do the mta build & cf deploy](#deploy)
+-  [4. Do the blue-green deploy](#bg)
+-  [5. Do the undeploy](#undeploy)
+
+<a name="aboutft"></a> ### About the fortune teller
+
 The name says it all - this simple web app will tell you a new 'fortune' each time you refresh. *Slightly modified version of the https://github.com/spring-cloud-services-samples/fortune-teller[original scs fortune-teller]
 
 It's setup consists of three java spring apps and 2 services depicted in the diagram.
@@ -45,7 +44,7 @@ Services:
 * postgresql backing service - database storing the list of fortunes. 
 * application logging service - integration with SCP collecting logs from applications and making them available on an https://logs.cf.eu10.hana.ondemand.com/[ELK stack]
 
-## 1. workspace/account setup
+<a name="setup"></a> ## 1. workspace/account setup
 
 Open https://console.cloud.google.com/cloudshell/editor[google cloud shell] using the _provided_ user/password template and number as credentials.
 
@@ -59,7 +58,7 @@ NOTE: Execute the listed commands in the console at the bottom part of the scree
 
 IMPORTANT: Execute the tutorial commands in the root of the ~/mtalab directory :warning:
 
-## 2. Do the cf push
+<a name="push"></a> ## 2. Do the cf push
 
 Let's push to the cloud, the out-of-the-box cf way
 
@@ -136,7 +135,7 @@ Now let's delete everything to free the resources.
     cf delete-service -f fortune-logs
 
 
-## 3. Do the mta build & cf deploy
+<a name="deploy"></a> ## 3. Do the mta build & cf deploy
 
 The **M**ulti **T**arget **A**pplication model provides a powerful abstraction, capable of depicting complicated relationship between different platform entities. You may find detailed information in the https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/d04fc0e2ad894545aebfd7126384307c.html[SCP online documentation].
 
@@ -176,7 +175,7 @@ NOTE: You can check how your app is behaving in the same way as in 2.6
 *Congratulations on your first mta deployment :clap: !* 
 
 
-## 4. Do the blue-green deploy
+<a name="bg"></a> ## 4. Do the blue-green deploy
 
 Ok, you did an initial deployment. Want to see how to update your app? This can be done with *no down time* by the mta *blue green deployment* 	:green_book: :blue_book: !
 
@@ -201,7 +200,7 @@ After making sure it works as expected, run the following command. Find the depl
 
 TIP: You can run the blue-green deployment in one go, without manual test & resume. Leverage the \'zero downtime update' with the `--no-confirm` option
 
-## 5. Do the undeploy
+<a name="undeploy"></a> ## 5. Do the undeploy
 
 You're almost done! To free up resources after the exercise, please remove everything created with the following:
     
