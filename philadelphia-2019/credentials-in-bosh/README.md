@@ -1,7 +1,7 @@
 ## Introduction 
 
 The proliferation of X.509 Certificates by way of mutual TLS inside of Cloud
-Foundry has increased pressure on operations team to be able to generate,
+Foundry has increased pressure on operations teams to be able to generate,
 inspect, verify, and rotate or renew credentials in a timely fashion.  In this
 hands-on lab, you will walk through handling credentials and certificate
 management with both Safe and Credhub.
@@ -26,27 +26,27 @@ experienced with storing credentials in secure credential stores.
 
 ### Tools
 
+### Start Up Credhub and Vault
+
+This lab utilizes Docker to set up temporary Credhub and Vault instances. 
+Run the following from the `credentials-in-bosh` directory (you should be in
+this directory by default).
+```
+docker-compose up -d
+``` 
+
+While that is starting up, you can read a bit
+about the tools you will be using in this lab.
+
 We will be interacting with Credhub using the `credhub` CLI. `credhub` is the 
 official CLI for the credhub server. For a list of credhub commands, you can
-execute `credhub -h`.
+execute `credhub -h`. `credhub <command> -h` will display further help for each command.
 
 We will be interacting with Vault using the `safe` CLI. `safe` is a CLI created
 by Stark & Wayne that makes the K/V backend of Vault more accessible, and also
 provides a multitude of other commands for generating and storing credentials.
 `safe -h` will display the list of commands for safe. `safe help <command>`
 will display further help for each command.
-
-### Start Up Credhub and Vault
-
-This lab utilizes Docker to set up temporary Credhub and Vault instances. Run
-
-```
-docker-compose up -d
-``` 
-
-from the `credentials-in-bosh` directory (you should be in
-this directory by default). 
-
 
 ## Vault (with Safe!)
 
@@ -97,7 +97,7 @@ Let's generate a password and put it into the Vault.
 Vault exposes a filesystem-esque path system for its mount points. Let's write
 a password to the path `secret/generated`. Vault Key-Value have keys and
 values.  Because we're generating a password, it makes sense to make the key
-name `password`. In `safe`s syntax, we would specify this path and key
+name `password`. In `safe` syntax, we would specify this path and key
 combination as `secret/generated:password`.
 
 Also, we can specify the length of the password that is generated with the `-l`
@@ -133,6 +133,14 @@ This can be done like this:
 
 ```
 safe set secret/custom foo=bar
+```
+
+If you would like to write something into the vault but do not want to expose
+the value to someone over your shoulder, you can omit the value and be prompted
+for it as a hidden input via the following
+
+```
+safe set secret/custom bar
 ```
 
 ### SSH Keys
@@ -220,12 +228,13 @@ Certificates expire when the Not After attribute of the certificate is in the
 past. If we have access to the CA certificate which signed the cert initially
 and the CA is still valid (not expired or revoked), we can renew the 
 certificate. The `safe x509 renew` command makes this pretty easy. Just
-provide the certificate to renew as the position argument and the
+provide the certificate to renew as the positional argument and the
 CA that it was signed with as the value to `--signed-by`, and safe will
-generate the renewed certificate for you.
+generate the renewed certificate for you. If you would like to renew the
+cert with a longer ttl you can specify the `--ttl` flag as well.
 
 ```
-safe x509 renew "secret/x509/server" --signed-by "secret/x509/ca"
+safe x509 renew "secret/x509/server" --signed-by "secret/x509/ca" --ttl 2y
 ```
 
 
@@ -265,7 +274,11 @@ keys, and x509 certificates. The remainder of the flags to the `credhub generate
 command will give specific parameters about how to generate the particular type
 of credential you requested with the `-t` flag.
 
-To see the comprehensive list of flags, check out `credhub generate -h`.
+To see the comprehensive list of flags, check out 
+
+```
+credhub generate -h
+```
 
 ### Generating Passwords
 
