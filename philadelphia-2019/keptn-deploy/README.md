@@ -23,12 +23,25 @@ Understand how:
 
 ## Lab
 
+### Step 0. Prerequisites
+
+1. Please open the Doc [CF Summit Hands-on Lab](https://docs.google.com/document/d/1Tzf_pHRAiQ_DjKrW2t18xvRw86fOo6BwqBzz4eE2fnI/edit?usp=sharing) and enter your name and initials.
+
+1. Open the Google Cloud Shell with the provided user and password.
+
+1. You need to give the keptn permissions:
+
+    ```console
+    $ chmod +x keptn
+    $ ./keptn --help
+    ```
+
 ### Step 1. Authenticate the keptn CLI
 
 1. Authentication against the keptn installation using the `keptn auth` command:
 
     ```console
-    $ keptn auth --endpoint=https://keptn-endpoint --api-token=***
+    $ ./keptn auth --endpoint=https://control.keptn.35.239.237.67.xip.io --api-token=***
     ```
 
 ## Step 2: Create project for your app
@@ -49,7 +62,7 @@ stages:
 
     ```console
     $ cat shipyard.yml
-    $ keptn create project keptn-hol-JB shipyard.yml
+    $ ./keptn create project keptn-hol-JB shipyard.yml
     ```
 
 1. Verify the project creation by navigating to your GitHub repository in the `keptn-deploy` organization.
@@ -77,7 +90,7 @@ After authorizing the cli and creating a project, you are ready to onboard the f
 1. Onboard the `spring-music` app using the `keptn onboard service` command. For the project option, please reference your project you created in step 2.
 
     ```console
-    $ keptn onboard service --project=keptn-hol-JB --manifest=manifest.yml
+    $ ./keptn onboard service --project=keptn-hol-JB --manifest=manifest.yml
     ```
 
 1. Verify the app onboarding by navigating to your GitHub repository in the `keptn-deploy` organization.
