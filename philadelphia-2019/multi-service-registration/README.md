@@ -86,7 +86,7 @@ Services and Service Plans. This is done by exposing a catalog endpoint, which
 responds with descriptions of the Services and Plans in JSON format.
 
 We are providing a simple Service Broker for use in this lab called [overview-broker](https://github.com/mattmcneeney/overview-broker).
-The overview-broker is a simple service broker conforming to the Open Service Broker API specification that hosts a dashboard showing information 
+The overview-broker is a simple service broker conforming to the [Open Service Broker API specification](https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md) that hosts a dashboard showing information 
 on service instances and bindings created by any platform the broker is registered with.
 
 Now we're going to deploy this service broker by pushing it as an application to Cloud Foundry.  
@@ -273,5 +273,5 @@ Now that you've successfully completed the lab, you should:
 * Services in Cloud Foundry: https://docs.cloudfoundry.org/services/
 * Multi-Service-Registration deep dive document: https://docs.google.com/document/d/1_OBnFCsL3ru43PEXocsCc3EuGaM0YLHjr0iAoXnakt4
 * Cloud Foundry documentation, Managing Service Brokers: https://docs.cloudfoundry.org/services/managing-service-brokers.html
-* Open Service Broker API Specification: https://www.openservicebrokerapi.org/
+* Open Service Broker API Specification: https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md
 
