@@ -2,6 +2,11 @@
 
 ## Introduction
 
+Your lab instructors today are Alex and Aarti, engineers on the Services API team. If you have any questions or problems during the lab, please don't
+hesitate to raise your hand for one of us to come over.
+
+Welcome to the lab!
+
 In this lab, attendees will deploy a very simple Service Broker and then register this Service Broker in different
 spaces of Cloud Foundry. Also, attendees will explore registering the same broker multiple times and see how this
 effects creating service instances. 
@@ -20,11 +25,6 @@ At the end of this lab, attendees will:
 * Basic familiarity with the terminal/command line
 
 ## Lab
-
-Your lab instructors today are Alex and Aarti. If you have any questions or problems during the lab, please don't
-hesitate to raise your hand for one of us to come over.
-
-Welcome to the lab!
 
 For this lab, we will be working on a Chromebook.
 
