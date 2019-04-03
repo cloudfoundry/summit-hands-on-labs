@@ -153,9 +153,9 @@ Getting services from marketplace in org system / space dev as admin...
 OK
 
 
-service                         plans             description                                                                                        broker
-overview-service                simple, complex   Provides an overview of any service instances and bindings that have been created by a platform.   overview-broker
-overview-service-volume-mount   simple, complex   Provides an example volume mount service.                                                          overview-broker
+service                         plans             description                       broker
+overview-service                simple, complex   Provides an overview service...   overview-broker
+overview-service-volume-mount   simple, complex   Provides an overview service...   overview-broker
 ```
 
 The marketplace gives a description of each service, and tells us what plans are available for each service. This comes directly from the catalog endpoint of the service broker.
@@ -202,11 +202,11 @@ cf m
 Getting services from marketplace in org acceptance / space temp as admin...
 OK
 
-service                         plans             description                                                                                        broker
-overview-service                simple, complex   Provides an overview of any service instances and bindings that have been created by a platform.   temp-overview-broker
-overview-service-volume-mount   simple, complex   Provides an example volume mount service.                                                          temp-overview-broker
-overview-service                simple, complex   Provides an overview of any service instances and bindings that have been created by a platform.   second-temp-overview-broker
-overview-service-volume-mount   simple, complex   Provides an example volume mount service.                                                          second-temp-overview-broker
+service                         plans             description                       broker
+overview-service                simple, complex   Provides an overview service...   temp-overview-broker
+overview-service-volume-mount   simple, complex   Provides an overview service...   temp-overview-broker
+overview-service                simple, complex   Provides an overview service...   second-temp-overview-broker
+overview-service-volume-mount   simple, complex   Provides an overview service...   second-temp-overview-broker
 ```
 
 Notice how there appear to be duplications of services offered in our marketplace. These services can be differentiated by the fact that they are offered by different brokers,
