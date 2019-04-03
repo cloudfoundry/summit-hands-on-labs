@@ -43,8 +43,6 @@ cf login -a api.phillyhol.starkandwayne.com --skip-ssl-validation
 
 At the prompt, enter your designated music genre as the username, and the password is password.
 
----
-
 Target your organization. The organization name, is the same as your user name
 
 ```
@@ -64,6 +62,8 @@ Target the dev space
 ```
 cf target -s dev
 ```
+
+---
 
 ### Deploy the Service Broker
 
@@ -123,8 +123,7 @@ Congratulations you have deployed a service broker! You Rock!
 
 ---
 
-
-#### Register the Service Broker
+### Register the Service Broker
 
 Now that we have deployed our service broker, we need to register the broker in Cloud Foundry. This will enable Cloud Foundry users to interact
 with the services provided by your broker. Let's begin by registering the service broker!
@@ -138,7 +137,7 @@ cf create-service-broker <broker-name> admin password http://<broker_url> --spac
 - `<broker_url>` must be the url of the Service Broker including the protocol. This is the same value you used when curling the broker earlier. If you don't remember the URL, you can retrieve this by running `cf apps`.
 - The `--space-scoped` flag is required for this lab. By default, service brokers are registered across the entire Cloud Foundry instance, which requires admin privileges. Since the lab users accounts are not admins, you will create a service broker that only you can see and use.
 
-#### Viewing the Services and Service Plans
+### Viewing the Services and Service Plans
 
 To view the services in the marketplace, enter
 
@@ -161,7 +160,9 @@ overview-service-volume-mount   simple, complex   Provides an example volume mou
 
 The marketplace gives a description of each service, and tells us what plans are available for each service. This comes directly from the catalog endpoint of the service broker.
 
-#### Register the Service Broker in another space
+---
+
+### Register the Service Broker in another space
 
 Target the prod space
 
@@ -211,7 +212,9 @@ overview-service-volume-mount   simple, complex   Provides an example volume mou
 Notice how there appear to be duplications of services offered in our marketplace. These services can be differentiated by the fact that they are offered by different brokers,
 according to the broker column.
 
-#### Create A Service Instance
+---
+
+### Create A Service Instance
 
 Great! We are now in a position where we can ask a service broker to create an instance of one of its services. To do this we need to tell it which service we want, and which plan we want.
 We will also have to provide a name, which will be used to identify our instance.
