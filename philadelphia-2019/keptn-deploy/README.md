@@ -29,7 +29,7 @@ Understand how:
 
 1. Open the Google Cloud Shell with the provided user and password.
 
-1. You need to give the keptn permissions:
+1. You need to give permissions to keptn:
 
     ```console
     $ chmod +x keptn
@@ -41,7 +41,7 @@ Understand how:
 1. Authentication against the keptn installation using the `keptn auth` command:
 
     ```console
-    $ ./keptn auth --endpoint=https://control.keptn.35.239.237.67.xip.io --api-token=***
+    $ ./keptn auth --endpoint=https://control.keptn.35.193.109.253.xip.io --api-token=***
     ```
 
 ## Step 2: Create project for your app
