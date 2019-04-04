@@ -40,9 +40,7 @@ IMPORTANT: Execute the tutorial commands in the root of the ~/mtalab directory
 <a name="aboutft"></a>
 The name says it all - this simple web app will tell you a new 'fortune' each time you refresh. *Slightly modified version of the https://github.com/spring-cloud-services-samples/fortune-teller[original scs fortune-teller]
 
-It's setup consists of three java spring apps and 2 services depicted in the diagram.
-
-image:docs/images/FortuneTeller.png[]
+It's setup consists of three java spring apps and 2 services. You may see a simple diagram of the app architecture https://github.com/cloudfoundry/summit-hands-on-labs/blob/master/philadelphia-2019/multiapps/docs/images/FortuneTeller.png?raw=true[here]
 
 Apps:
 
@@ -199,6 +197,7 @@ Ok, you did an initial deployment. Want to see how to update your app? This can 
 
 NOTE: There is a branch in this repo, with a modified fortune teller app. If you'd like to do your own changes to the app by changing the source and rebuilding ( `mvn clean install` ; `mbt assemble` ) .
 
+    git reset --hard HEAD
     git checkout 'green-version'
     
 #### 4.2 Blue-green deployment
