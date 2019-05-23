@@ -31,7 +31,7 @@ KEPTN_ENDPOINT=https://$(kubectl get ksvc -n keptn control -o=yaml | yq r - stat
 
 keptn auth --endpoint=https://control.keptn.***.xip.io --api-token=***
 
-keptn configure --org=keptn-deploy --user=johannes-b --token=ee56391670e8826521cdba3f41d8d6c9132d8490
+keptn configure --org=keptn-deploy --user=johannes-b --token=***
 
 keptn create project cf-project shipyard.yml
 
