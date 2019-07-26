@@ -1,0 +1,3 @@
+#!/bin/bash
+
+fly -t bucc set-pipeline -c ci/deploy-cf-pipeline.yml -p deploy-cf
