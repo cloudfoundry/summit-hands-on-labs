@@ -1,3 +1,4 @@
 #!/bin/bash
 
 fly -t bucc set-pipeline -c ci/deploy-cf-pipeline.yml -p deploy-cf
+fly -t bucc set-pipeline -c ci/deploy-haproxy-pipeline.yml -p deploy-haproxy
