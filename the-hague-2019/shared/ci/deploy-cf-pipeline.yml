@@ -13,7 +13,7 @@ jobs:
       ops_files:
       - cf-deployment/operations/use-compiled-releases.yml
       - cf-deployment/operations/experimental/fast-deploy-with-downtime-and-danger.yml
-      - istio-release/deploy/cf-deployment-operations/add-istio.yml
+      - cf-deployment/operations/use-postgres.yml
       - opsfile/opsfile.yml
       vars:
         system_domain: hol.starkandwayne.com
@@ -61,17 +61,6 @@ resources:
       - type: replace
         path: /instance_groups/name=diego-api/jobs/name=locket/properties?/set_kernel_parameters
         value: false
-      # Istio
-      - type: replace
-        path: /releases/name=istio
-        value:
-          name: istio
-          version: 1.3.0
-          url: https://bosh.io/d/github.com/cloudfoundry/istio-release?v=1.3.0
-          sha1: b0d96b6b9531ec7e86ac6400157eadfea842116e
-      - type: replace
-        path: /instance_groups/name=istio-control/vm_type
-        value: small
 
 - name: stemcell
   type: bosh-io-stemcell
