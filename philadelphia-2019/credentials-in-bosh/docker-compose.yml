@@ -1,0 +1,36 @@
+# Thanks Orange for the base of the Docker Compose file and the Credhub image!
+# https://github.com/orange-cloudfoundry/credhub-docker
+#
+version: '2'
+
+services:
+  uaa:
+    image: pcfseceng/uaa
+    volumes:
+    - ./config/uaa.yml:/uaa/uaa.yml
+    ports:
+    - "8080:8080"
+    restart: always
+
+  credhub:
+    image: orangeopensource/credhub
+    ports:
+    - "9000:9000"
+    links:
+    - uaa:uaa
+    depends_on:
+    - uaa
+    environment:
+      UAA_URL: http://localhost:8080/uaa
+      UAA_INTERNAL_URL: http://uaa:8080/uaa
+
+  vault:
+    image: vault:1.0.2
+    ports: 
+    - "11003:8201"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: root
+      VAULT_DEV_LISTEN_ADDRESS: 0.0.0.0:8201
+    cap_add:
+    - IPC_LOCK
+

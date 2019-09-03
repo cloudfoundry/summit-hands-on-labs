@@ -1,0 +1,9 @@
+---
+applications:
+- name: tricky-02
+  instances: 1
+  memory: 10M
+  buildpacks: 
+  - go_buildpack
+  env:
+    GOPACKAGENAME: main

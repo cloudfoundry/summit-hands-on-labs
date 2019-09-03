@@ -1,0 +1,9 @@
+---
+applications:
+- name: easy-03
+  instances: 1
+  memory: 100G
+  buildpacks: 
+  - go_buildpack
+  env:
+    GOPACKAGENAME: main

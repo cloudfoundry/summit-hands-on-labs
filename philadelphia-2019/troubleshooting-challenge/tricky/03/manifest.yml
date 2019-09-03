@@ -1,0 +1,10 @@
+---
+applications:
+- name: tricky-03
+  instances: 1
+  memory: 10M
+  buildpacks: 
+  - go_buildpack
+  timeout: 10
+  env:
+    GOPACKAGENAME: main

@@ -1,0 +1,67 @@
+jobs:
+- name: deploy-cf
+  plan:
+  - aggregate:
+    - get: stemcell
+    - get: cf-deployment
+    - get: scale-cf-opsfile
+  - put: deploy
+    params:
+      manifest: cf-deployment/cf-deployment.yml
+      stemcells: [ stemcell/stemcell.tgz ]
+      ops_files:
+      - cf-deployment/operations/scale-to-one-az.yml
+      - cf-deployment/operations/use-compiled-releases.yml
+      - scale-cf-opsfile/scale.yml
+      vars:
+        system_domain: phillyhol.starkandwayne.com
+
+resources:
+- name: cf-deployment
+  type: git
+  source:
+    uri: https://github.com/cloudfoundry/cf-deployment.git
+    branch: master
+    tag_filter: v*
+
+- name: scale-cf-opsfile
+  type: file
+  source:
+    filename: scale.yml
+    content:
+      - type: replace
+        path: /instance_groups/name=diego-cell/instances
+        value: 12
+      - type: replace
+        path: /instance_groups/name=diego-cell/vm_extensions
+        value: [ 50GB_ephemeral_disk ]
+      - type: replace
+        path: /instance_groups/name=singleton-blobstore/persistent_disk_type
+        value: 50GB
+
+- name: stemcell
+  type: bosh-io-stemcell
+  source: { name: ((bosh_stemcell)) }
+
+- name: deploy
+  type: bosh-deployment
+  source:
+    deployment: cf
+    target: ((bosh_environment))
+    client: ((bosh_client))
+    client_id: ((bosh_client))
+    client_secret: ((bosh_client_secret))
+    ca_cert: ((bosh_ca_cert))
+
+resource_types:
+- name: bosh-deployment
+  type: docker-image
+  source:
+    repository: cloudfoundry/bosh-deployment-resource
+    tag: latest
+
+- name: file
+  type: docker-image
+  source:
+    repository: aequitas/concourse-file-resource
+    tag: latest

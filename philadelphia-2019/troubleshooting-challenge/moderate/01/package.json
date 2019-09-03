@@ -1,0 +1,10 @@
+{
+  "name": "moderate-01",
+  "version": "0.0.1",
+  "author": "Alexey Zakharov <alexey.zakharov@altoros.com",
+  "description": "sample app for CF troubleshooting challenge",
+  "dependencies" : [ ],
+  "engines": {
+    "node": ">=0.10"
+  }
+}

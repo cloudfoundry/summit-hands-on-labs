@@ -1,0 +1,4 @@
+---
+applications:
+- name: APP_NAME
+  memory: 64M
