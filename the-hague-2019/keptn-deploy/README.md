@@ -44,7 +44,7 @@ Understand how:
     $ ./keptn auth --endpoint=https://control.keptn.35.193.109.253.xip.io --api-token=***
     ```
 
-## Step 2: Create project for your app
+### Step 2: Create project for your app
 
 Before creating a project, you need to define a *shipyard* file that describes the multi-stage environment you want to use for your project. Such a *shipyard* files defines the name of each stage and can specify the deployment strategy and test strategy for each stage. In this lab, you will rely on following multi-stage environment: 
 
@@ -124,7 +124,7 @@ In this lab, you:
 
 * Set up the configuration for a multi-stage environment using `keptn create project`
 * Onboarded an app to your project using `keptn onboard service`
-* Triggered the continuous delivery pipeline by providing a new artefact
+* Triggered the continuous delivery pipeline by providing a new artefact and using `keptn send event new-artifact` 
 
 ## Beyond the Lab
 
