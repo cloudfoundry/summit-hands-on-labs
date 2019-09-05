@@ -1,0 +1,59 @@
+#!/bin/bash
+
+count=0
+for ip in $(ipcalc 139.178.72.96/28 32 -b | grep route | cut -d ' ' -f2); do
+count=$((count+1))
+prefix=$(printf "cf-%02d" "${count}")
+CCT=$(cat <<END
+{
+  "vm_extensions": [
+    {
+      "name": "${prefix}-router-network-properties",
+      "cloud_properties": {
+        "PortBindings": {
+          "80/tcp": [{ "HostPort": "80", "HostIp": "${ip}" }],
+          "443/tcp": [{ "HostPort": "443", "HostIp": "${ip}" }]
+        },
+        "ports": [
+          "80/tcp",
+          "443/tcp"
+        ]
+      }
+    },
+    {
+      "name": "${prefix}-ssh-proxy-network-properties",
+      "cloud_properties": {
+        "PortBindings": {
+          "2222/tcp": [{ "HostPort": "2222", "HostIp": "${ip}" }]
+        },
+        "ports": [
+          "2222/tcp"
+        ]
+      }
+    },
+    {
+      "name": "${prefix}-tcp-router-network-properties",
+      "cloud_properties": {
+        "PortBindings": {
+          "1024/tcp": [{ "HostPort": "1024", "HostIp": "${ip}" }],
+          "1025/tcp": [{ "HostPort": "1025", "HostIp": "${ip}" }],
+          "1026/tcp": [{ "HostPort": "1026", "HostIp": "${ip}" }],
+          "1027/tcp": [{ "HostPort": "1027", "HostIp": "${ip}" }]
+
+        },
+        "ports": [
+          "1024/tcp",
+          "1025/tcp",
+          "1026/tcp",
+          "1027/tcp"
+        ]
+      }
+    }
+  ],
+}
+END
+)
+
+echo "bosh -n update-config --type cloud --name='${prefix}-hol' <(echo '$CCT')"
+
+done
