@@ -1,6 +1,6 @@
 ---
 applications:
-- name: spring-music-wb
+- name: spring-music-jb
   memory: 1G
   random-route: true
   path: spring-music.jar
