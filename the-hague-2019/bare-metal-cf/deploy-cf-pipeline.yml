@@ -1,0 +1,137 @@
+jobs:
+- name: deploy-cf
+  plan:
+  - in_parallel:
+    - get: stemcell
+    - get: cf-deployment
+    - get: opsfile
+  - put: deploy
+    params:
+      manifest: cf-deployment/cf-deployment.yml
+      stemcells: [ stemcell/stemcell.tgz ]
+      ops_files:
+      - cf-deployment/operations/use-compiled-releases.yml
+      - cf-deployment/operations/experimental/fast-deploy-with-downtime-and-danger.yml
+      - cf-deployment/operations/scale-to-one-az.yml
+      - cf-deployment/operations/rename-network-and-deployment.yml
+      - opsfile/opsfile.yml
+      vars:
+        system_domain: hol-((prefix)).starkandwayne.com
+        deployment_name: ((prefix))
+        network_name: default
+
+resources:
+- name: cf-deployment
+  type: git
+  source:
+    uri: https://github.com/cloudfoundry/cf-deployment.git
+    branch: master
+    tag_filter: v*
+
+- name: opsfile
+  type: file
+  source:
+    filename: opsfile.yml
+    content:
+      # Docker garden compatibility
+      - type: replace
+        path: /instance_groups/name=diego-cell/jobs/name=garden/properties/garden/apparmor_profile?
+        value: ""
+      - type: replace
+        path: /instance_groups/name=diego-cell/jobs/name=rep/properties?/set_kernel_parameters
+        value: false
+      - type: replace
+        path: /instance_groups/name=diego-api/jobs/name=bbs/properties?/set_kernel_parameters
+        value: false
+      - type: replace
+        path: /instance_groups/name=api/jobs/name=file_server/properties?/set_kernel_parameters
+        value: false
+      - type: replace
+        path: /instance_groups/name=diego-api/jobs/name=locket/properties?/set_kernel_parameters
+        value: false
+      # vm exetensions
+      - type: replace
+        path: /instance_groups/name=scheduler/vm_extensions
+        value: [ ((prefix))-ssh-proxy-network-properties ]
+      - type: replace
+        path: /instance_groups/name=scheduler/azs
+        value: [ z0 ]
+      - type: replace
+        path: /instance_groups/name=router/vm_extensions
+        value: [ ((prefix))-router-network-properties ]
+      - type: replace
+        path: /instance_groups/name=router/azs
+        value: [ z0 ]
+      - type: replace
+        path: /instance_groups/name=tcp-router/vm_extensions
+        value: [ ((prefix))-tcp-router-network-properties ]
+      - type: replace
+        path: /instance_groups/name=tcp-router/azs
+        value: [ z0 ]
+      # make zones configurable
+      - type: replace
+        path: /instance_groups/name=nats/azs
+        value: [ ((zone)) ]
+      - type: replace
+        path: /instance_groups/name=diego-api/azs
+        value: [ ((zone)) ]
+      - type: replace
+        path: /instance_groups/name=uaa/azs
+        value: [ ((zone)) ]
+      - type: replace
+        path: /instance_groups/name=diego-cell/azs
+        value: [ ((zone)) ]
+      - type: replace
+        path: /instance_groups/name=api/azs
+        value: [ ((zone)) ]
+      - type: replace
+        path: /instance_groups/name=cc-worker/azs
+        value: [ ((zone)) ]
+      - type: replace
+        path: /instance_groups/name=adapter/azs
+        value: [ ((zone)) ]
+      - type: replace
+        path: /instance_groups/name=doppler/azs
+        value: [ ((zone)) ]
+      - type: replace
+        path: /instance_groups/name=log-api/azs
+        value: [ ((zone)) ]
+      - type: replace
+        path: /instance_groups/name=credhub/azs
+        value: [ ((zone)) ]
+      - type: replace
+        path: /instance_groups/name=singleton-blobstore/azs
+        value: [ ((zone)) ]
+      - type: replace
+        path: /instance_groups/name=smoke-tests/azs
+        value: [ ((zone)) ]
+      - type: replace
+        path: /instance_groups/name=rotate-cc-database-key/azs
+        value: [ ((zone)) ]          
+
+- name: stemcell
+  type: bosh-io-stemcell
+  source: { name: ((bosh_stemcell)) }
+
+- name: deploy
+  type: bosh-deployment
+  source:
+    deployment: ((prefix))
+    target: ((bosh_environment))
+    client: ((bosh_client))
+    client_id: ((bosh_client))
+    client_secret: ((bosh_client_secret))
+    ca_cert: ((bosh_ca_cert))
+
+resource_types:
+- name: bosh-deployment
+  type: docker-image
+  source:
+    repository: cloudfoundry/bosh-deployment-resource
+    tag: latest
+
+- name: file
+  type: docker-image
+  source:
+    repository: aequitas/concourse-file-resource
+    tag: latest
