@@ -32,8 +32,8 @@ Understand how:
 1. You need to give permissions to keptn:
 
     ```console
-    $ chmod +x keptn
-    $ ./keptn --help
+    chmod +x keptn
+    ./keptn --help
     ```
 
 ### Step 1. Authenticate the keptn CLI
@@ -41,7 +41,7 @@ Understand how:
 1. Authentication against the keptn installation using the `keptn auth` command:
 
     ```console
-    $ ./keptn auth --endpoint=https://control.keptn.35.193.109.253.xip.io --api-token=***
+    ./keptn auth --endpoint=https://control.keptn.35.193.109.253.xip.io --api-token=***
     ```
 
 ### Step 2: Create project for your app
@@ -61,8 +61,8 @@ stages:
 1. Create a new project for your app using the `keptn create project` command. In this example, the project is called *keptn-hol* and please add your initials, e.g.: *keptn-hol-jb*
 
     ```console
-    $ cat shipyard.yml
-    $ ./keptn create project keptn-hol-jb shipyard.yml
+    cat shipyard.yml
+    ./keptn create project keptn-hol-jb shipyard.yml
     ```
 
 1. Verify the project creation by navigating to your GitHub repository in the `keptn-deploy` organization.
@@ -77,8 +77,8 @@ After authorizing the cli and creating a project, you are ready to onboard the f
 1. Change the manifest file to a unique app name by adding your initials, e.g.: *spring-music-JB*
 
     ```console
-    $ vi manifest.yml
-    $ cat manifest.yml
+    vi manifest.yml
+    cat manifest.yml
     ---
     applications:
     - name: spring-music-jb
@@ -90,7 +90,7 @@ After authorizing the cli and creating a project, you are ready to onboard the f
 1. Onboard the `spring-music` app using the `keptn onboard service` command. For the project option, please reference your project you created in step 2.
 
     ```console
-    $ ./keptn onboard service --project=keptn-hol-jb --manifest=manifest.yml
+    ./keptn onboard service --project=keptn-hol-jb --manifest=manifest.yml
     ```
 
 1. Verify the app onboarding by navigating to your GitHub repository in the `keptn-deploy` organization.
@@ -107,7 +107,7 @@ Your instructor will explain the basic concepts behind GitOps approach and how t
 After onboarding an app, a new artifact needs to be created. To keep this lab focused on the main aspects, the artefact has already been created. However, you need to update the reference to this new artifact in the configuration of your application. Therefore, use keptn to send a new artifact event:
 
     ```console
-    $ ./keptn send event new-artifact --project=keptn-hol-jb --service=spring-music-jb --image=github.com/johannes-b/artifactory.git --tag=0.0.1
+    ./keptn send event new-artifact --project=keptn-hol-jb --service=spring-music-jb --image=github.com/johannes-b/artifactory.git --tag=0.0.1
     ```
 
 ### Step 5. Watch keptn deploying the application
