@@ -1,11 +1,33 @@
-# Introduction
-In this hands-on-lab you will deploy a CloudFoundry environment on a barem-metal CoreOS cluster.
-in the interest of time this cluster has beenn before-hand usign Terraform and is hosted by [Packet](http://packet.com).
-To reproduce this environment by your self, Use the following open sourced project created by [Stark & Wayne](https://www.starkandwayne.com/)
-here: LINK!!!!
+# Excellent Adventures in Bare Metal CF
+## Introduction
+In this hands-on-lab you will deploy a CloudFoundry environment on a barem-metal CoreOS cluster. 
+In the interest of time this cluster has beenn before-hand usign Terraform and is hosted by [Packet](http://packet.com).
+
+To reproduce this environment by your self, Use the following open sourced project created by [Stark & Wayne](https://www.starkandwayne.com/). 
 Which will bootstrap your CoreOS Cluster, and enable a static flannel network and install [BUCC](https://github.com/starkandwayne/bucc) on the first cluster member.
 
-# Access BUCC
+### Architecture
+For this exersise we will be using a 3 node cluster.
+During bootstrap a static flannel overlay network has been created.
+Each node runs a docker daemon which has been mapped to a availablity zone using [BOSH CPI Config](https://bosh.io/docs/cpi-config/).
+```    
++-------------------------------------+
+|           ||           ||           |
++-------------------------------------+
+||      ||                           ||
+|| BUCC ||                           ||
+||      ||     Cloud Foundry 1-12    ||
++--------+                           ||
+|        |                           ||
+|        |                           ||
+|        +----------------------------+
+|           ||           ||           |
+|flannel /28||flannel /28||flannel /28|
+| CoreOS Z0 || CoreOS Z1 || CoreOS Z2 |
++-------------------------------------+
+```
+
+## Access BUCC
 To access bucc, Please use the snippet from the slide
 which will install the `bucc-shell` command.
 Run the following command to verify and start your bucc-shell:
@@ -13,20 +35,20 @@ Run the following command to verify and start your bucc-shell:
 bucc-shell
 ```
 
-# login to concourse web ui
+## login to concourse web ui
 ```
 bucc info
 ```
 by running bucc info you will get the login credentials to login to concourse
 with username/password
 
-# configure the fly cli
+## configure the fly cli
 setup a fly target
 ```
 bucc fly
 ```
 
-# add pipeline
+## add pipeline
 ```
 ci/repipe YOUR_USER_NR
 ```
