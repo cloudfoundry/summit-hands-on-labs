@@ -39,13 +39,12 @@ spec:
         image: governmentpaas/cf-cli
         command: ["bash", "-c"]
         args:
-        - git clone https://github.com/govau/cf-example-staticfile.git
-          cf api --skip-ssl-validation api.scf.suse.dev;
+        - cf api --skip-ssl-validation api.scf.suse.dev;
           cf login -u admin -p ${admin_password} ;
           cf create-org aiur;
           cf target -o aiur;
           cf create-space saalok;
           cf target -s saalok;
-          cf enable-feature-flag diego_docker;
+          git clone https://github.com/rohitsakala/cf-hello-worlds.git;
           sleep 3600000;
 STDIN
