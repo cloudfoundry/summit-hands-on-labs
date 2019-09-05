@@ -158,7 +158,7 @@ export OPERATOR_POD=$(kubectl get pods -l name=cf-operator --namespace cf-operat
 kubectl -n cf-operator logs $OPERATOR_POD -f
 ```
 
-### Beyond the Lab
+## Beyond the Lab
 
 * Checkout project Quarks on Github : https://github.com/cloudfoundry-incubator/cf-operator
 * Checkout project SCF on Github    : https://github.com/SUSE/scf
