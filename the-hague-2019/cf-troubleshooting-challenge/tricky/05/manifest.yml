@@ -1,0 +1,16 @@
+applications:
+- name: backend
+  instances: 1
+  routes:
+  - route: backend.apps.internal
+  memory: 150M
+  buildpacks:
+  - python_buildpack
+  command: python backend.py
+- name: frontend
+  instances: 1
+  random-route: true
+  memory: 100M
+  buildpacks:
+  - python_buildpack
+  command: python frontend.py

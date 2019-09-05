@@ -1,0 +1,7 @@
+---
+applications:
+- name: moderate-03
+  random-route: true
+  instances: 1
+  memory: 10M
+

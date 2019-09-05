@@ -1,0 +1,9 @@
+---
+applications:
+  - name: tricky-06 
+    random-route: true
+    buildpacks:
+      - go_buildpack
+    memory: 10M
+    env:
+      GOPACKAGENAME: main

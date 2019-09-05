@@ -1,0 +1,9 @@
+---
+applications:
+- mane: easy-05
+  random-route: true
+  instances: 1
+  memory: 30M
+  buildpacks: 
+  - python_buildpack 
+  command: python application.py

@@ -1,0 +1,9 @@
+---
+applications:
+- name: easy-04
+  random-route: true
+  instances: 1
+  memory: 1M
+  buildpacks: 
+  - python_buildpack 
+  command: python application.py

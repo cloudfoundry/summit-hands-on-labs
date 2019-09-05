@@ -1,0 +1,1 @@
+use logToStdout function to write logs to stdout instead of file

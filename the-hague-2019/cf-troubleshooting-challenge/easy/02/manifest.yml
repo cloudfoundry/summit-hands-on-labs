@@ -1,0 +1,8 @@
+---
+applications:
+- name: easy-02
+  random-route: true
+  instances: 1
+  memory: 10M
+  buildpacks: 
+  - go_buildpack

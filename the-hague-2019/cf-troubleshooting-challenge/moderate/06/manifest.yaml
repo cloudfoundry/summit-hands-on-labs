@@ -1,0 +1,8 @@
+---
+applications:
+- name: moderate-06
+  random-route: true
+  instances: 1
+  memory: 20M
+  buildpacks:
+  - nodejs_buildpack

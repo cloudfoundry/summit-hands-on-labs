@@ -1,0 +1,12 @@
+---
+applications:
+- name: moderate-04
+  random-route: true
+  instances: 1
+  memory: 30M
+  buildpacks: 
+  - python_buildpack 
+  command: python application.py
+  health-check-type: http
+  health-check-http-endpoint: /task
+

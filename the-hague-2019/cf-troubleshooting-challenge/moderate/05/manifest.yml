@@ -1,0 +1,11 @@
+---
+applications:
+  - name: moderate-05 
+    random-route: true
+    buildpacks:
+      - go_buildpack
+    routes:
+      - route: moderate-05.apps.internal
+    memory: 10M    
+    env:
+      GOPACKAGENAME: main

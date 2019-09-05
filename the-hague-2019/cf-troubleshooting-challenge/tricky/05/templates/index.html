@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<style>
+                h1 {
+                        text-align: center;
+			font-family: Arial;
+			font-size: 40;
+			color: #007D92;
+			padding-top: 20px;
+			padding-bottom: 25px;
+		}
+                h2 {
+                        text-align: center;
+			font-family: Arial;
+		}
+                p {
+			text-align: center;
+		}
+                #gcp {
+			width: 100%;
+		}
+		#aws {
+			width: 100%;
+		}
+		#backend {
+                        width: 100%;
+		}
+                #gcp th, #aws th, #backend th {
+			padding-top: 20px;
+			padding-bottom: 20px;
+			border: 2px solid black;
+			width: 50%;
+			color: white;
+			background-color: #5bc0de;
+		}
+		#gcp td, #aws td, #backend td {
+			padding-top: 15px;
+			padding-bottom: 15px;
+			border: 2px solid black;
+			text-align: center;
+			width: 50%;
+			background-color: #f2f3e6;
+			color: black;
+		}
+		#aws th {
+			background-color: #F4BD27 ;
+		}
+		#backend th {
+                        width: 33%;
+		}
+		#backend td {
+                        width: 33%;
+		}
+		</style>
+	</head>
+	<body style="background-image: url('https://mdbootstrap.com/img/Photos/Others/architecture.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;" >
+		<h1>This is test frontend</h1>
+		<h2>Google Cloud status</h2>
+		<table id="gcp">
+			<tr>
+				<th>Date</th>
+				<th>Status</th>
+			</tr>
+			<tr>
+				<td>{{gcp_date}}</td>
+				<td>{{gcp_status}}</td>
+			</tr>
+		</table>
+
+		<h2>AWS status</h2>
+	        <table id="aws">
+			<tr>
+				<th>Date</th>
+				<th>Status</th>
+			</tr>
+			<tr>
+				<td>{{aws_date}}</td>
+				<td>{{aws_status}}</td>
+			</tr>
+		</table>
+		<h2>Backend Information</h2>
+	        <table id="backend">
+			<tr>
+				<th>Backend ID</th>
+				<th>Backend GUID</th>
+				<th>Backend port</th>
+			</tr>
+			<tr>
+				<td>{{backend_id}}</td>
+				<td>{{backend_guid}}</td>
+				<td>{{backend_port}}</td>
+			</tr>
+		</table>
+
+	</body>
+</html>

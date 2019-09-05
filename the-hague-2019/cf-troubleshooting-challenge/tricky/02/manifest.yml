@@ -1,0 +1,11 @@
+---
+applications:
+  - name: tricky-02
+    random-route: true
+    buildpacks: 
+      - go_buildpack
+    memory: 10M
+    env:
+      GOPACKAGENAME: main 
+    health-check-type: http
+    health-check-http-endpoint: /welcome
