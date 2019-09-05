@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# make sure numbers have at least 2 digits (with leading zeros)
+prefix=$(printf "cf-%02d" "$1")
+
+# spread users between zones (even numbers will be assigend to z2)
+zone=z1
+if [ $(($1%2)) -eq 0 ]; then
+  zone=z2
+fi
+
+# set pipeline
+fly -t bucc set-pipeline -c deploy-cf-pipeline.yml -p deploy-${prefix} \
+    --var=prefix=${prefix} --var=zone=${zone}
+
+# unpause pipeline
+fly -t bucc unpause-pipeline -p deploy-${prefix}
