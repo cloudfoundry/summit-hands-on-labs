@@ -1,4 +1,5 @@
 # Excellent Adventures in Bare Metal CF
+
 ## Introduction
 In this hands-on-lab you will deploy a CloudFoundry environment on a barem-metal CoreOS cluster. 
 In the interest of time this cluster has beenn before-hand usign Terraform and is hosted by [Packet](http://packet.com).
@@ -27,46 +28,47 @@ Each node runs a docker daemon which has been mapped to a availablity zone using
 +-------------------------------------+
 ```
 
+With the above out of the way, lets see if we can break bare-metal.
+All students will be sharing the same cluster, so just rember: __Be excellent to each other!__
+
 ## Access BUCC
-To access bucc, Please use the snippet from the slide
-which will install the `bucc-shell` command.
-Run the following command to verify and start your bucc-shell:
+To access bucc, execute the snippet provided by the instructor in the Google Cloud Shell.
+```
+# Execute snippet shared by presenter
+```
+
+Doing so will install the `bucc-shell` command in your session.
+Now Run:
 ```
 bucc-shell
 ```
 
-## login to concourse web ui
+### Concourse web UI
+One of the C's in BUCC stands for [Concourse](https://concourse-ci.org/), which means we can use a continious delivery pipeline to deploy our Cloud Foundry.
+
+Use the `bucc` cli to retrieve the details to login to concourse in an other browser tab:
 ```
 bucc info
 ```
-by running bucc info you will get the login credentials to login to concourse
-with username/password
 
-## configure the fly cli
-setup a fly target
+### Configure fly cli
+The Concourse cli is called `fly`, we can use `bucc` to download and set it up:
 ```
 bucc fly
 ```
 
-## add pipeline
+Verify we are in business by listing the registered concourse workers:
+```
+fly -t bucc workers
+```
+
+## Deploy your Cloud Foundry
 ```
 ci/repipe YOUR_USER_NR
 ```
 e.g ci/repipe 2
 
 you will see a link to your pipeline. when running the above repipe script
-
-# check your cloud-config
-needed for public ip
-by running `bosh configs` you will see a list of precreated cloud-config files
-you can view your config file by selecting the cf-YOUR_USER_NR-hol with
-```
-bosh --type=cloud --name=cf-YOUR_USER_NR-hol
-```
-e.g bosh config --type=cloud --name=cf-02-hol
-
-TODO: talk about port bindings!!!!!!!!
-
 
 # run pipeline
 go to the concourse web ui. and press that nice little play button on your pipeline...
@@ -75,4 +77,4 @@ go to the concourse web ui. and press that nice little play button on your pipel
 ` bosh instances -d cf-YOUR_USER_NR` e.g bosh instances -d cf-02
 you will notice that the ip address are in
 
-# look at the nice big screen to see your containers spawning yeeeeeh wat leukkkk
+## Chose your own (Excellent) Adventure
