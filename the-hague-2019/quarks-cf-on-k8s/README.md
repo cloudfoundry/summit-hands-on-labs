@@ -2,7 +2,7 @@
 
 In this hands on lab, you will deploy a simple web application on a Kubernetes cluster using cf push command.
 
-The bridge between cf push and Kubernetes is filled by the cf-operator and SCF. With cf-operator & SCF, you do not need to worry about designing how to deploy your application on Kubernetes. You need not care about networking, scaling, zone management, B/G deployment and routing which are not available in Kubernetes.
+In between Kubernetes and a `cf push` experience, we've added the CF Operator and SCF. You no longer need to design and implement your application deployment using complicated Kubernetes primitives. Networking, scaling, zone management, B/G deployment and routing are all managed for you.
 
 Simply put, cf-operator enables Kubernetes as a PaaS platform using Cloud Foundry templated style workflow. It brings the Cloud Foundry developer experience to Kubernetes.
 
@@ -59,7 +59,8 @@ If you can see client and server versions for both the commands, then you are go
 The `cf-operator` is packaged as a helm release. Run the following command to install `cf-operator` in a namespace:
 
 ```
-helm install --namespace scf --name cf-operator \
+helm install --namespace scf \
+  --name cf-operator \
   --set "provider=gke" \
   https://s3.amazonaws.com/cf-operators/release/helm-charts/cf-operator-v0.4.0%2B1.g3d277af0.tgz
 ```
@@ -72,11 +73,15 @@ kubectl get pod -n scf
 
 ### Troubleshooting
 
-If you want to install again, use the `--set "customResources.enableInstallation=false"` flag for helm and delete the webhook configuration first:
+If you face an unknown error, re-install - delete the webhook secret, webhooks, helm cf-operator release using the following commands:
 
 ```
+helm delete --purge cf-operator
 kubectl delete mutatingwebhookconfiguration "cf-operator-hook-scf"
 kubectl delete validatingwebhookconfiguration "cf-operator-hook-scf"
+kubectl -n scf delete secret cf-operator-webook-server-cert
+helm install --namespace scf --name cf-operator --set "provider=gke" --set "customResources.enableInstallation=false" \
+  https://s3.amazonaws.com/cf-operators/release/helm-charts/cf-operator-v0.4.0%2B1.g3d277af0.tgz
 ```
 
 ## Installing SCF
@@ -96,6 +101,18 @@ watch kubectl get pods -n scf
 ```
 
 Press `Ctrl+C` to quit.
+
+### Troubleshooting
+
+If you want to re-install, delete the helm release and install it again.
+
+```
+helm delete --purge scf
+kubectl delete ns scf-eirini
+helm install --namespace scf --name scf \
+https://scf-v3.s3.amazonaws.com/scf-3.0.0-8f7a71d1.tgz \
+--set "system_domain=scf.suse.dev"
+```
 
 
 ## Pushing an App
@@ -119,7 +136,7 @@ export podname=$(kubectl get pods -l app=cf-terminal --template '{{range .items}
 kubectl -n scf exec -it "$podname" -- /bin/bash
 ```
 
-Check if you have access to `cf` command. Run 
+Check if you have access to `cf` command. Run
 
 ```
 cf version
@@ -158,7 +175,7 @@ export OPERATOR_POD=$(kubectl get pods -l name=cf-operator --namespace cf-operat
 kubectl -n cf-operator logs $OPERATOR_POD -f
 ```
 
-## Beyond the Lab
+### Beyond the Lab
 
 * Checkout project Quarks on Github : https://github.com/cloudfoundry-incubator/cf-operator
 * Checkout project SCF on Github    : https://github.com/SUSE/scf
