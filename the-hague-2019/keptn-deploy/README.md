@@ -44,7 +44,7 @@ Understand how:
     $ ./keptn auth --endpoint=https://control.keptn.35.193.109.253.xip.io --api-token=***
     ```
 
-## Step 2: Create project for your app
+### Step 2: Create project for your app
 
 Before creating a project, you need to define a *shipyard* file that describes the multi-stage environment you want to use for your project. Such a *shipyard* files defines the name of each stage and can specify the deployment strategy and test strategy for each stage. In this lab, you will rely on following multi-stage environment: 
 
@@ -107,7 +107,7 @@ Your instructor will explain the basic concepts behind GitOps approach and how t
 After onboarding an app, a new artifact needs to be created. To keep this lab focused on the main aspects, the artefact has already been created. However, you need to update the reference to this new artifact in the configuration of your application. Therefore, use keptn to send a new artifact event:
 
     ```console
-    $ ./keptn send event new-artifact --project=keptn-hol-jb --service=spring-music-jb --image=github.com/johannes-b/artifactory.git --tag=0.8.1
+    $ ./keptn send event new-artifact --project=keptn-hol-jb --service=spring-music-jb --image=github.com/johannes-b/artifactory.git --tag=0.0.1
     ```
 
 ### Step 5. Watch keptn deploying the application
@@ -124,7 +124,7 @@ In this lab, you:
 
 * Set up the configuration for a multi-stage environment using `keptn create project`
 * Onboarded an app to your project using `keptn onboard service`
-* Triggered the continuous delivery pipeline by providing a new artefact
+* Triggered the continuous delivery pipeline by providing a new artefact and using `keptn send event new-artifact` 
 
 ## Beyond the Lab
 
