@@ -1,0 +1,6 @@
+---
+applications:
+- name: tricky-04
+  random-route: true
+  instances: 1
+  memory: 10M

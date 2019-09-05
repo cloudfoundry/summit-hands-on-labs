@@ -1,0 +1,9 @@
+---
+applications:
+  - name: basic-04
+    random-route: true
+    buildpacks: 
+      - go-buildpack
+    memory: 10M
+    env:
+      GOPACKAGENAME: main 

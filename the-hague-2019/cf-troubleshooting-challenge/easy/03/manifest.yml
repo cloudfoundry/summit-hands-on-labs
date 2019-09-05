@@ -1,0 +1,10 @@
+---
+applications:
+- name: easy-03
+  random-route: true
+  instances: 1
+  memory: 100G
+  buildpacks: 
+  - go_buildpack
+  env:
+    GOPACKAGENAME: main

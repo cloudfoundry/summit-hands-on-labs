@@ -1,0 +1,12 @@
+---
+applications:
+- name: tricky-03
+  random-route: true
+  instances: 1
+  memory: 10M
+  health-check-type: process
+  buildpacks: 
+  - go_buildpack
+  timeout: 10
+  env:
+    GOPACKAGENAME: main

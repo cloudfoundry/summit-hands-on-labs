@@ -1,0 +1,8 @@
+---
+applications:
+- name: easy-07
+  random-route: true
+  instances: 1
+  memory: 100M
+  buildpacks: 
+  - python_buildpack

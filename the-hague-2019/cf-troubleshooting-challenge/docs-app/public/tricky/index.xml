@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tricky on Troubleshooting chalenge docs</title>
+    <link>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/</link>
+    <description>Recent content in tricky on Troubleshooting chalenge docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 Sep 2019 09:13:04 +0300</lastBuildDate>
+    
+	<atom:link href="http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tricky 01</title>
+      <link>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/tricky-01/</link>
+      <pubDate>Thu, 05 Sep 2019 09:13:04 +0300</pubDate>
+      
+      <guid>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/tricky-01/</guid>
+      <description>Application: A static golang web application showing html page.
+Task: Deploy an app with a manifest. NOTE: we expect you to modify aplication code here, so minimal coding experience (any language) is expected.
+ACCEPTANCE CRITERIAS:  &amp;ldquo;cf apps&amp;rdquo; shows at leat one instance of an app &amp;ldquo;cf logs APP-NAME &amp;ndash;recent&amp;rdquo; shows recent logs for an app an app can be accessed using an app&amp;rsquo;s route  Tags tag_manifest tag_goland</description>
+    </item>
+    
+    <item>
+      <title>Tricky 02</title>
+      <link>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/tricky-02/</link>
+      <pubDate>Thu, 05 Sep 2019 09:13:03 +0300</pubDate>
+      
+      <guid>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/tricky-02/</guid>
+      <description>Application: A static golang web application showing html page.
+Task: Deploy an app with a manifest. NOTE: we expect you to modify aplication code here, so minimal coding experience (any language) is expected. Please, make sure that manifest is not changed in this lab
+ACCEPTANCE CRITERIAS:  &amp;ldquo;cf apps&amp;rdquo; shows at leat one instance of an app &amp;ldquo;cf logs APP-NAME &amp;ndash;recent&amp;rdquo; shows recent logs for an app an app can be accessed using an app&amp;rsquo;s route  Tags tag_manifest tag_golang</description>
+    </item>
+    
+    <item>
+      <title>Tricky 03</title>
+      <link>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/tricky-03/</link>
+      <pubDate>Thu, 05 Sep 2019 09:13:02 +0300</pubDate>
+      
+      <guid>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/tricky-03/</guid>
+      <description>Application: A golang non web application, which just writing logs.
+Task: Deploy an app with a manifest. NOTE: we expect manifest based solution here.
+ACCEPTANCE CRITERIAS:  &amp;ldquo;cf apps&amp;rdquo; shows at leat one instance of an app &amp;ldquo;cf logs APP-NAME &amp;ndash;recent&amp;rdquo; shows recent logs for an app NOTE: this is not web app, so not need to check app route in browser  Tags tag_manifest tag_golang</description>
+    </item>
+    
+    <item>
+      <title>Tricky 04</title>
+      <link>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/tricky-04/</link>
+      <pubDate>Thu, 05 Sep 2019 09:13:01 +0300</pubDate>
+      
+      <guid>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/tricky-04/</guid>
+      <description>Application: A python non web application, which do some calculations and writing logs.
+Task: Deploy an app with a manifest. This is complex task, we expect some manifest additions and some files to be created. Several issues in this lab repeat the issues from not so tricky labs.
+ACCEPTANCE CRITERIAS:  &amp;ldquo;cf apps&amp;rdquo; shows at leat one instance of an app &amp;ldquo;cf logs APP-NAME &amp;ndash;recent&amp;rdquo; shows recent logs for an app NOTE: this is not web app, so not need to check app route in browser  Tags tag_manifest tag_python</description>
+    </item>
+    
+    <item>
+      <title>Tricky 05</title>
+      <link>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/tricky-05/</link>
+      <pubDate>Thu, 05 Sep 2019 09:13:00 +0300</pubDate>
+      
+      <guid>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/tricky-05/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tricky 06</title>
+      <link>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/tricky-06/</link>
+      <pubDate>Wed, 04 Sep 2019 09:13:24 +0300</pubDate>
+      
+      <guid>http://docs-shy-swan.apps.vallejo.cf-app.com/tricky/tricky-06/</guid>
+      <description>Application: A golang web application with a single button, which generate log messages.
+Task: Deploy an app with a manifest. App should work, but in his case you should fix the app to see generated logs in cf logs output. Logs look like this is test log
+NOTE: we expect you to modify aplication code here, so minimal coding experience (any language) is expected.
+ACCEPTANCE CRITERIAS:  &amp;ldquo;cf apps&amp;rdquo; shows at leat one instance of an app &amp;ldquo;cf logs APP-NAME &amp;ndash;recent&amp;rdquo; shows recent logs for an app.</description>
+    </item>
+    
+  </channel>
+</rss>
