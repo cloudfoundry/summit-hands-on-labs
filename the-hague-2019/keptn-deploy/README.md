@@ -107,7 +107,7 @@ Your instructor will explain the basic concepts behind GitOps approach and how t
 After onboarding an app, a new artifact needs to be created. To keep this lab focused on the main aspects, the artefact has already been created. However, you need to update the reference to this new artifact in the configuration of your application. Therefore, use keptn to send a new artifact event:
 
     ```console
-    $ ./keptn send event new-artifact --project=keptn-hol-jb --service=spring-music-jb --image=github.com/johannes-b/artifactory.git --tag=0.8.1
+    $ ./keptn send event new-artifact --project=keptn-hol-jb --service=spring-music-jb --image=github.com/johannes-b/artifactory.git --tag=0.0.1
     ```
 
 ### Step 5. Watch keptn deploying the application
