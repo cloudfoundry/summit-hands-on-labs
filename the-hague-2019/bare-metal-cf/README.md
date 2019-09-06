@@ -1,8 +1,8 @@
 # Excellent Adventures in Bare Metal CF
 
 ## Introduction
-In this hands-on-lab you will deploy a CloudFoundry environment on a barem-metal CoreOS cluster. 
-In the interest of time this cluster has beenn before-hand usign Terraform and is hosted by [Packet](http://packet.com).
+In this hands-on-lab you will deploy a CloudFoundry environment on a bare-metal CoreOS cluster. 
+In the interest of time, this cluster has been setup beforehand using Terraform and is hosted by [Packet](http://packet.com).
 
 To reproduce this environment by your self, Use the following open sourced project created by [Stark & Wayne](https://www.starkandwayne.com/). 
 Which will bootstrap your CoreOS Cluster, and enable a static flannel network and install [BUCC](https://github.com/starkandwayne/bucc) on the first cluster member.
