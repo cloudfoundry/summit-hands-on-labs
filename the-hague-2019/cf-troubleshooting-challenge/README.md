@@ -6,7 +6,7 @@ During this lab, you will try to resolve deployment issues and make applications
 
 ### How to work with this Lab:
 
-- Login to the Google Cloud Console using the provided credentials and active the Cloud Shell.
+- Login to the Google Cloud Console using the provided credentials and activate the Cloud Shell.
 
 - Login to CF using the  provided credentials:
 
@@ -25,7 +25,7 @@ During this lab, you will try to resolve deployment issues and make applications
 - Clone this repository and go to the  folder of this lab:
 
 	```
-        $ git clone https://github.com/cloudfoundry/summit-hands-on-labs.git
+	$ git clone https://github.com/cloudfoundry/summit-hands-on-labs.git
 	$ cd summit-hands-on-labs/the-hague-2019/cf-troubleshooting-challenge/
 
 	```
