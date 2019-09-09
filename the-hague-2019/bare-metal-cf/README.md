@@ -88,4 +88,13 @@ Concourse will now perform the following tasks:
 - Apply the [specified opsfiles](https://github.com/cloudfoundry/summit-hands-on-labs/blob/master/the-hague-2019/bare-metal-cf/deploy-cf-pipeline.yml#L16-L20) to the [base manifest](https://github.com/cloudfoundry/cf-deployment/blob/master/cf-deployment.yml)
 - Perform a BOSH deploy with the resulting manifest
 
-## Chose your own (Excellent) Adventure
+## Choose your own (Excellent) Adventure
+At this point there should be a bunch of CF deployments running on our bare metal cluster.
+To get a feeling for the performance of bare-metal try some of the experiments below:
+
+#### Deploy and scale an App
+- Use credhub to find admin credentials `bucc credhub && credhub find -n admin`
+- Exit the bucc shell (since it does not have the cf cli installed and target your CF
+- Deploy an app (for example [cf-env](https://github.com/cloudfoundry-community/cf-env)
+- Scale it to 100 instances
+- Apply some load, use for example [wrk](https://github.com/wg/wrk)
