@@ -29,7 +29,12 @@ During this lab, you will try to resolve deployment issues and make applications
 	$ cd summit-hands-on-labs/the-hague-2019/cf-troubleshooting-challenge/
 
 	```
-- Run a preparation script.
+- Run a preparation script:
+
+	```
+	$ ./prepare.sh
+
+	```
 
 - There are 5 directories for **Basic**, **Easy**, **Moderate**, **Tricky** and **doc-app** tasks accordingly. We suggest you to start from **doc-app**. This task will help you check environment and have documentation for you labs, where you'll see tasks descriptions and some usefull information. 
 

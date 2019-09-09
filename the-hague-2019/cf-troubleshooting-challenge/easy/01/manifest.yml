@@ -1,7 +1,6 @@
 ---
 applications:
 - name: easy-01
-  random-route: true
   instances: 1
   memory: 10M
   buildpacks: 
