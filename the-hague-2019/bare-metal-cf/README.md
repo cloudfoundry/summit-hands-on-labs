@@ -72,13 +72,20 @@ Since all students are sharing the same Concourse you will need to provide your 
 ./ci/repipe XX
 ```
 
-you will see a link to your pipeline. when running the above repipe script
+Navigate to your pipeline in the Concourse web UI.
 
-### run pipeline
-go to the concourse web ui. and press that nice little play button on your pipeline...
+TIP: _A deeplink to the pipeline is shown in the output form the repipe script._
 
-### check bosh
-` bosh instances -d cf-YOUR_USER_NR` e.g bosh instances -d cf-02
-you will notice that the ip address are in
+### Kickoff the Deployment Pipeline
+In the Concourse UI: 
+1. navigate to the "__deploy-cf__" job of your pipeline
+1. click on the "__+__" button to start the deployment
+
+Concourse will now perform the following tasks:
+- Download the latest bosh stemcell from [bosh.io](https://bosh.cloudfoundry.org/stemcells/)
+- Get the latest stable [cf-deployment release](https://github.com/cloudfoundry/cf-deployment/releases)
+- Upload the stemcell to the BOSH director
+- Apply the [specified opsfiles](https://github.com/cloudfoundry/summit-hands-on-labs/blob/master/the-hague-2019/bare-metal-cf/deploy-cf-pipeline.yml#L16-L20) to the [base manifest](https://github.com/cloudfoundry/cf-deployment/blob/master/cf-deployment.yml)
+- Perform a BOSH deploy with the resulting manifest
 
 ## Chose your own (Excellent) Adventure
