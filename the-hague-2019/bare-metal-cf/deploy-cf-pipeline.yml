@@ -15,9 +15,10 @@ jobs:
       ops_files:
       - cf-deployment/operations/use-compiled-releases.yml # to speed up deploy
       - cf-deployment/operations/experimental/fast-deploy-with-downtime-and-danger.yml # it's in the name
+      - cf-deployment/operations/use-postgres.yml # default mysql has slow startup time
       - cf-deployment/operations/scale-to-one-az.yml # same, more instances == more wait time for proccesses to start
       - cf-deployment/operations/rename-network-and-deployment.yml # we are all using the same Director so name needs to be uniqe
-      - opsfile/opsfile.yml # inline opsfile, annotated content below 
+      - opsfile/opsfile.yml # inline opsfile, annotated content below
       vars:
         system_domain: hol-((prefix)).starkandwayne.com # an DNS A record has already been created
         deployment_name: ((prefix)) # prefix is injected by the repipe script
@@ -111,7 +112,7 @@ resources:
         value: [ ((zone)) ]
       - type: replace
         path: /instance_groups/name=rotate-cc-database-key/azs
-        value: [ ((zone)) ]          
+        value: [ ((zone)) ]
 
 - name: deploy
   type: bosh-deployment
