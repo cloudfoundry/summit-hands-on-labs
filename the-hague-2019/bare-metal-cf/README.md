@@ -63,10 +63,14 @@ fly -t bucc workers
 ```
 
 ## Deploy your Cloud Foundry
+Lets now deploy Cloud Foundry for which we will be using Concourse.
+Use the repipe scripte to update / create the pipeline configuration for your pipeline.
+
+Since all students are sharing the same Concourse you will need to provide your __User Index__.
 ```
-ci/repipe YOUR_USER_NR
+# training.hol.XX@cloudfoundry.org
+./ci/repipe XX
 ```
-e.g ci/repipe 2
 
 you will see a link to your pipeline. when running the above repipe script
 
