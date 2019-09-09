@@ -1,8 +1,0 @@
----
-applications:
-  - name: docs
-    random-route: true
-    buildpacks:
-    - staticfile_buildpack 
-    path: public
-    memory: 100M

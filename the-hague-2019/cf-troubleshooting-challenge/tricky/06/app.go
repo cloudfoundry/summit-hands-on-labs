@@ -2,32 +2,27 @@ package main
 
 import (
 	"fmt"
-	"html/template"
 	"net/http"
 	"os"
 )
 
-func logToFile(logMessage string, logPath string) {
-	file, _ := os.OpenFile(logPath, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0666)
-	file.WriteString(logMessage)
-	defer file.Close()
-}
-
-func logToStdout(logMessage string) {
-	fmt.Println(logMessage)
-}
-
-func logFunc(w http.ResponseWriter, r *http.Request) {
-	var logMessage, logPath string
-	logPath = "/tmp/applog.log"
-	logMessage = "DEBUG: this is test log.\n"
-	logToFile(logMessage, logPath)
-	t, _ := template.ParseFiles("index.html")
-	t.Execute(w, nil)
+func rootHandler(w http.ResponseWriter, r *http.Request) {
+	resultSum := 0
+	resultMulty := 0
+	for i := 1; i < 100000000000; i++ {
+		resultSum += i
+		resultMulty *= i
+	}
+	fmt.Println(resultMulty)
+	fmt.Fprintf(w, "Welcome to my website!")
 }
 
 func main() {
-	http.HandleFunc("/", logFunc)
+
+	http.HandleFunc("/", rootHandler)
+
+	fs := http.FileServer(http.Dir("static/"))
+	http.Handle("/static", http.StripPrefix("/", fs))
 
 	var port string
 	port = os.Getenv("PORT")
@@ -35,6 +30,5 @@ func main() {
 		port = "8080"
 	}
 
-	fmt.Print("Run server and listen on port: " + port +" \n")
 	http.ListenAndServe(":"+port, nil)
 }

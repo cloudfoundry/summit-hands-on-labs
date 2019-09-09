@@ -4,7 +4,7 @@ applications:
   random-route: true
   instances: 1
   memory: 10M
-  health-check-type: process
+  disk_quota: 100M
   buildpacks: 
   - go_buildpack
   timeout: 10

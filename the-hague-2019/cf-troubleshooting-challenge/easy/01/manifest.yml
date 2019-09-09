@@ -3,6 +3,7 @@ applications:
 - name: easy-01
   instances: 1
   memory: 10M
+  disk_quota: 100M
   buildpacks: 
   - go_buildpack
   env:

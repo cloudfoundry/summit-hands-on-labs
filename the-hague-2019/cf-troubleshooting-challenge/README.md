@@ -36,7 +36,7 @@ During this lab, you will try to resolve deployment issues and make applications
 
 	```
 
-- There are 5 directories for **Basic**, **Easy**, **Moderate**, **Tricky** and **doc-app** tasks accordingly. We suggest you to start from **doc-app**. This task will help you check environment and have documentation for you labs, where you'll see tasks descriptions and some usefull information. 
+- There are 5 directories for **Basic**, **Easy**, **Moderate**, **Tricky** and **doc-app** tasks accordingly. We suggest you to start from **doc-app**. This task will help you check environment and have documentation for your labs, where you'll see tasks descriptions and some usefull information. 
 
 - To run a task follow the instruction below:
 

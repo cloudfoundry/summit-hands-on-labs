@@ -1,24 +1,27 @@
 ---
 title: "Tricky 05"
-date: 2019-09-05T09:13:00+03:00
+date: 2019-09-04T09:13:24+03:00
 weight: 405
 ---
 
 ## Application:
-Two python web applications, frontend and backend. Backend gathers some data
-about public clouds availability and ruturns some data about backend intself 
-instance, all in json format. Frontend gathers this data and show html page. 
+A golang web application with a single button, which generate log messages.
 
 ## Task:
-Deploy apps with a manifest. We expect backend to have no public route 
-in this task. Here you need to modify manifest and configure CloudFoundry iself.
+Deploy an app with a manifest.
+App should work, but in his case you should fix the app to see generated logs
+in cf logs output. Logs look like `this is test log`
+
+NOTE: we expect you to modify aplication code here, so minimal 
+coding experience (any language) is expected.
 
 ## ACCEPTANCE CRITERIAS:
 - "cf apps" shows at leat one instance of an app
-- "cf logs APP-NAME --recent" shows recent logs for an app
-- app URL checked in browser and working
+- "cf logs APP-NAME --recent" shows recent logs for an app. 
+  NOTE: generated logs should be also visible
+- an app can be accessed using an app's route
 
 ## Tags
-tag_manifest tag_python tag_networking tag_routing
+tag_manifest tag_goland tag_logs
 
 

@@ -4,5 +4,6 @@ applications:
   random-route: true
   instances: 1
   memory: 100M
+  disk_quota: 200M
   buildpacks: 
   - python_buildpack
