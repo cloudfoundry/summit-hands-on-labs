@@ -70,10 +70,10 @@ e.g ci/repipe 2
 
 you will see a link to your pipeline. when running the above repipe script
 
-# run pipeline
+### run pipeline
 go to the concourse web ui. and press that nice little play button on your pipeline...
 
-# check bosh
+### check bosh
 ` bosh instances -d cf-YOUR_USER_NR` e.g bosh instances -d cf-02
 you will notice that the ip address are in
 

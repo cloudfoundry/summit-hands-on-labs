@@ -2,25 +2,29 @@ jobs:
 - name: deploy-cf
   plan:
   - in_parallel:
-    - get: stemcell
     - get: cf-deployment
+      # trigger: true # uncomment for automatic Cloud Foundry updates
+    - get: stemcell
+      # trigger: true # uncomment for automatic stemcell updates
+      # use in combination with cf-deployment/operations/use-latest-stemcell.yml
     - get: opsfile
   - put: deploy
     params:
       manifest: cf-deployment/cf-deployment.yml
       stemcells: [ stemcell/stemcell.tgz ]
       ops_files:
-      - cf-deployment/operations/use-compiled-releases.yml
-      - cf-deployment/operations/experimental/fast-deploy-with-downtime-and-danger.yml
-      - cf-deployment/operations/scale-to-one-az.yml
-      - cf-deployment/operations/rename-network-and-deployment.yml
-      - opsfile/opsfile.yml
+      - cf-deployment/operations/use-compiled-releases.yml # to speed up deploy
+      - cf-deployment/operations/experimental/fast-deploy-with-downtime-and-danger.yml # it's in the name
+      - cf-deployment/operations/scale-to-one-az.yml # same, more instances == more wait time for proccesses to start
+      - cf-deployment/operations/rename-network-and-deployment.yml # we are all using the same Director so name needs to be uniqe
+      - opsfile/opsfile.yml # inline opsfile, annotated content below 
       vars:
-        system_domain: hol-((prefix)).starkandwayne.com
-        deployment_name: ((prefix))
-        network_name: default
+        system_domain: hol-((prefix)).starkandwayne.com # an DNS A record has already been created
+        deployment_name: ((prefix)) # prefix is injected by the repipe script
+        network_name: default # all deployments will be using the same network (get details with bosh cloud-config)
 
 resources:
+  # We will be using the latest official CF Deployment release (using tag_filter)
 - name: cf-deployment
   type: git
   source:
@@ -109,27 +113,35 @@ resources:
         path: /instance_groups/name=rotate-cc-database-key/azs
         value: [ ((zone)) ]          
 
-- name: stemcell
-  type: bosh-io-stemcell
-  source: { name: ((bosh_stemcell)) }
-
 - name: deploy
   type: bosh-deployment
   source:
     deployment: ((prefix))
+    # These variables are provided by BUCC
+    # and can be found under /concourse/main/ in credhub with
+    # bucc credhub && credhub find -n /concourse/main
     target: ((bosh_environment))
     client: ((bosh_client))
     client_id: ((bosh_client))
     client_secret: ((bosh_client_secret))
     ca_cert: ((bosh_ca_cert))
 
+- name: stemcell
+  type: bosh-io-stemcell
+  source: { name: ((bosh_stemcell)) }
+
 resource_types:
+  # https://github.com/cloudfoundry/bosh-deployment-resource
+  # supports bosh cli v2 opsfiles
 - name: bosh-deployment
   type: docker-image
   source:
     repository: cloudfoundry/bosh-deployment-resource
     tag: latest
 
+  # https://github.com/aequitas/concourse-file-resource
+  # used to inline the above opsfile
+  # which allows this pipeline file to be fully portable
 - name: file
   type: docker-image
   source:
