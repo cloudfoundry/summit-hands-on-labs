@@ -1,17 +1,16 @@
 # Excellent Adventures in Bare Metal CF
 
 ## Introduction
-In this hands-on-lab you will deploy a Cloud Foundry environment on a bare-metal CoreOS cluster. 
+In this hands-on-lab you will deploy a Cloud Foundry environment on a bare-metal CoreOS cluster.
 In the interest of time, this cluster has been setup beforehand using Terraform and is hosted by [Packet](http://packet.com).
 
-To reproduce this environment by yourself, use the following open sourced project created by [Stark & Wayne](https://www.starkandwayne.com/). 
-Which will bootstrap your CoreOS Cluster, and enable a static flannel network and install [BUCC](https://github.com/starkandwayne/bucc) on the first cluster member.
+The Terraform project used to create this environment will be open sourced by [Stark & Wayne](https://www.starkandwayne.com/) at a later date.
 
 ### Architecture
 For this exersise we will be using a 3 node cluster.
 During bootstrap a static flannel overlay network has been created.
 Each node runs a docker daemon which has been mapped to a availablity zone using [BOSH CPI Config](https://bosh.io/docs/cpi-config/).
-```    
+```
 +-------------------------------------+
 |           ||           ||           |
 +-------------------------------------+
@@ -66,10 +65,10 @@ fly -t bucc workers
 Lets now deploy Cloud Foundry for which we will be using Concourse.
 Use the repipe script to update / create the pipeline configuration for your pipeline.
 
-Since all students are sharing the same Concourse you will need to provide your __User Index__.
+Since all students are sharing the same Concourse, you will need to use the __student number__ from the handout.
+
 ```
-# training.hol.XX@cloudfoundry.org
-./ci/repipe XX
+./repipe YOUR_STUDENT_NUMBER
 ```
 
 Navigate to your pipeline in the Concourse web UI.
@@ -77,7 +76,7 @@ Navigate to your pipeline in the Concourse web UI.
 TIP: _A deeplink to the pipeline is shown in the output form the repipe script._
 
 ### Kickoff the Deployment Pipeline
-In the Concourse UI: 
+In the Concourse UI:
 1. navigate to the "__deploy-cf__" job of your pipeline
 1. click on the "__+__" button to start the deployment
 
