@@ -1,10 +1,10 @@
 # Excellent Adventures in Bare Metal CF
 
 ## Introduction
-In this hands-on-lab you will deploy a CloudFoundry environment on a bare-metal CoreOS cluster. 
+In this hands-on-lab you will deploy a Cloud Foundry environment on a bare-metal CoreOS cluster. 
 In the interest of time, this cluster has been setup beforehand using Terraform and is hosted by [Packet](http://packet.com).
 
-To reproduce this environment by your self, Use the following open sourced project created by [Stark & Wayne](https://www.starkandwayne.com/). 
+To reproduce this environment by yourself, use the following open sourced project created by [Stark & Wayne](https://www.starkandwayne.com/). 
 Which will bootstrap your CoreOS Cluster, and enable a static flannel network and install [BUCC](https://github.com/starkandwayne/bucc) on the first cluster member.
 
 ### Architecture
@@ -64,7 +64,7 @@ fly -t bucc workers
 
 ## Deploy your Cloud Foundry
 Lets now deploy Cloud Foundry for which we will be using Concourse.
-Use the repipe scripte to update / create the pipeline configuration for your pipeline.
+Use the repipe script to update / create the pipeline configuration for your pipeline.
 
 Since all students are sharing the same Concourse you will need to provide your __User Index__.
 ```
