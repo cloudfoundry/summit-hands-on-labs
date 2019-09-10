@@ -4,7 +4,7 @@ In this hands-on lab, you will learn how to automatically deploy an app - and ne
 
 ### Target Audience
 
-Anyone interested in the basics of deploying apps in Cloud Foundry (developers, operators, biz dev, etc).
+Anyone interested in the basics of deploying apps in Cloud Foundry (developers, operators, biz dev, etc.).
 
 ### Prerequisites
 
@@ -15,7 +15,7 @@ Anyone interested in the basics of deploying apps in Cloud Foundry (developers, 
 Learn how to:
 * set up the configuration for a multi-stage CF environment
 * deploy an application to Cloud Foundry using keptn
-* trigger the continuous delivery pipeline by providing a new artefact
+* trigger the continuous delivery pipeline by providing a new artifact
 
 Understand how:
 * keptn uses the GitOps approach to manage the app configurations
@@ -33,6 +33,9 @@ Understand how:
 
     ```console
     chmod +x keptn
+    ```
+
+    ```console
     ./keptn --help
     ```
 
@@ -58,10 +61,13 @@ stages:
     deployment_strategy: "direct"
 ```
 
-1. Create a new project for your app using the `keptn create project` command. In this example, the project is called *keptn-hol* and please add your initials, e.g.: *keptn-hol-jb*
+1. Create a new project for your app using the `keptn create project` command. In this example, the project is called *keptn-hol* and please add your initials or number, e.g.: *keptn-hol-jb*
 
     ```console
     cat shipyard.yml
+    ```
+
+    ```console
     ./keptn create project keptn-hol-jb shipyard.yml
     ```
 
@@ -70,15 +76,26 @@ stages:
     * Click on your repository: `keptn-hol-jb`
     * Click on the **Branch: master** button to see the three branches for your multi-stage environment that are: *dev*, *staging*, and *production*.
 
-### Step 2. Onboard a new app
+### Step 3. Onboard a new app
 
-After authorizing the cli and creating a project, you are ready to onboard the first app. In this lab, you will onboard the [spring-music](https://github.com/cloudfoundry-samples/spring-music) app based on the following steps.
+After authorizing the cli and creating a project, you are ready to onboard your first app. In this lab, you will onboard the [spring-music](https://github.com/cloudfoundry-samples/spring-music) app based on the following steps.
 
-1. Change the manifest file to a unique app name by adding your initials, e.g.: *spring-music-JB*
+1. Change the manifest file to a unique app name by adding your initials or number, e.g.: *spring-music-jb*. This is done with following command:
 
     ```console
-    vi manifest.yml
+    export ID=<your initials or number>
+    ```
+
+    ```console
+    sed -i 's~- name: spring-music~- name: spring-music-'"$ID"'~' manifest.yml
+    ```
+
+    ```console
     cat manifest.yml
+    ```
+
+    **Output (example):**
+    ```yaml
     ---
     applications:
     - name: spring-music-jb
@@ -87,7 +104,7 @@ After authorizing the cli and creating a project, you are ready to onboard the f
       path: spring-music.jar
     ```
 
-1. Onboard the `spring-music` app using the `keptn onboard service` command. For the project option, please reference your project you created in step 2.
+1. Onboard the `spring-music` app using the `keptn onboard service` command. For project, please reference your project you created in step 2.
 
     ```console
     ./keptn onboard service --project=keptn-hol-jb --manifest=manifest.yml
@@ -98,25 +115,25 @@ After authorizing the cli and creating a project, you are ready to onboard the f
     * Click on your repository: `keptn-hol-jb`
     * Click on the **Branch: master** button to switch to the *dev* branch. There you will find the manifest for your app.
 
-### Step 3. Learn about the GitOps approach
+### Step 4. Learn about the GitOps approach
 
-Your instructor will explain the basic concepts behind GitOps approach and how to apply it for managing your configurations.
+Your instructor will explain the basic concepts behind the GitOps approach and how to apply it for managing your configurations.
 
-### Step 4. Create a new artifact
+### Step 5. Create a new artifact
 
-After onboarding an app, a new artifact needs to be created. To keep this lab focused on the main aspects, the artefact has already been created. However, you need to update the reference to this new artifact in the configuration of your application. Therefore, use keptn to send a new artifact event:
+After onboarding an app, a new artifact needs to be created. To keep this lab focused on the main aspects, the artifact has already been created. However, you need to update the reference to this new artifact in the configuration of your application. Therefore, use keptn to send a new artifact event:
 
-    ```console
-    ./keptn send event new-artifact --project=keptn-hol-jb --service=spring-music-jb --image=github.com/johannes-b/artifactory.git --tag=0.0.1
-    ```
+```console
+./keptn send event new-artifact --project=keptn-hol-jb --service=spring-music-jb --image=github.com/johannes-b/artifactory.git --tag=0.0.1
+```
 
-### Step 5. Watch keptn deploying the application
+### Step 6. Watch keptn deploying the application
 
 Deploying the application into the *dev*, *staging* and *production* environment takes about 6 minutes. In the meanwhile, your instruct will explain you how keptn works behind the scene.
 
 1. Verify the configuration change in your GitHub repository.
 
-1. Go back to the Jenkins dashboard to see how the individual steps of the CD pipeline get triggered.
+1. Let's see which apps already got deployed in Cloud Foundry.
 
 ## Learning Objectives Review
 
@@ -124,7 +141,7 @@ In this lab, you:
 
 * Set up the configuration for a multi-stage environment using `keptn create project`
 * Onboarded an app to your project using `keptn onboard service`
-* Triggered the continuous delivery pipeline by providing a new artefact and using `keptn send event new-artifact` 
+* Triggered the continuous delivery pipeline by providing a new artifact and using `keptn send event new-artifact` 
 
 ## Beyond the Lab
 
