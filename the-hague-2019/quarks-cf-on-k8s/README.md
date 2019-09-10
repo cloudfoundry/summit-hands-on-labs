@@ -132,7 +132,7 @@ kubectl get pod -n scf | grep "cf-terminal"
 We need to ssh into the pod to use the CLI. Run the below commands to ssh into the pod:
 
 ```
-export podname=$(kubectl get pods -l app=cf-terminal --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' -n scf)
+export podname=$(kubectl get pods -l app=cf-terminal --template '{{(index .items 0).metadata.name}}' -n scf)
 kubectl -n scf exec -it "$podname" -- /bin/bash
 ```
 
