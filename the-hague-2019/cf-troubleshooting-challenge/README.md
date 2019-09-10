@@ -11,28 +11,28 @@ During this lab, you will try to resolve deployment issues and make applications
 - Login to CF using the  provided credentials:
 
 	```
-	$ cf login -a api.hol.starkandwayne.com --skip-ssl-validation
+        cf login -a api.hol.starkandwayne.com --skip-ssl-validation
 	
 	```
 
 - Make sure your assigned Org is `training.hol.your_user_number` and Space is `training`:
 
 	```
-	$ cf target
+        cf target
 
 	```
 		
 - Clone this repository and go to the  folder of this lab:
 
 	```
-	$ git clone https://github.com/cloudfoundry/summit-hands-on-labs.git
-	$ cd summit-hands-on-labs/the-hague-2019/cf-troubleshooting-challenge/
+        git clone https://github.com/cloudfoundry/summit-hands-on-labs.git
+	cd summit-hands-on-labs/the-hague-2019/cf-troubleshooting-challenge/
 
 	```
 - Run a preparation script:
 
 	```
-	$ ./prepare.sh
+        ./prepare.sh
 
 	```
 
@@ -40,21 +40,27 @@ During this lab, you will try to resolve deployment issues and make applications
 
 - To run a task follow the instruction below:
 
-	```
-	Choose a level of tasks you would like to try, for example `basic`
- 
-	$ cd basic/
+Choose a level of tasks you would like to try, for example `basic`
 
-	Go to the first folder and read the task instruction
-	
-	$ cd basic/01
-	$ teachme README.md
-	
-	Try to push an app
+```
+cd basic/
 
-	$ cf push
-	
-	```
+```
 
+Go to the first folder and read the task instruction
+
+```
+cd basic/01
+
+teachme README.md
+
+```
+
+Try to push an app
+
+```
+cf push
+
+```
 
 Good luck and enjoy!!!

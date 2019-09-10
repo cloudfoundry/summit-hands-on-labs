@@ -13,7 +13,7 @@ additions and some files to be created. Several issues in this lab
 repeat the issues from not so tricky labs. 
 
 ## ACCEPTANCE CRITERIAS:
-- "cf apps" shows at leat one instance of an app
+- "cf apps" shows at least one instance of an app
 - "cf logs APP-NAME --recent" shows recent logs for an app
 NOTE: this is not web app, so not need to check app route in browser
 

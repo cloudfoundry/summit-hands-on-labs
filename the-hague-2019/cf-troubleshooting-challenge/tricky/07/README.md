@@ -12,7 +12,7 @@ Notes: This task requires you to have minimum  nodejs  knowlege,
 and to make changes in  application code.
 
 ### ACCEPTANCE CRITERIAS:
-- "cf apps" shows at leat one instance of an app
+- "cf apps" shows at least one instance of an app
 - "cf logs APP-NAME --recent" shows recent logs for an app
 - an app can be accessed using an app's route
 

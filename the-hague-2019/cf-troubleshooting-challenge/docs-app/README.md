@@ -11,7 +11,7 @@ this application and manifest with a few  minor issues.
 Fix this issues and deploy an app with a manifest.
 
 ### ACCEPTANCE CRITERIAS:
-- "cf apps" shows at leat one instance of an app
+- "cf apps" shows at least one instance of an app
 - an app can be accessed using an app's route
 
 ### Tags

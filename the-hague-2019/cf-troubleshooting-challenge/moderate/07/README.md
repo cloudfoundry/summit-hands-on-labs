@@ -13,7 +13,7 @@ Deploy apps with a manifest. We expect frontend to connect to backend and get
 proper information. Here you need to modify manifest and configure CloudFoundry iself.
 
 ### ACCEPTANCE CRITERIAS:
-- "cf apps" shows at leat one instance of an app
+- "cf apps" shows at least one instance of an app
 - "cf logs APP-NAME --recent" shows recent logs for an app
 - app URL checked in browser and working
 
