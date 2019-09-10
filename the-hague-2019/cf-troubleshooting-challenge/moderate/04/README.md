@@ -10,7 +10,7 @@ A static python  application showing html page.
 Deploy an app with a manifest.
 
 ### ACCEPTANCE CRITERIAS:
-- "cf apps" shows at leat one instance of an app
+- "cf apps" shows at least one instance of an app
 - "cf logs APP-NAME --recent" shows recent logs for an app
 - an app can be accessed using an app's route
 

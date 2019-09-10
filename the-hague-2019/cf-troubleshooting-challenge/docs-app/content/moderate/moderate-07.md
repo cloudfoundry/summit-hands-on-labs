@@ -14,7 +14,7 @@ Deploy apps with a manifest. We expect backend to have no public route
 in this task. Here you need to modify manifest and configure CloudFoundry iself.
 
 ## ACCEPTANCE CRITERIAS:
-- "cf apps" shows at leat one instance of an app
+- "cf apps" shows at least one instance of an app
 - "cf logs APP-NAME --recent" shows recent logs for an app
 - app URL checked in browser and working
 

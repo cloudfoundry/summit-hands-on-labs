@@ -16,7 +16,7 @@ NOTE: we expect you to modify aplication code here, so minimal
 coding experience (any language) is expected.
 
 ## ACCEPTANCE CRITERIAS:
-- "cf apps" shows at leat one instance of an app
+- "cf apps" shows at least one instance of an app
 - "cf logs APP-NAME --recent" shows recent logs for an app. 
   NOTE: generated logs should be also visible
 - an app can be accessed using an app's route

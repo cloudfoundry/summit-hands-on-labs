@@ -13,7 +13,7 @@ to work using only manifest params. Please, fill free to select
 the appoach you prefer better.
 
 ### ACCEPTANCE CRITERIAS:
-- "cf apps" shows at leat one instance of an app
+- "cf apps" shows at least one instance of an app
 - "cf logs APP-NAME --recent" shows recent logs for an app
 - an app can be accessed using an app's route
 
