@@ -4,6 +4,7 @@ applications:
   random-route: true
   instances: 1
   memory: 100G
+  disk_quota: 100M
   buildpacks: 
   - go_buildpack
   env:

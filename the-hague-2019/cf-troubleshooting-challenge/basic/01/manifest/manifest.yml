@@ -5,5 +5,6 @@ applications:
     buildpacks:
       - go_buildpack
     memory: 10M
+    disk_quota: 100M
     env:
       GOPACKAGENAME: main

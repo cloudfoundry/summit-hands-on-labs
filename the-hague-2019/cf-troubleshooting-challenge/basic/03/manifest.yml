@@ -1,10 +1,11 @@
 ---
 applications:
   - name: basic-03
-  random-route: true
+    random-route: true
     buildpacks: 
       - go_buildpack
     memory: 10M
+    disk_quota: 100M
     host: basic-03
     routes:
       - route: APP-NAME.example.com

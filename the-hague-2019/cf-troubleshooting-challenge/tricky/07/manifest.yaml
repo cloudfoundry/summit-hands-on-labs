@@ -1,0 +1,9 @@
+---
+applications:
+- name: tricky-07
+  random-route: true
+  instances: 1
+  memory: 20M
+  disk_quota: 200M
+  buildpacks:
+  - nodejs_buildpack

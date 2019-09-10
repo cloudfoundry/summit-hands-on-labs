@@ -3,4 +3,5 @@ applications:
 - name: tricky-04
   random-route: true
   instances: 1
-  memory: 10M
+  memory: 50M
+  disk_quota: 250M
