@@ -59,16 +59,17 @@ If you can see client and server versions for both the commands, then you are go
 The `cf-operator` is packaged as a helm release. Run the following command to install `cf-operator` in a namespace:
 
 ```
+wget -O cf-operator https://s3.amazonaws.com/cf-operators/release/helm-charts/cf-operator-v0.4.0%2B1.g3d277af0.tgz
 helm install --namespace scf \
   --name cf-operator \
   --set "provider=gke" \
-  https://s3.amazonaws.com/cf-operators/release/helm-charts/cf-operator-v0.4.0%2B1.g3d277af0.tgz
+  cf-operator
 ```
 
-Run the following command to check if the cf-operator pod is in running status.
+Watch the cf-operator pod untill it turns into running status.
 
 ```
-kubectl get pod -n scf
+watch kubectl get pod -n scf
 ```
 
 ### Troubleshooting
@@ -89,8 +90,9 @@ helm install --namespace scf --name cf-operator --set "provider=gke" --set "cust
 `SCF` is also packaged as a helm release. Run the following command to install `scf` in the same namespace:
 
 ```
+wget -O scf https://scf-v3.s3.amazonaws.com/scf-3.0.0-8f7a71d1.tgz
 helm install --namespace scf --name scf \
-https://scf-v3.s3.amazonaws.com/scf-3.0.0-8f7a71d1.tgz \
+scf \
 --set "system_domain=scf.suse.dev"
 ```
 
