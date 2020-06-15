@@ -16,7 +16,7 @@ Useful info
 Teams
 -----
 
-1. SUSE (KubeCF)
+1. SUSE (Dev and Ops with KubeCF)
 2. VMware (CF CLI v7)
 3. VMware (CF-for-K8s)
 5. Stark & Wayne (Gluon)
