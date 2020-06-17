@@ -1,6 +1,6 @@
 ## Introduction
 
-In this hands on lab, you will be performing few tasks, some wearing a developer hat and some wearing an operator hat, on KubeCF, which is a containerized Cloud Foundry deployment on Kubernetes. KubeCF can be seen as a Paas platform for Kubernetes bringing the developer experience of Cloud Foundry.
+In this hands on lab, you will be performing few tasks, some wearing a developer hat and some wearing an operator hat, on `KubeCF`, which is a containerized Cloud Foundry deployment on Kubernetes. `KubeCF` can be seen as a Paas platform for Kubernetes bringing the developer experience of Cloud Foundry.
 
 ### Target Audience
 
@@ -10,16 +10,16 @@ This lab is targeted towards the audience who would like to use Cloud Foundry fo
 
 You will be performing the following tasks in this lab :-
 
-### Developer Tasks
+#### Developer Tasks
 
-* Installation of KubeCF platform in Kubernetes.
+* Installation of `KubeCF` platform in Kubernetes.
 * Push an application using `cf push`.
 * Installation of Minibroker in Kubernetes.
-* Create a Redis database instance and bind it to your application.
+* Create a Redis database instance and connect it to your application.
 
-### Operator Tasks
+#### Operator Tasks
 
-* Scale up Diego cells in the KubeCF platform.
+* Scale up Diego cells in the `KubeCF` platform.
 * Rotate the encryption key of the cloud controller database.
 
 ### Prerequisites
@@ -36,13 +36,14 @@ curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bas
 ### Install CF CLI
 
 ```
-wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key \
-| sudo apt-key add -
-echo "deb https://packages.cloudfoundry.org/debian stable main" | \
-sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-sudo apt-get update
-sudo apt-get install cf7-cli
-sudo apt-get install cf
+wget https://s3-us-west-1.amazonaws.com/cf-cli-releases/releases/v6.51.0/cf-cli_6.51.0_linux_x86-64.tgz
+tar -xvf cf-cli_6.51.0_linux_x86-64.tgz
+sudo mv cf /usr/local/bin/
+```
+```
+wget https://s3-us-west-1.amazonaws.com/v7-cf-cli-releases/releases/v7.0.0-beta.30/cf7-cli_7.0.0-beta.30_linux_x86-64.tgz
+tar -xvf cf7-cli_7.0.0-beta.30_linux_x86-64.tgz
+sudo mv cf7 /usr/local/bin
 ```
 
 ### Using the CLI
@@ -56,10 +57,10 @@ You will have access to `kubectl`, `helm`, `cf7` in the terminal.
 #### Authenticate
 
 To work with Kubernetes you need a valid `KUBECONFIG`. The following commands will acquire a config from Google Cloud.
-You will be given a seat number and you should replace the variable *[seat]* with it, throughout the instructions.
+You will be given a seat number and you should replace the variable *[seat]* with it.
 
 ```
-seat=1
+seat=[seat]
 clustername=na-cluster-"$seat"
 ```
 ```
@@ -78,23 +79,22 @@ cf version
 
 If you can see the versions for both the commands, then you are good to go ahead.
 
-## Installing KubeCF
+## Developer Hat
+
+### Installing KubeCF
 
 `KubeCF` is already installed for you in the GKE cluster as it takes approximately 15 minutes for the installation. It only takes few commands to install `KubeCF` on any Kubernetes cluster. You need not run the below commands.
 
-* Get the external ip address.
-```
-externalIP=`kubectl get service -n ingress-nginx ingress-nginx-controller \
--o jsonpath="{.status.loadBalancer.ingress[0].ip}"`
-```
 * Install cf-operator and Kubecf
 ```
 kubectl create ns cf-operator
 helm install cf-operator --namespace cf-operator \
 --set "global.operator.watchNamespace=kubecf" \
 https://github.com/cloudfoundry-incubator/quarks-operator/releases/download/v4.5.6/cf-operator-4.5.6+0.gffc6f942.tgz 
+```
+```
 helm install kubecf --namespace kubecf \
---set "system_domain=${externalIP}.xip.io" \
+--set "system_domain= na$seat.kubecf.net" \
 --set "features.ingress.enabled=true" \
 https://github.com/cloudfoundry-incubator/kubecf/releases/download/v2.2.2/kubecf-v2.2.2.tgz
 ```
@@ -104,10 +104,10 @@ You can find all the configurable values that you can set using `helm set` for `
 Wait untill all the KubeCF pods are in running status.
 
 ```
-kubectl get pods -n kubecf
+watch kubectl get pods -n kubecf
 ```
 
-### Troubleshooting
+#### Troubleshooting
 
 If you want to re-install, uninstall the helm releases, delete the pvc's and retry.
 
@@ -119,18 +119,13 @@ helm uninstall cf-operator -n cf-operator
 kubectl delete ns cf-operator
 ```
 
-## Pushing an App
+### Pushing an App
 
-Pushing an app into `KubeCF`, requires a configured `Cloud Foundry CLI`. You shall now configure the CLI with the domain name `"${externalIP}.xip.io"` which points to the installed KubeCF platform.
+Pushing an app into `KubeCF`, requires a configured `Cloud Foundry CLI`. You shall now configure the CLI with the domain name `"na$seat.kubecf.net"` which points to the installed KubeCF platform.
 
-* Get the external ip address.
-```
-externalIP=`kubectl get service -n ingress-nginx ingress-nginx-controller \
--o jsonpath="{.status.loadBalancer.ingress[0].ip}"`
-```
 * Set the KubeCF API url.
 ```
-cf api --skip-ssl-validation http://api.${externalIP}.xip.io
+cf api --skip-ssl-validation http://api.na"$seat".kubecf.net
 ```
 * Login using the user admin, so that you have full access to the `KubeCF` platform.
 ```
@@ -159,20 +154,18 @@ In a PaaS platform like `KubeCF`, only the application is managed by the develop
 Check if the app has been successfully deployed.
 
 ```
-curl http://redis-example-app.${externalIP}.xip.io
+curl http://redis-example-app.na"$seat".kubecf.net
 ```
 
 So, you have successfully deployed an application into KubeCF platform. Let's connect a database to it now.
 
-### Troubleshooting
+#### Troubleshooting
 
 If you want to re-install, delete the app and retry.
 
 ```
 cf delete redis-example-app
 ```
-
-## Connect Redis database to the App
 
 ### Install Minibroker
 
@@ -185,23 +178,24 @@ kubectl create ns minibroker
 helm repo add suse https://kubernetes-charts.suse.com
 helm install minibroker --namespace minibroker suse/minibroker \
 --set "defaultNamespace=minibroker"
-cat minibroker-ingress.yaml | sed "s/replace/'minibroker."$externalIP".xip.io'/g" \
+cat minibroker-ingress.yaml | sed "s/replace/'minibroker.na$seat.kubecf.net'/g" \
 | kubectl apply -f -
 ```
-* Check minibroker pods.
+* Check the minibroker pod.
 ```
 kubectl get pods -n minibroker
 ```
-* Connect minibroker to KubeCF platform.
+* Connect minibroker to `KubeCF` platform.
 ```
-cf create-service-broker minibroker username password http://minibroker.$externalIP.xip.io
+cf create-service-broker minibroker \
+username password http://minibroker.na$seat.kubecf.net
 ```
 * List the redis database services and their associated plans the minibroker has access to :- 
 ```
 cf service-access -b minibroker | grep redis
 ```
 
-### Troubleshooting
+#### Troubleshooting
 
 If you want to re-install, uninstall the helm release and re-install.
 
@@ -212,23 +206,27 @@ helm uninstall minibroker -n minibroker
 
 ### Create a Redis Database Instance
 
-Lets now enable a redis database service in the minibroker, create security group and create an instance of redis database.
+Lets now enable a redis database service in the minibroker, create a security group and create an instance of redis database.
 
 ```
 cf enable-service-access redis -b minibroker -p 4-0-10
+```
+```
 echo > redis.json '[{ "protocol": "tcp", "destination": "10.0.0.0/8", "ports": "6379", "description": "Allow Redis traffic" }]'
 cf create-security-group redis_networking redis.json
 cf bind-security-group redis_networking demo demo
+```
+```
 cf create-service redis 4-0-10 redis-example-service
 ```
 
 Check if the redis master and slave pods are running.
 ```
-kubectl get pods --namespace minibroker
+watch kubectl get pods --namespace minibroker
 ```
 Check the status of the service creation. Wait until it creation is competed.
 ```
-cf service redis-example-service
+watch cf service redis-example-service
 ```
 
 #### Troubleshooting
@@ -254,16 +252,16 @@ cf7 push redis-example-app --strategy rolling
 When the application is ready, it can be tested by storing a value into the Redis service
 
 ```
-curl --request GET http://redis-example-app.$externalIP.xip.io/foo
-curl --request PUT http://redis-example-app.$externalIP.xip.io/foo --data 'data=bar'
-curl --request GET http://redis-example-app.$externalIP.xip.io/foo
+curl --request GET http://redis-example-app.na$seat.kubecf.net/foo
+curl --request PUT http://redis-example-app.na$seat.kubecf.net/foo --data 'data=bar'
+curl --request GET http://redis-example-app.na$seat.kubecf.net/foo
 ```
 
 The first GET will return key not present. After storing a value, it will return bar.
 
 To summarize, you have deployed KubeCF, pushed an application, created a redis database instance using minibroker and connected it to your application.
 
-### Troubleshooting
+#### Troubleshooting
 
 If you want to re-bind, unbind the service and retry.
 
@@ -277,23 +275,23 @@ cf unbind-service redis-example-app redis-example-service
 
 There will come a situation in your company, where in, you need to push more apps. Easy !!!! Scale up the diego cells.
 
-* Upgrade kubecf platform, setting the instances for diego-cell to 3.
+* Upgrade kubecf platform, setting the instances for diego-cell to 2.
 ```
 helm upgrade kubecf --namespace kubecf \
 --set "sizing.diego_cell.instances=2" \
---set "system_domain=${externalIP}.xip.io" \
+--set "system_domain=na$seat.kubecf.net" \
 --set "features.ingress.enabled=true" \
 https://github.com/cloudfoundry-incubator/kubecf/releases/download/v2.2.2/kubecf-v2.2.2.tgz 
 ```
 
-You can check if all the `KubeCF` pods are running :-
+A new pod `diego-cell-1` should be running :-
 ```
 watch kubectl get pods -n kubecf
 ```
 
 Now, check if your app still exists.
 ```
-curl --request GET http://redis-example-app.$externalIP.xip.io/foo
+curl --request GET http://redis-example-app.na$seat.kubecf.net/foo
 ```
 
 ### Rotate Cloud Controller encryption key
@@ -311,7 +309,7 @@ kubectl patch qjob rotate-cc-database-key \
   --type merge \
   --patch '{"spec":{"trigger":{"strategy":"now"}}}'
 ```
-* You can check if the rotation was succesful by checking the logs
+* Wait for 1 min and check if the rotation was succesful by checking the logs
 ```
 podName=`kubectl -n kubecf get pod \
 -l quarks.cloudfoundry.org/qjob-name=rotate-cc-database-key \
@@ -323,7 +321,7 @@ kubectl -n kubecf logs $podName rotate-cc-database-key-rotate
 Congratulations you have successfully completed `Dev and Ops with KubeCF` hands on lab. Your training for developer peace is completed. :wink:
 
 
-### Beyond the Lab
+## Beyond the Lab
 
 * KubeCF Docs : https://kubecf.suse.dev/docs/
 * Minibroker Project : https://github.com/SUSE/minibroker
