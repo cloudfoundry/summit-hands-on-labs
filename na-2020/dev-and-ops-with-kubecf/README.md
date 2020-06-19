@@ -1,10 +1,10 @@
 ## Introduction
 
-In this hands on lab, you will be performing few tasks, some wearing a developer hat and some wearing an operator hat, on `KubeCF`, which is a containerized Cloud Foundry deployment on Kubernetes. `KubeCF` can be seen as a Paas platform for Kubernetes bringing the developer experience of Cloud Foundry.
+In this hands on lab you will perform several tasks, some for those wearing a developer hat and some for those wearing an operator hat, on `KubeCF`, which is a containerized Cloud Foundry deployment on Kubernetes. `KubeCF` brings the developer experience of Cloud Foundry to Kubernetes in a production-ready environment. 
 
 ### Target Audience
 
-This lab is targeted towards the audience who would like to use Cloud Foundry for packaging and deploying applications with Kubernetes as the underlying infrastructure for orchestration of the containers.
+This lab is targeted towards an audience who would like to use Cloud Foundry for packaging and deploying applications with Kubernetes as the underlying infrastructure for container orchest.
 
 ### Learning Objectives
 
@@ -149,7 +149,7 @@ cd cf-redis-example-app
 cf push
 ``` 
 
-In a PaaS platform like `KubeCF`, only the application is managed by the developer, rest all is managed by the Paas platform `KubeCF`.
+In a PaaS platform like `KubeCF`, only the application is managed by the developer, everything else is managed by `KubeCF`.
 
 Check if the app has been successfully deployed.
 
@@ -169,7 +169,7 @@ cf delete redis-example-app
 
 ### Install Minibroker
 
-Minibroker is an open source service broker based on [Open Service Broker API](https://www.openservicebrokerapi.org/). Using service brokers, cloud foundry apps can connect to external services such as databases, SaaS applications etc. Services deployed in Kubernetes can also be connected using service brokers.
+Minibroker is an open source service broker based on [Open Service Broker API](https://www.openservicebrokerapi.org/). Using service brokers, Cloud Foundry apps can connect to external services such as databases, SaaS applications etc. Services deployed in Kubernetes can also be connected using service brokers.
 
 * Install Minibroker using helm.
 ```
@@ -206,7 +206,7 @@ helm uninstall minibroker -n minibroker
 
 ### Create a Redis Database Instance
 
-Lets now enable a redis database service in the minibroker, create a security group and create an instance of redis database.
+Lets now enable a redis database service in the minibroker, create a security group, and create an instance of redis database.
 
 ```
 cf enable-service-access redis -b minibroker -p 4-0-10
@@ -257,7 +257,7 @@ curl --request PUT http://redis-example-app.na$seat.kubecf.net/foo --data 'data=
 curl --request GET http://redis-example-app.na$seat.kubecf.net/foo
 ```
 
-The first GET will return key not present. After storing a value, it will return bar.
+The first GET will return "key not present". After storing a value, it will return "bar".
 
 To summarize, you have deployed KubeCF, pushed an application, created a redis database instance using minibroker and connected it to your application.
 
@@ -273,7 +273,7 @@ cf unbind-service redis-example-app redis-example-service
 
 ### Scale your Diego Cells
 
-There will come a situation in your company, where in, you need to push more apps. Easy !!!! Scale up the diego cells.
+There will come a situation in your company in which you need to push more apps. Easy !!!! Scale up the diego cells.
 
 * Upgrade kubecf platform, setting the instances for diego-cell to 2.
 ```
@@ -296,7 +296,7 @@ curl --request GET http://redis-example-app.na$seat.kubecf.net/foo
 
 ### Rotate Cloud Controller encryption key
 
-Lets see another operator task. Suppose you need to rotate your cloud controller database encryption key. CAPI release has a errand job which rotates your database encryption key. QuarksJob is used to run BOSH errand jobs in KubeCF world.
+Lets perform another operator task. Suppose you need to rotate your cloud controller database encryption key. CAPI release has a errand job which rotates your database encryption key. QuarksJob is used to run BOSH errand jobs in KubeCF.
 
 * Check if there is a QuarksJob for rotation
 ```
@@ -318,7 +318,7 @@ kubectl -n kubecf logs $podName rotate-cc-database-key-rotate
 ```
 
 
-Congratulations you have successfully completed `Dev and Ops with KubeCF` hands on lab. Your training for developer peace is completed. :wink:
+Congratulations, you have successfully completed `Dev and Ops with KubeCF` hands on lab. Your training for developer peace is completed. :wink:
 
 
 ## Beyond the Lab
