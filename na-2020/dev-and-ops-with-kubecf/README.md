@@ -4,7 +4,7 @@ In this hands on lab you will perform several tasks, some for those wearing a de
 
 ### Target Audience
 
-This lab is targeted towards an audience who would like to use Cloud Foundry for packaging and deploying applications with Kubernetes as the underlying infrastructure for container orchest.
+This lab is targeted towards an audience who would like to use Cloud Foundry for packaging and deploying applications with Kubernetes as the underlying infrastructure for container orchestration.
 
 ### Learning Objectives
 
