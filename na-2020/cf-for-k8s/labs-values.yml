@@ -1,0 +1,9 @@
+#@data/values
+---
+app_registry:
+    hostname: https://index.docker.io/v1/
+    repository: <TODO repo> 
+    username: <TODO labs-user>
+    password: <TODO password>
+  
+  istio_static_ip: "<TODO static ip>"
