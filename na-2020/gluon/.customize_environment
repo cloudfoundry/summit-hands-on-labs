@@ -1,6 +1,0 @@
-#!/bin/bash
-
-echo Does this file execute\?
-set -x
-cloudshell env update-default-image --image gcr.io/starkandwayne-registry/gcp-cloudshell:latest
-set +x
