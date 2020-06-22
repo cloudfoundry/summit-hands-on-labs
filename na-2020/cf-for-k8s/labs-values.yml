@@ -5,5 +5,3 @@ app_registry:
     repository: <TODO repo> 
     username: <TODO labs-user>
     password: <TODO password>
-  
-  istio_static_ip: "<TODO static ip>"

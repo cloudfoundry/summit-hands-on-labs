@@ -22,34 +22,50 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
 
 ## Lab
 
-### Setup cluster 
+### Setup Environment
 
 1. We will use your user-id to retrieve your alloted Kubernetes cluster. It should be in the form `N-summitlabs@cloudfoundry.org` where `N` is an integer. We will use the value before the email domain (e.g. `1-summitlabs`, `2-summitlabs` and so on),
     ```console
-    export SEAT=<your-seat-number>-summitlabs
+    export SEAT="$(echo ${USER} | tr -d "[a-z_]")"
     ```
-1. Export your $CF_DOMAIN using your seat number,
+1. Export your CLUSTER_NAME and CF_DOMAIN variables based on your seat number
     ```console
-    export CF_DOMAIN=$SEAT.cf-for-k8s-labs.com
+    export CLUSTER_NAME="lab-${SEAT}"
+    export CF_DOMAIN="${CLUSTER_NAME}.cf-for-k8s-labs.com"
     ```
-1. Lets setup your `kubectl` so you connect to your alloted Kubernetes Cluster
+1. Lets setup `kubectl` so you can connect to your alloted Kubernetes Cluster
     ```console
-    gcloud container clusters get-credentials \
-        "$SEAT-cf-for-k8s-cluster" --zone us-west1-a \
-        --project summit-labs
+    gcloud container clusters get-credentials ${CLUSTER_NAME} --zone us-central1-a --project summit-labs
     ```
-1. Verify that you are connected and have all the necessary CLI's
-
+1. Verify that you are connected and install all the necessary CLI's
     ```console
     kubectl version
-    kapp version
-    ytt version
-    bosh --version
-    cf version
     ```
     If any of the CLIs are not installed, please see the Troubleshooting guide - Install missing CLIs section
-
-    > Note we are using bosh CLI to only generate self-signed certificates. It is a matter of convenience and in the future it will be replaced by tooling like CredHub
+1. Install [K14s](https://k14s.io)
+    ```console
+    mkdir -p ${HOME}/bin
+    export PATH=${HOME}/bin:${PATH}
+    wget -O- https://k14s.io/install.sh | K14SIO_INSTALL_BIN_DIR=${HOME}/bin bash
+    ytt version
+    kapp version
+    ```
+1. Install the CF CLI
+    ```console
+    wget -O cf-cli.tgz https://packages.cloudfoundry.org/stable?release=linux64-binary&version=6.51.0&source=github-rel && tar -C bin -xf cf-cli.tgz
+    cf --version
+    ```
+1. Install the BOSH CLI
+    ```console
+    wget -O bin/bosh https://github.com/cloudfoundry/bosh-cli/releases/download/v6.3.0/bosh-cli-6.3.0-linux-amd64 && chmod +x bin/bosh
+    bosh -v
+    ```
+    > Note we are using bosh CLI to generate self-signed certificates and other credentials. It is a matter of convenience and in the future it will be replaced by tooling such as CredHub.
+1. Install yq (to allow you to retrieve specific entries from the YAML values file used to configure cf-for-k8s
+    ```console
+    pip3 install yq --user
+    export PATH=${HOME}/.local/bin:${PATH}
+    ```
 
 ### Installing cf-for-k8s
 
@@ -60,12 +76,15 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     ```
 1. Create a data values file with required values to install cf-for-k8s project
 
-    We will use script `generate-values.sh` to generate these values to make the labs session go faster.
+    We will use the `generate-values.sh` script to generate these values to make the labs session go faster.
     ```console
     ./hack/generate-values.sh -d $CF_DOMAIN > cf-values.yml
+    cat<<EOF >> /tmp/${CLUSTER_NAME}-values.yml
+    istio_static_ip: "$(host api.${CF_DOMAIN} | awk '{print $NF}')"
+    EOF
     ```
     > This script is the only script that uses the `bosh-cli` to generate the self-signed cerficiates and random passwords.
-1. To be able to push source code apps, we need to setup a docker registry. We pre-created a `labs-values.yml` file for you to use in the labs,
+1. To be able to push source code apps, we need to setup a docker registry. We pre-created a `labs-values.yml` file for you to use in the lab
     ```console
     cat ../labs-values.yml >> cf-values.yml
     ```
@@ -76,7 +95,6 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     ```
 1. Install with `kapp` with above K8s configuration file
     ```console
-    # deploy cf-for-k8s named `cf`
     kapp deploy -a cf -f cf-for-k8s-rendered.yml -y
     ```
     Once you press enter, the command should take ~8-10 minutes to finish. During this time, `kapp` will keep posting updates on pending resource creations and will exit only when all resources are created and running.
@@ -86,14 +104,14 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     ```
 1. Login using the admin credentials in `cf-values.yml`
     ```console
-    cat cf-install-values.v52.yml| grep cf_admin_password
-    # should print `cf_admin_password: <admin password>`
+    yq -r .cf_admin_password cf-values.yml
     cf auth admin <admin password>
     ```
 1. Create an org/space for your app
     ```console
-    # following creates org, space and then targets org and space all in one command
-    cf co labs-org && cf target -o labs-org && cf create-space labs-space && cf target -o labs-org -s labs-space
+    cf create-org labs-org
+    cf create-space -o labs-org labs-space
+    cf target -o labs-org -s labs-space
     ```
 1. Deploy a source code based app
     ```console
@@ -105,11 +123,11 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     1. push app source code from directory to the blobstore
     1. run through a detection to identify the app language
     1. pull the necessary base images for the given language (in this case `Node Engine Buildpack`)
-    1. build the app image with the above base image 
+    1. build the app image with the above base image
     1. create a HTTP route to the app
     1. schedule the app with the given # of instances
     1. report the app status and any metrics
-1. Verify app reachability!!
+1. Verify that the app is available
     ```console
     curl -k https://node-app.apps.$CF_DOMAIN
     ```
@@ -134,7 +152,7 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     NAME                TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
     <service-guid>      ClusterIP   10.0.9.52    <none>        8080/TCP   39m
     ```
-    For every app route, cf-for-k8s creates route CRD and a Kubernetes native `Service` that serves the app instances. Lets look underneath the service. 
+    For every app route, cf-for-k8s creates route CRD and a Kubernetes native `Service` that serves the app instances. Lets look underneath the service.
     ```
     kubectl describe svc/<service guid from the above> -n cf-workloads
     ```
@@ -153,7 +171,7 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
         ```
         Pick the new `service` that was created recently and inspect it's `Annotations.route-fqdn` property.
         ```
-        kubectl describe svc/<name of the service guid from the above> -n cf-workloads |  grep Annotations 
+        kubectl describe svc/<name of the service guid from the above> -n cf-workloads |  grep Annotations
         ```
     1. Verify route CRDs
         ```
@@ -200,23 +218,23 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     ```
     Notable pods are the CAPI component that backs the cf cli, uaa manages authentication, logs and metrics for observability, eirini schedules & manages the app workloads and finally route-controller manages the app routes. Also, Notice `fluentd` pods in `cf-system`. It's actually a deamon-set that's running on every node to collect and filter logs for CF.
 1. Namespaces created by cf-for-k8s
-   ```console
+    ```console
     kubectl get namespaces
-   ``` 
-    It will return 7 namespaces that were created by cf-for-k8s (rest are namespaces created by GKE). Inspect each namespace by running 
+    ```
+    It will return 7 namespaces that were created by cf-for-k8s (the rest are namespaces created by K8s). Inspect each namespace by running
     ```console
     kubectl get pods -n <namespace>
     ```
-    
+
     `cf-db` and `cf-blobstore` namespaces run postgres database and minio blobstore stateful-sets respectively. `kpack` namespace holds kpack controller which is responsible for building, packaging and pushing the app images to the docker registry (see Staging apps and App lang detection sections above).
 
-    `istio-system` holds istio control plane components. Istio is responsible for ingress gateway, gateway encryption and setup encrypted communication between between components - aka the service mesh. 
+    `istio-system` holds istio control plane components. Istio is responsible for ingress gateway, gateway encryption and setup encrypted communication between between components - aka the service mesh.
 
-    > `istio` injects side-cars into pods deployed by cf-for-k8s, which encrypts all communication between the containers running on the pod and other pods in the cluster (who are also running the side-car. The side-car injection is enabled at namespace level, so every pod within the namespace is injected with a side car. 
+    > `istio` injects side-cars into pods deployed by cf-for-k8s, which encrypts all communication between the containers running on the pod and other pods in the cluster (who are also running the side-car. The side-car injection is enabled at namespace level, so every pod within the namespace is injected with a side car.
 
     ```
     # should display the flag `istio-injection=enabled`
-    kubectl describe ns/cf-db | grep istio-injection 
+    kubectl describe ns/cf-db | grep istio-injection
     ```
 
 ### Upgrade cf-for-k8s
@@ -248,7 +266,7 @@ $ touch config-optional/update-default-app-memory-and-disk.yaml
 
 ## Beyond the Lab
 
-## Troubleshooting guide 
+## Troubleshooting guide
 
 ### Install missing CLIs
 1. To install `ytt`, `kapp`
