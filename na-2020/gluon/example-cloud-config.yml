@@ -1,0 +1,53 @@
+---
+apiVersion: gluon.starkandwayne.com/v1alpha1
+kind: BOSHConfig
+metadata:
+  name:      cloud-config
+  namespace: please-dont-apply-this-yaml
+
+spec:
+  type:     cloud
+  director: example1
+
+  config: |
+    azs:
+      - name: z1
+        cloud_properties:
+          zone: us-east1-b
+      - name: z2
+        cloud_properties:
+          zone: us-east1-c
+      - name: z3
+        cloud_properties:
+          zone: us-east1-d
+
+    vm_types:
+      - name: default
+        cloud_properties:
+          cpu:  2
+          ram:  2048
+          disk: 8192
+
+    compilation:
+       az: z1
+       network: default
+       reuse_compilation_vms: true
+       vm_type: default
+       workers: 5
+
+    networks:
+      - name: default
+        type: manual
+        subnets:
+          - range:   10.10.3.0/20
+            gateway: 10.10.3.1
+            azs: [z1,z2,z3]
+            dns: [8.8.8.8, 8.8.4.4]
+            cloud_properties:
+              network_name: default
+              tags: [vault]
+            reserved:
+              - 10.10.3.2 - 10.10.3.5
+              - 10.10.3.21
+            static:
+              - 10.10.3.200 - 10.10.3.254
