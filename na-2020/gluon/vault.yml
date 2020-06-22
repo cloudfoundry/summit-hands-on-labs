@@ -1,0 +1,20 @@
+---
+apiVersion: gluon.starkandwayne.com/v1alpha1
+kind: BOSHDeployment
+metadata:
+  name: vault-[seat]
+  labels:
+    seat: "[seat]"
+spec:
+  director: proto
+  repo:       https://github.com/jhunt/vault-deployment
+  ref:        master
+  entrypoint: vault.yml
+  ops:
+    - ops/rename.yml
+    - ops/ip.yml
+  vars:
+    - name: name
+      value: vault-[seat]
+    - name:  ip
+      value: 10.142.1.[seat]

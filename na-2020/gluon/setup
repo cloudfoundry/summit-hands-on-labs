@@ -1,0 +1,49 @@
+#!/bin/bash
+set -eu
+
+PROJECT=${PROJECT:-summit-labs}
+ZONE=${ZONE:-us-east1-c}
+CLUSTER=${CLUSTER:-gluon-lab-cluster-1}
+BOSH_VERSION=${BOSH_VERSION:-6.3.0}
+
+echo
+echo
+echo "   ######   ##       ##     ##  #######  ##    ##"
+echo "  ##    ##  ##       ##     ## ##     ## ###   ##"
+echo "  ##        ##       ##     ## ##     ## ####  ##"
+echo "  ##   #### ##       ##     ## ##     ## ## ## ##"
+echo "  ##    ##  ##       ##     ## ##     ## ##  ####"
+echo "  ##    ##  ##       ##     ## ##     ## ##   ###"
+echo "   ######   ########  #######   #######  ##    ##"
+echo
+echo
+
+echo ">> installing gluon command-line utility..."
+sudo curl -sLo /usr/bin/gluon https://raw.githubusercontent.com/starkandwayne/gluon/master/bin/gluon
+sudo chmod 755 /usr/bin/gluon
+
+echo ">> installing bosh command-line utility..."
+sudo curl -sLo /usr/bin/bosh https://github.com/cloudfoundry/bosh-cli/releases/download/v${BOSH_VERSION}/bosh-cli-${BOSH_VERSION}-linux-amd64
+sudo chmod 755 /usr/bin/bosh
+
+echo ">> connecting kubectl to gke cluster $CLUSTER in $ZONE, for $PROJECT"
+gcloud container clusters get-credentials $CLUSTER --zone $ZONE --project $PROJECT
+echo
+
+echo ">> switching to 'proto' namespace"
+kubens proto
+echo
+
+echo ">> setting up \`k\` alias because we don't have time to type out K-U-B-E-C-T-L..."
+cat >.k <<'EOF'
+#!/bin/sh
+exec kubectl "$@"
+EOF
+chmod 0755 .k
+sudo mv .k /usr/bin/k
+
+echo ">> verifying installation..."
+echo "   (you should see \`bosh env\` output below)"
+echo
+gluon @proto env
+exit 0

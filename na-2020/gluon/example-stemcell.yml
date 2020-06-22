@@ -1,0 +1,13 @@
+---
+apiVersion: gluon.starkandwayne.com/v1alpha1
+kind: BOSHStemcell
+metadata:
+  name:      a-xenial-stemcell
+  namespace: please-dont-apply-this-yaml
+spec:
+  director: proto
+  name:    bosh-google-kvm-ubuntu-xenial-go_agent
+  version: '621.75'
+  url:     https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-xenial-go_agent?v=621.75
+  sha1:    3f0218c80226dff2768187459f8337e83bd56014
+
