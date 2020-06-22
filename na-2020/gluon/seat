@@ -1,0 +1,60 @@
+#!/bin/bash
+
+if ! echo "$PATH" | grep -q "$PWD/bin"; then
+  if [[ -d $PWD/bin ]]; then
+    export PATH="$PATH:$PWD/bin"
+  fi
+fi
+
+script_name=$(basename ${0#-})
+this_script=$(basename ${BASH_SOURCE})
+if [[ ${script_name} = ${this_script} ]] ; then
+  # executed
+  if [[ -z $SEAT ]]; then
+    echo >&2 "You have not specified your seat assignment!"
+    echo >&2 "To do so, run:"
+    echo >&2
+    echo >&2 "    source ${BASH_SOURCE}"
+    echo >&2
+    exit 1
+  fi
+  echo
+  echo "You are seat #$SEAT"
+  echo
+  echo "You will be deploying vault-$SEAT,"
+  echo "which will be accessible at:"
+  echo
+  echo "  https://vault${SEAT}.hol.gluon.starkandwayne.com"
+  echo
+  echo "when it's all deployed!"
+  echo
+  exit 0
+
+else
+  # sourced
+  ok=0
+  while [[ $ok == 0 ]]; do
+    read -p "Seat Number> " SEAT
+    if [[ $SEAT < 100 || $SEAT > 198 ]]; then
+      echo >&2 "Invalid seat number '$SEAT';"
+      echo >&2 "Please specify a number between 100 and 198";
+    else
+      export SEAT
+
+      echo
+      echo "Welcome to the Gluon Hands-on Lab"
+      echo
+      echo "You are seat #$SEAT"
+      echo
+      echo "You will be deploying vault-$SEAT,"
+      echo "which will be accessible at:"
+      echo
+      echo "  https://vault${SEAT}.hol.gluon.starkandwayne.com"
+      echo
+      echo "when it's all deployed!"
+      echo
+
+      ok=1
+    fi
+  done
+fi 

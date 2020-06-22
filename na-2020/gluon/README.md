@@ -1,4 +1,4 @@
-# Gluon Hands-On Lab
+## Gluon Hands-On Lab
 
 In this hands-on lab, we will be exploring the dynamic duo of BOSH
 and Kubernetes, via the open source **Gluon** controller, and its
@@ -9,13 +9,13 @@ from the comfort of your Kubernetes cluster.
 We will be using a GKE cluster with the Gluon controllers already
 installed, and a BOSH director spun up and ready for deployments.
 
-## Target Audience
+### Target Audience
 
 This lab is geared towards BOSH operators who would like to
 investigate a Kubernetes-first approach to traditional deployments
 like VM-based Cloud Foundry.
 
-## Learning Objectives
+### Learning Objectives
 
 We will cover the following topics:
 
@@ -29,129 +29,181 @@ You will perform the following tasks:
   - Enumerate the environment (stemcells, cloud-configs, etc.)
   - Deploy a single-node Vault instance
 
-## Prerequisites
+### Prerequisites
 
-Audience must be familiar with BOSH and Kubernetes, both concepts
-and commands.
+You should be familiar with BOSH and Kubernetes concepts (Pods,
+Directors, Deployments, etc.), and be comfortable with the `bosh`
+and `kubectl` command-line tools.
 
-# Instruction
+## Seat Assignments
+
+Each participant in this lab will be assigned a unique seat
+assignment by one of the lab proctors.  Each seat is numbered from
+100 to 199, and everything you do will be tagged with your seat
+number to ensure we aren't stepping on each others toes.
+
+Once you have your number, run the following:
+
+    source seat
+
+You can verify your seat assignment at any time by running:
+
+    ./seat
 
 ## Setting up Cloud Shell
 
 This lab requires that the `bosh` and `gluon` utilities be
-installed in your lab environment.  This repository contains a
-`./setup` script that will install those for you, and also connect
-the Kubernetes CLI to the correct GKE cluster / namespace.
+installed in your lab environment.
 
-    $ ./setup
+### BOSH Tooling
 
-       ######   ##       ##     ##  #######  ##    ##
-      ##    ##  ##       ##     ## ##     ## ###   ##
-      ##        ##       ##     ## ##     ## ####  ##
-      ##   #### ##       ##     ## ##     ## ## ## ##
-      ##    ##  ##       ##     ## ##     ## ##  ####
-      ##    ##  ##       ##     ## ##     ## ##   ###
-       ######   ########  #######   #######  ##    ##
+First, we'll install `bosh`:
 
-    >> installing gluon command-line utility...
-    >> installing bosh command-line utility...
-    >> connecting kubectl to gke cluster gluon-lab-cluster-1 in us-east1-c, for summit-labs
-    Fetching cluster endpoint and auth data.
-    kubeconfig entry generated for gluon-lab-cluster-1.
+    curl -Lo bosh https://github.com/cloudfoundry/bosh-cli/releases/download/v6.3.0/bosh-cli-6.3.0-linux-amd64
+    chmod 755 bosh
+    sudo mv bosh /usr/bin
 
-    >> switching to 'proto' namespace
-    Context "gke_summit-labs_us-east1-c_gluon-lab-cluster-1" modified.
-    Active namespace is "proto".
+### Gluon Tooling
 
-    >> setting up `k` alias because we don't have time to type out K-U-B-E-C-T-L...
-    >> verifying installation...
-       (you should see `bosh env` output below)
+Next, we'll install `gluon`:
 
-    Using environment 'https://34.74.170.247:25555' as client 'admin'
+    curl -Lo gluon https://raw.githubusercontent.com/starkandwayne/gluon/master/bin/gluon
+    chmod 755 gluon
+    sudo mv gluon /usr/bin
 
-    Name               proto
-    UUID               b8c86a80-cd3f-4926-a55a-f5b56c282429
-    Version            271.1.0 (00000000)
-    Director Stemcell  ubuntu-xenial/621.76
-    CPI                google_cpi
-    Features           compiled_package_cache: disabled
-                       config_server: enabled
-                       local_dns: enabled
-                       power_dns: disabled
-                       snapshots: disabled
-    User               admin
-    Succeeded
+### Targeting the Kubernetes Cluster
 
-# Introduction to Gluon
+Now we need to connect to the GKE cluster that is running the
+Gluon controller, so we can explore:
 
-For the first part of the lab, James is going to talk for a few
-minute about what Gluon is.  As he references YAML files for the
-various Gluon custom resources (`BOSHDeployment`, `BOSHConfig`,
-and `BOSHStemcell`, feel free to follow along in your Google Cloud
-Shell editor, in the `example-*.yml` files, but _PLEASE DO NOT
-APPLY THEM TO THE KUBERNETES CLUSTER_.
+    gcloud container clusters get-credentials gluon-lab-cluster-1 \
+      --zone us-east1-c --project summit-labs
 
-  - **example-director.yml** - A `BOSHDeployment` for spinning up
-    a BOSH director via `bosh create-env` (i.e. from nothing).
+All of our work will be done in the `proto` Kubernetes namespace.
+You should not need to interact with any other namespaces, so
+we'll set up your `kubectl` accordingly:
 
-  - **example-cloud-config.yml** - A `BOSHConfig` for setting up
-    a default BOSH cloud config, so that we can deploy things.
+    kubens proto
 
-  - **example-stemcell.yml** - A `BOSHStemcell` for getting Xenial
-    base OS images onto the BOSH director so it can build Ms.
+## Gluon Concepts and the Lab Environment
+
+Gluon is implemented as three customer resource types, and a
+Kubernetes controller to manage and react to them.
+
+### BOSHDeployment
+
+A `BOSHDeployment` represents a set of one or more VMs that we
+want BOSH to deploy for us.  Gluon can handle both `bosh create-env`
+and `bosh deploy` deployments.
+
+We've already deployed a BOSH director for you, called `proto`.
+An approximation of the `BOSHDeployment` resource we created for
+that can be found in the `director.yml` file.
+
+    cloudshell edit director.yml
+
+Read through the comments in that file to get a feel for how
+manifests can be managed via Kubernetes.
+
+### BOSHStemcell
+
+A `BOSHStemcell` lets you specify which stemcells you want to
+exist on which BOSH directors, and let Gluon handle the when and
+how of doing the uploads.
+
+We've already uploaded a Xenial stemcell to our `proto` BOSH
+director, but to see how we did it, look at the `stemcell.yml`
+file:
+
+    cloudshell edit stemcell.yml
+
+(as the comments point out, please don't apply these YAML files.)
+
+### BOSHConfig
+
+A `BOSHConfig` represents either a BOSH config, either for
+injecting runtime addons (a "runtime" config) or for specifying
+IaaS-specific configuration (a "cloud" config).
+
+We've already applied a cloud config to our `proto` BOSH director.
+You can see that config by reviewing the `cloud-config.yml` file:
+
+    cloudshell edit cloud-config.yml
 
 
-# Instructions & Tasks
+## Explore The `proto` BOSH Director
 
-This section details the tasks you will be performing as part of
-the hands-on lab.  Each participant will be given a unique number.
-We will use these unique numbers to keep your stuff separate from
-everything else.
+Before we can deploy something, we need to know where the BOSH
+director is.  We can get all of that information out of
+Kubernetes.
 
-## Getting Around Gluon
+First, list the `BOSHDeployment`, `BOSHStemcell`, and `BOSHConfig`
+resources that have already been defined:
 
-1. List the BOSHDeployment, BOSHStemcell, and BOSHConfig resources
-   that have already been defined, using the `kubectl` utility.
+    kubectl get boshdeployment,boshstemcell,boshconfig
 
-   ```
-   kubectl get boshdeployment,boshstemcell,boshconfig
-   ```
+(you can safely ignore the `vault-199` deployment, that belongs to
+the lab proctors.)
 
-2. List the Secrets and ConfigMaps that exist, to find where Gluon
-   stashed our BOSH director credentials.
+Review the installation log for the `proto` director:
 
-   ```
-   kubectl get secret,configmap
-   ```
+    kubectl logs $(pod deploy-proto-bosh)
 
-3. Extract the four bits of information we need to talk to our
-   `proto` BOSH director, from the `proto-secrets` secret:
+When Gluon finishes deploying a BOSH director via `bosh
+create-env`, it extracts key pieces of information from the output
+vars-store and persists those to a secret.
 
-   ```
-   BOSH_CLIENT=$(kubectl get secret proto-secrets -o template='{{ .data.username | base64decode }}') \
-   BOSH_CLIENT_SECRET=$(kubectl get secret proto-secrets -o template='{{ .data.password | base64decode }}') \
-   BOSH_CA_CERT=$(kubectl get secret proto-secrets -o template='{{ .data.ca | base64decode }}') \
-   BOSH_ENVIRONMENT=$(kubectl get secret proto-secrets -o template='{{ .data.endpoint | base64decode }}') \
-     bosh env
-   ```
+Review the (base64-encoded) BOSH credentials:
 
-4. Find a better way to do step 3, with the `gluon` utility:
+    kubectl describe secret proto-secrets
 
-   ```
-   gluon @proto env
-   ```
+Check the BOSH environment URL, username, and password:
 
-5. List the stemcell and BOSH cloud-config for the director
+    kubectl get secret proto-secrets -o template='{{.data.endpoint | base64decode}}'; echo
+    kubectl get secret proto-secrets -o template='{{.data.username | base64decode}}'; echo
+    kubectl get secret proto-secrets -o template='{{.data.password | base64decode}}'; echo
+    echo
 
-   ```
-   gluon @proto stemcells
-   gluon @proto cloud-config
-   ```
-6. List the current BOSH deployments (there should be one Vault)
+We can use this, setting the environment variables the `bosh`
+expects to see, and validate that the director is working:
 
-   ```
-   gluon @proto deployments
-   ```
+    BOSH_CLIENT=$(kubectl get secret proto-secrets -o template='{{ .data.username | base64decode }}') \
+    BOSH_CLIENT_SECRET=$(kubectl get secret proto-secrets -o template='{{ .data.password | base64decode }}') \
+    BOSH_CA_CERT=$(kubectl get secret proto-secrets -o template='{{ .data.ca | base64decode }}') \
+    BOSH_ENVIRONMENT=$(kubectl get secret proto-secrets -o template='{{ .data.endpoint | base64decode }}') \
+      bosh env
+
+## Using the `gluon` CLI
+
+In the last section, we used a bunch of (complicated!) `kubectl`
+invocations to set environment variables so that we could run BOSH
+commands.
+
+Gluon ships with a small command-line utility that makes this much
+easier:
+
+    gluon @proto env
+
+Wherever you would type `bosh`, type `gluon @proto` instead, and
+Gluon will do what you intend -- you can run any BOSH command!
+
+List the stemcells that have been uploaded:
+
+    gluon @proto stemcells
+
+Look at the defined cloud- and runtime-configs:
+
+    gluon @proto configs
+
+Review the cloud-config that we're about to use to deploy Vault:
+
+    gluon @proto cloud-config | less
+
+Find out what (if anything) has been deployed to the `proto` BOSH
+director:
+
+    gluon @proto deployments
+
 
 ## Deploying Vault
 
@@ -167,7 +219,7 @@ seen it in the `bosh deployments` output already.  You can access
 this vault by pointing your web browser at
 <https://vault199.hol.gluon.starkandwayne.com>.
 
-![Vault 199's Web User Interface (screenshot)](.assets/vault199.png)
+![Vault 199's Web User Interface (screenshot)](https://github.com/cloudfoundry/summit-hands-on-labs/raw/master/na-2020/gluon/.assets/vault199.png)
 
 That's what yours is going to look like.
 
@@ -180,15 +232,24 @@ need to replace all occurrences of the string `[seat]` with your
 seat number (as assigned by the lab proctors), before you can
 deploy it.
 
+To edit the file, open it up in the Cloud Shell Editor:
+
+    cloudshell edit vault.yml
+
+Then, replace every instance of `[seat]` with your seat
+assignment.  If you've forgotten your seat assignment, just run
+`./seat` from the shell.
 
 ### Applying the YAML
 
-Once you've modified the `vault.yml` file, you can apply it, in
-the `proto` namespace:
+Once you've modified the `vault.yml` file, you can validate it and
+deploy it:
 
-    kubens proto
-    kubectl apply -f vault.yml
+    validate && kubectl apply -f vault.yml
 
+(If `validate` kicks out warnings about unreplaced `[seat]`
+references, be sure to fix those and try the above command until it
+succeeds.)
 
 ### Watching the Jobs 'n' Pods
 
@@ -197,13 +258,17 @@ a Job to deploy your manifest to the BOSH director.  Kubernetes'
 built-in controllers should (in turn) create a Pod to actually
 execute on the Job's configuration.
 
-We can see both:
+Review the job:
 
-    kubectl get jobs | grep vault-[seat]
-    kubectl get pods | grep vault-[seat]
+    kubectl get job deploy-vault-$SEAT-via-proto
 
-If you want to follow along with the deployment, find the Pod
-using the above command(s) and run `kubectl logs -f` against it.
+Review the pod:
+
+    kubectl get pod $(pod deploy-vault-$SEAT)
+
+Tail the log of the deployment job pod:
+
+    kubectl logs -f $(pod deploy-vault-$SEAT)
 
 ### Validating via Gluon 'n' BOSH
 
@@ -218,31 +283,36 @@ director:
 
 Then, check the deployments list for your Vault:
 
-    gluon @proto deployments | grep vault-[seat]
+    gluon @proto deployments | grep vault-$SEAT
 
 Check the BOSH tasks for your deployment (if it is still ongoing):
 
-    gluon @proto tasks | grep vault-[seat]
+    gluon @proto -d vault-$SEAT tasks --recent=1
 
 Finally, check the task log (by task ID, above):
 
-    gluon @proto task [id]
+    gluon @proto task TASK-ID
 
 
 ### Visiting your Vault on the Web
 
 Once your Vault is deployed, you should be able to access it via
-it's public web URL:
+it's public web URL, which should look something like this:
 
     https://vault[seat].hol.gluon.starkandwayne.com
 
+If you've forgotten your seat assignment that's okay; run this:
 
-### Congratulations!
+    ./seat
+
+To get it back (and get a clickable hyperlink!))
+
+## Congratulations!
 
 You did it!
 
 
-### Further Reading
+### Beyond the Lab
 
 Did you enjoy that?  Want to get more involved in Gluon?
 Here's some resources!

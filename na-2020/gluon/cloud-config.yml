@@ -1,3 +1,10 @@
+#####
+#
+# This BOSHConfig contains our generic cloud configuration, to
+# let BOSH know where our AZs map to at an IaaS layer, what
+# GCP networks and subnetworks exist, how to number VMs, etc.
+#
+#####
 ---
 apiVersion: gluon.starkandwayne.com/v1alpha1
 kind: BOSHConfig
@@ -6,20 +13,21 @@ metadata:
   namespace: please-dont-apply-this-yaml
 
 spec:
-  type:     cloud
-  director: example1
+  type:     cloud      # this is a cloud config
+  director: example1   # who do we apply the config to?
 
   config: |
+    # This *looks* like YAML, but its really a multi-line
+    # string, which will be placed into a file to be uploaded
+    # as-is to our BOSH director...
+    #
     azs:
       - name: z1
-        cloud_properties:
-          zone: us-east1-b
+        cloud_properties: { zone: us-east1-b }
       - name: z2
-        cloud_properties:
-          zone: us-east1-c
+        cloud_properties: { zone: us-east1-c }
       - name: z3
-        cloud_properties:
-          zone: us-east1-d
+        cloud_properties: { zone: us-east1-d }
 
     vm_types:
       - name: default

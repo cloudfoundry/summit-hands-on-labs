@@ -1,0 +1,86 @@
+#####
+#
+# This is the BOSHDeployment for deploying our proto BOSH director.
+# It sources vars configuration from a ConfigMap and a Secret (which
+# are defined below).
+#
+# We are using the canonical upstream `bosh-deployment` repository
+# to do the BOSH-y bits correctly.  We are using whatever happens
+# to be on the master branch, but you can specify tags or commit
+# IDs (git SHA1's) if you so desire.
+#
+#####
+---
+apiVersion: gluon.starkandwayne.com/v1alpha1
+kind: BOSHDeployment
+metadata:
+  name:      example1
+  namespace: please-dont-apply-this-yaml
+
+spec:
+  repo:       https://github.com/cloudfoundry/bosh-deployment
+  ref:        master
+  entrypoint: bosh.yml
+
+  ops:
+    - gcp/cpi.yml           # we use GCP as our IaaS
+    - jumpbox-user.yml      # we deploy a Jumpbox account for
+                            # administration and troubleshooting
+
+  vars:
+    - configMap:
+        name: bosh-vars
+
+    - secret:
+        name: gcp-creds
+
+    - name:  internal_ip
+      value: 10.10.3.21
+
+
+#####
+#
+# This ConfigMap contains the public-readable vars configuration
+# for our proto BOSH director.  You can have many such ConfigMaps,
+# and instruct Gluon to to stitch them back together in a variety
+# of hierarchical ways.
+#
+#####
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name:      bosh-vars
+  namespace: please-dont-apply-this-yaml
+data:
+  internal_cidr: 10.10.3.0/24
+  internal_gw:   10.10.3.1
+  project_id:    your-gcp-project-id
+  zone:          a-gcp-zone
+  network:       default
+  subnetwork:    default
+  tags:         '[bosh, bosh-director]'
+
+
+#####
+#
+# This Secret contains the sensitive vars configuration
+# for our proto BOSH director.  You can have many such
+# Secrets, and instruct Gluon to to stitch them back
+# together in a variety of hierarchical ways.
+#
+#####
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gcp-creds
+stringData:
+  gcp_credentials_json: |
+    *** This is where your GCP Service Key JSON
+        would go, but since this YAML is on GitHub,
+        we can't put it here.  For security reasons. ***
+
+

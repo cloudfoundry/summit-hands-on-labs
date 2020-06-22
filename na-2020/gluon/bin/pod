@@ -1,0 +1,5 @@
+#!/bin/bash
+set -eu
+if [[ -n ${1:-} ]]; then
+  kubectl get pod | awk "/^$1-/ { print \$1 }"
+fi

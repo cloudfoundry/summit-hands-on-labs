@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if grep -q '\[seat\]' vault.yml; then
+  echo >&2 "Your vault.yml still has contains unreplaced '[seat]' references:"
+  echo >&2
+  attn >&2 . <vault.yml yellow='\[seat\]'
+  echo >&2
+  echo >&2 "Before you can apply it successfully to Kubernetes, you will"
+  echo >&2 "need to fix those."
+  echo >&2
+  exit 1
+fi
+exit 0
