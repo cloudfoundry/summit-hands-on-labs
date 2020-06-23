@@ -24,48 +24,12 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
 
 ### Setup Environment
 
-1. We will use your user-id to retrieve your alloted Kubernetes cluster. It should be in the form `N-summitlabs@cloudfoundry.org` where `N` is an integer. We will use the value before the email domain (e.g. `1-summitlabs`, `2-summitlabs` and so on),
+1. Use the setup-env.sh script to install the required tools and configure your
+   environment to connect to your cluster:
     ```console
-    export SEAT="$(echo ${USER} | tr -d "[a-z_]")"
-    ```
-1. Export your CLUSTER_NAME and CF_DOMAIN variables based on your seat number
-    ```console
-    export CLUSTER_NAME="lab-${SEAT}"
-    export CF_DOMAIN="${CLUSTER_NAME}.cf-for-k8s-labs.com"
-    ```
-1. Lets setup `kubectl` so you can connect to your alloted Kubernetes Cluster
-    ```console
-    gcloud container clusters get-credentials ${CLUSTER_NAME} --zone us-central1-a --project summit-labs
-    ```
-1. Verify that you are connected and install all the necessary CLI's
-    ```console
-    kubectl version
-    ```
-    If any of the CLIs are not installed, please see the Troubleshooting guide - Install missing CLIs section
-1. Install [K14s](https://k14s.io)
-    ```console
-    mkdir -p ${HOME}/bin
-    export PATH=${HOME}/bin:${PATH}
-    wget -O- https://k14s.io/install.sh | K14SIO_INSTALL_BIN_DIR=${HOME}/bin bash
-    ytt version
-    kapp version
-    ```
-1. Install the CF CLI
-    ```console
-    wget -O cf-cli.tgz "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=6.51.0&source=github-rel" && tar -C bin -xf cf-cli.tgz
-    cf --version
-    ```
-1. Install the BOSH CLI
-    ```console
-    wget -O bin/bosh https://github.com/cloudfoundry/bosh-cli/releases/download/v6.3.0/bosh-cli-6.3.0-linux-amd64 && chmod +x bin/bosh
-    bosh -v
+    eval "$(./setup-env.sh)"
     ```
     > Note we are using bosh CLI to generate self-signed certificates and other credentials. It is a matter of convenience and in the future it will be replaced by tooling such as CredHub.
-1. Install yq (to allow you to retrieve specific entries from the YAML values file used to configure cf-for-k8s
-    ```console
-    pip3 install yq --user
-    export PATH=${HOME}/.local/bin:${PATH}
-    ```
 
 ### Installing cf-for-k8s
 
