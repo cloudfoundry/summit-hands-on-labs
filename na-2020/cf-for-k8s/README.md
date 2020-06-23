@@ -50,7 +50,7 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     > This script is the only script that uses the `bosh-cli` to generate the self-signed cerficiates and random passwords.
 1. To be able to push source code apps, we need to setup a docker registry. We pre-created a `labs-values.yml` file for you to use in the lab
     ```console
-    cat ../../labs-values.yml >> cf-values.yml
+    cat ../labs-values.yml >> cf-values.yml
     ```
     > The command appends docker registry configuration to your `cf-values.yml`. Don't forget to check it out later.
 1. Render the final k8s configuration yml using `ytt` command
@@ -79,7 +79,7 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
 1. Deploy a source code based app
     ```console
     # pushes 2 instances of the node app
-    cf push test-app -i 2 -p ./tests/smoke/assets/test-node-app/
+    cf push node-app -i 2 -p ./tests/smoke/assets/test-node-app/
     ```
     Watch the logs to see your source code tranform to an actual running app. High level steps worth noting are,
 
