@@ -1,6 +1,8 @@
 ## Introduction
 
-In this hands on lab, attendees will learn how to deploy Cloud Foundry on a Kubernetes (cf-for-k8s) project to a Kubernetes cluster, push cf push apps, deep dive into cf push workflow, inspect various cluster resources created by cf-for-k8s. We will also peek into upcoming new features and how they fit into the operator and app developer experience.
+In this hands on lab, attendees will learn how to deploy Cloud Foundry on a Kubernetes (cf-for-k8s) project to a Kubernetes cluster, push source code apps, deep dive into cf push workflow, inspect various cluster resources created by cf-for-k8s. 
+
+We will also peek into upcoming new features and how they fit into the operator and app developer experience.
 
 ### Target Audience
 
@@ -22,23 +24,44 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
 
 ## Setup Environment
 
-Use the setup-env.sh script to install the required tools and configure your environment to connect to your cluster:
+Let's setup your environment by running the followign command in your console.
 
 ```console
 eval "$(./setup-env.sh)"
 ```
 
-The script installs cf-cli, k14s tools (`ytt`, `kapp`) plus few other helpful tools for the lab session. The script also setups up your `kubeconfig` by connecting to an existing k8s cluster. 
+The script will install cf-cli, k14s tools (`ytt`, `kapp`) plus few other helpful tools for the lab session. 
+
+The script also setups up your `kubeconfig` by connecting to an existing k8s cluster. 
 
 We are using bosh CLI to generate self-signed certificates and other credentials. It is a matter of convenience and in the future it will be replaced by tooling such as CredHub.
+
+### Verify CLIs exists
+
+```console
+cf version
+ytt version
+kapp version
+```
+
+### Verify connection with K8s cluster
+```console
+kubectl get namespaces
+```
   
 ## Clone project
 
+Clone the cf-for-k8s project from the source repository.
+
 ```console
-git clone git@github.com:cloudfoundry/cf-for-k8s.git
+git clone https://github.com/cloudfoundry/cf-for-k8s.git
 cd cf-for-k8s
+
 ```
+
 ## Create a values file
+
+Lets create a values file using the convenient script `generate-values.sh`. Copy and paste the following command in your console.
 
 ```console
 ./hack/generate-values.sh -d $CF_DOMAIN > cf-values.yml
@@ -47,16 +70,17 @@ istio_static_ip: "$(host api.${CF_DOMAIN} | awk '{print $NF}')"
 EOF
 
 ```
-- Generates self-signed certificates and credentials using bosh cli.
-- Sets the Kubernetes loadbalancer IP to reserved IP that comes with the lab session
+- `generate-values.sh` generates the necessary self-signed certificates and credentials using bosh cli.
+- Sets the Kubernetes loadbalancer IP to reserved IP that comes with the lab session. It reduces overall time to install the cluster.
 
 ### Setup docker registry
-Before we can push source code apps, we need to setup a docker registry. We pre-created a `labs-values.yml` file for you to use in the lab
+Before we can push source code apps, we need to setup a docker registry. We pre-created a `labs-values.yml` file for you to use in the lab.
 
  ```console
- cat ../../labs-values.yml >> cf-values.yml
+ cat ../labs-values.yml >> cf-values.yml
  ```
-- Appends the docker registry configuration to your `cf-values.yml`. Don't forget to check it out later.
+
+The above command appends the docker registry configuration to your `cf-values.yml`. Don't forget to check it out later.
 
 ## Render with ytt
 Render the final k8s configuration yml using `ytt` command
@@ -66,6 +90,9 @@ ytt -f config -f cf-values.yml > cf-for-k8s-rendered.yml
 ```
 
 ## Install with kapp
+
+Let's now install cf-for-k8s using `kapp` command
+
  ```console
  kapp deploy -a cf -f cf-for-k8s-rendered.yml -y
  ```
@@ -73,7 +100,7 @@ ytt -f config -f cf-values.yml > cf-for-k8s-rendered.yml
 Once you press enter, the command should take about ~8-10 minutes to finish. During this time, `kapp` will keep posting updates on pending resource creations and will exit only when all resources are created and running.
 
 ## Connect to CF CLI
-Verify the install is ready to connect CF CLI
+Verify that you can connect to the foundation using CF CLI
 
 ```console
 cf api --skip-ssl-validation https://api.$CF_DOMAIN
@@ -87,6 +114,8 @@ Login using the admin credentials in `cf-values.yml`
  ```
 
 ## Create org/space for your app
+Next, create orgs and spaces
+
 ```console
 cf create-org labs-org
 cf create-space -o labs-org labs-space
@@ -94,6 +123,9 @@ cf target -o labs-org -s labs-space
 ```
 
 ## Deploy the source code app
+
+Finally, lets push our app. Pay particular attention to the logs to see the various steps it goes to detect, build and run the app.
+
 ```console
 cf push test-app -i 2 -p ./tests/smoke/assets/test-node-app/
 ```
@@ -111,14 +143,22 @@ Notice how your source code is tranformed to an actual running app. High level s
 1. report the app status and any metrics
 
 ## Curl the app
+The final moment we have been waiting for. 
 ```console
 curl -k https://node-app.apps.$CF_DOMAIN
 ```
 ### Checkout other CF commands
 
+### Lets see app status 
 ```console
 cf app node-app
+```
+### what about logs
+```console
 cf logs --recent node-app
+```
+### Also, check out routes
+```console
 cf routes
 ```
 
@@ -132,9 +172,8 @@ Notice that there are 2 pods in the `cf-workloads` namespace (more on namespaces
 
 ```console
 kubectl get svc -n cf-workloads
-NAME                TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
-<service-guid>      ClusterIP   10.0.9.52    <none>        8080/TCP   39m
 ```
+
 For every app route, cf-for-k8s creates route CRD and a Kubernetes native `Service` that serves the app instances. Lets look underneath the service.
 ```console
 kubectl describe svc/<service guid from the above> -n cf-workloads
@@ -150,11 +189,8 @@ You should now see 2 services
 
 ```console
 kubectl get svc -n cf-workloads
-NAME                TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
-<service-guid-1>      ClusterIP   10.0.9.52    <none>        8080/TCP   39m
-<service-guid-2>      ClusterIP   10.0.9.52    <none>        8080/TCP   2secs
 ```
-Pick the new `service` that was created recently and inspect it's `Annotations.route-fqdn` property.
+Pick the `service` that was created recently and inspect it's `Annotations.route-fqdn` property.
 ```console
 kubectl describe svc/<name of the service guid from the above> -n cf-workloads |  grep Annotations
 ```
