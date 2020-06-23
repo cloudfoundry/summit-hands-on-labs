@@ -3,8 +3,6 @@ apiVersion: gluon.starkandwayne.com/v1alpha1
 kind: BOSHDeployment
 metadata:
   name: vault-[seat]
-  labels:
-    seat: "[seat]"
 spec:
   director: proto
   repo:       https://github.com/jhunt/vault-deployment
