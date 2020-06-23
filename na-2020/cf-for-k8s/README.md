@@ -104,8 +104,7 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     ```
 1. Login using the admin credentials in `cf-values.yml`
     ```console
-    yq -r .cf_admin_password cf-values.yml
-    cf auth admin <admin password>
+    cf auth admin $(yq -r .cf_admin_password cf-values.yml)
     ```
 1. Create an org/space for your app
     ```console
