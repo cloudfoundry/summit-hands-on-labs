@@ -14,7 +14,7 @@
 apiVersion: gluon.starkandwayne.com/v1alpha1
 kind: BOSHDeployment
 metadata:
-  name:      example1
+  name:      proto
   namespace: please-dont-apply-this-yaml
 
 spec:

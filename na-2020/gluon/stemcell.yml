@@ -1,19 +1,18 @@
 #####
 #
 # This BOSHStemcell is how we get the Xenial base OS image
-# onto our BOSH director.  In this example, that director
-# is known to Gluon as 'example1'
+# onto our BOSH director>
 #
 #####
 ---
 apiVersion: gluon.starkandwayne.com/v1alpha1
 kind: BOSHStemcell
 metadata:
-  name:      a-xenial-stemcell
+  name:      xenial-621-75
   namespace: please-dont-apply-this-yaml
 
 spec:
-  director: example1  # who should we upload to?
+  director: proto     # who should we upload to?
 
   name:     bosh-google-kvm-ubuntu-xenial-go_agent
   version:  '621.75'

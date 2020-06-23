@@ -14,7 +14,7 @@ metadata:
 
 spec:
   type:     cloud      # this is a cloud config
-  director: example1   # who do we apply the config to?
+  director: proto      # who do we apply the config to?
 
   config: |
     # This *looks* like YAML, but its really a multi-line
