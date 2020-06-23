@@ -6,15 +6,15 @@ function install_tools() {
   echo "Installing K14s..."
   mkdir -p "${HOME}/bin"
   export PATH="${HOME}/bin:${PATH}"
-  wget -O- https://k14s.io/install.sh | K14SIO_INSTALL_BIN_DIR=${HOME}/bin bash
+  wget -O- https://k14s.io/install.sh | K14SIO_INSTALL_BIN_DIR="${HOME}/bin" bash
 
   echo
   echo "Installing CF CLI..."
-  wget -O cf-cli.tgz "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=6.51.0&source=github-rel" && tar -C bin -xf cf-cli.tgz
+  wget -O cf-cli.tgz "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=6.51.0&source=github-rel" && tar -C "${HOME}/bin" -xf cf-cli.tgz
 
   echo
   echo "Installing BOSH CLI..."
-  wget -O bin/bosh https://github.com/cloudfoundry/bosh-cli/releases/download/v6.3.0/bosh-cli-6.3.0-linux-amd64 && chmod +x bin/bosh
+  wget -O "${HOME}/bin/bosh" https://github.com/cloudfoundry/bosh-cli/releases/download/v6.3.0/bosh-cli-6.3.0-linux-amd64 && chmod +x "${HOME}/bin/bosh"
 
   echo
   echo "Installing yq..."
