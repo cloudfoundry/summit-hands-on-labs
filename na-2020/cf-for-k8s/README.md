@@ -1,242 +1,315 @@
-## Introduction
+## Gluon Hands-On Lab
 
-In this hands on lab, attendees will learn how to deploy Cloud Foundry on a Kubernetes (cf-for-k8s) project to a Kubernetes cluster, push cf push apps, deep dive into cf push workflow, inspect various cluster resources created by cf-for-k8s. We will also peek into upcoming new features and how they fit into the operator and app developer experience.
+In this hands-on lab, we will be exploring the dynamic duo of BOSH
+and Kubernetes, via the open source **Gluon** controller, and its
+custom resource definitions.  With Gluon, you will be able to
+manage BOSH things like cloud-configs, stemcells, and deployments,
+from the comfort of your Kubernetes cluster.
+
+We will be using a GKE cluster with the Gluon controllers already
+installed, and a BOSH director spun up and ready for deployments.
 
 ### Target Audience
 
-This lab is targeted towards the audience who would like to use Cloud Foundry for packaging and deploying cloud native applications with Kubernetes as the underlying infrastructure.
+This lab is geared towards BOSH operators who would like to
+investigate a Kubernetes-first approach to traditional deployments
+like VM-based Cloud Foundry.
 
 ### Learning Objectives
 
-You will be performing the following tasks in this lab :-
+We will cover the following topics:
 
-- Install cf-for-k8s
-- Inspect app workloads, routing and logging
-- Upgrade cf-for-k8s
-- Delete cf-for-k8s
-- Using overlays with `ytt`
+  - The Gluon object pipeline
+  - Gluon dependencies
+  - The use of Kubernetes Jobs
+
+You will perform the following tasks:
+
+  - Connect to the BOSH director using the `gluon` CLI
+  - Enumerate the environment (stemcells, cloud-configs, etc.)
+  - Deploy a single-node Vault instance
 
 ### Prerequisites
 
-Students must have basic knowledge of Cloud Foundry and Kubernetes.
+You should be familiar with BOSH and Kubernetes concepts (Pods,
+Directors, Deployments, etc.), and be comfortable with the `bosh`
+and `kubectl` command-line tools.
 
-## Setup Environment
+## Seat Assignments
 
-1. Use the setup-env.sh script to install the required tools and configure your
-   environment to connect to your cluster:
-    ```console
-    eval "$(./setup-env.sh)"
-    ```
-    > Note we are using bosh CLI to generate self-signed certificates and other credentials. It is a matter of convenience and in the future it will be replaced by tooling such as CredHub.
+Each participant in this lab will be assigned a unique seat
+assignment by one of the lab proctors.  Each seat is numbered from
+100 to 199, and everything you do will be tagged with your seat
+number to ensure we aren't stepping on each others toes.
 
-## Installing cf-for-k8s
+Once you have your number, run the following:
 
-1. Clone cf-for-k8s project into the current directory
-    ```console
-    git clone git@github.com:cloudfoundry/cf-for-k8s.git
-    cd cf-for-k8s
-    ```
-1. Create a data values file with required values to install cf-for-k8s project
+    source seat
 
-    We will use the `generate-values.sh` script to generate these values to make the labs session go faster.
-    ```console
-    ./hack/generate-values.sh -d $CF_DOMAIN > cf-values.yml
-    cat<<EOF >> cf-values.yml
-    istio_static_ip: "$(host api.${CF_DOMAIN} | awk '{print $NF}')"
-    EOF
-    ```
-    > This script is the only script that uses the `bosh-cli` to generate the self-signed cerficiates and random passwords.
-1. To be able to push source code apps, we need to setup a docker registry. We pre-created a `labs-values.yml` file for you to use in the lab
-    ```console
-    cat ../labs-values.yml >> cf-values.yml
-    ```
-    > The command appends docker registry configuration to your `cf-values.yml`. Don't forget to check it out later.
-1. Render the final k8s configuration yml using `ytt` command
-    ```console
-    ytt -f config -f cf-values.yml > cf-for-k8s-rendered.yml
-    ```
-1. Install with `kapp` with above K8s configuration file
-    ```console
-    kapp deploy -a cf -f cf-for-k8s-rendered.yml -y
-    ```
-    Once you press enter, the command should take ~8-10 minutes to finish. During this time, `kapp` will keep posting updates on pending resource creations and will exit only when all resources are created and running.
-1. Verify the install is ready to connect CF CLI
-    ```console
-    cf api --skip-ssl-validation https://api.$CF_DOMAIN
-    ```
-1. Login using the admin credentials in `cf-values.yml`
-    ```console
-    cf auth admin $(yq -r .cf_admin_password cf-values.yml)
-    ```
-1. Create an org/space for your app
-    ```console
-    cf create-org labs-org
-    cf create-space -o labs-org labs-space
-    cf target -o labs-org -s labs-space
-    ```
-1. Deploy a source code based app
-    ```console
-    # pushes 2 instances of the node app
-    cf push node-app -i 2 -p ./tests/smoke/assets/test-node-app/
-    ```
-    Watch the logs to see your source code tranform to an actual running app. High level steps worth noting are,
+You can verify your seat assignment at any time by running:
 
-    1. push app source code from directory to the blobstore
-    1. run through a detection to identify the app language
-    1. pull the necessary base images for the given language (in this case `Node Engine Buildpack`)
-    1. build the app image with the above base image
-    1. create a HTTP route to the app
-    1. schedule the app with the given # of instances
-    1. report the app status and any metrics
-1. Verify that the app is available
-    ```console
-    curl -k https://node-app.apps.$CF_DOMAIN
-    ```
-1. Few additional CF commands
-    ```console
-    cf app node-app
-    cf logs --recent node-app
-    cf routes
-    ```
+    ./seat
 
-## Inspecting the cluster
+## Setting up Cloud Shell
 
-1. App pods
-    ```console
-    kubectl get pods -n cf-workloads
-    ```
-    Notice the the 2 pods created in the `cf-workloads` namespace (more on namespaces in the next coming sections). The # of pods correspond to the # of instances of the app you specified above (`-i 2`).
-1. App route services
-    ```console
-    kubectl get svc -n cf-workloads
-    # should print
-    NAME                TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
-    <service-guid>      ClusterIP   10.0.9.52    <none>        8080/TCP   39m
-    ```
-    For every app route, cf-for-k8s creates route CRD and a Kubernetes native `Service` that serves the app instances. Lets look underneath the service.
-    ```
-    kubectl describe svc/<service guid from the above> -n cf-workloads
-    ```
-    Notice the `Annotations` property and `route-fqdn` value. It is the same URL that you used to access the app above.
-    1. Lets create another route to see what happens
-        ```console
-        cf map-route node-app --hostname node-another-app apps.$CF_DOMAIN
-        ```
-        You should now see 2 services
-        ```console
-        kubectl get svc -n cf-workloads
-        # should print
-        NAME                TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
-        <service-guid-1>      ClusterIP   10.0.9.52    <none>        8080/TCP   39m
-        <service-guid-2>      ClusterIP   10.0.9.52    <none>        8080/TCP   2secs
-        ```
-        Pick the new `service` that was created recently and inspect it's `Annotations.route-fqdn` property.
-        ```
-        kubectl describe svc/<name of the service guid from the above> -n cf-workloads |  grep Annotations
-        ```
-    1. Verify route CRDs
-        ```
-        kubectl get routes -n cf-workloads
-        ```
-        Notice two routes under the `cf-workloads` namespace.
+This lab requires that the `bosh` and `gluon` utilities be
+installed in your lab environment.
 
-    To summarize, for every app route there exists a `route` CRD that maps to a Kubernetes `service`.
+### BOSH Tooling
 
-1. Ingress gateway
-    To access the app from external network, you still need a mechanism to connect the incoming traffic to the right app `service`. This is where the ingress gateway plays the role of traffic director.
-    ```console
-    kubectl get gateway -n istio-system
-    ```
-    The gateway responsible for directing the traffice to the apps or CF API. The domain you setup above is fed into the gateway as the allowed hostnames.
-    ```console
-    kubectl describe gateway/ingressgateway -n istio-system
-    ```
-1. Staging apps
-    As you noticed, cf-for-k8s builds an OCI compliant image from your source code. Let's inspect the pods who are responsible to build those images,
-    ```console
-    kubectl get pods -n cf-workloads-staging
-    ```
-    There should be a single build pod with the status `Completed` in the `cf-workloads-staging` namespace. This pod was used to build the app image from source and then push the image to the docker registry (We configured the registry in `labs-values.yml` file when we installed cf-for-k8s).
-    ```console
-    kubectl describe pod/<pod-guid> -n cf-workloads-staging | grep Events -A 20
-    ```
-    Notice the events that it emits during build stage. You probably saw them during `cf push` streaming logs above. In the next section, we will take a closer look at the language buildpacks.
-1. App language detection
-    During `cf-push`, the source code goes through detection phase, where it finds the right language buildpack base image to build the app from source code.
-    ```console
-    kubectl describe stores/cf-buildpack-store | grep "Buildpackage" -A 10
-    ```
-    The above command shows a list of language buildpacks that are supported. We are integrating the new rebranded paketo buildpacks which are based on the cloud native buildpack spec.
+First, we'll install `bosh`:
 
-    ```console
-    kubectl describe stores/cf-buildpack-store | grep Order: -A 20 | grep node -B 5 -A 5
-    ```
-    The above command highlights the detection ordering within the node language buildpackage. You may have noticed it during `cf push` logs.
-1. Control plane
-    The control plane components are stored in `cf-system` namespace
-    ```console
-    kubectl get pods -n cf-system
-    ```
-    Notable pods are the CAPI component that backs the cf cli, uaa manages authentication, logs and metrics for observability, eirini schedules & manages the app workloads and finally route-controller manages the app routes. Also, Notice `fluentd` pods in `cf-system`. It's actually a deamon-set that's running on every node to collect and filter logs for CF.
-1. Namespaces created by cf-for-k8s
-    ```console
-    kubectl get namespaces
-    ```
-    It will return 7 namespaces that were created by cf-for-k8s (the rest are namespaces created by K8s). Inspect each namespace by running
-    ```console
-    kubectl get pods -n <namespace>
-    ```
+    curl -Lo bosh https://github.com/cloudfoundry/bosh-cli/releases/download/v6.3.0/bosh-cli-6.3.0-linux-amd64
+    chmod 755 bosh
+    sudo mv bosh /usr/bin
 
-    `cf-db` and `cf-blobstore` namespaces run postgres database and minio blobstore stateful-sets respectively. `kpack` namespace holds kpack controller which is responsible for building, packaging and pushing the app images to the docker registry (see Staging apps and App lang detection sections above).
+### Gluon Tooling
 
-    `istio-system` holds istio control plane components. Istio is responsible for ingress gateway, gateway encryption and setup encrypted communication between between components - aka the service mesh.
+Next, we'll install `gluon`:
 
-    > `istio` injects side-cars into pods deployed by cf-for-k8s, which encrypts all communication between the containers running on the pod and other pods in the cluster (who are also running the side-car. The side-car injection is enabled at namespace level, so every pod within the namespace is injected with a side car.
+    curl -Lo gluon https://raw.githubusercontent.com/starkandwayne/gluon/master/bin/gluon
+    chmod 755 gluon
+    sudo mv gluon /usr/bin
 
-    ```
-    # should display the flag `istio-injection=enabled`
-    kubectl describe ns/cf-db | grep istio-injection
-    ```
+### Targeting the Kubernetes Cluster
 
-## Upgrade cf-for-k8s
-In this excercise, we will upgrade the existing foundation [TODO]
+Now we need to connect to the GKE cluster that is running the
+Gluon controller, so we can explore:
 
-[TODO]
+    gcloud container clusters get-credentials gluon-lab-cluster-1 \
+      --zone us-east1-c --project summit-labs
 
-## Using overlays with `ytt`
-In this excercise, update default app memory and disk in capi config using overlay.
+All of our work will be done in the `proto` Kubernetes namespace.
+You should not need to interact with any other namespaces, so
+we'll set up your `kubectl` accordingly:
 
-1. Create the a yaml called `update-default-app-memory-and-disk.yaml` in `/config-optional` folder
+    kubens proto
 
-```console
-$ touch config-optional/update-default-app-memory-and-disk.yaml
-```
+## Gluon Concepts and the Lab Environment
 
-1. Open the `update-default-app-memory-and-disk.yaml` and copy the following contents
+Gluon is implemented as three customer resource types, and a
+Kubernetes controller to manage and react to them.
 
-```console
+### BOSHDeployment
+
+A `BOSHDeployment` represents a set of one or more VMs that we
+want BOSH to deploy for us.  Gluon can handle both `bosh create-env`
+and `bosh deploy` deployments.
+
+We've already deployed a BOSH director for you, called `proto`.
+An approximation of the `BOSHDeployment` resource we created for
+that can be found in the `director.yml` file.
+
+    cloudshell edit director.yml
+
+Read through the comments in that file to get a feel for how
+manifests can be managed via Kubernetes.
+
+### BOSHStemcell
+
+A `BOSHStemcell` lets you specify which stemcells you want to
+exist on which BOSH directors, and let Gluon handle the when and
+how of doing the uploads.
+
+We've already uploaded a Xenial stemcell to our `proto` BOSH
+director, but to see how we did it, look at the `stemcell.yml`
+file:
+
+    cloudshell edit stemcell.yml
+
+(as the comments point out, please don't apply these YAML files.)
+
+### BOSHConfig
+
+A `BOSHConfig` represents either a BOSH config, either for
+injecting runtime addons (a "runtime" config) or for specifying
+IaaS-specific configuration (a "cloud" config).
+
+We've already applied a cloud config to our `proto` BOSH director.
+You can see that config by reviewing the `cloud-config.yml` file:
+
+    cloudshell edit cloud-config.yml
 
 
+## Explore The `proto` BOSH Director
 
-```
+Before we can deploy something, we need to know where the BOSH
+director is.  We can get all of that information out of
+Kubernetes.
 
-1. `ytt` generate with the above config, `kapp` deploy to the existing foundation
-1. verify by re-pushing the app shows the memory/app
+First, list the `BOSHDeployment`, `BOSHStemcell`, and `BOSHConfig`
+resources that have already been defined:
 
-## Learning Objectives Review
+    kubectl get boshdeployment,boshstemcell,boshconfig
 
-## Beyond the Lab
+(you can safely ignore the `vault-199` deployment, that belongs to
+the lab proctors.)
 
-## Troubleshooting guide
+Review the installation log for the `proto` director:
 
-### Install missing CLIs
-1. To install `ytt`, `kapp`
-    ```console
-    curl -L https://k14s.io/install.sh | bash
-    ```
-1. To install `cf` cli
-1. To install `bosh` cli
-    ```console
-    wget https://github.com/cloudfoundry/bosh-cli/releases/download/v6.3.0/bosh-cli-6.3.0-linux-amd64
-    ??
-    ```
+    kubectl logs $(pod deploy-proto-bosh)
+
+When Gluon finishes deploying a BOSH director via `bosh
+create-env`, it extracts key pieces of information from the output
+vars-store and persists those to a secret.
+
+Review the (base64-encoded) BOSH credentials:
+
+    kubectl describe secret proto-secrets
+
+Check the BOSH environment URL, username, and password:
+
+    kubectl get secret proto-secrets -o template='{{.data.endpoint | base64decode}}'; echo
+    kubectl get secret proto-secrets -o template='{{.data.username | base64decode}}'; echo
+    kubectl get secret proto-secrets -o template='{{.data.password | base64decode}}'; echo
+    echo
+
+We can use this, setting the environment variables the `bosh`
+expects to see, and validate that the director is working:
+
+    BOSH_CLIENT=$(kubectl get secret proto-secrets -o template='{{ .data.username | base64decode }}') \
+    BOSH_CLIENT_SECRET=$(kubectl get secret proto-secrets -o template='{{ .data.password | base64decode }}') \
+    BOSH_CA_CERT=$(kubectl get secret proto-secrets -o template='{{ .data.ca | base64decode }}') \
+    BOSH_ENVIRONMENT=$(kubectl get secret proto-secrets -o template='{{ .data.endpoint | base64decode }}') \
+      bosh env
+
+## Using the `gluon` CLI
+
+In the last section, we used a bunch of (complicated!) `kubectl`
+invocations to set environment variables so that we could run BOSH
+commands.
+
+Gluon ships with a small command-line utility that makes this much
+easier:
+
+    gluon @proto env
+
+Wherever you would type `bosh`, type `gluon @proto` instead, and
+Gluon will do what you intend -- you can run any BOSH command!
+
+List the stemcells that have been uploaded:
+
+    gluon @proto stemcells
+
+Look at the defined cloud- and runtime-configs:
+
+    gluon @proto configs
+
+Review the cloud-config that we're about to use to deploy Vault:
+
+    gluon @proto cloud-config
+
+Find out what (if anything) has been deployed to the `proto` BOSH
+director:
+
+    gluon @proto deployments
+
+
+## Deploying Vault
+
+Now we're going to use Gluon, and our Kubernetes cluster, to
+deploy a single-node Vault deployment to GCP via the `proto` BOSH
+director.  This Vault will come with a UI, and we've set up
+routing to get from the public internet to the per-seat endpoints
+you're each about to deploy.
+
+In fact, to show you what we're going to do, we've gone ahead and
+taken seat #199 and deployed it for you -- indeed you may have
+seen it in the `bosh deployments` output already.  You can access
+this vault by pointing your web browser at
+<https://vault199.hol.gluon.starkandwayne.com>.
+
+![Vault 199's Web User Interface (screenshot)](https://github.com/cloudfoundry/summit-hands-on-labs/raw/master/na-2020/gluon/.assets/vault199.png)
+
+That's what yours is going to look like.
+
+### Crafting the YAML
+
+In the root of this repository, in your Google Cloud Shell
+environment, you'll find a file called `vault.yml`.  It contains
+_most_ of a Gluon BOSHDeployment for spinning our Vault.  You'll
+need to replace all occurrences of the string `[seat]` with your
+seat number (as assigned by the lab proctors), before you can
+deploy it.
+
+To edit the file, open it up in the Cloud Shell Editor:
+
+    cloudshell edit vault.yml
+
+Then, replace every instance of `[seat]` with your seat
+assignment.  If you've forgotten your seat assignment, just run
+`./seat` from the shell.
+
+### Applying the YAML
+
+Once you've modified the `vault.yml` file, you can validate it and
+deploy it:
+
+    validate && kubectl apply -f vault.yml
+
+(If `validate` kicks out warnings about unreplaced `[seat]`
+references, be sure to fix those and try the above command until it
+succeeds.)
+
+### Watching the Jobs 'n' Pods
+
+Gluon should react to your new BOSHDeployment resource by creating
+a Job to deploy your manifest to the BOSH director.  Kubernetes'
+built-in controllers should (in turn) create a Pod to actually
+execute on the Job's configuration.
+
+Review the job:
+
+    kubectl get job deploy-vault-$SEAT-via-proto
+
+Review the pod:
+
+    kubectl get pod $(pod deploy-vault-$SEAT)
+
+Tail the log of the deployment job pod:
+
+    kubectl logs -f $(pod deploy-vault-$SEAT)
+
+### Validating via Gluon 'n' BOSH
+
+While the Vault is deploying, you can also check the BOSH director
+(using the `gluon @proto` syntax) for your deployment, and can
+follow the deployment task using BOSH tooling, if you desire.
+
+First, check the deployments list for your Vault:
+
+    gluon @proto deployments | grep vault-$SEAT
+
+Check the BOSH tasks for your deployment (if it is still ongoing):
+
+    gluon @proto -d vault-$SEAT tasks --recent=1
+
+Finally, check the task log (by task ID, above):
+
+    gluon @proto task TASK-ID
+
+
+### Visiting your Vault on the Web
+
+Once your Vault is deployed, you should be able to access it via
+its public web URL, which you can find by running `./seat` again:
+
+    ./seat
+
+Google Cloud Shell should allow you to click on the link to your
+Vault and open it up in a new browser tab or window.  Remember: we
+are using a self-signed certificate in this lab, so you will need
+to accept the security warning and proceed anyway.
+
+## Congratulations!
+
+You did it!
+
+
+### Beyond the Lab
+
+Did you enjoy that?  Want to get more involved in Gluon?
+Here's some resources!
+
+- **Gluon Homepage** - <https://starkandwayne.com/gluon>
+- **Gluon @GitHub** - <https://github.com/starkandwayne/gluon>
