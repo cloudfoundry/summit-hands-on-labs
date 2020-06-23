@@ -14,9 +14,8 @@ You will be performing the following tasks in this lab :-
 
 - Install cf-for-k8s
 - Inspect app workloads, routing and logging
-- Upgrade cf-for-k8s
-- Delete cf-for-k8s
 - Using overlays with `ytt`
+- Delete cf-for-k8s
 
 ### Prerequisites
 
@@ -249,7 +248,7 @@ The control plane components are stored in `cf-system` namespace
 kubectl get pods -n cf-system
 ```
 
-Notable pods are the CAPI component that backs the cf cli, uaa manages authentication, logs and metrics for observability, eirini schedules & manages the app workloads and finally route-controller manages the app routes. 
+Notable pods are the CAPI component that backs the cf cli, uaa for authentication, logs and metrics for observability, eirini schedules & manages the app workloads and finally route-controller manages the app routes. 
 
 Also, Notice `fluentd` pods in `cf-system`. It's actually a deamon-set that's running on every node to collect and filter logs for CF.
 
@@ -277,30 +276,9 @@ kubectl get pods -n <namespace>
 kubectl describe ns/cf-db | grep istio-injection
 ```
 
-## Upgrade cf-for-k8s
-In this excercise, we will upgrade the existing foundation [TODO]
-
-[TODO]
-
 ## Using overlays with `ytt`
-In this excercise, update default app memory and disk in capi config using overlay.
+In this excercise, we will scale the control plane apps using ytt overlay
 
-1. Create the a yaml called `update-default-app-memory-and-disk.yaml` in `/config-optional` folder
-
-```console
-$ touch config-optional/update-default-app-memory-and-disk.yaml
-```
-
-1. Open the `update-default-app-memory-and-disk.yaml` and copy the following contents
-
-```console
-
-
-
-```
-
-1. `ytt` generate with the above config, `kapp` deploy to the existing foundation
-1. verify by re-pushing the app shows the memory/app
 
 ## Learning Objectives Review
 
