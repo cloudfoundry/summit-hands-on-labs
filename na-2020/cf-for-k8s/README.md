@@ -6,7 +6,7 @@ In this hands on lab, attendees will learn how to deploy Cloud Foundry on a Kube
 
 This lab is targeted towards the audience who would like to use Cloud Foundry for packaging and deploying cloud native applications with Kubernetes as the underlying infrastructure.
 
-## Learning Objectives
+### Learning Objectives
 
 You will be performing the following tasks in this lab :-
 
@@ -16,13 +16,11 @@ You will be performing the following tasks in this lab :-
 - Delete cf-for-k8s
 - Using overlays with `ytt`
 
-## Prerequisites
+### Prerequisites
 
 Students must have basic knowledge of Cloud Foundry and Kubernetes.
 
-## Lab
-
-### Setup Environment
+## Setup Environment
 
 1. Use the setup-env.sh script to install the required tools and configure your
    environment to connect to your cluster:
@@ -31,7 +29,7 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     ```
     > Note we are using bosh CLI to generate self-signed certificates and other credentials. It is a matter of convenience and in the future it will be replaced by tooling such as CredHub.
 
-### Installing cf-for-k8s
+## Installing cf-for-k8s
 
 1. Clone cf-for-k8s project into the current directory
     ```console
@@ -101,7 +99,7 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     cf routes
     ```
 
-### Inspecting the cluster
+## Inspecting the cluster
 
 1. App pods
     ```console
@@ -200,12 +198,12 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     kubectl describe ns/cf-db | grep istio-injection
     ```
 
-### Upgrade cf-for-k8s
+## Upgrade cf-for-k8s
 In this excercise, we will upgrade the existing foundation [TODO]
 
 [TODO]
 
-### Using overlays with `ytt`
+## Using overlays with `ytt`
 In this excercise, update default app memory and disk in capi config using overlay.
 
 1. Create the a yaml called `update-default-app-memory-and-disk.yaml` in `/config-optional` folder
