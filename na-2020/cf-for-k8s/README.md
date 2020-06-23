@@ -52,7 +52,7 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     ```
 1. Install the CF CLI
     ```console
-    wget -O cf-cli.tgz https://packages.cloudfoundry.org/stable?release=linux64-binary&version=6.51.0&source=github-rel && tar -C bin -xf cf-cli.tgz
+    wget -O cf-cli.tgz "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=6.51.0&source=github-rel" && tar -C bin -xf cf-cli.tgz
     cf --version
     ```
 1. Install the BOSH CLI
@@ -79,7 +79,7 @@ Students must have basic knowledge of Cloud Foundry and Kubernetes.
     We will use the `generate-values.sh` script to generate these values to make the labs session go faster.
     ```console
     ./hack/generate-values.sh -d $CF_DOMAIN > cf-values.yml
-    cat<<EOF >> /tmp/${CLUSTER_NAME}-values.yml
+    cat<<EOF >> cf-values.yml
     istio_static_ip: "$(host api.${CF_DOMAIN} | awk '{print $NF}')"
     EOF
     ```
