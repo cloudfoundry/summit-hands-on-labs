@@ -197,7 +197,7 @@ Look at the defined cloud- and runtime-configs:
 
 Review the cloud-config that we're about to use to deploy Vault:
 
-    gluon @proto cloud-config | less
+    gluon @proto cloud-config
 
 Find out what (if anything) has been deployed to the `proto` BOSH
 director:
@@ -276,12 +276,7 @@ While the Vault is deploying, you can also check the BOSH director
 (using the `gluon @proto` syntax) for your deployment, and can
 follow the deployment task using BOSH tooling, if you desire.
 
-First, verify that you can still talk to the `proto` BOSH
-director:
-
-    gluon @proto env
-
-Then, check the deployments list for your Vault:
+First, check the deployments list for your Vault:
 
     gluon @proto deployments | grep vault-$SEAT
 
@@ -297,15 +292,14 @@ Finally, check the task log (by task ID, above):
 ### Visiting your Vault on the Web
 
 Once your Vault is deployed, you should be able to access it via
-it's public web URL, which should look something like this:
-
-    https://vault[seat].hol.gluon.starkandwayne.com
-
-If you've forgotten your seat assignment that's okay; run this:
+its public web URL, which you can find by running `./seat` again:
 
     ./seat
 
-To get it back (and get a clickable hyperlink!))
+Google Cloud Shell should allow you to click on the link to your
+Vault and open it up in a new browser tab or window.  Remember: we
+are using a self-signed certificate in this lab, so you will need
+to accept the security warning and proceed anyway.
 
 ## Congratulations!
 
