@@ -495,8 +495,19 @@ cf push node-app -i 2 -p ./tests/smoke/assets/test-node-app/
 
 ```
 
-## Learning Objectives Review
+## Delete cf-for-k8s
+Finally, its time to say good bye. Run the following command to delete cf-for-k8s
+
+```console
+kapp delete -a cf -y
+
+```
+
 
 ## Beyond the Lab
+I hope you enjoyed the lab session. If you want to get involved, here are few resources
 
-## Troubleshooting guide
+- [cf-for-k8s repository](https://github.com/cloudfoundry/cf-for-k8s)
+- [cf-for-k8s slack channel](https://cloudfoundry.slack.com/archives/CH9LF6V1P)
+- [ytt playground](https://get-ytt.io/)
+- [kapp](https://get-kapp.io/)
