@@ -2,8 +2,6 @@
 
 In this hands on lab, attendees will learn how to deploy Cloud Foundry on a Kubernetes (cf-for-k8s) project to a Kubernetes cluster, push source code apps, deep dive into cf push workflow, inspect various cluster resources created by cf-for-k8s. 
 
-We will also peek into upcoming new features and how they fit into the operator and app developer experience.
-
 ### Target Audience
 
 This lab is targeted towards the audience who would like to use Cloud Foundry for packaging and deploying cloud native applications with Kubernetes as the underlying infrastructure.
@@ -17,26 +15,34 @@ You will be performing the following tasks in this lab :-
 - Using overlays with `ytt`
 - Delete cf-for-k8s
 
+**WE RECOMMEND YOU READ EACH STEP IN ITS ENTIRETY, SO THAT YOU HAVE CLEAR UNDERSTANDING OF HOW CF-FOR-K8S WORKS**
+
 ### Prerequisites
 
 Students must have basic knowledge of Cloud Foundry and Kubernetes.
 
+### Google Cloud Shell window size
+We recommend you increase the size of the cloudshell window to largest size available since this lab will exclusively work in console.
+
 ## Setup Environment
 
-Let's setup your environment by running the followign command in your console.
+Let's setup your environment by running the following command in your console. 
 
 ```console
 eval "$(./setup-env.sh)"
 
 ```
+#### What its doing
 
-The script will install cf-cli, k14s tools (`ytt`, `kapp`) plus few other helpful tools for the lab session. 
+- The script will install cf-cli, k14s tools (`ytt`, `kapp`) plus few other helpful tools for the lab session. 
 
-The script also setups up your `kubeconfig` by connecting to an existing k8s cluster. 
+- The script also setups up your `kubeconfig` by connecting to an existing k8s cluster. 
 
-We are using bosh CLI to generate self-signed certificates and other credentials. It is a matter of convenience and in the future it will be replaced by tooling such as CredHub.
+- The script install bosh CLI to generate self-signed certificates and other credentials. It is a matter of convenience and in the future it will be replaced by tooling such as CredHub.
 
 ### Verify CLIs exists
+
+Running the following command will print versions for each CLI. 
 
 ```console
 cf version
@@ -46,9 +52,22 @@ kapp version
 ```
 
 ### Verify connection with K8s cluster
+
+Running the following command will list the default namespaces.
+
 ```console
 kubectl get namespaces
 
+```
+
+Your output should display the following namespaces,
+
+```
+NAME              STATUS   AGE
+default           Active   14m
+kube-node-lease   Active   14m
+kube-public       Active   14m
+kube-system       Active   14m
 ```
   
 ## Clone project
@@ -63,7 +82,7 @@ cd cf-for-k8s
 
 ## Create a values file
 
-Lets create a values file using the convenient script `generate-values.sh`. Copy and paste the following command in your console.
+Lets create a values file using `generate-values.sh`. Copy and paste the following command in your console.
 
 ```console
 ./hack/generate-values.sh -d $CF_DOMAIN > cf-values.yml
@@ -72,10 +91,26 @@ istio_static_ip: "$(host api.${CF_DOMAIN} | awk '{print $NF}')"
 EOF
 
 ```
-- `generate-values.sh` generates the necessary self-signed certificates and credentials using bosh cli.
-- Sets the Kubernetes loadbalancer IP to reserved IP that comes with the lab session. It reduces overall time to install the cluster.
 
-### Setup docker registry
+#### What its doing
+
+- The `generate-values.sh` script generates the necessary self-signed certificates and credentials (via bosh cli). 
+- In addition, we are setting the Kubernetes loadbalancer IP to reserved IP that comes with the lab session. It reduces overall time to install the cluster.
+
+
+### Peak into values
+
+Lets quickly look into the `cf-values.yml` by running the following command,
+
+```console
+head cf-values.yml
+```
+
+- Notice the `system_domain` and `apps_domain` properties are same as `$CF_DOMAIN` variable.
+- `cf_admin_password` password was generated via bosh cli. 
+- `system_certificate` is a self signed certificate generated via bosh cli. As mentioned above, it will be replaced by tooling such as CredHub in the future.
+
+## Setup docker registry
 Before we can push source code apps, we need to setup a docker registry. We pre-created a `labs-values.yml` file for you to use in the lab.
 
  ```console
@@ -83,35 +118,43 @@ Before we can push source code apps, we need to setup a docker registry. We pre-
  
  ```
 
-The above command appends the docker registry configuration to your `cf-values.yml`. Don't forget to check it out later.
+#### What its doing
+
+Appends the docker registry configuration to your `cf-values.yml`. You can check it out by running `tail cf-values.yml` to see the docker registry configuration.
 
 ## Render with ytt
-Render the final k8s configuration yml using `ytt` command
+Run the following command to create the final K8s config file `cf-for-k8s-rendered.yml`,
 
 ```console
 ytt -f config -f cf-values.yml > cf-for-k8s-rendered.yml
 
 ```
 
+#### What it's doing
+
+`ytt` consumes all the template k8s files under folder `config` (and also any templates under subdirectories) and uses `cf-values.yml` to generate the final K8s config file. You can peak into the file by running `head -n 20 cf-for-k8s-rendered.yml`. You will notice it's just a regular K8s yml file.
+
 ## Install with kapp
 
-Let's now install cf-for-k8s using `kapp` command
+Let's now install cf-for-k8s by running the following command,
 
  ```console
  kapp deploy -a cf \
     -f cf-for-k8s-rendered.yml -y
  
  ```
+#### What it's doing
 
-Once you press enter, the command should take about ~8-10 minutes to finish. During this time, `kapp` will keep posting updates on pending resource creations and will exit only when all resources are created and running.
+`kapp` will delegate the creation of k8s resources to the native `kubectl` API and it will watch on those resources until they are available. The `kapp deploy` should take about ~8-10 minutes to finish.
 
 ## Connect to CF CLI
-Verify that you can connect to the foundation using CF CLI
+Verify that you can connect to the foundation using CF CLI,
 
 ```console
 cf api --skip-ssl-validation https://api.$CF_DOMAIN
 
 ```
+If successful, the output should print api version and endpoint. In the next step, we will login to CF.
 
 ## Login to CF
 Login using the admin credentials in `cf-values.yml`
@@ -120,6 +163,8 @@ Login using the admin credentials in `cf-values.yml`
  cf auth admin $(yq -r .cf_admin_password cf-values.yml)
  
  ```
+ 
+`yq` returns the value for `cf_admin_password` from `cf-values.yml` and feeds into `cf auth` command. You're now ready to create orgs and spaces.
 
 ## Create org/space for your app
 Next, create orgs and spaces
@@ -131,14 +176,19 @@ cf target -o labs-org -s labs-space
 
 ```
 
+We are so close. In the next step, we will push an app.
+
 ## Deploy the source code app
 
-Finally, lets push our app. Pay particular attention to the logs to see the various steps it goes to detect, build and run the app.
+We will push 2 instances of the app (`-i 2`) and we will give a path (`- p`) to an existing app `test-node-app`. The app, when deployed successfully, will return `Hello World`.
+
+Run the following command and pay attention to the logs it prints.
 
 ```console
 cf push node-app -i 2 -p ./tests/smoke/assets/test-node-app/
 
 ```
+
 ### Watch the logs
 
 Notice how your source code is tranformed to an actual running app. High level steps worth noting are,
@@ -152,8 +202,11 @@ Notice how your source code is tranformed to an actual running app. High level s
 1. schedule the app with the given # of instances
 1. report the app status and any metrics
 
+In the next step, we will verify if the app is reachable via curl.
+
 ## Curl the app
-The final moment we have been waiting for. 
+The final moment we have been waiting for. Run the following command. It should print `Hello world`!
+
 ```console
 curl -k https://node-app.apps.$CF_DOMAIN
 
@@ -161,28 +214,34 @@ curl -k https://node-app.apps.$CF_DOMAIN
 
 Congratulations!! You have done it. 
 
-### Checkout other CF commands
+### App information
+It's worth looking into the app status and logs. 
 
-### Lets see app status 
+### App status
 ```console
 cf app node-app
 
 ```
-### what about logs
+The command will print node-app with `running` status and app metrics if available. 
+
+### App logs
 ```console
 cf logs --recent node-app
 
 ```
-### Also, check out routes
+
+The command will print app related logs. There is a known issue with app logs where it collects and prints `Envory` related logs. Future versions will only show app related evnets.
+
+### App routes
 ```console
 cf routes
 
 ```
 
-Next, we will go on a journey to understand how an app is actually deployed, how it is built, components that are involved in creating the app and so on. Lets start!!!
+In the next section, we will go on a journey to understand how an app is actually deployed, how it is built, system components that are involved in creating the app and much more. Lets start!!!
 
 ## Inspecting App pods
-First, lets look at our apps. The app is actually deployed to `cf-workloads` namespace (more on namespaces in the next coming sections). Run the command to see the pods.
+Lets look at our apps from Kubernetes point of view. The app is actually deployed as a Deployment pod to `cf-workloads` namespace (more on namespaces in the next coming sections). Run the command to see the pods.
 
 ```console
 kubectl get pods -n cf-workloads
@@ -197,16 +256,17 @@ For every app route, cf-for-k8s creates route CRD and a Kubernetes native `Servi
 kubectl get svc -n cf-workloads
 
 ```
-Now, lets look at the service itself. Pick the service guid from the above and replace the `<service guid>` below.
+Lets look at the individual service. **Pick the service guid from the above and replace `<service guid>` below.**
 
 ```console
 kubectl describe svc/<service guid> -n cf-workloads
 
 ```
-Notice the `Annotations` property and `route-fqdn` value. It is the same URL that you used to access the app above.
+Notice the `Annotations` and `route-fqdn` value. It is the same URL that you used to access the app above.
 
 ### Create another route for the same app
-Lets create another route to see what happens
+We will create a route `node-another-app` using `cf map-route` command.
+
 ```console
 cf map-route node-app --hostname node-another-app apps.$CF_DOMAIN
 
@@ -217,12 +277,13 @@ You should now see 2 services
 kubectl get svc -n cf-workloads
 
 ```
-Pick the `Service` that was created recently and replace the `<service guide>` in the command below. Inspect it's ouput `Annotations.route-fqdn` property. Notice the URL you just created.
+Pick the `Service` that was recently created (HINT: Look at the **Age** column). Replace the `<service guid>` with the service guid in the command below. Inspect it's ouput `Annotations.route-fqdn` property. Notice the URL you just created.
 
 ```console
 kubectl describe svc/<name of the service guid from the above> -n cf-workloads |  grep Annotations
 
 ```
+### Route Controller
 The `route-controller` is responsible for creating the `route` CRD, which in turn creates the actual k8s `Service`
 
 ```console
@@ -240,7 +301,7 @@ To access the app from external network, you still need a mechanism to connect t
 kubectl get gateway -n istio-system
 
 ```
-The gateway is responsible for directing the traffice to the apps or CF API. The domain you setup above is fed into the gateway as the allowed hostnames.
+The gateway is responsible for directing the traffic to the apps or CF API. The domain you setup above is fed into the gateway as the allowed hostnames.
 
 ```console
 kubectl describe gateway/ingressgateway -n istio-system
@@ -248,7 +309,7 @@ kubectl describe gateway/ingressgateway -n istio-system
 ```
 
 ## Building the image
-As you noticed, cf-for-k8s builds an OCI compliant image from your source code. Let's inspect the pods who are responsible for creating the app images.
+As you noticed, cf-for-k8s builds an **OCI compliant image** from your source code. Let's inspect the pod responsible for creating the app image.
 
 ```console
 kubectl get pods -n cf-workloads-staging
@@ -256,6 +317,9 @@ kubectl get pods -n cf-workloads-staging
 ```
     
 There should be a single build pod with the status `Completed` in the `cf-workloads-staging` namespace. This pod was responsible for creating the app image from source and then pushing the image to the docker registry (which we configured in `labs-values.yml` file when we installed cf-for-k8s).
+
+**Replace the `<pod-guid> with the pod `guid` from the above output.
+
 ```console
 kubectl describe pod/<pod-guid> -n cf-workloads-staging | grep Events -A 20
 
@@ -265,13 +329,14 @@ Notice the events that it emits during build stage. You probably saw them during
 
 ## Buildpacks
 
-During `cf-push`, the source code goes through detection phase, where it finds the right language buildpack base image to build the app from source code.
+During `cf-push`, the source code goes through a detection phase to find the right language buildpack image to build the app from source code.
+
 ```console
-kubectl describe stores/cf-buildpack-store | grep "Buildpackage" -A 10
+kubectl describe stores/cf-buildpack-store | grep "Buildpackage" -A 10 | grep node -A 5 -B 5
 
 ```
 
-The above command shows a list of language buildpacks that are supported. We are integrating the new rebranded paketo buildpacks which are based on the cloud native buildpack spec.
+The above command shows a list of node language buildpacks. cf-for-k8s uses the new rebranded paketo buildpacks, which are based on the cloud native buildpack spec.
 
 ```console
 kubectl describe stores/cf-buildpack-store | grep Order: -A 20 | grep node -B 5 -A 5
@@ -280,12 +345,14 @@ kubectl describe stores/cf-buildpack-store | grep Order: -A 20 | grep node -B 5 
 The above command highlights the detection ordering within the node language buildpackage. You may have noticed it during `cf push` logs.
 
 ## Stacks
-Apps need root file system to run. A stack provides the buildpack lifecycle with build-time and run-time environments in the form of images. You can see what stacks are installed in `cf-workloads` namespace.
+Apps need root file system to run. A stack provides the buildpack lifecycle with build-time and run-time environments in the form of images. You can see stack images in `cf-workloads` namespace.
 
 ```console
 kubectl get stacks -n cf-workloads-staging
 
 ```
+
+You will `cflinuxfs3-stack` is the defautl stack used in cf-for-k8s.
 
 ```console
 kubectl describe stacks/cflinuxfs3-stack -n cf-workloads-staging | grep Spec -A 6
@@ -296,12 +363,13 @@ Notice the build and run image entries. In most cases, both are same images.
 
 ## Control plane components
 The control plane components are stored in `cf-system` namespace
+
 ```console
 kubectl get pods -n cf-system
 
 ```
 
-Notable pods are the CAPI component that backs the cf cli, uaa provides authentication and authorization sevices, logging and metrics components provide observability, eirini is responsible for scheduling & managing the app workloads and finally route-controller is responsible for the app routes. 
+Notable pods are the CAPI components provide the `cf push` experience, uaa components provide authentication and authorization sevices, logging and metrics components provide observability, eirini is responsible for scheduling & managing the app workloads and finally route-controller is responsible for the app routes. 
 
 Also, Notice `fluentd` pods in `cf-system`. It's actually a deamon-set type that's running on every node to collect and filter logs for CF.
 
@@ -321,54 +389,110 @@ kubectl get pvc -n cf-blobstore
 
 ````
 
-`cf-db` and `cf-blobstore` namespaces run postgres database and minio blobstore stateful-sets respectively. 
+`cf-db` and `cf-blobstore` namespaces run postgres database and minio blobstore stateful-sets respectively. CAPI uses blobstore to store the source code bits and the database to store state of the foundation (like orgs/space..) and app data. UAA uses the database for it's authentication/authorization needs.
 
 ### kpack
 
-`kpack` namespace holds kpack controller which is responsible for building, packaging and pushing the app images to the docker registry (see Staging apps and App lang detection sections above).
+`kpack` namespace contains kpack controller which is responsible for building, packaging and pushing the app images to the docker registry (see Staging apps and App lang detection sections above).
 
+```console
+kubectl get pods -n kpack
+```
 
 ### Istio
+
+Let's look into the Istio namespace.
 
 ```console
 kubectl get pods -n istio-system
 
 ````
 
-`istio-system` holds istio control plane components. Istio is responsible for ingress gateway, ingress encryption and encrypted communication between components - aka the service mesh.
+`istio-system` namespace contains istio control plane components. Istio is responsible for ingress gateway, ingress encryption and encrypted communication between components - aka the service mesh.
 
-`istio` injects side-cars into pods deployed by cf-for-k8s, which encrypts all communication between the containers running on the pod and other pods in the cluster (who are also running the side-car. The side-car injection is enabled at namespace level, so every pod within that namespace is injected with a side car.
+`istio` injects side-cars into pods, which encrypt all communication between the containers running on the pod and other pods in the cluster (who are also running the side-car. The side-car injection is enabled at namespace level, so every pod within that namespace is injected with a side car. We can see `cf-system` is side-car enabled by running this command,
 
 ```console
 kubectl describe ns/cf-system | grep istio-injection
 
 ```
 
-Check out the side car proxy in a CAPI pod.
+Lets check out the side car proxy in a CAPI pod.
 
 ```console
 kubectl get pods -n cf-system | grep cf-api-server
 ```
-Pick any one pod from the above and replace `<pod id>` and run the command,
+**Pick any one pod from the above and replace `<pod id>` below** and run the command
 ```
 kubectl describe pod/<pod id> -n cf-system | grep "istio-proxy:" -A 5 -B 5
 ```
 
-Notice the `istio-proxy` is a container running along side the `cf-api-server`
+Notice the `istio-proxy` is a container running along side the `cf-api-server` container.
 
 
 ## Using overlays with `ytt`
-In this excercise, we will scale the control plane apps using a `ytt` overlay. `ytt` is a very powerful yml templating tool and cf-for-k8s uses ytt extensively. 
-
-Assuming you're still in `cf-for-k8s` folder, run the following command,
+In this excercise, we will scale the control plane apps using a `ytt` overlay. `ytt` is a very powerful yml templating tool and the following barely scratches the surface. 
 
 ```console
-ytt -f config -f ../scale-cluster.yml -f ../scale-cluster-data-values.yml -f cf-values.yml > cf-for-k8s-rendered.yml
+ytt -f config -f ../scale-cluster.yml -f cf-values.yml > cf-for-k8s-rendered.yml
 ```
 
+### Add/replace yml
+Lets peak into each of the yml above to understand how to use overlays.
 
+```console
+cat ../scale-cluster.yml
+```
 
+- The first line `load("@ytt:overlay", "overlay")` loads `ytt` overlay libraries.
+- Line 3 `overlay/match by=overlay.subset({"kind":"Deployment","metadata":{"name":"uaa"}})` looks for a match of `kind: Deployment` by `name: uaa`. 
+- If found, replace the `spec.replicas` in the target yml with the everthing after line 4. In this case, **we are scaling UAA from 1 to 2 pods**.
 
+### Render with ytt
+Run the following command by including the `scale-cluster.yml` to create the final K8s config file `cf-for-k8s-rendered.yml`,
+
+```console
+ytt -f config -f ../scale-cluster.yml -f cf-values.yml > cf-for-k8s-rendered.yml
+```
+
+### Confirm current UAA replicas
+Before we scale UAA to 2 pods, lets confirm the current count
+
+```console
+kubectl get pods -n cf-system | grep uaa
+```
+
+You should see just 1 pod count.
+
+### Redeploy with kapp
+
+Redeploy by running the following command,
+
+ ```console
+ kapp deploy -a cf \
+    -f cf-for-k8s-rendered.yml -y
+ 
+ ```
+ Note that `kapp` will check and display the differences between last deploy and current deploy and will prompt you for confirmation. We are passing `-y` to skip confirmation.
+ 
+Once `kapp` is finished, verify the `uaa` is infact scaled to 2 instances.
+ 
+```console
+kubectl get pods -n cf-system | grep uaa
+```
+
+### Verify cf push and app is still reachable
+Verify app is still reachable by running this command,
+
+```console
+curl -k https://node-app.apps.$CF_DOMAIN
+```
+
+Now verify that cf push still works by running this command,
+```console
+cf push node-app -i 2 -p ./tests/smoke/assets/test-node-app/
+
+```
 
 ## Learning Objectives Review
 
