@@ -87,7 +87,7 @@ we'll set up your `kubectl` accordingly:
 
 ## Gluon Concepts and the Lab Environment
 
-Gluon is implemented as three customer resource types, and a
+Gluon is implemented as three custom resource types, and a
 Kubernetes controller to manage and react to them.
 
 ### BOSHDeployment
@@ -121,7 +121,7 @@ file:
 
 ### BOSHConfig
 
-A `BOSHConfig` represents either a BOSH config, either for
+A `BOSHConfig` represents configuration, either for
 injecting runtime addons (a "runtime" config) or for specifying
 IaaS-specific configuration (a "cloud" config).
 
