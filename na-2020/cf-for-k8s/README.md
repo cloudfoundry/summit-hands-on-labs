@@ -372,7 +372,7 @@ kubectl get pods -n cf-system
 
 Notable pods are the CAPI components that provide the `cf push` experience, uaa components provide authentication and authorization sevices, logging and metrics components provide observability, and eirini is responsible for scheduling & managing the app workloads and finally route-controller is responsible for the app routes. 
 
-Also, Notice `fluentd` pods in `cf-system`. It's a deamon-set type running on every node to collect and filter logs for CF.
+Also, Notice `fluentd` pods in `cf-system`. It's a `DaemonSet` type running on every node to collect and filter logs for CF.
 
 ## Inspect namespaces
 
