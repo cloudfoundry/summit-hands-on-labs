@@ -12,7 +12,7 @@ You will be performing the following tasks in this lab :
 
 - Install cf-for-k8s
 - Inspect app workloads, routing, and logging
-- Using overlays with `ytt`
+- Overlays with `ytt`
 - Delete cf-for-k8s
 
 **WE RECOMMEND YOU READ EACH STEP IN ITS ENTIRETY, SO THAT YOU HAVE CLEAR UNDERSTANDING OF HOW CF-FOR-K8S WORKS**
@@ -60,15 +60,7 @@ kubectl get namespaces
 
 ```
 
-Your output should display the following namespaces,
-
-```
-NAME              STATUS   AGE
-default           Active   14m
-kube-node-lease   Active   14m
-kube-public       Active   14m
-kube-system       Active   14m
-```
+Your output should display 4 namespaces that come with most K8s clusters.
   
 ## Clone project
 
@@ -431,23 +423,20 @@ kubectl describe pod/<pod id> -n cf-system | grep "istio-proxy:" -A 5 -B 5
 Notice the `istio-proxy` is a container running alongside the `cf-api-server` container.
 
 
-## Using overlays with `ytt`
-In this exercise, we will scale the control plane apps using a `ytt` overlay. `ytt` is a powerful yml templating tool that cf-for-k8s uses extensively. 
+## Overlays with `ytt`
+In this exercise, we will **scale the `uaa` components from one to two pods** using a `ytt` overlay. `ytt` is a powerful yml templating tool that cf-for-k8s uses extensively. 
 
-```console
-ytt -f config -f ../scale-cluster.yml -f cf-values.yml > cf-for-k8s-rendered.yml
-```
 
-### Add/replace yml
-Let's peek into each of the yml above to understand how to use overlays.
+### Overlay yml
+Let's peek into the overlay yml to understand ytt features.
 
 ```console
 cat ../scale-cluster.yml
 ```
 
 - The first line `load("@ytt:overlay", "overlay")` loads `ytt` overlay libraries.
-- Line 3 `overlay/match by=overlay.subset({"kind":"Deployment","metadata":{"name":"uaa"}})` looks for a match of `kind: Deployment` by `name: uaa`. 
-- If found, replace the `spec.replicas` in the target yml with everything after line 4. In this case, **we are scaling UAA from 1 to 2 pods**.
+- Line 2 `overlay/match by=overlay.subset({"kind":"Deployment","metadata":{"name":"uaa"}})` looks for a match of `kind: Deployment` by `name: uaa`. 
+- If found, replace the `spec.replicas` in the target yml with everything after line 4. In this case, **set UAA replicas to two**.
 
 ### Render with ytt
 Run the following command by including the `scale-cluster.yml` to create the final K8s config file `cf-for-k8s-rendered.yml`,
@@ -456,8 +445,12 @@ Run the following command by including the `scale-cluster.yml` to create the fin
 ytt -f config -f ../scale-cluster.yml -f cf-values.yml > cf-for-k8s-rendered.yml
 ```
 
-### Confirm current UAA replicas
-Before we scale UAA to 2 pods, let's confirm the current count
+Note, you can pass multiple any number of templates/folders with `-f` flag but values `cf-values.yml` needs to be the last one.
+
+### Redeploy with kapp
+
+#### Confirm current UAA replicas
+Before we scale UAA to 2 pods, let's confirm the current count.
 
 ```console
 kubectl get pods -n cf-system | grep uaa
@@ -465,16 +458,15 @@ kubectl get pods -n cf-system | grep uaa
 
 You should see just one pod count.
 
-### Redeploy with kapp
-
-Redeploy by running the following command,
+Redeploy cf-for-k8s by running the following command,
 
  ```console
  kapp deploy -a cf \
     -f cf-for-k8s-rendered.yml -y
  
  ```
- Note that `kapp` will check and display the differences between previous and current deploy and will prompt you for confirmation. We are passing `-y` to skip the confirmation.
+
+Note that `kapp` will check and display the differences between previous and current deploy and will prompt you for confirmation. We are passing `-y` to skip the confirmation.
  
 Once `kapp` is finished, verify the `uaa` is infact scaled to two instances.
  
@@ -503,6 +495,10 @@ kapp delete -a cf -y
 
 ```
 
+Check to make sure cf-for-k8s resources are compeletly deleted from the cluster
+```console
+kubectl get namespaces
+```
 
 ## Beyond the Lab
 I hope you enjoyed the lab session. If you want to get involved, here are few resources
