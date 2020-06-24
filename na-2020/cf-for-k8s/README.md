@@ -237,6 +237,7 @@ The command will print app related logs. There is a known issue with app logs wh
 cf routes
 
 ```
+The above command will print all routes in the org.
 
 In the next section, we will go on a journey to understand how an app is actually deployed, how it is built, system components that are involved in creating the app and much more. Lets start!!!
 
@@ -277,7 +278,7 @@ You should now see 2 services
 kubectl get svc -n cf-workloads
 
 ```
-Pick the `Service` that was recently created (HINT: Look at the **Age** column). Replace the `<service guid>` with the service guid in the command below. Inspect it's ouput `Annotations.route-fqdn` property. Notice the URL you just created.
+Pick the `Service` that was recently created (HINT: Look at the **Age** column). **Replace the `<service guid>` with the service guid in the command below**. Inspect it's ouput `Annotations.route-fqdn` property. Notice the URL you just created.
 
 ```console
 kubectl describe svc/<name of the service guid from the above> -n cf-workloads |  grep Annotations
@@ -318,7 +319,7 @@ kubectl get pods -n cf-workloads-staging
     
 There should be a single build pod with the status `Completed` in the `cf-workloads-staging` namespace. This pod was responsible for creating the app image from source and then pushing the image to the docker registry (which we configured in `labs-values.yml` file when we installed cf-for-k8s).
 
-**Replace the `<pod-guid> with the pod `guid` from the above output.
+**Replace the `<pod-guid>` with the pod `guid` from the above output**.
 
 ```console
 kubectl describe pod/<pod-guid> -n cf-workloads-staging | grep Events -A 20
