@@ -29,10 +29,17 @@ function install_tools() {
   echo
 }
 
+function cluster_zone() {
+  if [[ $((SEAT % 2)) = 0 ]]; then
+    echo "us-central1-a"
+  else
+    echo "us-central1-c"
+  fi
+}
+
 function target_cluster() {
-  # TODO: Add a helper function to select the correct zone in the case that we can't get the quota for us-central1 increased.
   echo "Targetting cluster ${CLUSTER_NAME}..."
-  gcloud container clusters get-credentials "${CLUSTER_NAME}" --zone us-central1-a --project summit-labs
+  gcloud container clusters get-credentials "${CLUSTER_NAME}" --zone "$(cluster_zone)" --project summit-labs
   echo
 }
 
