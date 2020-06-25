@@ -343,9 +343,10 @@ Lets perform another operator task. Suppose you need to rotate your cloud contro
 
 * Wait for few seconds and check if the rotation was succesful by checking the logs
 
-        podName=`kubectl -n kubecf get pod -l quarks.cloudfoundry.org/qjob-name=rotate-cc-database-key -o jsonpath='{.items[0].metadata.name}'`
-        kubectl -n kubecf logs $podName rotate-cc-database-key-rotate | grep "Done rotating encryption key for class"
-
+```
+podName=`kubectl -n kubecf get pod -l quarks.cloudfoundry.org/qjob-name=rotate-cc-database-key -o jsonpath='{.items[0].metadata.name}'`
+kubectl -n kubecf logs $podName rotate-cc-database-key-rotate | grep "Done rotating encryption key for class"
+```
 
 Congratulations, you have successfully completed `Dev and Ops with KubeCF` hands on lab. Your training for developer peace is completed. :wink:
 
