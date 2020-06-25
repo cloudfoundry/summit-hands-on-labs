@@ -76,7 +76,20 @@ If you can see the versions for all the commands, then you are good to go ahead.
 
 ### Installing KubeCF
 
-`KubeCF` is already installed for you in the GKE cluster as it takes approximately 15 minutes for the installation.
+`KubeCF` is already installed for you in the GKE cluster as it takes approximately 15 minutes for the installation. It only takes 2 helm commands to install, one for `Quarks` and other for `KubeCF`. `Quarks` is a kubernetes operator.
+
+* Do not run these helm commands. They are already executed for you.
+```
+helm repo add quarks https://cloudfoundry-incubator.github.io/quarks-helm/
+helm install cf-operator --namespace cf-operator \	helm install cf-operator quarks/cf-operator --set global.operator.watchNamespace=kubecf --version 4.5.6
+```
+```
+helm install kubecf --namespace kubecf \
+--set "system_domain= na$seat.kubecf.net" \
+--set "features.ingress.enabled=true" \
+https://github.com/cloudfoundry-incubator/kubecf/releases/download/v2.2.2/kubecf-v2.2.2.tgz
+```
+
 
 Now, check if all the Cloud Foundry components (pods) are in running status. The database-seeder pod should be in complated status.
 
@@ -84,6 +97,8 @@ Now, check if all the Cloud Foundry components (pods) are in running status. The
     watch kubectl get pods -n kubecf
 
 Press `Ctrl+C` to exit the watch.
+
+
 
 ### Pushing an App
 
