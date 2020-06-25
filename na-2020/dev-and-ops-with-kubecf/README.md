@@ -148,23 +148,25 @@ Minibroker is an open source service broker based on [Open Service Broker API](h
 
 * Install Minibroker using helm.
 
-** Create minibroker namespace.
+* Create minibroker namespace.
   
-    cd ..
-    kubectl create ns minibroker
+        cd ..
+        kubectl create ns minibroker
 
-** Add minibroker helm rpo
+* Add minibroker helm rpo
 
-    helm repo add suse https://kubernetes-charts.suse.com
-    helm install minibroker --namespace minibroker suse/minibroker \
-    --set "defaultNamespace=minibroker"
-    cat minibroker-ingress.yaml | sed "s/replace/'minibroker.na$seat.kubecf.net'/g" \
-    | kubectl apply -f -
+        helm repo add suse https://kubernetes-charts.suse.com
+        helm install minibroker --namespace minibroker suse/minibroker \
+        --set "defaultNamespace=minibroker"
+        cat minibroker-ingress.yaml | sed "s/replace/'minibroker.na$seat.kubecf.net'/g" \
+        | kubectl apply -f -
 
 
 * Check if the minibroker pod is running.
 
-      kubectl get pods -n minibroker
+        watch kubectl get pods -n minibroker
+        
+Press `Ctrl+C` to exit.
 
 * Connect minibroker to `KubeCF` platform.
 
@@ -326,11 +328,8 @@ Lets perform another operator task. Suppose you need to rotate your cloud contro
 
 * Wait for few seconds and check if the rotation was succesful by checking the logs
 
-        podName=`kubectl -n kubecf get pod \
-        -l quarks.cloudfoundry.org/qjob-name=rotate-cc-database-key \
-        -o jsonpath='{.items[0].metadata.name}'`
-        kubectl -n kubecf logs $podName rotate-cc-database-key-rotate | grep \
-        "Done rotating encryption key for class"
+        podName=`kubectl -n kubecf get pod -l quarks.cloudfoundry.org/qjob-name=rotate-cc-database-key -o jsonpath='{.items[0].metadata.name}'`
+        kubectl -n kubecf logs $podName rotate-cc-database-key-rotate | grep "Done rotating encryption key for class"
 
 
 Congratulations, you have successfully completed `Dev and Ops with KubeCF` hands on lab. Your training for developer peace is completed. :wink:
