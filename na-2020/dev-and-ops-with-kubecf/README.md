@@ -47,26 +47,26 @@ To work with Kubernetes you need a valid `KUBECONFIG`. The following commands wi
 You should replace the variable *[seat]* with the number in your email address. Ex:- In the email address 1-summitlabs@cloudfoundry.org, 1 is your *[seat]*. For seat numbers 1 to 30, zone=a, 31 to 60, zone=b & 61 to 100, zone=c.
 
 
-  seat=[seat]
-  zone=[zone]
+    seat=[seat]
+    zone=[zone]
 
 
-  clustername=na-cluster-"$seat"
+    clustername=na-cluster-"$seat"
 
 
-  gcloud container clusters get-credentials \
-  "$clustername" --zone europe-west2-$zone \
-  --project summit-labs
+    gcloud container clusters get-credentials \
+    "$clustername" --zone europe-west2-$zone \
+    --project summit-labs
 
 
 To check if the connection was successful run
 
-```console
-kubectl version
-helm version
-cf version
-cf7 version
-```
+
+    kubectl version
+    helm version
+    cf version
+    cf7 version
+
 
 If you can see the versions for all the commands, then you are good to go ahead.
 
