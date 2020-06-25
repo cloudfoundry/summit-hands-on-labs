@@ -81,7 +81,7 @@ If you can see the versions for all the commands, then you are good to go ahead.
 * Do not run these helm commands. They are already executed for you.
 ```
 helm repo add quarks https://cloudfoundry-incubator.github.io/quarks-helm/
-helm install cf-operator --namespace cf-operator \	helm install cf-operator quarks/cf-operator --set global.operator.watchNamespace=kubecf --version 4.5.6
+helm install cf-operator quarks/cf-operator --set global.operator.watchNamespace=kubecf --version 4.5.6
 ```
 ```
 helm install kubecf --namespace kubecf \
