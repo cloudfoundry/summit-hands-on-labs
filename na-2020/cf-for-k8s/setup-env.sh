@@ -17,6 +17,11 @@ function install_tools() {
   wget -O "${HOME}/bin/bosh" https://github.com/cloudfoundry/bosh-cli/releases/download/v6.3.0/bosh-cli-6.3.0-linux-amd64 && chmod +x "${HOME}/bin/bosh"
 
   echo
+  if pip3 show yq > /dev/null; then
+    echo "Uninstalling old yq..."
+    pip3 uninstall yq -y
+  fi
+
   echo "Installing yq..."
   pip3 install yq --user
 
