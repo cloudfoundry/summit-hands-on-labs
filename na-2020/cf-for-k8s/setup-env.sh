@@ -38,7 +38,7 @@ function cluster_zone() {
 }
 
 function target_cluster() {
-  echo "Targetting cluster ${CLUSTER_NAME}..."
+  echo "Targeting cluster ${CLUSTER_NAME}..."
   gcloud container clusters get-credentials "${CLUSTER_NAME}" --zone "$(cluster_zone)" --project summit-labs
   echo
 }
