@@ -78,7 +78,7 @@ If you can see the versions for all the commands, then you are good to go ahead.
 
 `KubeCF` is already installed for you in the GKE cluster as it takes approximately 15 minutes for the installation.
 
-Now, check if all the pods are in running status. The database-seeder pod should be in complated status.
+Now, check if all the Cloud Foundry components (pods) are in running status. The database-seeder pod should be in complated status.
 
 
     watch kubectl get pods -n kubecf
