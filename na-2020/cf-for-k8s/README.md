@@ -503,7 +503,7 @@ kubectl get namespaces
 ## Beyond the Lab
 I hope you enjoyed the lab session. If you want to get involved, here are few resources
 
-- [cf-for-k8s repository](https://github.com/cloudfoundry/cf-for-k8s)
-- [cf-for-k8s slack channel](https://cloudfoundry.slack.com/archives/CH9LF6V1P)
-- [ytt playground](https://get-ytt.io/)
-- [kapp](https://get-kapp.io/)
+- cf-for-k8s repository: https://github.com/cloudfoundry/cf-for-k8s
+- cf-for-k8s slack channel: https://cloudfoundry.slack.com/archives/CH9LF6V1P
+- ytt playground: https://get-ytt.io/
+- kapp: https://get-kapp.io/
