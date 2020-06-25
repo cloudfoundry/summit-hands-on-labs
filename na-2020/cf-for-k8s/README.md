@@ -64,12 +64,12 @@ Clone the cf-for-k8s project from the source repository.
 ## Create a values file
 
 Let's create a values file using `generate-values.sh`. Copy and paste the following command in your console.
-```console
-    ./hack/generate-values.sh -d $CF_DOMAIN > cf-values.yml
-    cat<<EOF >> cf-values.yml
-    istio_static_ip: "$(host api.${CF_DOMAIN} | awk '{print $NF}')"
-    EOF
 
+```
+./hack/generate-values.sh -d $CF_DOMAIN > cf-values.yml
+cat<<EOF >> cf-values.yml
+istio_static_ip: "$(host api.${CF_DOMAIN} | awk '{print $NF}')"
+EOF
 ```
 
 #### What it's doing
