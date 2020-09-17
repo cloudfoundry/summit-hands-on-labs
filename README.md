@@ -1,7 +1,7 @@
 Summit Hands-On Labs
 ====================
 
-Welcome to the Hands-on Labs for CF Summit NA 2020
+Welcome to the Hands-on Labs for CF Summit EU 2020
 
 Useful info
 -----------
@@ -17,9 +17,9 @@ Teams
 -----
 
 1. SUSE (Dev and Ops with KubeCF)
-2. VMware (CF CLI v7)
+2. SUSE (Stratos
 3. VMware (CF-for-K8s)
-5. Stark & Wayne (Gluon)
+5. Stark & Wayne (TBD)
 6. ResilientScale (Try Cloud Foundry
 
 How to create a lab
