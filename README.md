@@ -7,10 +7,9 @@ Useful info
 -----------
 
 - Slack channel: #cfsummit-labs-and-demos
-- Summit dates: June 24-25, 2020
+- Summit dates: October 20-22, 2020
 - Slot duration: 1 hour
 - Sponsors: Google, Stark & Wayne
-- Laptops: student provided
 - Number of students: TBD
 
 Teams
