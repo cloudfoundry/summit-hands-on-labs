@@ -1,0 +1,5 @@
+console:
+  service:
+    type: "NodePort"
+    nodePort: 3891
+  techPreview: true

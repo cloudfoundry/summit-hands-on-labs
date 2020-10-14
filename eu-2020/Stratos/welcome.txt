@@ -1,0 +1,7 @@
+
+
+Welcome to your Stratos Hands on Lab Google Cloud Shell Session
+
+Please continue the session by finding Step 2 in the Tutorial window on the right. 
+
+If there's no window there it can be started by running `teachme README.md` from this directory.
