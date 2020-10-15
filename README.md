@@ -1,25 +1,24 @@
 Summit Hands-On Labs
 ====================
 
-Welcome to the Hands-on Labs for CF Summit NA 2020
+Welcome to the Hands-on Labs for CF Summit EU 2020
 
 Useful info
 -----------
 
 - Slack channel: #cfsummit-labs-and-demos
-- Summit dates: June 24-25, 2020
+- Summit dates: October 20-22, 2020
 - Slot duration: 1 hour
 - Sponsors: Google, Stark & Wayne
-- Laptops: student provided
 - Number of students: TBD
 
 Teams
 -----
 
 1. SUSE (Dev and Ops with KubeCF)
-2. VMware (CF CLI v7)
+2. SUSE (Stratos
 3. VMware (CF-for-K8s)
-5. Stark & Wayne (Gluon)
+5. Stark & Wayne (TBD)
 6. ResilientScale (Try Cloud Foundry
 
 How to create a lab
