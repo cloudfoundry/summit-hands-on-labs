@@ -5,7 +5,8 @@ set -euo pipefail
 function install_tools() {
   echo
   echo "Installing CF CLI..."
-  wget -O cf-cli.tgz "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=6.51.0&source=github-rel" && tar -C "/usr/local/bin" -xf cf-cli.tgz
+  mkdir "$HOME/bin"
+  wget -O cf-cli.tgz "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=6.51.0&source=github-rel" && tar -C "$HOME/bin" -xf cf-cli.tgz
 }
 
 function cluster_zone() {
