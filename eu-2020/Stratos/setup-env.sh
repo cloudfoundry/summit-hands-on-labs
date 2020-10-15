@@ -52,7 +52,8 @@ function main() {
   target_cluster
   create_kube_token
 
-  KUBE_URL=$(kubectl cluster-info | grep "Kubernetes master" | cut -c 44-)
+  # KUBE_URL=$(kubectl cluster-info | grep "Kubernetes master" | cut -c 44-)
+  KUBE_URL="https://cluster-${SEAT}.lab.stratos.app"
 
   echo "Set up complete"
   echo "Your Kube Cluster URL is '${KUBE_URL}'"
