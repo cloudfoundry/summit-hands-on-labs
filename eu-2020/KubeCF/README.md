@@ -24,8 +24,6 @@ You will be performing the following tasks in this lab :-
 
 Audience must have basic knowledge of Cloud Foundry and Kubernetes.
 
-## Lab
-
 ## Setup Environment
 
 Let's set up your environment by running the following command in your console. 
