@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -eo pipefail
 
 function install_tools() {
   echo "Installing Helm..."
   curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && chmod 700 get_helm.sh && ./get_helm.sh
 
   echo "Verifying correct installation of required tools..."
-  kubectl version
+  kubectl version --client=true
   helm version
   echo
 }
 
 function cluster_zone() {
   if [[ $((SEAT)) < 50 ]]; then
-    echo "eu-west-3-a"
+    echo "europe-west3-a"
   else
-    echo "eu-west-3-b"
+    echo "europe-west3-b"
   fi
 }
 
@@ -27,7 +27,7 @@ function target_cluster() {
 }
 
 function create_kube_token() {
-  # echo "Creating Kube Service Access Token..."#// TODO: fix
+  echo "Creating Kube Service Access Token..."
   
   local NS="kube-system"
 
@@ -36,36 +36,27 @@ function create_kube_token() {
 
   # Service account should be created - now need to get token
   local SECRET=$(kubectl get -n $NS sa $SERVICE_USER -o json | jq -r '.secrets[0].name')
-  local KUBE_TOKEN=$(kubectl get -n $NS secret $SECRET -o json | jq -r '.data.token')
-  local KUBE_TOKEN=$(echo $TOKEN | base64 -d -)
-
-  # Output
-  echo "$KUBE_TOKEN" #// TODO: fix
-}
-
-function output_env_vars() {
-  echo "Generating custom environment settings..." >&2
-  cat <<EOT
-export SEAT="${SEAT}"
-export CLUSTER_NAME="lab-${SEAT}"
-export PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
-export KUBE_TOKEN="${KUBE_TOKEN}""
-EOT
+  KUBE_TOKEN=$(kubectl get -n $NS secret $SECRET -o json | jq -r '.data.token')
+  KUBE_TOKEN=$(echo $KUBE_TOKEN | base64 -d -)
 }
 
 function main() {
   SEAT="$(echo "${USER}" | tr -d "a-z_")"
-  SEAT=1 // TODO: RC remove
+  SEAT=1 #// TODO: remove
   CLUSTER_NAME="stratos-${SEAT}"
+  echo "Setting up for user '${USER}' at seat '${SEAT}' and cluster name '${CLUSTER_NAME}'"
 
-  install_tools >&2
-  target_cluster >&2 // TODO: Add back in
-  KUBE_TOKEN=$(create_kube_token) // TODO: Add back in
-  output_env_vars
+  PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
 
-  # run export in script
-  # run script as `source setup-env.sh`
-  # remove redirect from function
+  install_tools
+  target_cluster
+  create_kube_token
+
+  KUBE_URL=$(kubectl config view | grep server) #// TODO: fix
+
+  echo "Set up complete"
+  echo "Your Kube Cluster URL is '${KUBE_URL}'"
+  echo "Your Kube Cluster Token is '${KUBE_TOKEN}'"
 }
 
 main

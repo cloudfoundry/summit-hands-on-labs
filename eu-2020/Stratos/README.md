@@ -42,9 +42,9 @@ In this step we will set up some CLI tools and test them.
 ### Install Tools, Get Kube Credentials
 1. Run the following script
    ```
-   eval "$(./setup-env.sh)"
+   source setup-env.sh
    ```
-   This will install the `kubectl` and `helm` CLI's and configure them to communicate with your own Kube Cluster that we have assigned to your user.
+   This will install the `helm` CLI and configure it and `kubtectl` to communicate with your own Kube Cluster that we have assigned to your user.
    It will also create a Service Token that Stratos will use to communicate with the cluster
 
 ### Validate your environment
@@ -53,7 +53,7 @@ In this step we will set up some CLI tools and test them.
    kubectl get ns
    ```
 
-1. Can you list all Helm Repositories (There will be no repositories to show)?
+1. Can you list all Helm Repositories (there will be no repositories to show)?
    ```
    helm repo list 
    ```
@@ -111,9 +111,7 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 
 <!-- // TODO: Intro -->
 
-### Register & Connect to Kubernetes Endpoint
-
-#### Register
+### Register
 1. Navigate to the Endpoints page via the side navigation buttons on the left
 1. Click on the `+` icon to the right of the header
 1. Click on `Kubernetes`
@@ -121,13 +119,13 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 1. Enter the Kube Cluster's API URL as the Endpoint Address <!-- // TODO: confirm where this is from -->
 1. Click Next in the bottom right
 
-#### Connect
+### Connect
 1. Check the `Connect to` box
 1. Select `Service Account Token` as the `Auth Type`
 1. Copy in your token into the text area below <!-- // TODO: confirm where this is from -->
 1. Click next
 
-#### Confirm
+### Confirm
 1. Confirm your new Endpoint is shown in the Endpoints list and that it's status is `Connected`
 1. Click on the `Kubernetes` button in the sidenav on the left
 1. Can you find the Stratos pods in the pods view?

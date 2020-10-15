@@ -1,6 +1,6 @@
 
 
-Welcome to your Stratos Hands on Lab Google Cloud Shell Session
+Welcome to your Stratos Hands on Lab's Google Cloud Shell Session
 
 Please continue the session by finding Step 2 in the Tutorial window on the right. 
 
