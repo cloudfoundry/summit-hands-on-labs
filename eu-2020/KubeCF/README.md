@@ -49,6 +49,7 @@ Run the following command to list the `Cloud Foundry` component pods deployed in
     kubectl get pods -n kubecf
 
 * Your output should display all component pods with `Running` status.
+* The `database-seeder-..` pod should be in `Completed` status.
 * `KubeCF` is already installed for you using `helm`. 
 * In case, you are interested to know how it is installed, you can checkout the steps from
 [Installation Instructions](https://kubecf.io/docs/deployment/kubernetes-deploy/).
@@ -60,7 +61,7 @@ Pushing an app into `KubeCF`, requires a configured `Cloud Foundry CLI`. You sha
 * Set the KubeCF API url.
 
         cf api --skip-ssl-validation \
-        http://api.na"$SEAT".kubecf.net
+        http://api.eu"$SEAT".kubecf.net
 
 * Login using the user admin, so that you have full access to the `KubeCF` platform.
 
