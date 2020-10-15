@@ -10,7 +10,7 @@ function install_tools() {
 }
 
 function cluster_zone() {
-  if [ "$SEAT" >= 1 && "$SEAT" <= 30 ]; then
+  if [[ $((SEAT/31)) = 0 ]]; then
     echo "europe-west2-a"
   else
     echo "europe-west2-b"
