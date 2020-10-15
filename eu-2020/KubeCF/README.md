@@ -87,17 +87,15 @@ Pushing an app into `KubeCF`, requires a configured `Cloud Foundry CLI`. You sha
         
         kubectl get pods -n eirini
 
-* Go to url in the browser. Make sure to replace the `$seat` variable.
-```
-http://redis-example-app.na$seat.kubecf.net
-```
+* Curl the url.
+
+        curl http://redis-example-app.eu$SEAT.kubecf.net
 
 OR
 
-* Curl the url.
-
-        curl http://redis-example-app.na$seat.kubecf.net
-
+* Go to url in the browser. Make sure to replace the `$SEAT` variable with the number in your google email address.
+    
+        http://redis-example-app.eu$SEAT.kubecf.net
 
 So, you have successfully deployed an application into KubeCF platform.
 
@@ -107,101 +105,7 @@ If you want to re-install, delete the app and retry the section.
 
     cf delete redis-example-app
 
-
-## Developer Hat
-
-### Install Minibroker
-
-Minibroker is an open source service broker based on [Open Service Broker API](https://www.openservicebrokerapi.org/). Using service brokers, Cloud Foundry apps can connect to external services such as databases, SaaS applications etc. Services deployed in Kubernetes can also be connected using service brokers.
-
-* Install Minibroker using helm.
-
-* Create minibroker namespace.
-  
-        cd ..
-        kubectl create ns minibroker
-
-* Add minibroker helm rpo
-
-        helm repo add suse https://kubernetes-charts.suse.com
-        helm install minibroker --namespace minibroker suse/minibroker \
-        --set "defaultNamespace=minibroker"
-        cat minibroker-ingress.yaml | sed "s/replace/'minibroker.na$seat.kubecf.net'/g" \
-        | kubectl apply -f -
-
-
-* Check if the minibroker pod is running.
-
-        watch kubectl get pods -n minibroker
-        
-Press `Ctrl+C` to exit.
-
-* Connect minibroker to `KubeCF` platform.
-
-
-        cf create-service-broker minibroker \
-        user123 password http://minibroker.na$seat.kubecf.net
-
-* List the redis database services and their associated plans the minibroker has access to :- 
-
-
-        cf service-access -b minibroker | grep redis
-
-* Lets choose a plan and create one in the next steps.
-
-#### Troubleshooting
-
-If you want to re-install, uninstall the helm release and re-install.
-
-
-        echo y | cf delete-service-broker minibroker 
-        helm uninstall minibroker -n minibroker
-
-
-### Create a Redis Database Instance
-
-Lets now enable a redis database service in the minibroker, create a security group, and create an instance of redis database.
-
-* Enable redis service.
-
-        cf enable-service-access redis -b minibroker -p 4-0-10
-
-* Create & bind security group
-
-        echo > redis.json '[{ "protocol": "tcp", "destination": "10.0.0.0/8", "ports": "6379", "description": "Allow Redis traffic" }]'
-        cf create-security-group redis_networking redis.json        
-        cf bind-security-group redis_networking demo demo
-
-* Create a redis plan service.
-
-        cf create-service redis 4-0-10 redis-example-service
-
-
-Check if the redis master and slave pods are running.
-
-
-        watch kubectl get pods --namespace minibroker
-
-Press `Ctrl+C` to exit.
-
-Check the status of the service creation. Wait until the creation is competed.
-
-
-        watch cf service redis-example-service
-
-Press `Ctrl+C` to exit.
-
-#### Troubleshooting
-
-If you want to re-create, delete the service and retry.
-
-
-        cf delete-service redis-example-service
-
-
-## Developer Hat
-
-### Connect Redis to App
+## Learn Eirini SSH extension
 
 Bind the redis database instace to your pushed application.
 
