@@ -86,15 +86,19 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
    ```
 1. Install Stratos in the new namespace
    ```
-   helm install stratos-console stratos/console --namespace=$sn -f values.yaml
+   helm install stratos-console stratos/console --namespace=$sn -f stratos-values.yaml --devel // TODO: Remove --devel
    ```
-   This will start the install. Helm will provide Kubernetes with a set of resources to create. The resources are rendered from helm templates with help from the `values.yaml` we have provided. In this file we've defined how we can reach Stratos and enabled 'Tech Preview' features.
+   This will start the install. Helm will provide Kubernetes with a set of resources to create. The resources are rendered from helm templates with help from the `stratos-values.yaml` we have provided. By using a custom values file we've 
+   - defined how we can reach Stratos
+   - enabled 'Tech Preview' features
+   - set up a local user credentials for a quick way to log in
 
 1. Discover the URL of Stratos
    ```
    export NODE_PORT=$(kubectl get --namespace $sn -o jsonpath="{.spec.ports[0].nodePort}" services console-ui-ext)
-   export NODE_IP=$(kubectl get nodes --namespace $sn -o jsonpath="{.items[0].status.addresses[0].address}")
-   echo https://$NODE_IP:$NODE_PORT
+   export NODE_IP=$(kubectl get nodes -o jsonpath="{.items[0].status.addresses[?(@.type==\"ExternalIP\")].address}")
+   export STRATOS_URL=https://$NODE_IP:$NODE_PORT
+   echo "The URL of your new Stratos is $STRATOS_URL"
    ```
 
 1. Wait for the install to complete
@@ -105,24 +109,38 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 ### Log in
 1. Open the Stratos URL in your local browser
 
-1. Enter your credentials <!-- // TODO: confirm where these are from -->
+1. Enter the pre-configured Stratos credentials
+   Username: 'admin'
+   Password: 'password'
 
 ## Register and Connect a Kubernetes Endpoint
 
-<!-- // TODO: Intro -->
+Stratos uses endpoints to communicate with other systems such as Cloud Foundries, Kubernetes, Helm Repositories, etc. A Stratos Administrator will register these endpoints in Stratos and then all users can connect to it using their own credentials.
+
+### Find the Kube Cluster's URL and Service Token
+1. Kube Cluster's API URL
+   This can be found by running the following from the shell
+   ```
+   echo $KUBE_URL
+   ```
+1. Kube Cluster's Service Token
+   This can also be found by running the following from the shell
+   ```
+   echo $KUBE_TOKEN
+   ```
 
 ### Register
 1. Navigate to the Endpoints page via the side navigation buttons on the left
 1. Click on the `+` icon to the right of the header
 1. Click on `Kubernetes`
 1. Add a recognisable name for your new Kube Endpoint
-1. Enter the Kube Cluster's API URL as the Endpoint Address <!-- // TODO: confirm where this is from -->
+1. Enter the Kube Cluster's API URL as the Endpoint Address
 1. Click Next in the bottom right
 
 ### Connect
 1. Check the `Connect to` box
 1. Select `Service Account Token` as the `Auth Type`
-1. Copy in your token into the text area below <!-- // TODO: confirm where this is from -->
+1. Copy in your service token into the text area below
 1. Click next
 
 ### Confirm
@@ -135,7 +153,8 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 <!-- // TODO: steps -->
 
 ## Explore a Kubernetes Features
-<!-- // TODO: Intro -->
+
+Explore some of the new Kubernetes features, there's some suggestions below.
 
 #### View a Workload
 <!-- // TODO: explain what workloads are -->
@@ -144,6 +163,10 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 <!-- 1. // TODO: more activities -->
 
 ## Explore Tech Preview Features
+
+Explore some of the new Tech Preview Kubernetes features, there's some suggestions below.
+
+
 
 #### Configure and View the Kubernetes Dashboard
 1. Navigate to the Summary page of your Kubernetes by clicking on the `Kubernetes` button in the sidenav on the left

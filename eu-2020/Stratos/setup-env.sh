@@ -52,7 +52,7 @@ function main() {
   target_cluster
   create_kube_token
 
-  KUBE_URL=$(kubectl config view | grep server) #// TODO: fix
+  KUBE_URL=$(kubectl cluster-info | grep "Kubernetes master" | cut -c 44-)
 
   echo "Set up complete"
   echo "Your Kube Cluster URL is '${KUBE_URL}'"

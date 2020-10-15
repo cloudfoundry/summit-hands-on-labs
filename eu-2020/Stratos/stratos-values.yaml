@@ -1,5 +1,6 @@
 console:
+  localAdminPassword: "password"
   service:
     type: "NodePort"
-    nodePort: 3891
+    nodePort: 30891
   techPreview: true
