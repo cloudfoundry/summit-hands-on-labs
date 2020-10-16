@@ -41,10 +41,18 @@ function create_kube_token() {
 }
 
 function main() {
-  SEAT="$(echo "${USER}" | tr -d "a-z_")"
-  SEAT=1 #// TODO: remove
+  if [ -z "$1" ] ; then
+    echo "1"
+    SEAT="$(echo "${USER}" | tr -d "a-z_")"
+  else
+    echo "2"
+    SEAT=$1
+  fi
+
   CLUSTER_NAME="stratos-${SEAT}"
   echo "Setting up for user '${USER}' at seat '${SEAT}' and cluster name '${CLUSTER_NAME}'"
+
+  exit 0
 
   PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
 
@@ -60,4 +68,4 @@ function main() {
   echo "Your Kube Cluster Token is '${KUBE_TOKEN}'"
 }
 
-main
+main $1

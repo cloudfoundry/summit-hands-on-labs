@@ -48,7 +48,6 @@ In this step we will set up some CLI tools and test them.
 
    The script will install the `helm` CLI and configure it and `kubtectl` to communicate with your own Kube Cluster that we have assigned to your user. It will also create a Service Token that Stratos will use to communicate with the cluster
 
-
 ### Validate your environment
 1. Can you fetch Kubernetes namespaces?
    ```
