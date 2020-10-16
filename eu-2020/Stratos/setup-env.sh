@@ -52,8 +52,6 @@ function main() {
   CLUSTER_NAME="stratos-${SEAT}"
   echo "Setting up for user '${USER}' at seat '${SEAT}' and cluster name '${CLUSTER_NAME}'"
 
-  exit 0
-
   PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
 
   install_tools
