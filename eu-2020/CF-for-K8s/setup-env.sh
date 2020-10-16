@@ -60,7 +60,7 @@ EOT
 
 function main() {
   SEAT="$(echo "${USER}" | tr -d "a-z_")"
-  CLUSTER_NAME="lab-${SEAT}"
+  CLUSTER_NAME="cf-for-k8s-lab-${SEAT}"
   CF_DOMAIN="${CLUSTER_NAME}.cf-for-k8s-labs.com"
 
   install_tools >&2
