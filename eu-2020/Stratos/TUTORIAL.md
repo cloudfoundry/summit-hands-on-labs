@@ -1,12 +1,16 @@
-<walkthrough-watcher-constant key="stratos_namespace" value="stratos-namespace">
+<walkthrough-watcher-constant key="stratos-namespace" value="stratos-namespace">
 </walkthrough-watcher-constant>
-<walkthrough-watcher-constant key="stratos_url" value="!!stratos_url!!">
+
+<walkthrough-watcher-constant key="stratos-url" value="!!stratos_url!!">
 </walkthrough-watcher-constant>
-<walkthrough-watcher-constant key="stratos_port" value="30891">
+
+<walkthrough-watcher-constant key="stratos-port" value="30891">
 </walkthrough-watcher-constant>
-<walkthrough-watcher-constant key="seat" value="!!seat number!!">
+
+<walkthrough-watcher-constant key="seat" value="!!seat_number!!">
 </walkthrough-watcher-constant>
-<walkthrough-watcher-constant key="stratos_helm_name" value="stratos-console">
+
+<walkthrough-watcher-constant key="stratos-helm-name" value="stratos-console">
 </walkthrough-watcher-constant>
 
 ## Introduction
@@ -93,15 +97,15 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 ### <walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> Install Stratos
 1. Create a variable with the namespace
    ```bash
-   export stratos_namespace={{stratos_namespace}}
+   export STRATOS_NAMESPACE={{stratos-namespace}}
    ```
 1. Now create a Kube Namespace with it
    ```bash
-   kubectl create namespace $stratos_namespace
+   kubectl create namespace $STRATOS_NAMESPACE
    ```
 1. Install Stratos in the new namespace
    ```bash
-   helm install {{stratos_helm_name}} stratos/console --namespace=$stratos_namespace -f stratos-values.yaml
+   helm install {{stratos-helm-name}} stratos/console --namespace=$STRATOS_NAMESPACE -f stratos-values.yaml
    ```
    This will start the install. Helm will provide Kubernetes with a set of resources to create. The resources are rendered from helm templates with help from the `stratos-values.yaml` we have provided. By using a custom values file we've 
    - defined how we can reach Stratos
@@ -110,14 +114,15 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 
 1. Wait for the install to complete. Run the following command and wait for all the pods to be ready or completed
    ```bash
-   watch -n 1 kubectl get pods -n $stratos_namespace
+   watch -n 1 kubectl get pods -n $STRATOS_NAMESPACE
    ``` 
    
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Log in
 1. Open the Stratos URL in your local browser
    ```
-   https://{{stratos_url}}:{{stratos_port}}
+   https://{{stratos-url}}:{{stratos-port}}
    ```
+
    > Note - No SLL certificates have not been configured, so accept any invalid certificate warnings
 
 1. Enter the pre-configured Stratos credentials
@@ -201,9 +206,9 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
 1. Click on the `Install` button towards the top right
 
-1. Add `{{stratos_helm_name}}-2` as the name
+1. Add `{{stratos-helm-name}}-2` as the name
 
-1. Add `{{stratos_namespace}}-2` as the namespace
+1. Add `{{stratos-namespace}}-2` as the namespace
    - This namespace doesn't not exist, so check the `Create Namespace` button
 
 1. Click `Next`
@@ -226,7 +231,7 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
 1. Discover the URL for the new Stratos
    - Use the same address as the old Stratos but update the port to the one defined in values - `30892`
-   - The port number can also been seen in the `Workload`'s `Services` page for the `<x>-ui-ext` service
+   - The port number can also been seen in the `Workload`'s `Services` page for the `{{stratos-helm-name}}-ui-ext` service
 
 1. Navigate to the new Stratos in the same tab
 
@@ -239,11 +244,11 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Uninstall
 1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
 
-1. Find the workload for the new Stratos, it should be named `{{stratos_helm_name}}-2`, and click on it
+1. Find the workload for the new Stratos, it should be named `{{stratos-helm-name}}-2`, and click on it
 
 1. Click on the `Delete` button in the top sub-header
 
-1. Enter the name of the workload `{{stratos_helm_name}}-2` and click `Delete`
+1. Enter the name of the workload `{{stratos-helm-name}}-2` and click `Delete`
 
 
 <!-- // TODO: install previous version...see no kube stuff... then upgrade with new features? -->
@@ -265,7 +270,7 @@ Explore some of the new Kubernetes features, there's some suggestions below.
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> View a Workload
 1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
 
-1. Find the workload for Stratos, it should be named `{{stratos_helm_name}}`, and click on it
+1. Find the workload for Stratos, it should be named `{{stratos-helm-name}}`, and click on it
 
 1. See the status of the Pods and Containers in the `Summary` page
 
@@ -273,7 +278,7 @@ Explore some of the new Kubernetes features, there's some suggestions below.
 
 1. Check that the Pods all have an acceptable `Status` in the `Pods` page.
 
-1. Find the `Node Port` of the `{{stratos_helm_name}}-ui-ext` service that exposes access to Stratos
+1. Find the `Node Port` of the `{{stratos-helm-name}}-ui-ext` service that exposes access to Stratos
 
 ## Explore Tech Preview Features
 
@@ -325,7 +330,7 @@ The Kube & Helm terminal provides a shell like experience with the Kube and Helm
    ```
    kubectl get pods --namespace <your namespace>
    ```
-   > Get your namespace by running `echo $stratos_namespace` in the Google Cloud Shell
+   > Get your namespace by running `echo $STRATOS_NAMESPACE` in the Google Cloud Shell
    > Note - See the `terminal-` pod that hosts the terminal
 
 
@@ -342,7 +347,7 @@ The overview graph provides a way to see
 
 1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
 
-1. Find the workload for Stratos, it should be named `{{stratos_helm_name}}`, and click on it
+1. Find the workload for Stratos, it should be named `{{stratos-helm-name}}`, and click on it
 
 1. Click on the `Overview` button in the left sub-sidenav
 

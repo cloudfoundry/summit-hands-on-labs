@@ -76,6 +76,7 @@ function create_source_file() {
   echo "SEAT=${SEAT}" >> ${ENV_FILE}
   echo "KUBE_NAME=${KUBE_NAME}" >> ${ENV_FILE}
   echo "KUBE_URL=${KUBE_URL}" >> ${ENV_FILE}
+  echo "KUBE_TOKEN=${KUBE_TOKEN}" >> ${ENV_FILE}
   echo "STRATOS_NAMESPACE=${STRATOS_NAMESPACE}" >> ${ENV_FILE}
   echo "STRATOS_URL=${STRATOS_URL}" >> ${ENV_FILE}
 
@@ -91,7 +92,7 @@ function update_readme() {
   README_ORIG=TUTORIAL.md.orig
 
   WALKTHROUGH_CONST_URL="!!stratos_url!!"
-  WALKTHROUGH_CONST_SEAT="!!seat number!!"
+  WALKTHROUGH_CONST_SEAT="!!seat_number!!"
   cp ${README_FILE} ${README_ORIG}
 
   touch ${README_TEMP_FILE}

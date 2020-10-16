@@ -36,6 +36,3 @@ In this step we will gather your lab credentials and set up your Google Cloud Sh
 <!-- // TODO: this should be updated with the correct repo -->
 [![Open in Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/editor?cloudshell_git_branch=rc&cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fcf-stratos%2Fsummit-hands-on-labs&cloudshell_working_dir=eu-2020%2FStratos&cloudshell_tutorial=TUTORIAL.md&shellonly=true&cloudshell_print=welcome.txt)
 
-
-
-<walkthrough-footnote>Footnote text here</walkthrough-footnote>
