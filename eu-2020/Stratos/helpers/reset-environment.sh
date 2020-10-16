@@ -12,3 +12,10 @@ set -e
 
 # Restart the shell environment by closing the current window and clicking on the session link again
 
+cd ~/
+rm -rf cloudshell_open/summit-hands-on-labs
+rm -rf .kube
+rm -rf .config/helm
+
+# Restart the shell environment by closing the current window and clicking on the session link again
+

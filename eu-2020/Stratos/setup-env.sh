@@ -42,10 +42,8 @@ function create_kube_token() {
 
 function main() {
   if [ -z "$1" ] ; then
-    echo "1"
     SEAT="$(echo "${USER}" | tr -d "a-z_")"
   else
-    echo "2"
     SEAT=$1
   fi
 

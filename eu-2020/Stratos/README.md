@@ -11,7 +11,7 @@ The presenters will demonstrate each step. Time and assistance will then be prov
 In this step we will gather your lab credentials and set up your Google Cloud Shell environment
 
 ### Claim your Google Credentials
-1. Open (?) <!-- // TODO: url to google sheet  -->
+1. Open https://docs.google.com/spreadsheets/d/1AJb0UiM44YpX1okJMTcwuhlxso_GpqOGGuWww5Xv460/edit#gid=0
 
 1. Claim a row by adding your name to the `Stratos` column
 
@@ -55,10 +55,8 @@ In this step we will set up some CLI tools and test them.
    ```
 
 1. Can you list all Helm Repositories
-
-   > Note! There will be no repositories to show at the moment
    ```
-   helm repo list 
+   helm env
    ```
 
 ## Install Stratos using Helm
@@ -84,7 +82,7 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 ### Install Stratos
 1. Create a Kube Namespace for Stratos
    ```
-   export sn=stratos
+   export sn=stratos-$SEAT
    kubectl create namespace $sn
    ```
 1. Install Stratos in the new namespace
@@ -103,7 +101,7 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
    
 1. Discover the URL of Stratos
    ```
-   export NODE_PORT=$(kubectl get --namespace stratos -o jsonpath="{.spec.ports[0].nodePort}" services stratos-console-ui-ext)
+   export NODE_PORT=$(kubectl get --namespace $sn -o jsonpath="{.spec.ports[0].nodePort}" services stratos-console-ui-ext)
    export NODE_IP=$(kubectl get nodes -o jsonpath="{.items[0].status.addresses[?(@.type==\"ExternalIP\")].address}")
    export STRATOS_URL=https://$NODE_IP:$NODE_PORT
    echo "The URL of your new Stratos is $STRATOS_URL"
@@ -111,7 +109,7 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
    
 ### Log in
 1. Open the Stratos URL in your local browser
-   > Note - No SLL certificates have been set up, so accept any invalid certificate warnings
+   > Note - No SLL certificates have not been configured, so accept any invalid certificate warnings
 
 1. Enter the pre-configured Stratos credentials
    
@@ -196,7 +194,11 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
 1. Add `stratos-console-2` as the name
 
-1. Add `stratos-2` as the namespace
+1. Add `stratos-<seat>-2` as the namespace
+   - To find your seat number go to the Google Cloud Shell and execute the following
+     ```
+     echo $SEAT
+     ```
    - This namespace doesn't not exist, so check the `Create Namespace` button
 
 1. Click `Next`
@@ -214,9 +216,20 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
 1. Click `Install`. You will be taken to the `Workload` page for the new `Stratos`
 
-1. Wait for the Workload Pods to come up by navigating to the `Pods` page
+1. Wait for the Workload Pods to come up. To see these navigating to the `Pods` page of the Workload that's automatically come up.
+   - Just like watching these pods come up in the CLI they should be marked as ready and have a positive status.
 
-1. Log in to the new Stratos 2 using the same URL as Stratos 1, but with the different port number `30892`, then log out again
+1. Discover the URL for the new Stratos
+   - Use the same address as the old Stratos but update the port to the one defined in values - `30892`
+   - The port number can also been seen in the `Workload`'s `Services` page for the `<x>-ui-ext` service
+
+1. Navigate to the new Stratos in the same tab
+
+1. Log in to the new Stratos using the same credentials
+   
+   Username: `admin`
+
+   Password: `password`
 
 ### Uninstall
 1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
@@ -229,6 +242,7 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
 
 <!-- // TODO: install previous version...see no kube stuff... then upgrade with new features? -->
+<!-- // TODO: install with kube stuff disabled? tech preivew off? -->
 
 ## Explore a Kubernetes Features
 
@@ -285,7 +299,7 @@ Kubernetes analysis tools are a new feature which allows the execution of extern
 1. Click on the `Analysis` button in the sub-sidenav on the left
 
 1. Click on `Run Analysis` in the sub-header at the top and select `PopEye`
-   - The tun should then appear in the table below
+   - The run should then appear in the table below
 
 1. Click on the report name in the table to view the report
    - This will be a link once the run has `Completed`
@@ -304,10 +318,13 @@ The Kube & Helm terminal provides a shell like experience with the Kube and Helm
 
 1. Execute the following to see Stratos's own pods
    ```
-   kubectl get pods --namespace stratos
+   kubectl get pods --namespace <your namespace>
    ```
+   > Get your namespace by running `echo $sn` in the Google Cloud Shell
    > Note - See the `terminal-` pod that hosts the terminal
 
+
+<!-- // TODO: doesn't work for artifact hub¬¬  -->
 1. Execute the following to see the Stratos's own chart
    ```
    helm search repo console
@@ -333,8 +350,12 @@ The overview graph provides a way to see
 
 <!-- // TODO: all . use stark and wayne cf -->
 
-## Register and Connect a CF Endpoint
+### Register and Connect a CF Endpoint
 
-## Browse Applications 
+### Browse Applications 
 
-## Deploy an Application
+### Deploy an Application
+
+## Summary
+We hoped you have enjoyed this hands on... etc
+<!-- // TODO: all . use stark and wayne cf -->
