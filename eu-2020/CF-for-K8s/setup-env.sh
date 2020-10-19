@@ -3,7 +3,7 @@
 set -euo pipefail
 
 function install_tools() {
-  echo "Installing K14s..."
+  echo "Installing Carvel tools..."
   mkdir -p "${HOME}/bin"
   export PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
   wget -O- https://k14s.io/install.sh | K14SIO_INSTALL_BIN_DIR="${HOME}/bin" bash

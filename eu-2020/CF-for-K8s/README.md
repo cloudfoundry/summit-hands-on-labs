@@ -32,7 +32,7 @@ Let's set up your environment by running the following command in your console.
 
 #### What it's doing
 
-- The script will install cf-cli, k14s tools (`ytt`, `kapp`), plus a few other helpful tools for the lab session. 
+- The script will install cf-cli, Carvel tools (`ytt`, `kapp`), plus a few other helpful tools for the lab session. 
 
 - The script also setups up your `kubeconfig` by connecting to an existing k8s cluster. 
 
