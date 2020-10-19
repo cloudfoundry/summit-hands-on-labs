@@ -60,6 +60,7 @@ Clone the cf-for-k8s project from the source repository.
 
     git clone https://github.com/cloudfoundry/cf-for-k8s.git
     cd cf-for-k8s
+    git checkout v1.0.0-rc.2
 
 ## Create a values file
 
