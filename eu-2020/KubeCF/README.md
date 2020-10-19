@@ -60,8 +60,8 @@ Pushing an app into `KubeCF`, requires a configured `Cloud Foundry CLI`. You sha
 
 * Set the KubeCF API url.
 
-    cf api --skip-ssl-validation \
-    http://api.eu"$SEAT".kubecf.net
+        cf api --skip-ssl-validation \
+        http://api.eu"$SEAT".kubecf.net
 
 * Login using the user admin, so that you have full access to the `KubeCF` platform.
 
