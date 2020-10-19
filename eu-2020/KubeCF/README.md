@@ -54,7 +54,7 @@ Run the following command to list the `Cloud Foundry` component pods deployed in
 * In case, you are interested to know how it is installed, you can checkout the steps from
 [Installation Instructions](https://kubecf.io/docs/deployment/kubernetes-deploy/).
 
-### Pushing an App
+## Pushing an App
 
 Pushing an app into `KubeCF`, requires a configured `Cloud Foundry CLI`. You shall now configure the CLI with the domain name `"eu$SEAT.kubecf.net"` which points to the installed KubeCF platform.
 
@@ -83,7 +83,7 @@ Pushing an app into `KubeCF`, requires a configured `Cloud Foundry CLI`. You sha
         cd cf-sample-app-python
         cf push
  
- * Checkout if the app has been successfully deployed.
+ * Checkout if the app has been successfully deployed in the eirini namespace.
         
         kubectl get pods -n eirini
 
@@ -105,7 +105,7 @@ If you want to re-install, delete the app and retry the section.
 
         cf delete python-flask-app
 
-### EiriniX Persi
+## EiriniX Persi
 
 In general, apps pushed into Cloud Foundry are ephermal and the data from the apps is not persisted. In any case, you would like to have your data persisted, you need to use the EiriniX Persi extension.
 
@@ -147,7 +147,7 @@ In general, apps pushed into Cloud Foundry are ephermal and the data from the ap
 
         curl http://python-flask-app.eu$SEAT.kubecf.net/create
 
-### EiriniX SSH
+## EiriniX SSH
 
 `cf ssh` doesn't work with Eirini. You need EiriniX SSH extension for the sub command to work. EiriniX SSH comes by default with `KubeCF` installation.
 
@@ -160,7 +160,7 @@ In general, apps pushed into Cloud Foundry are ephermal and the data from the ap
         export MOUNT_PATH=$(env | grep container_dir | cut -d":" -f2- | sed "s/,$//" | tr -d '"')
         ls $MOUNT_PATH
 
-### EiriniX Logging
+## EiriniX Logging
 
 `cf logs` also doesn't work with Eirini. You need EiriniX Logs extension for the sub command to work. EiriniX Logs comes by default with `KubeCF` installation.
 
