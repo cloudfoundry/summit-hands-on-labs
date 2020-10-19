@@ -125,7 +125,7 @@ In general, apps pushed into Cloud Foundry are ephermal and the data from the ap
 
 * Create a service which will provide us a volume.
 
-        cf create-service eirini-persi default eirini-persi-volume -c '{"access_mode": "ReadWriteMany"}'
+        cf create-service eirini-persi default eirini-persi-volume -c '{"access_mode": "ReadWriteOnce"}'
 
 * Check if the pvc is created.
 
@@ -139,10 +139,9 @@ In general, apps pushed into Cloud Foundry are ephermal and the data from the ap
 
         cf restage python-flask-app
 
-* You can find the mount path from the env sub command.
+* You can find the volume_mounts details in VCAP_SERVICES json.
 
         cf env python-flask-app
-        export MOUNT_PATH=
 
 * Create a file in the volume by hitting this api endpoint.
 
@@ -158,10 +157,8 @@ In general, apps pushed into Cloud Foundry are ephermal and the data from the ap
 
 * Go to the mounted volume and check for the file created.
 
-        cd /var/vcap/$MOUNT_PATH
-        ls
-
-* 
+        export MOUNT_PATH=$(env | grep container_dir | cut -d":" -f2- | sed "s/,$//" | tr -d '"')
+        ls $MOUNT_PATH
 
 ### EiriniX Logging
 
