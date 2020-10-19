@@ -35,11 +35,6 @@ function cluster_zone() {
 function target_cluster() {
   cecho ${CYAN} "Targeting cluster ${KUBE_NAME}..."
   gcloud container clusters get-credentials "${KUBE_NAME}" --zone "$(cluster_zone)" --project summit-labs
-  res=$?
-  if [ $res != 0 ]; then
-    cecho ${RED} "Failed to execute gcloud get-credentials"
-    exit 0 #Return zero such that source does not fail
-  fi
   echo
 }
 
@@ -93,10 +88,12 @@ function update_readme() {
 
   WALKTHROUGH_CONST_URL="!!stratos_url!!"
   WALKTHROUGH_CONST_SEAT="!!seat_number!!"
+  WALKTHROUGH_CONST_KUBE_URL="!!kube_url!!"
+  WALKTHROUGH_CONST_KUBE_TOKEN="!!kube_token!!"
   cp ${README_FILE} ${README_ORIG}
 
   touch ${README_TEMP_FILE}
-  sed -e "s@$WALKTHROUGH_CONST_URL@$STRATOS_URL@" -e "s@$WALKTHROUGH_CONST_SEAT@$SEAT@" ${README_FILE} > ${README_TEMP_FILE}
+  sed -e "s@$WALKTHROUGH_CONST_URL@$STRATOS_URL@" -e "s@$WALKTHROUGH_CONST_SEAT@$SEAT@" -e "s@$WALKTHROUGH_CONST_KUBE_URL@$KUBE_URL@" -e "s@$WALKTHROUGH_CONST_KUBE_TOKEN@$KUBE_TOKEN@" ${README_FILE} > ${README_TEMP_FILE}
   cp ${README_TEMP_FILE} ${README_FILE}
   rm ${README_TEMP_FILE}
   cloudshell launch-tutorial ${README_FILE}
@@ -123,8 +120,7 @@ function main() {
   cecho ${CYAN} "Setting up for user '${USER}' at seat '${SEAT}' and cluster name '${KUBE_NAME}'"
   echo
 
-  # install_tools
-  target_cluster
+  install_tools
   create_kube_token
   print_details
   create_source_file

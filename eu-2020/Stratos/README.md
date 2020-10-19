@@ -1,13 +1,3 @@
-<walkthrough-watcher-constant key="stratos_namespace" value="stratos-namespace">
-</walkthrough-watcher-constant>
-<walkthrough-watcher-constant key="stratos_url" value="!!stratos_url!!">
-</walkthrough-watcher-constant>
-<walkthrough-watcher-constant key="stratos_port" value="30891">
-</walkthrough-watcher-constant>
-<walkthrough-watcher-constant key="seat" value="!!seat number!!">
-</walkthrough-watcher-constant>
-<walkthrough-watcher-constant key="stratos_helm_name" value="stratos-console">
-</walkthrough-watcher-constant>
 
 ## Introduction
 
@@ -25,14 +15,13 @@ In this step we will gather your lab credentials and set up your Google Cloud Sh
 1. The instructors will provide you with Google credentials to use during the session. These will be used to access Google Cloud Shell and it's resources
 
 ### Start Google Cloud Shell 
-1. Open the link below in incognito/private mode
+1. Open the link below in incognito/private mode and log in using your claimed credentials from above
    > Note The incognito mode ensures you can log in using the credentials provided. This is important and should not be skipped
 
-1. Log in using your claimed credentials from above
    > Note You may be prompted to 'Trust' the session's repository with your temporary google credentials. You should allow this by clicking `Confirm`
 
    > Note - It may take a minute or two for the Google Shell environment to start up
 
 <!-- // TODO: this should be updated with the correct repo -->
-[![Open in Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/editor?cloudshell_git_branch=rc&cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fcf-stratos%2Fsummit-hands-on-labs&cloudshell_working_dir=eu-2020%2FStratos&cloudshell_tutorial=TUTORIAL.md&shellonly=true&cloudshell_print=welcome.txt)
+[![Open in Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/editor?cloudshell_git_branch=rc&cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fcf-stratos%2Fsummit-hands-on-labs&cloudshell_working_dir=eu-2020%2FStratos&cloudshell_tutorial=SETUP.md&shellonly=true&cloudshell_print=welcome.txt)
 

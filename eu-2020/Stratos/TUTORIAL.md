@@ -13,55 +13,26 @@
 <walkthrough-watcher-constant key="stratos-helm-name" value="stratos-console">
 </walkthrough-watcher-constant>
 
-## Introduction
+<walkthrough-watcher-constant key="kube_url" value="!!kube_url!!">
+</walkthrough-watcher-constant>
 
-In this hands-on lab attendees will learn how to install Stratos to Kubernetes using Helm. They will then learn how to register and connect different types of Stratos endpoints and use them to explore the new Kubernetes and Helm functionality in Stratos. 
-
-### Steps
-
-The presenters will demonstrate each step. Time and assistance will then be provided for attendees to complete each step before the presenters continue onto the next.
+<walkthrough-watcher-constant key="kube_token" value="!!kube_token!!">
+</walkthrough-watcher-constant>
 
 ## Set up your personal environment
 
-Welcome to your GCS Session. The rest of the tutorial can be done in this environment and one other browser tab.
+The script should have successfully completed and set up your environment
 
-In this step we will set up some CLI tools and test them.
-
-### Authorise Google Cloud Shell with Google Compute API
-1. Allow your session user to access the required APIs by clicking on the button below and accepting the permissions
-
-   <walkthrough-enable-apis apis="compute.googleapis.com">Enable the Compute API</walkthrough-enable-apis>
-
-   Alternatively enable APIs from the command line with:
-
-   ```bash
-   gcloud services enable compute container compute.googleapis.com --project summit-labs
-   ```
-### <walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> Install Tools, Get Kube Credentials
-1. Run the following script
-   ```bash
-   ./setup-env.sh
-   ```
-
-   The script will 
-   - install the `helm` CLI and configure it and `kubectl` to communicate with your own Kube Cluster that we have assigned to your user.
-   - create a Service Token that Stratos will use to communicate with the cluster.
-   - update and reload the tutorial
-
-   Ensure that the script completes successfully, it should print `Set up complete`
-
-1. Apply the environment variables
-   ```bash
-   source user-env
-   ```
-
-1. If your shell ever restarts, just run the following commands to get back to the correct state
-   ```bash
-   ~/cloudshell_open/summit-hands-on-labs-0/eu-2020/Stratos
-   ```
-   ```bash
-   source user-env
-   ```
+If your shell ever restarts, just run the following commands to get back to the correct state
+```bash
+~/cloudshell_open/summit-hands-on-labs-0/eu-2020/Stratos
+```
+```bash
+source user-env
+```
+```bash
+teachme TUTORIAL.md
+```
 
 ### <walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> Validate your environment
 1. Can you fetch Kubernetes namespaces?
@@ -120,7 +91,7 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Log in
 1. Open the Stratos URL in your local browser
    ```
-   https://{{stratos-url}}:{{stratos-port}}
+   {{stratos-url}}
    ```
 
    > Note - No SLL certificates have not been configured, so accept any invalid certificate warnings
@@ -137,18 +108,6 @@ Stratos uses endpoints to communicate with other systems such as Cloud Foundries
 
 In this step we will register and connect to a personal Kubernetes Cluster.
 
-### <walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> Find the Kube Cluster's URL and Service Token
-1. Kube Cluster's API URL
-   This can be found by running the following from the shell
-   ```bash
-   echo $KUBE_URL
-   ```
-1. Kube Cluster's Service Token
-   This can also be found by running the following from the shell
-   ```bash
-   echo $KUBE_TOKEN
-   ```
-
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Register
 1. Navigate to the Endpoints page via the side navigation buttons on the left
 
@@ -159,6 +118,9 @@ In this step we will register and connect to a personal Kubernetes Cluster.
 1. Add a recognisable name for your new Kube Endpoint
 
 1. Enter the Kube Cluster's API URL as the Endpoint Address
+   ```
+   {{kube_url}}
+   ```
 
 1. Check the `Skip SSL validation for the endpoint` box
 
@@ -169,7 +131,10 @@ In this step we will register and connect to a personal Kubernetes Cluster.
 
 1. In the `Auth Type` drop down select `Service Account Token`
 
-1. Copy in your service token into the text area below
+1. Copy in your service token into the text area below the drop down
+   ```
+   {{kube_token}}
+   ```
 
 1. Click `Next`
 
