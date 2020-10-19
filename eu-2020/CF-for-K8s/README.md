@@ -270,11 +270,11 @@ The above command highlights the detection ordering within the node language bui
 ## Stacks
 Apps need a root file system to run. A stack provides the buildpack lifecycle with build-time and run-time environments in the form of images. You can see stack images in `cf-workloads` namespace.
 
-    kubectl get stacks -n cf-workloads-staging
+    kubectl get clusterstacks -n cf-workloads-staging
 
 You will `cflinuxfs3-stack` is the default stack used in cf-for-k8s.
 
-    kubectl describe stacks/cflinuxfs3-stack -n cf-workloads-staging | grep Spec -A 6
+    kubectl describe clusterstacks/bionic-stack -n cf-workloads-staging | grep Spec -A 6
 
 Notice the build and run image entries. In most cases, both are the same images.
 
