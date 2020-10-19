@@ -60,6 +60,9 @@ EOT
 
 function main() {
   SEAT="$(echo "${USER}" | tr -d "a-z_")"
+  if [[ -z "${SEAT}" ]]; then
+    SEAT=1
+  fi
   CLUSTER_NAME="cf-for-k8s-lab-${SEAT}"
   CF_DOMAIN="${CLUSTER_NAME}.cf-for-k8s-labs.com"
 
