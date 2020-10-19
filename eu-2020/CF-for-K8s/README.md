@@ -68,7 +68,8 @@ Let's create a values file using `generate-values.sh`. Copy and paste the follow
 ```
 ./hack/generate-values.sh -d $CF_DOMAIN > cf-values.yml
 cat<<EOF >> cf-values.yml
-load_balancer.static_ip: "$(host api.${CF_DOMAIN} | awk '{print $NF}')"
+load_balancer:
+  static_ip: "$(host api.${CF_DOMAIN} | awk '{print $NF}')"
 EOF
 ```
 
