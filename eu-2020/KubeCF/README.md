@@ -160,6 +160,10 @@ In general, apps pushed into Cloud Foundry are ephermal and the data from the ap
         export MOUNT_PATH=$(env | grep container_dir | cut -d":" -f2- | sed "s/,$//" | tr -d '"')
         ls $MOUNT_PATH
 
+* Exit the shell.
+
+        exit
+
 ## EiriniX Logging
 
 `cf logs` also doesn't work with Eirini. You need EiriniX Logs extension for the sub command to work. EiriniX Logs comes by default with `KubeCF` installation.
