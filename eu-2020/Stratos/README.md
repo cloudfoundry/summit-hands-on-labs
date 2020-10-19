@@ -7,15 +7,26 @@ In this hands-on lab attendees will learn how to install Stratos to Kubernetes u
 
 The presenters will demonstrate each step. Time and assistance will then be provided for attendees to complete each step before the presenters continue onto the next.
 
+Steps include
+
+1. Access your personal Google Cloud Shell environment
+1. Set up your personal environment
+1. Install Stratos using Helm
+1. Register and Connect a Kubernetes Endpoint
+1. Register Helm Endpoints and Install a Chart
+1. Explore Kubernetes Features
+1. Explore Kubernetes Tech Preview Features
+1. Explore some existing Cloud Foundry Features
+
 ## Access your personal environment
 
-In this step we will gather your lab credentials and set up your Google Cloud Shell environment
+In this step we will gather your lab credentials and set up your Google Cloud Shell environment.
 
 ### Receive your Google Credentials
-1. The instructors will provide you with Google credentials to use during the session. These will be used to access Google Cloud Shell and it's resources
+1. The instructors will provide you with Google credentials to use during the session. These will be used to access Google Cloud Shell and it's resources.
 
 ### Start Google Cloud Shell 
-1. Open the link below in incognito/private mode and log in using your claimed credentials from above
+1. Open the link below in incognito/private mode and log in using the credentials provided above.
    > Note The incognito mode ensures you can log in using the credentials provided. This is important and should not be skipped
 
    > Note You may be prompted to 'Trust' the session's repository with your temporary google credentials. You should allow this by clicking `Confirm`

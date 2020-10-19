@@ -2,7 +2,7 @@
 
 set -e
 
-sn=stratos
+sn=stratos-namespace
 
 helm delete stratos-console -n $sn
 kubectl delete ns $sn

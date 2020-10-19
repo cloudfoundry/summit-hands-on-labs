@@ -1,10 +1,10 @@
 <walkthrough-watcher-constant key="stratos-namespace" value="stratos-namespace">
 </walkthrough-watcher-constant>
 
-<walkthrough-watcher-constant key="stratos-url" value="!!stratos_url!!">
+<walkthrough-watcher-constant key="stratos-port" value="30891">
 </walkthrough-watcher-constant>
 
-<walkthrough-watcher-constant key="stratos-port" value="30891">
+<walkthrough-watcher-constant key="kube-node-url" value="!!kube_node_url!!">
 </walkthrough-watcher-constant>
 
 <walkthrough-watcher-constant key="seat" value="!!seat_number!!">
@@ -13,26 +13,30 @@
 <walkthrough-watcher-constant key="stratos-helm-name" value="stratos-console">
 </walkthrough-watcher-constant>
 
-<walkthrough-watcher-constant key="kube_url" value="!!kube_url!!">
+<walkthrough-watcher-constant key="kube-url" value="!!kube_url!!">
 </walkthrough-watcher-constant>
 
-<walkthrough-watcher-constant key="kube_token" value="!!kube_token!!">
+<walkthrough-watcher-constant key="kube-token" value="!!kube_token!!">
+</walkthrough-watcher-constant>
+
+<walkthrough-watcher-constant key="kube-endpoint-name" value="my-kube-cluster">
+</walkthrough-watcher-constant>
+
+<walkthrough-watcher-constant key="wordpress-name" value="my-wordpress">
+</walkthrough-watcher-constant>
+
+<walkthrough-watcher-constant key="wordpress-namespace" value="my-wordpress-namespace">
+</walkthrough-watcher-constant>
+
+<walkthrough-watcher-constant key="cf-endpoint-name" value="my-cf">
+</walkthrough-watcher-constant>
+
+<walkthrough-watcher-constant key="cf-url" value="https://api.hol.starkandwayne.com">
 </walkthrough-watcher-constant>
 
 ## Set up your personal environment
 
-The script should have successfully completed and set up your environment
-
-If your shell ever restarts, just run the following commands to get back to the correct state
-```bash
-~/cloudshell_open/summit-hands-on-labs-0/eu-2020/Stratos
-```
-```bash
-source user-env
-```
-```bash
-teachme TUTORIAL.md
-```
+The script should have successfully completed and set up your environment.
 
 ### <walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> Validate your environment
 1. Can you fetch Kubernetes namespaces?
@@ -91,7 +95,7 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Log in
 1. Open the Stratos URL in your local browser
    ```
-   {{stratos-url}}
+   {{kube-node-url}}:30981
    ```
 
    > Note - No SLL certificates have not been configured, so accept any invalid certificate warnings
@@ -115,39 +119,40 @@ In this step we will register and connect to a personal Kubernetes Cluster.
 
 1. Click on `Kubernetes`
 
-1. Add a recognisable name for your new Kube Endpoint
+1. Call your new Kube Endpoint `{{kube-endpoint-name}}`
 
 1. Enter the Kube Cluster's API URL as the Endpoint Address
    ```
-   {{kube_url}}
+   {{kube-url}}
    ```
 
 1. Check the `Skip SSL validation for the endpoint` box
 
-1. Click `Next` in the bottom right
+1. Click `Register` in the bottom right
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Connect
-1. Check the `Connect to <your endpoint name> now` box
+1. Check the `Connect to {{kube-endpoint-name}} now` box
 
 1. In the `Auth Type` drop down select `Service Account Token`
 
 1. Copy in your service token into the text area below the drop down
    ```
-   {{kube_token}}
+   {{kube-token}}
    ```
 
-1. Click `Next`
+1. Click `Connect`
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Confirm
 1. Confirm your new Endpoint is shown in the Endpoints list and that it's status is `Connected`
 
 1. Click on the `Kubernetes` button in the sidenav on the left
 
-1. Can you find the Stratos pods in the pods view?
+1. Explore the Pods view by clicking on the `Pods` button in the sub-sidenav. 
+   Can you find the Stratos pods in the pods view?
 
 ## Register Helm Endpoints and Install a Chart
 
-### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Register a Artifact Hub Endpoint
+### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Register the Artifact Hub Endpoint
 Artifact Hub is an online collection of Helm Repositories. By adding it as an Endpoint all charts from it's repo's are available
 
 1. Navigate to the Endpoints page via the side navigation buttons on the left
@@ -158,47 +163,44 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
 1. Click `Register` in the bottom right
 
-<!-- // TODO: Add helm repo -->
-
-## Install and uninstall Stratos using Stratos
+## Install Wordpress
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Install
-
 1. Navigate to the Helm Charts list by clicking on the `Helm` button in the sidenav on the left
 
-1. Find the Stratos chart and click on it
-   > Hint - Search for `console`
+1. Find the Wordpress chart by filtering the list with `wordpress`
+
+1. Click on the `bitnami/wordpress` chart to see the chart summary
 
 1. Click on the `Install` button towards the top right
 
-1. Add `{{stratos-helm-name}}-2` as the name
+1. Add `{{wordpress-name}}` as the name
 
-1. Add `{{stratos-namespace}}-2` as the namespace
+1. Add `{{wordpress-namespace}}` as the namespace
    - This namespace doesn't not exist, so check the `Create Namespace` button
 
 1. Click `Next`
 
-1. Here we need to supply similar contents to our `stratos-values.yaml` file used earlier. The Stratos Helm Chart has a schema, so Stratos can display a dynamically created form for those values. For ease though switch to the `YAML` editor using the button near the top left and enter the values below
+1. The next step entails supplying values for the helm install, just like we did when installing stratos with `-f stratos-values.yaml`. This chart has a schema, but we're going to enter the following yaml after clicking on the `YAML` button near the top left
    ```
-   console:
-      localAdminPassword: "password"
-      service:
-         type: "NodePort"
-         nodePort: 30892
-      techPreview: true
+   wordpressPassword: password
+   service:
+     type: NodePort
+     nodePorts:
+       https: 30982
    ```
-   > Note - These are the same values from the file except for the different node port
+   This will determine how we access and sign in to wordpress 
 
 1. Click `Install`. You will be taken to the `Workload` page for the new `Stratos`
 
-1. Wait for the Workload Pods to come up. To see these navigating to the `Pods` page of the Workload that's automatically come up.
+1. Wait for the Workload Pods to come up. To see these navigating to the `Pods` page of the Workload that's automatically been navigated to.
    - Just like watching these pods come up in the CLI they should be marked as ready and have a positive status.
 
-1. Discover the URL for the new Stratos
-   - Use the same address as the old Stratos but update the port to the one defined in values - `30892`
-   - The port number can also been seen in the `Workload`'s `Services` page for the `{{stratos-helm-name}}-ui-ext` service
-
-1. Navigate to the new Stratos in the same tab
+1. Navigate to Wordpress in a new browser tab
+   ```
+   {{kube-node-url}}:30982
+   ```
+   > Note: In Stratos we can see the port number in the `Workload`'s `Services` page
 
 1. Log in to the new Stratos using the same credentials
    
@@ -206,20 +208,7 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
    Password: `password`
 
-### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Uninstall
-1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
-
-1. Find the workload for the new Stratos, it should be named `{{stratos-helm-name}}-2`, and click on it
-
-1. Click on the `Delete` button in the top sub-header
-
-1. Enter the name of the workload `{{stratos-helm-name}}-2` and click `Delete`
-
-
-<!-- // TODO: install previous version...see no kube stuff... then upgrade with new features? -->
-<!-- // TODO: install with kube stuff disabled? tech preivew off? -->
-
-## Explore a Kubernetes Features
+## Explore Kubernetes Features
 
 Explore some of the new Kubernetes features, there's some suggestions below.
 
@@ -245,7 +234,7 @@ Explore some of the new Kubernetes features, there's some suggestions below.
 
 1. Find the `Node Port` of the `{{stratos-helm-name}}-ui-ext` service that exposes access to Stratos
 
-## Explore Tech Preview Features
+## Explore Kubernetes Tech Preview Features
 
 Explore some of the new Tech Preview Kubernetes features, there's some suggestions below.
 
@@ -258,31 +247,31 @@ Explore some of the new Tech Preview Kubernetes features, there's some suggestio
 
 1. Click on `Create Service Account` on the bottom right of the `Service Account` card
 
-1. Pause, great things come to those that wait!
+1. Stratos will spin up the Kube Dashboard in a pod. We can see the status of this by going to the `Kubernetes` `Pods` view.
 
-1. Click on the name of your kube cluster in the breadcrumb in the header, this will take you back to the summary page for your cluster
+1. Go back to the summary page by clicking the `Kubernetes` button in the sidenav
 
 1. Click on `View Dashboard` in the sub-header
 
 1. You should now see the well known Kubernetes Dashboard application, take some time to explore
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Run an Analysis tool
+
 Kubernetes analysis tools are a new feature which allows the execution of external tool. There's one available at the moment called PopEye.
 
-1. Navigate to the Summary page of your Kubernetes by clicking on the `Kubernetes` button in the sidenav on the left
+1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
 
-1. Click on the `Analysis` button in the sub-sidenav on the left
+1. Find the workload for Stratos, it should be named `{{wordpress-name}}`, and click on it
+
+1. Click on the `Analysis` button in the sub-sidenav
 
 1. Click on `Run Analysis` in the sub-header at the top and select `PopEye`
-   - The run should then appear in the table below
 
-1. Click on the report name in the table to view the report
-   - This will be a link once the run has `Completed`
+1. Wait a moment... and then click on `Refresh` in the `Reports` drop down in the sub-header
+
+1. When the new run appears in the drop down click it
+
 1. Browse the information found in the report
-
-1. Click on the `Analysis` link in the sub-header or click on the `Analysis` button in the sidenav on the left to return to the Analysis page
-
-1. Delete the run by selecting the three vertical dots in the row in the table and selecting `Delete`
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Bring up a Kube & Helm terminal environment in Stratos
 The Kube & Helm terminal provides a shell like experience with the Kube and Helm CLI tools configured and authorised to communicate with the Kube Cluster
@@ -293,16 +282,14 @@ The Kube & Helm terminal provides a shell like experience with the Kube and Helm
 
 1. Execute the following to see Stratos's own pods
    ```
-   kubectl get pods --namespace <your namespace>
+   kubectl get pods --namespace {{stratos-namespace}
    ```
    > Get your namespace by running `echo $STRATOS_NAMESPACE` in the Google Cloud Shell
    > Note - See the `terminal-` pod that hosts the terminal
 
-
-<!-- // TODO: doesn't work for artifact hub¬¬  -->
 1. Execute the following to see the Stratos's own chart
    ```
-   helm search repo console
+   helm list -A
    ```
 
 1. Exit there terminal by navigating away from this page
@@ -323,16 +310,78 @@ The overview graph provides a way to see
 
 ## Extra Credit - Explore some existing Cloud Foundry Features
 
-<!-- // TODO: all . use stark and wayne cf -->
-
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Register and Connect a CF Endpoint
 
+1. Navigate to the Endpoints page via the side navigation buttons on the left
+
+1. Click on the `+` icon to the right of the header
+
+1. Click on `Cloud Foundry`
+
+1. Call your new Kube Endpoint `{{cf-endpoint-name}}`
+
+1. Enter the Kube Cluster's API URL as the Endpoint Address
+   ```
+   {{cf-url}}
+   ```
+
+1. Check the `Skip SSL validation for the endpoint` box
+
+1. Click `Register` in the bottom right
+
+### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Connect
+1. Check the `Connect to {{cf-endpoint-name}} now` box
+
+1. Enter the your credentials
+
+   Username: `{{seat}}-summitlabs@cloudfoundry.org`
+
+   Password: `SummitLabs{{seat}}`
+
+1. Click `Connect`
+
+
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Browse Applications 
+1. Click on the `Applications` button in the sidenav
+
+1. Here you would see all applications in Spaces your user is a member of
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Deploy an Application
+1. Click on the `+` button in the header
+
+1. Click on `Public GitHub` 
+
+1. Select `{{cf-endpoint-name}}` as your Cloud Foundry, `cf-summit` as your organisation and `stratos-{{seat}}` as your space
+
+1. Click `Next`
+
+1. For you project enter 
+   ```
+   cf-stratos/cf-quick-app
+   ```
+
+1. Click `Next`
+
+1. In the next step leave the first commit selected and click `Next`
+
+1. In the next step leave all overrides as they are and click `Deploy` to kick it off
+
+1. Wait for the Deployment to complete by viewing the logs, the below line should be shown
+   ```
+   #0   running   2020-10-19T14:35:03Z   0.0%   0 of 16M   0 of 64M   
+   ```
+
+1. Click on `Go to App Summary` and explore the Application functionality provided by Stratos, including those in the sub-sidenav
 
 ## Summary
-We hoped you have enjoyed this hands on... etc
-<!-- // TODO: all . use stark and wayne cf -->
+We hoped you've enjoyed this hands on. You should now have an understanding of how to...
+
+- Install Stratos via Kubernetes
+- Create and connect to Stratos Endpoints, including Kubernetes, Helm and Cloud Foundry
+- View Kubernetes information in Stratos, including Workloads
+- Browse and install Helm charts
+- Browse and deploy CF Applications
+
+If you would like to know more about Stratos please reach out to us via our github repo https://github.com/cloudfoundry/stratos or directly in the Cloud Foundry #stratos slack room.
 
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy> 

@@ -90,10 +90,11 @@ function update_readme() {
   WALKTHROUGH_CONST_SEAT="!!seat_number!!"
   WALKTHROUGH_CONST_KUBE_URL="!!kube_url!!"
   WALKTHROUGH_CONST_KUBE_TOKEN="!!kube_token!!"
+  WALKTHROUGH_CONST_KUBE_NODE_URL="!!kube_node_url!!"
   cp ${README_FILE} ${README_ORIG}
 
   touch ${README_TEMP_FILE}
-  sed -e "s@$WALKTHROUGH_CONST_URL@$STRATOS_URL@" -e "s@$WALKTHROUGH_CONST_SEAT@$SEAT@" -e "s@$WALKTHROUGH_CONST_KUBE_URL@$KUBE_URL@" -e "s@$WALKTHROUGH_CONST_KUBE_TOKEN@$KUBE_TOKEN@" ${README_FILE} > ${README_TEMP_FILE}
+  sed -e "s@$WALKTHROUGH_CONST_KUBE_NODE_URL@$KUBE_NODE_URL@" -e "s@$WALKTHROUGH_CONST_URL@$STRATOS_URL@" -e "s@$WALKTHROUGH_CONST_SEAT@$SEAT@" -e "s@$WALKTHROUGH_CONST_KUBE_URL@$KUBE_URL@" -e "s@$WALKTHROUGH_CONST_KUBE_TOKEN@$KUBE_TOKEN@" ${README_FILE} > ${README_TEMP_FILE}
   cp ${README_TEMP_FILE} ${README_FILE}
   rm ${README_TEMP_FILE}
   cloudshell launch-tutorial ${README_FILE}
@@ -111,9 +112,10 @@ function main() {
 
   KUBE_NAME="stratos-${SEAT}"
   KUBE_URL="https://cluster-${SEAT}.lab.stratos.app"
+  KUBE_NODE_URL="https://cluster-${SEAT}-node.lab.stratos.app"
 
   STRATOS_NAMESPACE=stratos-namespace
-  STRATOS_URL="https://xyz:30891"
+  STRATOS_URL="https://cluster-${SEAT}-node.lab.stratos.app:30891"
 
   PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
 
