@@ -259,11 +259,11 @@ Notice the events that it emits during the build stage. You probably saw them du
 
 During `cf-push`, the source code goes through a detection phase to find the right language buildpack image to build the app from source code.
 
-    kubectl describe stores/cf-buildpack-store | grep "Buildpackage" -A 10 | grep node -A 5 -B 5
+    kubectl describe clusterstores/cf-buildpack-store | grep "Buildpackage" -A 10 | grep node -A 5 -B 5
 
 The above command shows a list of node language buildpacks. cf-for-k8s uses the new rebranded paketo buildpacks, which are based on the cloud native buildpack spec.
 
-    kubectl describe stores/cf-buildpack-store | grep Order: -A 20 | grep node -B 5 -A 5
+    kubectl describe clusterstores/cf-buildpack-store | grep Order: -A 20 | grep node -B 5 -A 5
 
 The above command highlights the detection ordering within the node language buildpackage. You may have noticed it during `cf push` logs.
 
