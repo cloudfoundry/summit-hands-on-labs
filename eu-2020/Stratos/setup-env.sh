@@ -121,6 +121,7 @@ function main() {
   echo
 
   install_tools
+  target_cluster
   create_kube_token
   print_details
   create_source_file
