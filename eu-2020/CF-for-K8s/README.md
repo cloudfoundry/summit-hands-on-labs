@@ -152,7 +152,7 @@ Run the following command and pay attention to the logs it prints.
 
 Notice how your source code is transformed into an actual running app. At a high level, the steps worth noting are,
 
-1. push app source code from directory to the blobstore
+1. push app source code from directory to the app registry
 1. run through detection to identify the app language
 1. pull the necessary base images for the given language (in this case `Node Engine Buildpack`)
 1. build an **OCI compliant** app image with the above base image
@@ -236,11 +236,11 @@ To summarize, for every app route, there exists a `route` CRD that maps to a Kub
 ## Inspect Ingress gateway
 To access the app from an external network, you still need a mechanism to connect the incoming traffic to the right app `service`. Ingress gateway fills the role of a traffic director.
     
-    kubectl get gateway -n istio-system
+    kubectl get gateway -n cf-system
 
 The gateway is responsible for directing the traffic to the apps or CF API. The domain you setup above is fed into the gateway as the allowed hostnames.
 
-    kubectl describe gateway/ingressgateway -n istio-system
+    kubectl describe gateway/ingressgateway -n cf-system
 
 ## Building the image
 As you noticed, cf-for-k8s builds an **OCI compliant image** from your source code. Let's inspect the pod responsible for creating the app image.
