@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
-sn=my-stratos-namespace
-name=my-stratos-console
+stratos_namespace=my-stratos-namespace
+stratos_name=my-stratos-console
 
-helm delete $name -n $sn
-kubectl delete ns $sn
+wordpress_namespace=my-wordpress-namespace
+wordpress_name=my-wordpress
+
+helm delete $stratos_name -n $stratos_namespace
+kubectl delete ns $stratos_namespace
+
+helm delete $wordpress_name -n $wordpress_namespace
+kubectl delete ns $wordpress_namespace
