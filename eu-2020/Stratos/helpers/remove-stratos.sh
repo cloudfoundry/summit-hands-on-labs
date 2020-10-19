@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-set -e
+sn=my-stratos-namespace
+name=my-stratos-console
 
-sn=stratos-namespace
-
-helm delete stratos-console -n $sn
+helm delete $name -n $sn
 kubectl delete ns $sn

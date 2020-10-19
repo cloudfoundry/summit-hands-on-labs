@@ -4,7 +4,7 @@
 If your shell ever restarts, just run the following commands to get back to the correct state
 
 ```bash
-~/cloudshell_open/summit-hands-on-labs-0/eu-2020/Stratos
+cd ~/cloudshell_open/summit-hands-on-labs/eu-2020/Stratos
 ```
 
 ```bash

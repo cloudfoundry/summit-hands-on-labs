@@ -10,17 +10,17 @@ The presenters will demonstrate each step. Time and assistance will then be prov
 Steps include
 
 1. Access your personal Google Cloud Shell environment
-1. Set up your personal environment
+1. Set up your environment
 1. Install Stratos using Helm
 1. Register and Connect a Kubernetes Endpoint
-1. Register Helm Endpoints and Install a Chart
+1. Register Helm Endpoints and Install a Helm Chart
 1. Explore Kubernetes Features
 1. Explore Kubernetes Tech Preview Features
 1. Explore some existing Cloud Foundry Features
 
 ## Access your personal environment
 
-In this step we will gather your lab credentials and set up your Google Cloud Shell environment.
+In this step we will gather your lab credentials and bring up your Google Cloud Shell environment.
 
 ### Receive your Google Credentials
 1. The instructors will provide you with Google credentials to use during the session. These will be used to access Google Cloud Shell and it's resources.

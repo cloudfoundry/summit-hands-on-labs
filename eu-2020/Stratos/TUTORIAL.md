@@ -1,4 +1,4 @@
-<walkthrough-watcher-constant key="stratos-namespace" value="stratos-namespace">
+<walkthrough-watcher-constant key="stratos-namespace" value="!!stratos_namespace!!">
 </walkthrough-watcher-constant>
 
 <walkthrough-watcher-constant key="stratos-port" value="30891">
@@ -10,7 +10,7 @@
 <walkthrough-watcher-constant key="seat" value="!!seat_number!!">
 </walkthrough-watcher-constant>
 
-<walkthrough-watcher-constant key="stratos-helm-name" value="stratos-console">
+<walkthrough-watcher-constant key="stratos-helm-name" value="my-stratos-console">
 </walkthrough-watcher-constant>
 
 <walkthrough-watcher-constant key="kube-url" value="!!kube_url!!">
@@ -36,7 +36,7 @@
 
 ## Set up your personal environment
 
-The script should have successfully completed and set up your environment.
+Ensure that the script completes successfully, it should print `Set up complete`
 
 ### <walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> Validate your environment
 1. Can you fetch Kubernetes namespaces?
@@ -44,7 +44,9 @@ The script should have successfully completed and set up your environment.
    kubectl get ns
    ```
 
-1. Can you list all Helm Repositories
+1. Can you list all Helm releases?
+   > Note This will be an empty list
+
    ```bash
    helm list -A
    ```
@@ -95,7 +97,7 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Log in
 1. Open the Stratos URL in your local browser
    ```
-   {{kube-node-url}}:30981
+   https://{{kube-node-url}}:30981
    ```
 
    > Note - No SLL certificates have not been configured, so accept any invalid certificate warnings
@@ -113,7 +115,7 @@ Stratos uses endpoints to communicate with other systems such as Cloud Foundries
 In this step we will register and connect to a personal Kubernetes Cluster.
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Register
-1. Navigate to the Endpoints page via the side navigation buttons on the left
+1. Navigate to the Endpoints page via the side navigation buttons on the left (if you've just logged in you should be hello lovely bum there already).
 
 1. Click on the `+` icon to the right of the header
 
@@ -152,6 +154,8 @@ In this step we will register and connect to a personal Kubernetes Cluster.
 
 ## Register Helm Endpoints and Install a Chart
 
+// TODO:
+
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Register the Artifact Hub Endpoint
 Artifact Hub is an online collection of Helm Repositories. By adding it as an Endpoint all charts from it's repo's are available
 
@@ -163,20 +167,28 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
 1. Click `Register` in the bottom right
 
-## Install Wordpress
+## Install WordPress
+
+// TODO:
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Install
 1. Navigate to the Helm Charts list by clicking on the `Helm` button in the sidenav on the left
 
-1. Find the Wordpress chart by filtering the list with `wordpress`
+1. Find the WordPress chart by filtering the list with `wordpress`
 
 1. Click on the `bitnami/wordpress` chart to see the chart summary
 
-1. Click on the `Install` button towards the top right
+1. Click on the `Install Chart` button towards the top right
 
-1. Add `{{wordpress-name}}` as the name
+1. Add the following as the name
+   ```
+   {{wordpress-name}}
+   ```
 
-1. Add `{{wordpress-namespace}}` as the namespace
+1. Add the following as the namespace
+   ```
+   {{wordpress-namespace}}
+   ```
    - This namespace doesn't not exist, so check the `Create Namespace` button
 
 1. Click `Next`
@@ -187,24 +199,25 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
    service:
      type: NodePort
      nodePorts:
-       https: 30982
+       http: 30892
    ```
    This will determine how we access and sign in to wordpress 
 
-1. Click `Install`. You will be taken to the `Workload` page for the new `Stratos`
+1. Click `Install`. You will be taken to the `Workload` page for the new WordPress.
 
 1. Wait for the Workload Pods to come up. To see these navigating to the `Pods` page of the Workload that's automatically been navigated to.
    - Just like watching these pods come up in the CLI they should be marked as ready and have a positive status.
+   - This page will automatically update
 
-1. Navigate to Wordpress in a new browser tab
+1. Navigate to WordPress in a new browser tab
    ```
-   {{kube-node-url}}:30982
+   http://{{kube-node-url}}:30892
    ```
    > Note: In Stratos we can see the port number in the `Workload`'s `Services` page
 
-1. Log in to the new Stratos using the same credentials
+1. Log in to WordPress by clicking on the `Log In` link in the `Meta` section at the bottom and entering the credentails below
    
-   Username: `admin`
+   Username: `user`
 
    Password: `password`
 
@@ -261,54 +274,56 @@ Kubernetes analysis tools are a new feature which allows the execution of extern
 
 1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
 
-1. Find the workload for Stratos, it should be named `{{wordpress-name}}`, and click on it
+1. Find the workload for WordPress, it should be named `{{wordpress-name}}`, and click on it
 
 1. Click on the `Analysis` button in the sub-sidenav
 
 1. Click on `Run Analysis` in the sub-header at the top and select `PopEye`
 
-1. Wait a moment... and then click on `Refresh` in the `Reports` drop down in the sub-header
+1. Wait a moment... and then click on `Refresh` in the `Report` drop down in the sub-header
 
-1. When the new run appears in the drop down click it
+1. As it's the only run it should automatically select, if not click on the new run in the drop down
 
 1. Browse the information found in the report
 
+### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> View an Overview Graph
+The overview graph provides a way to see Kubernetes resources and how they connect to each other.
+
+1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
+
+1. Find the workload for WordPress, it should be named `{{wordpress-name}}`, and click on it
+
+1. Click on the `Overview` button in the left sub-sidenav
+
+1. Zoom in to discover how the WordPRess Kubernetes resources connect to each other
+
+1. If you have run a PopEye analysis select it as an overlay and click on the resource to see the warnings
+
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Bring up a Kube & Helm terminal environment in Stratos
-The Kube & Helm terminal provides a shell like experience with the Kube and Helm CLI tools configured and authorised to communicate with the Kube Cluster
+The Kube & Helm terminal provides a shell like experience with the Kube and Helm CLI tools configured and authorised to communicate with the Kube Cluster.
 
 1. Navigate to the Summary page of your Kubernetes by clicking on the `Kubernetes` button in the sidenav on the left
 
 1. Click on `Open Terminal` in the button in the sub-header
 
-1. Execute the following to see Stratos's own pods
+1. Type and execute the following to see Stratos's own pods
    ```
-   kubectl get pods --namespace {{stratos-namespace}
+   kubectl get pod --namespace {{stratos-namespace}}
    ```
-   > Get your namespace by running `echo $STRATOS_NAMESPACE` in the Google Cloud Shell
    > Note - See the `terminal-` pod that hosts the terminal
 
 1. Execute the following to see the Stratos's own chart
    ```
    helm list -A
    ```
+   > Note - See the Stratos and Wordpress installs
 
 1. Exit there terminal by navigating away from this page
 
-### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> View an Overview Graph
-The overview graph provides a way to see 
-
-1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
-
-1. Find the workload for Stratos, it should be named `{{stratos-helm-name}}`, and click on it
-
-1. Click on the `Overview` button in the left sub-sidenav
-
-1. Zoom in to discover how the Stratos kubernetes resources connect to each other
-
-1. If you have run a PopEye analysis select it as an overlay to see the warnings
-
 
 ## Extra Credit - Explore some existing Cloud Foundry Features
+
+// TODO: 
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Register and Connect a CF Endpoint
 
@@ -318,7 +333,10 @@ The overview graph provides a way to see
 
 1. Click on `Cloud Foundry`
 
-1. Call your new Kube Endpoint `{{cf-endpoint-name}}`
+1. Call your new Endpoint the following
+   ```
+   {{cf-endpoint-name}}
+   ```
 
 1. Enter the Kube Cluster's API URL as the Endpoint Address
    ```
@@ -362,11 +380,15 @@ The overview graph provides a way to see
 
 1. Click `Next`
 
-1. In the next step leave the first commit selected and click `Next`
+1. In the next step leave the first commit selected 
 
-1. In the next step leave all overrides as they are and click `Deploy` to kick it off
+1. Click `Next`
 
-1. Wait for the Deployment to complete by viewing the logs, the below line should be shown
+1. Check the box for `Create a random route` in the `Route` section
+
+1. Click `Deploy` to kick it off
+
+1. Wait for the Deployment to complete by viewing the logs. The below line should be shown
    ```
    #0   running   2020-10-19T14:35:03Z   0.0%   0 of 16M   0 of 64M   
    ```

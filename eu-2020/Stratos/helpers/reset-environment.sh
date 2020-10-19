@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-set -e
+RED="\033[91m"
+RESET="\033[0m"
 
 # The following will reset your Google Cloud Shell by REMOVING YOUR HOME DIRECTORY
 # It follows the link below, with a fix
@@ -14,3 +15,5 @@ cd ~/
 rm -rf cloudshell_open/*
 rm -rf .kube
 rm -rf .config/helm
+
+echo -e "$RED You must now close this tab and access the shell again via the original link ${RESET}"
