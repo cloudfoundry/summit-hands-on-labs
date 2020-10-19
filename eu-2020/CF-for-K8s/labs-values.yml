@@ -1,5 +1,5 @@
 app_registry:
-    hostname: https://index.docker.io/v1/
-    repository: cf4k8slabs
-    username: cf4k8slabs
-    password: QrwaoEB3q23xGHNvgkw
+  hostname: https://index.docker.io/v1/
+  repository_prefix: cf4k8slabseu2020
+  username: cf4k8slabseu2020
+  password: <<tbd>>
