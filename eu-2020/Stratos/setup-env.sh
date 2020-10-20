@@ -105,23 +105,23 @@ function update_readme() {
   cp ${README_FILE} ${README_ORIG}
 
   touch ${README_TEMP_FILE}
-  # -e "s@$WALKTHROUGH_CONST_URL@$STRATOS_URL@"
   
-  sed -e "s@$WALKTHROUGH_CONST_STRATOS_NS@$STRATOS_NAMESPACE@" \ 
-    -e "s@$WALKTHROUGH_CONST_KUBE_NODE_URL@$KUBE_NODE_URL@" \ 
-    -e "s@$WALKTHROUGH_CONST_SEAT@$SEAT@" \ 
-    -e "s@$WALKTHROUGH_CONST_KUBE_URL@$KUBE_URL@" \ 
-    -e "s@$WALKTHROUGH_CONST_KUBE_TOKEN@$KUBE_TOKEN@" \ 
-    -e "s@$WALKTHROUGH_CONST_STRATOS_PORT@$STRATOS_PORT@"
-    -e "s@$WALKTHROUGH_CONST_STRATOS_HELM_NAME@$STRATOS_HELM_NAME@" \ 
-    -e "s@$WALKTHROUGH_CONST_KUBE_ENDPOINT_NAME@$KUBE_ENDPOINT_NAME@" \ 
-    -e "s@$WALKTHROUGH_CONST_WORDPRESS_HELM_NAME@$WORDPRESS_HELM_NAME@" \ 
-    -e "s@$WALKTHROUGH_CONST_WORDPRESS_NAMESPACE@$WORDPRESS_NAMESPACE@" \ 
-    -e "s@$WALKTHROUGH_CONST_CF_ENDPOINT_NAME@$CF_ENDPOINT_NAME@" \ 
-    -e "s@$WALKTHROUGH_CONST_CF_ENDPOINT_URL@$CF_ENDPOINT_URL@" \ 
+  sed -e "s@$WALKTHROUGH_CONST_STRATOS_NS@$STRATOS_NAMESPACE@" \
+    -e "s@$WALKTHROUGH_CONST_KUBE_NODE_URL@$KUBE_NODE_URL@" \
+    -e "s@$WALKTHROUGH_CONST_SEAT@$SEAT@" \
+    -e "s@$WALKTHROUGH_CONST_KUBE_URL@$KUBE_URL@" \
+    -e "s@$WALKTHROUGH_CONST_KUBE_TOKEN@$KUBE_TOKEN@" \
+    -e "s@$WALKTHROUGH_CONST_STRATOS_PORT@$STRATOS_PORT@" \
+    -e "s@$WALKTHROUGH_CONST_STRATOS_HELM_NAME@$STRATOS_HELM_NAME@" \
+    -e "s@$WALKTHROUGH_CONST_KUBE_ENDPOINT_NAME@$KUBE_ENDPOINT_NAME@" \
+    -e "s@$WALKTHROUGH_CONST_WORDPRESS_HELM_NAME@$WORDPRESS_HELM_NAME@" \
+    -e "s@$WALKTHROUGH_CONST_WORDPRESS_NAMESPACE@$WORDPRESS_NAMESPACE@" \
+    -e "s@$WALKTHROUGH_CONST_CF_ENDPOINT_NAME@$CF_ENDPOINT_NAME@" \
+    -e "s@$WALKTHROUGH_CONST_CF_ENDPOINT_URL@$CF_ENDPOINT_URL@" \
     ${README_FILE} > ${README_TEMP_FILE}
   cp ${README_TEMP_FILE} ${README_FILE}
   rm ${README_TEMP_FILE}
+  echo "Exiting set up, starting tutorial"
   cloudshell launch-tutorial ${README_FILE}
   echo
 }
@@ -140,15 +140,21 @@ function main() {
   # Used in https and http urls
   KUBE_NODE_URL="cluster-${SEAT}-node.lab.stratos.app"
 
+  # Info for Stratos deployed into kube
   STRATOS_NAMESPACE="my-stratos-namespace"
   STRATOS_PORT=30891
   STRATOS_HELM_NAME="my-stratos-console"
+  
+  # Info for Kube registered in Stratos
   KUBE_ENDPOINT_NAME="my-kube-cluster"
+
+  # Info for wordpress installed via Stratos
   WORDPRESS_HELM_NAME="my-wordpress"
   WORDPRESS_NAMESPACE="my-wordpress-namespace"
+
+  # Info for cf registered in Stratos
   CF_ENDPOINT_NAME="my-cf"
   CF_ENDPOINT_URL="https://api.hol.starkandwayne.com"
-  # STRATOS_URL="https://cluster-${SEAT}-node.lab.stratos.app:30891"
 
   PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
 
