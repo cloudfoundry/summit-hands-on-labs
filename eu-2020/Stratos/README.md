@@ -40,6 +40,4 @@ In this step we will gather your lab credentials and bring up your Google Cloud 
 
    > Note - It may take a minute or two for the Google Shell environment to start up
 
-<!-- // TODO: this should be updated with the correct repo -->
-[![Open in Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/editor?cloudshell_git_branch=rc&cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fcf-stratos%2Fsummit-hands-on-labs&cloudshell_working_dir=eu-2020%2FStratos&cloudshell_tutorial=docs%2FSETUP.md&shellonly=true&cloudshell_print=docs%2Fwelcome.txt)
-
+[![Open in Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fcloudfoundry%2Fsummit-hands-on-labs&cloudshell_working_dir=eu-2020%2FStratos&cloudshell_tutorial=docs%2FSETUP.md&shellonly=true&cloudshell_print=docs%2Fwelcome.txt)
