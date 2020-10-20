@@ -213,24 +213,24 @@ So our extension will also have to retrieve the image of the Eirini app - and us
 [EiriniX Extensions](https://github.com/cloudfoundry-incubator/eirinix#write-your-extension) which are *MutatingWebhooks* are expected to provide a *Handle* method which receives a request from the Kubernetes API. The request contains
 the pod definition that we want to mutate, so our extension will start by defining a struct. Following command will create the `extension.go` file.
 
-```golang
-cat<<EOF >> extension.go
-package main
+        ```golang
+        cat<<EOF >> extension.go
+        package main
 
-import (
-    "context"
-    "errors"
-    "net/http"
+        import (
+            "context"
+            "errors"
+            "net/http"
 
-    eirinix "code.cloudfoundry.org/eirinix"
-    corev1 "k8s.io/api/core/v1"
-    "sigs.k8s.io/controller-runtime/pkg/webhook/admission"
-)
+            eirinix "code.cloudfoundry.org/eirinix"
+            corev1 "k8s.io/api/core/v1"
+            "sigs.k8s.io/controller-runtime/pkg/webhook/admission"
+        )
 
-type Extension struct{}
+        type Extension struct{}
 
-EOF
-```
+        EOF
+        ```
 
 Our extension needs a `Handle` method, so we can write and let's make it add a new init container through `Handle` method.
 
@@ -581,7 +581,7 @@ spec:
 
 * Apply the yaml file using the following command
 
-        kubectl apply -f 
+        kubectl apply -f https://raw.githubusercontent.com/mudler/eirini-secscanner/main/contrib/kube.yaml
 
 Apply the yaml, and watch the `eirini-secscanner` namespace, a pod should appear and go to running, our extension is up!
 
