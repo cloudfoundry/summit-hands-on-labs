@@ -231,16 +231,18 @@ the pod definition that we want to mutate, so our extension will start by defini
 
 Our extension needs a `Handle` method, so we can write:
 
-        cat<<EOF > extension.go
-        func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
+```golang
+cat<<EOF > extension.go
+func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
 
-            if pod == nil {
-                return admission.Errored(http.StatusBadRequest, errors.New("No pod could be decoded from the request"))
-            }
+	if pod == nil {
+		return admission.Errored(http.StatusBadRequest, errors.New("No pod could be decoded from the request"))
+    }
 
-            return eiriniManager.PatchFromPod(req, pod)
-        }
-        EOF
+	return eiriniManager.PatchFromPod(req, pod)
+}
+EOF
+```
 
 Note we need to add a bunch of imports, as our new `Handle` method receives structures from other packages:
 
