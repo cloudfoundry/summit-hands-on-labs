@@ -263,7 +263,6 @@ func (ext *Extension) Handle(
 	    }
     }
 
-
     // Find the container image which needs to be scanned.
     var image string
     for i := range podCopy.Spec.Containers {
