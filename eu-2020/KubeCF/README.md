@@ -238,6 +238,11 @@ Our extension needs a `Handle` method, which will add an `InitContainer` which r
 
 ```golang
 cat<<EOF >> extension.go
+
+func trivyInject(severity string) string {
+	return fmt.Sprintf("curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh | sh -s -- -b tmp && tmp/trivy filesystem --severity '%s' --exit-code 1 --no-progress /", severity)
+}
+
 // Handle takes a pod and inject a secscanner container if needed
 func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
 
