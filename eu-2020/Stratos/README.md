@@ -13,7 +13,7 @@ Steps include
 1. Set up your environment
 1. Install Stratos using Helm
 1. Register and Connect a Kubernetes Endpoint
-1. Register Helm Endpoints and Install a Helm Chart
+1. Register a Helm Endpoint and Install WordPress
 1. Explore Kubernetes Features
 1. Explore Kubernetes Tech Preview Features
 1. Explore some existing Cloud Foundry Features
@@ -36,10 +36,10 @@ In this step we will gather your lab credentials and bring up your Google Cloud 
 1. Open the link below in incognito/private mode and log in using the credentials provided above.
    > Note The incognito mode ensures you can log in using the credentials provided. This is important and should not be skipped
 
-   > Note You may be prompted to 'Trust' the session's repository with your temporary google credentials. You should allow this by clicking `Confirm`
+   > Note You may be prompted accept the Google T&Cs and/or to 'Trust' the session's repository with your temporary google credentials. You should accept both of these
 
    > Note - It may take a minute or two for the Google Shell environment to start up
 
 <!-- // TODO: this should be updated with the correct repo -->
-[![Open in Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/editor?cloudshell_git_branch=rc&cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fcf-stratos%2Fsummit-hands-on-labs&cloudshell_working_dir=eu-2020%2FStratos&cloudshell_tutorial=SETUP.md&shellonly=true&cloudshell_print=welcome.txt)
+[![Open in Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/editor?cloudshell_git_branch=rc&cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fcf-stratos%2Fsummit-hands-on-labs&cloudshell_working_dir=eu-2020%2FStratos&cloudshell_tutorial=docs%2FSETUP.md&shellonly=true&cloudshell_print=docs%2Fwelcome.txt)
 

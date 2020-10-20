@@ -7,6 +7,9 @@
 <walkthrough-watcher-constant key="kube-node-url" value="!!kube_node_url!!">
 </walkthrough-watcher-constant>
 
+<walkthrough-watcher-constant key="kube-node-ip" value="!!kube_node_ip!!">
+</walkthrough-watcher-constant>
+
 <walkthrough-watcher-constant key="seat" value="!!seat_number!!">
 </walkthrough-watcher-constant>
 
@@ -82,7 +85,7 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
    ```
 1. Install Stratos in the new namespace
    ```bash
-   helm install {{stratos-helm-name}} stratos/console --namespace=$STRATOS_NAMESPACE -f stratos-values.yaml --version "4.2.0"
+   helm install {{stratos-helm-name}} stratos/console --namespace=$STRATOS_NAMESPACE -f yaml/stratos-values.yaml --version "4.2.0"
    ```
    This will start the install. Helm will provide Kubernetes with a set of resources to create. The resources are rendered from helm templates with help from the `stratos-values.yaml` we have provided. By using a custom values file we've 
    - defined how we can reach Stratos
@@ -93,11 +96,13 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
    ```bash
    watch -n 1 kubectl get pods -n $STRATOS_NAMESPACE
    ``` 
+   > Note - Press `CTRL + C` to exit this view
    
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Log in
 1. Open the Stratos URL in your local browser
+
    ```
-   https://{{kube-node-url}}:30981
+   https://{{kube-node-ip}}:{{stratos-port}}
    ```
 
    > Note - No SLL certificates have not been configured, so accept any invalid certificate warnings
@@ -121,7 +126,10 @@ In this step we will register and connect to a personal Kubernetes Cluster.
 
 1. Click on `Kubernetes`
 
-1. Call your new Kube Endpoint `{{kube-endpoint-name}}`
+1. Call your new Kube Endpoint the following
+   ```
+   {{kube-endpoint-name}}
+   ```
 
 1. Enter the Kube Cluster's API URL as the Endpoint Address
    ```
@@ -152,7 +160,7 @@ In this step we will register and connect to a personal Kubernetes Cluster.
 1. Explore the Pods view by clicking on the `Pods` button in the sub-sidenav. 
    Can you find the Stratos pods in the pods view?
 
-## Register Helm Endpoint and Install a Chart
+## Register a Helm Endpoint and Install WordPress
 
 To enable Helm functionality, just like Kubernetes we need to add a Helm endpoint. Once added we can view the Helm Chart's it offers and use Stratos to install one to our Kubernetes Cluster.
 
@@ -170,7 +178,10 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Install WordPress
 1. Navigate to the Helm Charts list by clicking on the `Helm` button in the sidenav on the left
 
-1. Find the WordPress chart by filtering the list with the text `wordpress`
+1. Find the WordPress chart by filtering the list with the text
+   ```
+   wordpress
+   ```
 
 1. Click on the `bitnami/wordpress` chart to see the chart summary
 
@@ -199,7 +210,7 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
    ```
    This will determine how we access and sign in to wordpress 
 
-1. Click `Install`. You will be taken to the `Workload` page for the new WordPress.
+1. Click `Install`. You will be taken to the `Workload` page for your new WordPress.
 
 1. Wait for the Workload Pods to come up. To see these navigating to the `Pods` page of the Workload that's automatically been navigated to.
    - Just like watching these pods come up in the CLI they should be marked as ready and have a positive status.
@@ -207,7 +218,7 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
 1. Navigate to WordPress in a new browser tab
    ```
-   http://{{kube-node-url}}:30892
+   http://{{kube-node-ip}}:30892
    ```
    > Note: In Stratos we can see the port number in the `Workload`'s `Services` page
 
@@ -256,7 +267,13 @@ Explore some of the new Tech Preview Kubernetes features, there's some suggestio
 
 1. Click on `Create Service Account` on the bottom right of the `Service Account` card
 
-1. Stratos will spin up the Kube Dashboard in a pod. We can see the status of this by going to the `Kubernetes` `Pods` view.
+1. Stratos will spin up the Kube Dashboard in a pod. We can see the status of this by 
+   1. Naviate to the `Kubernetes` `Pods` view.
+   1. Clicking the circle button in the lists header on the right to refresh the list
+   1. Filter the list by 
+      ```
+      dashboard
+      ```
 
 1. Go back to the summary page by clicking the `Kubernetes` button in the sidenav
 
@@ -272,15 +289,11 @@ Kubernetes analysis tools are a new feature which allows the execution of extern
 
 1. Find the workload for WordPress, it should be named `{{wordpress-name}}`, and click on it
 
-1. Click on the `Analysis` button in the sub-sidenav
-
 1. Click on `Run Analysis` in the sub-header at the top and select `PopEye`
 
-1. Wait a moment... and then click on `Refresh` in the `Report` drop down in the sub-header
+1. Wait a moment... click on `Refresh` in the `Overlay Analysis` drop down in the sub-header and select `Popeye (a few seconds ago)` (you may need to click on `Refresh` again)
 
-1. As it's the only run it should automatically select, if not click on the new run in the drop down
-
-1. Browse the information found in the report
+1. Look at the resource cards at the bottom of the screen, they should now show any information provided by Popeye for that resource type. Click on the yellow button in `Pods` to see this information
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> View an Overview Graph
 The overview graph provides a way to see Kubernetes resources and how they connect to each other.
@@ -380,14 +393,21 @@ You can view some of the existing Cloud Foundry functionality by following the s
 
 1. Click `Next`
 
-1. Check the box for `Create a random route` in the `Route` section
+1. Override the `Application Name` in the `General` section as follows
+   ```
+   {{seat}}-my-cf-quick-app
+   ```
+
+1. Create a random route by checking the for `Create a random route` in the `Route` section
 
 1. Click `Deploy` to kick it off
 
-1. Wait for the Deployment to complete by viewing the logs. The below line should be shown
-   ```
-   #0   running   2020-10-19T14:35:03Z   0.0%   0 of 16M   0 of 64M   
-   ```
+1. Wait for the Deployment to complete 
+   - The top of the log should contain an overlay stating `Deployed`
+   - The below line should be shown at the end of the log
+     ```
+     #0   running   2020-10-19T14:35:03Z   0.0%   0 of 16M   0 of 64M   
+     ```
 
 1. Click on `Go to App Summary` and explore the Application functionality provided by Stratos, including those in the sub-sidenav
 
@@ -400,6 +420,7 @@ We hoped you've enjoyed this hands on. You should now have an understanding of h
 - Browse and install Helm charts
 - Browse and deploy CF Applications
 
-If you would like to know more about Stratos please reach out to us via our github repo https://github.com/cloudfoundry/stratos or directly in the Cloud Foundry #stratos slack room.
+If you would like to know more about Stratos please reach out to us via our [GitHub Repo](https://github.com/cloudfoundry/stratos) or directly in the Cloud 
+Foundry [#stratos](https://cloudfoundry.slack.com/?redir=%2Fmessages%2Fstratos) room.
 
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy> 

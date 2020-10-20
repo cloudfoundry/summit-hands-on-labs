@@ -12,5 +12,5 @@ source user-env
 ```
 
 ```bash
-teachme TUTORIAL.md
+teachme docs/TUTORIAL.md
 ```

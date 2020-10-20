@@ -35,6 +35,9 @@ function cluster_zone() {
 function target_cluster() {
   cecho ${CYAN} "Targeting cluster ${KUBE_NAME}..."
   gcloud container clusters get-credentials "${KUBE_NAME}" --zone "$(cluster_zone)" --project summit-labs
+
+  KUBE_IP=$(kubectl cluster-info | grep "Kubernetes master" | cut -c 44-)
+  KUBE_NODE_IP=$(kubectl get nodes -o yaml | grep -B 1 ExternalIP | cut -c 16- | head -1)
   echo
 }
 
@@ -43,7 +46,7 @@ function create_kube_token() {
 
   local NS="kube-system"
 
-  kubectl apply -n $NS -f service-account.yaml
+  kubectl apply -n $NS -f yaml/service-account.yaml
   local SERVICE_USER=stratos
 
   # Service account should be created - now need to get token
@@ -54,8 +57,6 @@ function create_kube_token() {
 }
 
 function print_details() {
-# KUBE_URL=$(kubectl cluster-info | grep "Kubernetes master" | cut -c 44-)
-# KUBE_NODE_URL=${kubectl get nodes -o yaml | grep -B 1 ExternalIP | cut -c 16- | head -1}
   cecho ${CYAN} "Stratos Details"
   cecho ${GREEN} "Your Stratos namespace is '${STRATOS_NAMESPACE}'"
   cecho ${GREEN} "Your Stratos URL will be '${STRATOS_URL}'"
@@ -83,9 +84,9 @@ function create_source_file() {
 function update_readme() {
   cecho ${CYAN} "Update and starting TUTORIAL"
 
-  README_FILE=TUTORIAL.md
-  README_TEMP_FILE=TUTORIAL.md.temp
-  README_ORIG=TUTORIAL.md.orig
+  README_FILE=docs/TUTORIAL.md
+  README_TEMP_FILE=docs/TUTORIAL.md.temp
+  README_ORIG=docs/TUTORIAL.md.orig
 
   # WALKTHROUGH_CONST_URL="!!stratos_url!!"
   WALKTHROUGH_CONST_STRATOS_NS="!!stratos_namespace!!"
@@ -94,7 +95,7 @@ function update_readme() {
   WALKTHROUGH_CONST_KUBE_URL="!!kube_url!!"
   WALKTHROUGH_CONST_KUBE_TOKEN="!!kube_token!!"
   WALKTHROUGH_CONST_KUBE_NODE_URL="!!kube_node_url!!"
-
+  WALKTHROUGH_CONST_KUBE_NODE_IP="!!kube_node_ip!!"
   WALKTHROUGH_CONST_STRATOS_HELM_NAME="!!stratos_helm_name!!"
   WALKTHROUGH_CONST_KUBE_ENDPOINT_NAME="!!kube_endpoint_name!!"
   WALKTHROUGH_CONST_WORDPRESS_HELM_NAME="!!wordpress_helm_name!!"
@@ -108,6 +109,7 @@ function update_readme() {
   
   sed -e "s@$WALKTHROUGH_CONST_STRATOS_NS@$STRATOS_NAMESPACE@" \
     -e "s@$WALKTHROUGH_CONST_KUBE_NODE_URL@$KUBE_NODE_URL@" \
+    -e "s@$WALKTHROUGH_CONST_KUBE_NODE_IP@$KUBE_NODE_IP@" \
     -e "s@$WALKTHROUGH_CONST_SEAT@$SEAT@" \
     -e "s@$WALKTHROUGH_CONST_KUBE_URL@$KUBE_URL@" \
     -e "s@$WALKTHROUGH_CONST_KUBE_TOKEN@$KUBE_TOKEN@" \
@@ -126,11 +128,9 @@ function update_readme() {
   echo
 }
 
-function main() {
-  if [ -z "$1" ] ; then
+function envvars {
+  if [ -z "$SEAT" ] ; then
     SEAT="$(echo "${USER}" | tr -d "a-z_")"
-  else
-    SEAT=$1
   fi
 
   ENV_FILE="user-env"
@@ -142,7 +142,7 @@ function main() {
 
   # Info for Stratos deployed into kube
   STRATOS_NAMESPACE="my-stratos-namespace"
-  STRATOS_PORT=30891
+  STRATOS_PORT="30891"
   STRATOS_HELM_NAME="my-stratos-console"
   
   # Info for Kube registered in Stratos
@@ -157,7 +157,9 @@ function main() {
   CF_ENDPOINT_URL="https://api.hol.starkandwayne.com"
 
   PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
+}
 
+function setup() {
   cecho ${CYAN} "Setting up for user '${USER}' at seat '${SEAT}' and cluster name '${KUBE_NAME}'"
   echo
 
@@ -171,4 +173,57 @@ function main() {
   cecho ${CYAN} "Set up complete"
 }
 
-main $1
+function removeWorkloads() {
+  cecho ${CYAN} "Removing Stratos and Helm Workloads" 
+  helm delete $STRATOS_HELM_NAME -n $STRATOS_NAMESPACE
+  kubectl delete ns $STRATOS_NAMESPACE
+
+  helm delete $WORDPRESS_HELM_NAME -n $WORDPRESS_NAMESPACE
+  kubectl delete ns $WORDPRESS_NAMESPACE
+}
+
+function resetEnvironment() {
+  cecho ${CYAN} "Removing github repos, kube config and helm config" 
+  # The following will reset your Google Cloud Shell by REMOVING YOUR HOME DIRECTORY
+  # It follows the link below, with a fix
+  # - https://cloud.google.com/shell/docs/resetting-cloud-shell
+  #sudo rm -rf $HOME
+  #mkdir $HOME
+  #sudo chown $USER:users $HOME
+
+  cd ~/
+  rm -rf cloudshell_open/*
+  rm -rf .kube
+  rm -rf .config/helm
+
+  cecho $RED "You must now close this browser tab and access the shell again via the original link"
+}
+
+MODE=setup
+
+while getopts m:s: option
+do
+ case "${option}"
+ in
+ s) SEAT=${OPTARG};;
+ m) MODE=${OPTARG};;
+ esac
+done
+
+envvars
+
+case "$MODE" in
+  setup)
+      setup
+      ;;
+  remove)
+      removeWorkloads
+      ;;
+  reset)
+      resetEnvironment
+      ;;
+  *)
+      echo $"Usage: -m $MODE {setup|remove|reset}"
+      exit 1
+ 
+esac

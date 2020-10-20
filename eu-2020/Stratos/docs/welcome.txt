@@ -1,0 +1,12 @@
+
+
+Welcome to your Stratos Hands on Lab's Google Cloud Shell Session
+
+Please continue the session by following the instructions in the window on the right.
+
+The set up instructions can be reached by running `teachme SETUP.md` from `~/cloudshell_open/summit-hands-on-labs/eu-2020/Stratos/docs`.
+
+The tutorial instructions can be reached by running `teachme TUTORIAL.md` from `~/cloudshell_open/summit-hands-on-labs/eu-2020/Stratos/docs`.
+
+If you need to restart your session then please see instructions by running `teachme RESTART_TUTORIAL.md` from `~/cloudshell_open/summit-hands-on-labs/eu-2020/Stratos/docs`. 
+
