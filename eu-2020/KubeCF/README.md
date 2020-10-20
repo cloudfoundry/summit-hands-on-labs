@@ -214,7 +214,6 @@ So our extension will also have to retrieve the image of the Eirini app - and us
 the pod definition that we want to mutate, so our extension will start by defining a struct. Following command will create the `extension.go` file.
 
 ```code
-
 cat<<EOF >> extension.go
 package main
 
@@ -235,27 +234,31 @@ EOF
 
 Our extension needs a `Handle` method, so we can write and let's make it add a new init container through `Handle` method.
 
-```go
+```c
 cat<<EOF >> extension.go
-func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
-
-	if pod == nil {
+func (ext *Extension) Handle(
+    ctx context.Context,
+    eiriniManager eirinix.Manager,
+    pod *corev1.Pod, 
+    req admission.Request) admission.Response {
+	
+    if pod == nil {
 		return admission.Errored(http.StatusBadRequest, errors.New("No pod could be decoded from the request"))
-	}
-	podCopy := pod.DeepCopy()
+    }
+    podCopy := pod.DeepCopy()
 
-	secscanner := corev1.Container{
-		Name:            "secscanner",
-		Image:           "busybox",
-		Args:            []string{"echo 'fancy'"},
-		Command:         []string{"/bin/sh", "-c"},
-		ImagePullPolicy: corev1.PullAlways,
-		Env:             []corev1.EnvVar{},
-	}
+    secscanner := corev1.Container{
+	    Name:            "secscanner",
+	    Image:           "busybox",
+	    Args:            []string{"echo 'fancy'"},
+	    Command:         []string{"/bin/sh", "-c"},
+	    ImagePullPolicy: corev1.PullAlways,
+	    Env:             []corev1.EnvVar{},
+    }
 
-	podCopy.Spec.InitContainers = append(podCopy.Spec.InitContainers, secscanner)
+    podCopy.Spec.InitContainers = append(podCopy.Spec.InitContainers, secscanner)
 
-	return eiriniManager.PatchFromPod(req, podCopy)
+    return eiriniManager.PatchFromPod(req, podCopy)
 }
 
 EOF
