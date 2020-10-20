@@ -40,7 +40,7 @@
 ## Set up your personal environment
 
 ### <walkthrough-notification-menu-icon></walkthrough-notification-menu-icon> Validate script
-1. Ensure that the script completes successfully, it should print `Set up complete`.
+1. Ensure that the script completes successfully, it should print **Set up complete**.
 
 ### <walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> Validate your environment
 1. Can you fetch Kubernetes namespaces?
@@ -99,10 +99,10 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
    ``` 
 
 1. Wait for all the pods to come up
-   - The `READY` column shows all containers have started e.g. 1/1, 2/2, etc
-   - The `STATUS` column shows all pods as `Running`
+   - The **READY** column shows all containers have started e.g. 1/1, 2/2, etc
+   - The **STATUS** column shows all pods as **Running**
 
-1. Exist the `watch` command by entering `CTRL + C`
+1. Exist the **watch** command by entering **CTRL + C**
    
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Log in
 1. Open the Stratos URL in your local browser
@@ -115,9 +115,9 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 
 1. Enter the pre-configured Stratos credentials
    
-   Username: `admin`
+   Username: **admin**
 
-   Password: `password`
+   Password: **password**
 
 ## Register and Connect a Kubernetes Endpoint
 
@@ -128,9 +128,9 @@ In this step we will register and connect to a personal Kubernetes Cluster.
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Register
 1. Navigate to the Endpoints page via the side navigation buttons on the left (if you've just logged in you should be hello lovely bum there already).
 
-1. Click on the `+` icon to the right of the header
+1. Click on the **+** icon to the right of the header
 
-1. Click on `Kubernetes`
+1. Click on **Kubernetes**
 
 1. Call your new Kube Endpoint the following
    ```
@@ -142,29 +142,29 @@ In this step we will register and connect to a personal Kubernetes Cluster.
    {{kube-url}}
    ```
 
-1. Check the `Skip SSL validation for the endpoint` box
+1. Check the **Skip SSL validation for the endpoint** box
 
-1. Click `Register` in the bottom right
+1. Click **Register** in the bottom right
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Connect
 
-1. Check the `Connect to {{kube-endpoint-name}} now` box
+1. Check the **Connect to {{kube-endpoint-name}} now** box
 
-1. In the `Connection Credentials` section change the `Auth Type` drop down to `Service Account Token`
+1. In the **Connection Credentials** section change the **Auth Type** drop down to **Service Account Token**
 
 1. Copy in your service token into the text area below the drop down
    ```
    {{kube-token}}
    ```
 
-1. Click `Connect`
+1. Click **Connect**
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Confirm
-1. Confirm your new Endpoint is shown in the Endpoints list and that it's status is `Connected`
+1. Confirm your new Endpoint is shown in the Endpoints list and that it's status is **Connected**
 
-1. Click on the `Kubernetes` button in the sidenav on the left
+1. Click on the **Kubernetes** button in the sidenav on the left
 
-1. Explore the Pods view by clicking on the `Pods` button in the sub-sidenav. 
+1. Explore the Pods view by clicking on the **Pods** button in the sub-sidenav. 
    Can you find the Stratos pods in the pods view?
 
 ## Register a Helm Endpoint and Install WordPress
@@ -176,40 +176,40 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
 1. Navigate to the Endpoints page via the side navigation buttons on the left
 
-1. Click on the `+` icon to the right of the header
+1. Click on the **+** icon to the right of the header
 
-1. Click on `Artifact Hub`
+1. Click on **Artifact Hub**
 
-1. Click `Register` in the bottom right
+1. Click **Register** in the bottom right
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Install WordPress
-1. Navigate to the Helm Charts list by clicking on the `Helm` button in the sidenav on the left
+1. Navigate to the Helm Charts list by clicking on the **Helm** button in the sidenav on the left
 
 1. Find the WordPress chart by filtering the list with the text
    ```
    wordpress
    ```
 
-1. Click on the `bitnami/wordpress` chart to see the chart summary
+1. Click on the **bitnami/wordpress** chart to see the chart summary
 
-1. Click on the `Install Chart` button towards the top right
+1. Click on the **Install Chart** button towards the top right
 
-1. Keep `{{kube-endpoint-name}}` as the Kubernetes cluster
+1. Keep **{{kube-endpoint-name}}** as the Kubernetes cluster
 
-1. Add the following as the `Name`
+1. Add the following as the **Name**
    ```
    {{wordpress-name}}
    ```
 
-1. Add the following as the `Namespace`
+1. Add the following as the **Namespace**
    ```
    {{wordpress-namespace}}
    ```
-   - This namespace doesn't not exist, so check the `Create Namespace` button
+   - This namespace doesn't not exist, so check the **Create Namespace** button
 
-1. Click `Next`
+1. Click **Next**
 
-1. The next step entails supplying values for the helm install, just like we did when installing stratos with `-f stratos-values.yaml`. This chart has a schema, but we're going to enter the following yaml after clicking on the `YAML` button near the top left
+1. The next step entails supplying values for the helm install, just like we did when installing stratos with **-f stratos-values.yaml**. This chart has a schema, but we're going to enter the following yaml after clicking on the **YAML** button near the top left
    ```
    wordpressPassword: password
    service:
@@ -219,11 +219,11 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
    ```
    This will determine how we access and sign in to wordpress 
 
-1. Click `Install`. You will be taken to the `Workload` page for your new WordPress.
+1. Click **Install**. You will be taken to the **Workload** page for your new WordPress.
 
-1. Wait for the Workload Pods to come up. To see these navigating to the `Pods` via the button in the side-subnav of the Workload that's automatically been navigated to.
-   - The `Ready` column shows all containers have started e.g. 1/1, 2/2, etc
-   - The `Status` column shows all pods as `Running`
+1. Wait for the Workload Pods to come up. To see these navigating to the **Pods** via the button in the side-subnav of the Workload that's automatically been navigated to.
+   - The **Ready** column shows all containers have started e.g. 1/1, 2/2, etc
+   - The **Status** column shows all pods as **Running**
    > Note - This page will automatically update
    > Note - This will take about 60 seconds
 
@@ -231,66 +231,66 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
    ```
    http://{{kube-node-ip}}:30892
    ```
-   > Note: In Stratos we can see the port number in the `Workload`'s `Services` page
+   > Note: In Stratos we can see the port number in the **Workload**'s **Services** page
 
-1. (Optional) Log in to WordPress by clicking on the `Log In` link in the `Meta` section at the bottom and entering the credentials below
+1. (Optional) Log in to WordPress by clicking on the **Log In** link in the **Meta** section at the bottom and entering the credentials below
    
-   Username: `user`
+   Username: **user**
 
-   Password: `password`
+   Password: **password**
 
 ## Explore Kubernetes Features
 
 Explore some of the new Kubernetes features, there's some suggestions below.
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Browse Kube State and Resources
-1. Navigate to the Kubernetes list by clicking on the `Kubernetes` button in the sidenav on the left
+1. Navigate to the Kubernetes list by clicking on the **Kubernetes** button in the sidenav on the left
 
 1. See the status of the cluster using the graphs
 
-1. Look at node information after clicking on the `Nodes` button in the sub-sidenav
+1. Look at node information after clicking on the **Nodes** button in the sub-sidenav
 
-1. Browse resources in namespaces by clicking on the `Namespaces` button in the sub-sidenav
+1. Browse resources in namespaces by clicking on the **Namespaces** button in the sub-sidenav
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> View a Workload
-1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
+1. Navigate to the Workloads list by clicking on the **Workloads** button in the sidenav on the left
 
-1. Find the workload for Stratos, it should be named `{{stratos-helm-name}}`, and click on it
+1. Find the workload for Stratos, it should be named **{{stratos-helm-name}}**, and click on it
 
-1. See the status of the Pods and Containers in the `Summary` page
+1. See the status of the Pods and Containers in the **Summary** page
 
-1. View the contents of `stratos-values.yaml` used when installing Stratos in the `Values` page
+1. View the contents of **stratos-values.yaml** used when installing Stratos in the **Values** page
 
-1. Check that the Pods all have an acceptable `Status` in the `Pods` page.
+1. Check that the Pods all have an acceptable **Status** in the **Pods** page.
 
-1. Find the `Node Port` of the `{{stratos-helm-name}}-ui-ext` service that exposes access to Stratos by clicking on the `Services` button in the sub-sidenav
+1. Find the **Node Port** of the **{{stratos-helm-name}}-ui-ext** service that exposes access to Stratos by clicking on the **Services** button in the sub-sidenav
 
 ## Explore Kubernetes Tech Preview Features
 
 Explore some of the new Tech Preview Kubernetes features, there's some suggestions below.
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Configure and View the Kubernetes Dashboard
-1. Navigate to the Summary page of your Kubernetes by clicking on the `Kubernetes` button in the sidenav on the left
+1. Navigate to the Summary page of your Kubernetes by clicking on the **Kubernetes** button in the sidenav on the left
 
-1. Click on `Configure` in the `Kubernetes Dashboard` section in the centre of the page
+1. Click on **Configure** in the **Kubernetes Dashboard** section in the centre of the page
 
-1. Click on `Install Dashboard` on the bottom right of the `Kubernetes Dashboard Installation` card
+1. Click on **Install Dashboard** on the bottom right of the **Kubernetes Dashboard Installation** card
 
-1. Click on `Create Service Account` on the bottom right of the `Service Account` card
+1. Click on **Create Service Account** on the bottom right of the **Service Account** card
 
 1. Stratos will spin up the Kube Dashboard in a pod. We can see the status of this by 
-   1. Navigating to the `Kubernetes` section by clicking on the sidenav
-   1. Clicking on the `Pods` sub-sidenav button
+   1. Navigating to the **Kubernetes** section by clicking on the sidenav
+   1. Clicking on the **Pods** sub-sidenav button
    1. Clicking the circle button in the lists header on the right to refresh the list to refresh the list
    1. Filter the list by adding the following
       ```
       dashboard
       ```
-   1. Finding the Pod with `Name` `kubernetes-dashboard-<random characters>`
+   1. Finding the Pod with **Name** **kubernetes-dashboard-<random characters>**
 
-1. Go back to the summary page by clicking the `Kubernetes` button in the sidenav
+1. Go back to the summary page by clicking the **Kubernetes** button in the sidenav
 
-1. Click on `View Dashboard` in the sub-header
+1. Click on **View Dashboard** in the sub-header
 
 1. You should now see the well known Kubernetes Dashboard application, take some time to explore
 
@@ -298,24 +298,24 @@ Explore some of the new Tech Preview Kubernetes features, there's some suggestio
 
 Kubernetes analysis tools are a new feature which allows the execution of external tool. There's one available at the moment called PopEye.
 
-1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
+1. Navigate to the Workloads list by clicking on the **Workloads** button in the sidenav on the left
 
-1. Find the workload for WordPress, it should be named `{{wordpress-name}}`, and click on it
+1. Find the workload for WordPress, it should be named **{{wordpress-name}}**, and click on it
 
-1. Click on `Run Analysis` in the sub-header at the top and select `PopEye`
+1. Click on **Run Analysis** in the sub-header at the top and select **PopEye**
 
-1. Wait a moment... click on `Refresh` in the `Overlay Analysis` drop down in the sub-header and select `Popeye (a few seconds ago)` (you may need to click on `Refresh` again)
+1. Wait a moment... click on **Refresh** in the **Overlay Analysis** drop down in the sub-header and select **Popeye (a few seconds ago)** (you may need to click on **Refresh** again)
 
-1. Look at the resource cards at the bottom of the screen, they should now show any information provided by Popeye for that resource type. Click on the yellow button in `Pods` to see this information
+1. Look at the resource cards at the bottom of the screen, they should now show any information provided by Popeye for that resource type. Click on the yellow button in **Pods** to see this information
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> View an Overview Graph
 The overview graph provides a way to see Kubernetes resources and how they connect to each other.
 
 1. If you've clicked away from the WordPress Workload page follow the steps below
-  1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
-  1. Find the workload for WordPress, it should be named `{{wordpress-name}}`, and click on it
+  1. Navigate to the Workloads list by clicking on the **Workloads** button in the sidenav on the left
+  1. Find the workload for WordPress, it should be named **{{wordpress-name}}**, and click on it
 
-1. Click on the `Overview` button in the left sub-sidenav
+1. Click on the **Overview** button in the left sub-sidenav
 
 1. Zoom in to discover how the WordPRess Kubernetes resources connect to each other
 
@@ -324,9 +324,9 @@ The overview graph provides a way to see Kubernetes resources and how they conne
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Bring up a Kube & Helm terminal environment in Stratos
 The Kube & Helm terminal provides a shell like experience with the Kube and Helm CLI tools configured and authorised to communicate with the Kube Cluster.
 
-1. Navigate to the Summary page of your Kubernetes by clicking on the `Kubernetes` button in the sidenav on the left
+1. Navigate to the Summary page of your Kubernetes by clicking on the **Kubernetes** button in the sidenav on the left
 
-1. Click on `Open Terminal` in the button in the sub-header and wait for the command prompt
+1. Click on **Open Terminal** in the button in the sub-header and wait for the command prompt
 
    > Note - This may not be instant, please allow some time for Kubernetes to fetch the require image
 
@@ -334,13 +334,13 @@ The Kube & Helm terminal provides a shell like experience with the Kube and Helm
 
 1. Type and execute the following to see Stratos's own pods
 
-   `kubectl get pod -n {{stratos-namespace}}`
+   **kubectl get pod -n {{stratos-namespace}}**
 
-   > Note - See the `terminal-` pod that hosts the terminal
+   > Note - See the **terminal-** pod that hosts the terminal
 
 1. Type and execute the following to see the Stratos's own chart
 
-   `helm list -A`
+   **helm list -A**
 
    > Note - See the Stratos and Wordpress installs
 
@@ -355,9 +355,9 @@ You can view some of the existing Cloud Foundry functionality by following the s
 
 1. Navigate to the Endpoints page via the side navigation buttons on the left
 
-1. Click on the `+` icon to the right of the header
+1. Click on the **+** icon to the right of the header
 
-1. Click on `Cloud Foundry`
+1. Click on **Cloud Foundry**
 
 1. Call your new Endpoint the following
    ```
@@ -369,12 +369,12 @@ You can view some of the existing Cloud Foundry functionality by following the s
    {{cf-url}}
    ```
 
-1. Check the `Skip SSL validation for the endpoint` box
+1. Check the **Skip SSL validation for the endpoint** box
 
-1. Click `Register` in the bottom right
+1. Click **Register** in the bottom right
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Connect
-1. Check the `Connect to {{cf-endpoint-name}} now` box
+1. Check the **Connect to {{cf-endpoint-name}} now** box
 
 1. Enter the your credentials
 
@@ -388,53 +388,53 @@ You can view some of the existing Cloud Foundry functionality by following the s
    SummitLabs{{seat}}
    ```
 
-1. Click `Connect`
+1. Click **Connect**
 
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Browse Applications 
-1. Click on the `Applications` button at the top of the sidenav
+1. Click on the **Applications** button at the top of the sidenav
 
 1. Here you would see all applications in Spaces your user is a member of
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Deploy an Application
-1. Click on the `+` button in the header
+1. Click on the **+** button in the header
 
-1. Click on `Public GitHub` 
+1. Click on **Public GitHub** 
 
 1. Select
-  - `{{cf-endpoint-name}}` as your Cloud Foundry
-  - `cf-summit` as your organisation 
-  - `stratos-{{seat}}` as your space
+  - **{{cf-endpoint-name}}** as your Cloud Foundry
+  - **cf-summit** as your organisation 
+  - **stratos-{{seat}}** as your space
 
-1. Click `Next`
+1. Click **Next**
 
 1. For you project enter 
    ```
    cf-stratos/cf-quick-app
    ```
 
-1. Click `Next`
+1. Click **Next**
 
 1. In the next step leave the first commit selected 
 
-1. Click `Next`
+1. Click **Next**
 
-1. Override the `Application Name` in the `General` section as follows
+1. Override the **Application Name** in the **General** section as follows
    ```
    {{seat}}-my-cf-quick-app
    ```
 
-1. Create a random route by checking the for `Create a random route` in the `Route` section
+1. Create a random route by checking the for **Create a random route** in the **Route** section
 
-1. Click `Deploy` to kick it off
+1. Click **Deploy** to kick it off
 
 1. Wait for the Deployment to complete 
-   - The top of the log should contain an overlay stating `Deployed`
+   - The top of the log should contain an overlay stating **Deployed**
    - The below line should be shown at the end of the log
 
-     `#0   running   <current date>   0.0%   0 of 16M   0 of 64M`
+     **#0   running   <current date>   0.0%   0 of 16M   0 of 64M**
 
-1. Click on `Go to App Summary` and explore the Application functionality provided by Stratos, including those in the sub-sidenav
+1. Click on **Go to App Summary** and explore the Application functionality provided by Stratos, including those in the sub-sidenav
 
 ## Summary
 We hoped you've enjoyed this hands on. You should now have an understanding of how to...
