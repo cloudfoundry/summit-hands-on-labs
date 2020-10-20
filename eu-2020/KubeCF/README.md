@@ -200,18 +200,18 @@ Before jumping into creating our `main.go` for the go package, let's focus on ou
 
 An Eirini App is represented by a ```StatefulSet```, which then it becomes a pod running in the Eirini namespace. 
 
-For our Security scanner (secscanner) makes sense to use a *MutatingWebhook*, we will try to patch the Eirini runtime pod and inject an InitContainer with [trivy](https://github.com/aquasecurity/trivy#embed-in-dockerfile) preventing to starting it in case has security vulnerability.
+For our Security scanner (secscanner) makes sense to use a *MutatingWebhook*, we will try to patch the Eirini app pod and inject an `InitContainer` with [trivy](https://github.com/aquasecurity/trivy#embed-in-dockerfile) preventing to starting it in case has security vulnerability.
 
 We have the following tasks ahead.
 
-* Write extension code which injects `trivy` initcontainers into `Eirini app` pods. 
+* Write extension code which injects `trivy` `InitContainer` into `Eirini app` pods. 
 * Convert extension code into a docker image.
 * Deploy the docker image in a Kubernetes `deployment`.
 
 #### Anatomy of an Extension
 
 [EiriniX Extensions](https://github.com/cloudfoundry-incubator/eirinix#write-your-extension) which are *MutatingWebhooks* are expected to provide a *Handle* method which receives a request from the Kubernetes API. The request contains
-the pod definition that we want to mutate, so our extension will start by defining a struct. Following command will create the `extension.go` file.
+the `Eirini App` pod definition that we want to mutate, so our extension will start by defining a struct. Following command will create the `extension.go` file.
 
 ```golang
 cat<<EOF >> extension.go
@@ -234,7 +234,7 @@ type Extension struct{}
 EOF
 ```
 
-Our extension needs a `Handle` method, which will add an `InitContainer` which runs the `triviy` binary inside the `InitContainer`. The `InitContiner` uses the same image the `Eirini` apps run on.
+Our extension needs a `Handle` method, which will add an `InitContainer` which runs the `triviy` binary inside the `InitContainer`. The `InitContiner` uses the same image on which `Eirini` apps run.
 
 ```golang
 cat<<EOF >> extension.go
@@ -244,7 +244,11 @@ func trivyInject(severity string) string {
 }
 
 // Handle takes a pod and inject a secscanner container if needed
-func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
+func (ext *Extension) Handle(
+    ctx context.Context, 
+    eiriniManager eirinix.Manager,
+    pod *corev1.Pod, 
+    req admission.Request) admission.Response {
 
     if pod == nil {
 	    return admission.Errored(http.StatusBadRequest, errors.New("No pod could be decoded from the request"))
@@ -312,6 +316,8 @@ for i := range podCopy.Spec.InitContainers {
 }
 ```
 
+Since we want [trivy](https://github.com/aquasecurity/trivy#embed-in-dockerfile) to run as a first action as `InitContainer`, and check if the filesystem of our app is secure enough, we will have to run the `InitContainer` with the same image that `Eirini App` runs on. So, we store it in a `image` variable.
+
 We know now the correct image, so we are ready to tweak our container:
 
 ```
@@ -326,8 +332,6 @@ secscanner := corev1.Container{
 
 podCopy.Spec.InitContainers = append(podCopy.Spec.InitContainers, secscanner)
 ```
-
-Since we want [trivy](https://github.com/aquasecurity/trivy#embed-in-dockerfile) to run as a first action as `InitContainer`, and check if the filesystem of our app is secure enough, we will have to run the `InitContainer` with the same image that `Eirini App` runs on. So, we store it in a `image` variable.
 
 As we would like also to be able to run our extension with replicas, in full HA mode, we will adapt our code to be idempotent, so it doesn't try to inject an init container each time. Before injecting the InitContainer, we can add a guard like so:
 
