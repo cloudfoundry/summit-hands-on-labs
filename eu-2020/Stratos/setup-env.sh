@@ -87,17 +87,39 @@ function update_readme() {
   README_TEMP_FILE=TUTORIAL.md.temp
   README_ORIG=TUTORIAL.md.orig
 
-  WALKTHROUGH_CONST_URL="!!stratos_url!!"
+  # WALKTHROUGH_CONST_URL="!!stratos_url!!"
   WALKTHROUGH_CONST_STRATOS_NS="!!stratos_namespace!!"
+  WALKTHROUGH_CONST_STRATOS_PORT="!!stratos_port!!"
   WALKTHROUGH_CONST_SEAT="!!seat_number!!"
   WALKTHROUGH_CONST_KUBE_URL="!!kube_url!!"
   WALKTHROUGH_CONST_KUBE_TOKEN="!!kube_token!!"
   WALKTHROUGH_CONST_KUBE_NODE_URL="!!kube_node_url!!"
 
+  WALKTHROUGH_CONST_STRATOS_HELM_NAME="!!stratos_helm_name!!"
+  WALKTHROUGH_CONST_KUBE_ENDPOINT_NAME="!!kube_endpoint_name!!"
+  WALKTHROUGH_CONST_WORDPRESS_HELM_NAME="!!wordpress_helm_name!!"
+  WALKTHROUGH_CONST_WORDPRESS_NAMESPACE="!!wordpress_namespace!!"
+  WALKTHROUGH_CONST_CF_ENDPOINT_NAME="!!cf_endpoint_name!!"
+  WALKTHROUGH_CONST_CF_ENDPOINT_URL="!!cf_endpoint_url!!"
+
   cp ${README_FILE} ${README_ORIG}
 
   touch ${README_TEMP_FILE}
-  sed -e "s@$WALKTHROUGH_CONST_STRATOS_NS@$STRATOS_NAMESPACE@" -e "s@$WALKTHROUGH_CONST_KUBE_NODE_URL@$KUBE_NODE_URL@" -e "s@$WALKTHROUGH_CONST_URL@$STRATOS_URL@" -e "s@$WALKTHROUGH_CONST_SEAT@$SEAT@" -e "s@$WALKTHROUGH_CONST_KUBE_URL@$KUBE_URL@" -e "s@$WALKTHROUGH_CONST_KUBE_TOKEN@$KUBE_TOKEN@" ${README_FILE} > ${README_TEMP_FILE}
+  # -e "s@$WALKTHROUGH_CONST_URL@$STRATOS_URL@"
+  
+  sed -e "s@$WALKTHROUGH_CONST_STRATOS_NS@$STRATOS_NAMESPACE@" \ 
+    -e "s@$WALKTHROUGH_CONST_KUBE_NODE_URL@$KUBE_NODE_URL@" \ 
+    -e "s@$WALKTHROUGH_CONST_SEAT@$SEAT@" \ 
+    -e "s@$WALKTHROUGH_CONST_KUBE_URL@$KUBE_URL@" \ 
+    -e "s@$WALKTHROUGH_CONST_KUBE_TOKEN@$KUBE_TOKEN@" \ 
+    -e "s@$WALKTHROUGH_CONST_STRATOS_PORT@$STRATOS_PORT@"
+    -e "s@$WALKTHROUGH_CONST_STRATOS_HELM_NAME@$STRATOS_HELM_NAME@" \ 
+    -e "s@$WALKTHROUGH_CONST_KUBE_ENDPOINT_NAME@$KUBE_ENDPOINT_NAME@" \ 
+    -e "s@$WALKTHROUGH_CONST_WORDPRESS_HELM_NAME@$WORDPRESS_HELM_NAME@" \ 
+    -e "s@$WALKTHROUGH_CONST_WORDPRESS_NAMESPACE@$WORDPRESS_NAMESPACE@" \ 
+    -e "s@$WALKTHROUGH_CONST_CF_ENDPOINT_NAME@$CF_ENDPOINT_NAME@" \ 
+    -e "s@$WALKTHROUGH_CONST_CF_ENDPOINT_URL@$CF_ENDPOINT_URL@" \ 
+    ${README_FILE} > ${README_TEMP_FILE}
   cp ${README_TEMP_FILE} ${README_FILE}
   rm ${README_TEMP_FILE}
   cloudshell launch-tutorial ${README_FILE}
@@ -115,10 +137,18 @@ function main() {
 
   KUBE_NAME="stratos-${SEAT}"
   KUBE_URL="https://cluster-${SEAT}.lab.stratos.app"
+  # Used in https and http urls
   KUBE_NODE_URL="cluster-${SEAT}-node.lab.stratos.app"
 
-  STRATOS_NAMESPACE=my-stratos-namespace
-  STRATOS_URL="https://cluster-${SEAT}-node.lab.stratos.app:30891"
+  STRATOS_NAMESPACE="my-stratos-namespace"
+  STRATOS_PORT=30891
+  STRATOS_HELM_NAME="my-stratos-console"
+  KUBE_ENDPOINT_NAME="my-kube-cluster"
+  WORDPRESS_HELM_NAME="my-wordpress"
+  WORDPRESS_NAMESPACE="my-wordpress-namespace"
+  CF_ENDPOINT_NAME="my-cf"
+  CF_ENDPOINT_URL="https://api.hol.starkandwayne.com"
+  # STRATOS_URL="https://cluster-${SEAT}-node.lab.stratos.app:30891"
 
   PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
 
@@ -128,7 +158,7 @@ function main() {
   install_tools
   target_cluster
   create_kube_token
-  print_details
+  # print_details
   create_source_file
   update_readme
 

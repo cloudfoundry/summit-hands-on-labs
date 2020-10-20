@@ -18,6 +18,13 @@ Steps include
 1. Explore Kubernetes Tech Preview Features
 1. Explore some existing Cloud Foundry Features
 
+### What you will need
+1. Browser
+
+### What we will provide
+1. Google credentials used to access Google Cloud Shell
+1. Personal Kubernetes Cluster associated with your Google credentials
+
 ## Access your personal environment
 
 In this step we will gather your lab credentials and bring up your Google Cloud Shell environment.

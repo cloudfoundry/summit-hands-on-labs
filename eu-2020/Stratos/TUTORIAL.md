@@ -1,7 +1,7 @@
 <walkthrough-watcher-constant key="stratos-namespace" value="!!stratos_namespace!!">
 </walkthrough-watcher-constant>
 
-<walkthrough-watcher-constant key="stratos-port" value="30891">
+<walkthrough-watcher-constant key="stratos-port" value="!!stratos_port!!">
 </walkthrough-watcher-constant>
 
 <walkthrough-watcher-constant key="kube-node-url" value="!!kube_node_url!!">
@@ -10,7 +10,7 @@
 <walkthrough-watcher-constant key="seat" value="!!seat_number!!">
 </walkthrough-watcher-constant>
 
-<walkthrough-watcher-constant key="stratos-helm-name" value="my-stratos-console">
+<walkthrough-watcher-constant key="stratos-helm-name" value="!!stratos_helm_name!!">
 </walkthrough-watcher-constant>
 
 <walkthrough-watcher-constant key="kube-url" value="!!kube_url!!">
@@ -19,24 +19,24 @@
 <walkthrough-watcher-constant key="kube-token" value="!!kube_token!!">
 </walkthrough-watcher-constant>
 
-<walkthrough-watcher-constant key="kube-endpoint-name" value="my-kube-cluster">
+<walkthrough-watcher-constant key="kube-endpoint-name" value="!!kube_endpoint_name!!">
 </walkthrough-watcher-constant>
 
-<walkthrough-watcher-constant key="wordpress-name" value="my-wordpress">
+<walkthrough-watcher-constant key="wordpress-name" value="!!wordpress_helm_name!!">
 </walkthrough-watcher-constant>
 
-<walkthrough-watcher-constant key="wordpress-namespace" value="my-wordpress-namespace">
+<walkthrough-watcher-constant key="wordpress-namespace" value="!!wordpress_namespace!!">
 </walkthrough-watcher-constant>
 
-<walkthrough-watcher-constant key="cf-endpoint-name" value="my-cf">
+<walkthrough-watcher-constant key="cf-endpoint-name" value="!!cf_endpoint_name!!">
 </walkthrough-watcher-constant>
 
-<walkthrough-watcher-constant key="cf-url" value="https://api.hol.starkandwayne.com">
+<walkthrough-watcher-constant key="cf-url" value="!!cf_endpoint_url!!">
 </walkthrough-watcher-constant>
 
 ## Set up your personal environment
 
-Ensure that the script completes successfully, it should print `Set up complete`
+Ensure that the script completes successfully, it should print `Set up complete`.
 
 ### <walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> Validate your environment
 1. Can you fetch Kubernetes namespaces?
@@ -53,7 +53,7 @@ Ensure that the script completes successfully, it should print `Set up complete`
 
 ## Install Stratos using Helm
 
-In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, install that chart and then log in to Stratos
+In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, install that chart and then log in to Stratos.
 
 ### <walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> Add the Stratos Helm Repository (& update)
 1. Add the Stratos Helm Rep and update the local cache
@@ -82,7 +82,7 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
    ```
 1. Install Stratos in the new namespace
    ```bash
-   helm install {{stratos-helm-name}} stratos/console --namespace=$STRATOS_NAMESPACE -f stratos-values.yaml
+   helm install {{stratos-helm-name}} stratos/console --namespace=$STRATOS_NAMESPACE -f stratos-values.yaml --version "4.2.0"
    ```
    This will start the install. Helm will provide Kubernetes with a set of resources to create. The resources are rendered from helm templates with help from the `stratos-values.yaml` we have provided. By using a custom values file we've 
    - defined how we can reach Stratos
@@ -110,7 +110,7 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
 
 ## Register and Connect a Kubernetes Endpoint
 
-Stratos uses endpoints to communicate with other systems such as Cloud Foundries, Kubernetes, Helm Repositories, etc. A Stratos Administrator will register these endpoints in Stratos and then all users can connect to it using their own credentials.
+Stratos uses endpoints to communicate with other systems such as Cloud Foundrys, Kubernetes, Helm Repositories, etc. A Stratos Administrator will register these endpoints in Stratos and then all users can connect to it using their own credentials.
 
 In this step we will register and connect to a personal Kubernetes Cluster.
 
@@ -152,9 +152,9 @@ In this step we will register and connect to a personal Kubernetes Cluster.
 1. Explore the Pods view by clicking on the `Pods` button in the sub-sidenav. 
    Can you find the Stratos pods in the pods view?
 
-## Register Helm Endpoints and Install a Chart
+## Register Helm Endpoint and Install a Chart
 
-// TODO:
+To enable Helm functionality, just like Kubernetes we need to add a Helm endpoint. Once added we can view the Helm Chart's it offers and use Stratos to install one to our Kubernetes Cluster.
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Register the Artifact Hub Endpoint
 Artifact Hub is an online collection of Helm Repositories. By adding it as an Endpoint all charts from it's repo's are available
@@ -167,14 +167,10 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
 1. Click `Register` in the bottom right
 
-## Install WordPress
-
-// TODO:
-
-### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Install
+### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Install WordPress
 1. Navigate to the Helm Charts list by clicking on the `Helm` button in the sidenav on the left
 
-1. Find the WordPress chart by filtering the list with `wordpress`
+1. Find the WordPress chart by filtering the list with the text `wordpress`
 
 1. Click on the `bitnami/wordpress` chart to see the chart summary
 
@@ -215,7 +211,7 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
    ```
    > Note: In Stratos we can see the port number in the `Workload`'s `Services` page
 
-1. Log in to WordPress by clicking on the `Log In` link in the `Meta` section at the bottom and entering the credentails below
+1. Log in to WordPress by clicking on the `Log In` link in the `Meta` section at the bottom and entering the credentials below
    
    Username: `user`
 
@@ -323,7 +319,7 @@ The Kube & Helm terminal provides a shell like experience with the Kube and Helm
 
 ## Extra Credit - Explore some existing Cloud Foundry Features
 
-// TODO: 
+You can view some of the existing Cloud Foundry functionality by following the steps below to connect to a Cloud Foundry and deploy an application to it.
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Register and Connect a CF Endpoint
 
