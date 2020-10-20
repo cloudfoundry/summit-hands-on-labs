@@ -229,7 +229,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 )
 
-type Extension struct{}
+// Extension is the secscanner extension which injects a initcontainer which checks for vulnerability in the container image
+type Extension struct{ Memory, Severity string }
 
 EOF
 ```
