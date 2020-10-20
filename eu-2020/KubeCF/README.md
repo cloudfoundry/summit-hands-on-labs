@@ -225,7 +225,6 @@ import (
 
 	eirinix "code.cloudfoundry.org/eirinix"
 	corev1 "k8s.io/api/core/v1"
-	resource "k8s.io/apimachinery/pkg/api/resource"
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 )
 
@@ -246,9 +245,9 @@ func trivyInject(severity string) string {
 
 // Handle takes a pod and inject a secscanner container if needed
 func (ext *Extension) Handle(
-    ctx context.Context, 
+    ctx context.Context,
     eiriniManager eirinix.Manager,
-    pod *corev1.Pod, 
+    pod *corev1.Pod,
     req admission.Request) admission.Response {
 
     if pod == nil {
