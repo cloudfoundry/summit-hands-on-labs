@@ -354,8 +354,8 @@ First we collect options from the environment. This will allow us to tweak easil
 - `SERVICE_NAME` is the Kubernetes service name reserved to our extension. We will need a Kubernetes service resource created before starting our extension. It will be used by Kubernetes to contact our extension while mutating Eirini apps.
 
 Next we construct the EiriniX manager, which will run our extension under the hood, and will create all the necessary boilerplate resources to talk to Kubernetes:
-```golang
 
+```golang
 filter := true
 
 ext := eirinix.NewManager(eirinix.ManagerOptions{
@@ -386,7 +386,7 @@ WORKDIR /eirini-secscanner
 RUN CGO_ENABLED=0 go build -o eirini-secscanner
 RUN chmod +x eirini-secscanner
 
-FROM $BASE_IMAGE
+FROM opensuse/leap
 COPY --from=build /eirini-secscanner/eirini-secscanner /bin/
 ENTRYPOINT ["/bin/eirini-secscanner"]
 EOF
