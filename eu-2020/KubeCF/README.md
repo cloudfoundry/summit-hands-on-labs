@@ -501,38 +501,19 @@ At the end it should look more or less like in this [link](https://raw.githubuse
 
 Now we can also play with the extension itself - as we saw already `trivy` takes a `--severity` parameter which sets the severity levels of the issues found, if the sevirity found matches with the one you selected, it will make the container to exit so the pod doesn't start.
 
-Let's tweak then our `secscanner` container:
+* Let's tweak our extension deployment. Change the severity to HIGH.
 
-```golang
+        kubectl apply -f https://raw.githubusercontent.com/rohitsakala/eirini-secscanner/main/contrib/kube_high.yaml
 
-	secscanner := corev1.Container{
-		Name:            "secscanner",
-		Image:           image,
-		Args:            []string{trivyInject(os.Getenv("SEVERITY"))},
-		Command:         []string{"/bin/sh", "-c"},
-		ImagePullPolicy: corev1.PullAlways,
-    Env:             []corev1.EnvVar{},
-    Resources: corev1.ResourceRequirements{
-			Requests: map[corev1.ResourceName]resource.Quantity{corev1.ResourceMemory: q},
-			Limits:   map[corev1.ResourceName]resource.Quantity{corev1.ResourceMemory: q},
-		},
-	}
+* Lets restage the app again.
 
-```
+        cf restage python-flask-app
 
-In this way we can specify the severity with env vars, and edit the deployment.yaml accordingly:
+* Now, lets check our `Eirini pod`.
 
-```yaml
-      containers:
-        - name: eirini-secscanner
-        ...
-          env:
-        ...
-            - name: SEVERITY
-              value: "CRITICAL" # Try to set it to "HIGH,CRITICAL"
-```
+        kubectl get pods -n eirini. 
 
-
+As you can see, this time it fails since our source code is not *extremely* safe.
 
 Congratulations, you have successfully completed hands on lab. Your training for developer peace is completed. :wink:
 
