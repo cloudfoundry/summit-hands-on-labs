@@ -215,7 +215,7 @@ the pod definition that we want to mutate, so our extension will start by defini
 
 ```code
 
-cat<<EOF > extension.go
+cat<<EOF >> extension.go
 package main
 
 import (
@@ -229,12 +229,13 @@ import (
 )
 
 type Extension struct{}
+
 EOF
 ```
 
 Our extension needs a `Handle` method, so we can write and let's make it add a new init container through `Handle` method.
 
-```code
+```go
 cat<<EOF >> extension.go
 func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
 
@@ -256,6 +257,7 @@ func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager,
 
 	return eiriniManager.PatchFromPod(req, podCopy)
 }
+
 EOF
 ```
 
