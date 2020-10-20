@@ -39,7 +39,8 @@
 
 ## Set up your personal environment
 
-Ensure that the script completes successfully, it should print `Set up complete`.
+### <walkthrough-notification-menu-icon></walkthrough-notification-menu-icon> Validate script
+1. Ensure that the script completes successfully, it should print `Set up complete`.
 
 ### <walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> Validate your environment
 1. Can you fetch Kubernetes namespaces?
@@ -92,11 +93,16 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
    - enabled 'Tech Preview' features
    - set up a local user credentials for a quick way to log in
 
-1. Wait for the install to complete. Run the following command and wait for all the pods to be ready or completed
+1. Run the following command
    ```bash
    watch -n 1 kubectl get pods -n $STRATOS_NAMESPACE
    ``` 
-   > Note - Press `CTRL + C` to exit this view
+
+1. Wait for all the pods to come up
+   - The `READY` column shows all containers have started e.g. 1/1, 2/2, etc
+   - The `STATUS` column shows all pods as `Running`
+
+1. Exist the `watch` command by entering `CTRL + C`
    
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Log in
 1. Open the Stratos URL in your local browser
@@ -141,9 +147,10 @@ In this step we will register and connect to a personal Kubernetes Cluster.
 1. Click `Register` in the bottom right
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Connect
+
 1. Check the `Connect to {{kube-endpoint-name}} now` box
 
-1. In the `Auth Type` drop down select `Service Account Token`
+1. In the `Connection Credentials` section change the `Auth Type` drop down to `Service Account Token`
 
 1. Copy in your service token into the text area below the drop down
    ```
@@ -187,12 +194,14 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
 1. Click on the `Install Chart` button towards the top right
 
-1. Add the following as the name
+1. Keep `{{kube-endpoint-name}}` as the Kubernetes cluster
+
+1. Add the following as the `Name`
    ```
    {{wordpress-name}}
    ```
 
-1. Add the following as the namespace
+1. Add the following as the `Namespace`
    ```
    {{wordpress-namespace}}
    ```
@@ -212,9 +221,11 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
 
 1. Click `Install`. You will be taken to the `Workload` page for your new WordPress.
 
-1. Wait for the Workload Pods to come up. To see these navigating to the `Pods` page of the Workload that's automatically been navigated to.
-   - Just like watching these pods come up in the CLI they should be marked as ready and have a positive status.
-   - This page will automatically update
+1. Wait for the Workload Pods to come up. To see these navigating to the `Pods` via the button in the side-subnav of the Workload that's automatically been navigated to.
+   - The `Ready` column shows all containers have started e.g. 1/1, 2/2, etc
+   - The `Status` column shows all pods as `Running`
+   > Note - This page will automatically update
+   > Note - This will take about 60 seconds
 
 1. Navigate to WordPress in a new browser tab
    ```
@@ -222,7 +233,7 @@ Artifact Hub is an online collection of Helm Repositories. By adding it as an En
    ```
    > Note: In Stratos we can see the port number in the `Workload`'s `Services` page
 
-1. Log in to WordPress by clicking on the `Log In` link in the `Meta` section at the bottom and entering the credentials below
+1. (Optional) Log in to WordPress by clicking on the `Log In` link in the `Meta` section at the bottom and entering the credentials below
    
    Username: `user`
 
@@ -252,7 +263,7 @@ Explore some of the new Kubernetes features, there's some suggestions below.
 
 1. Check that the Pods all have an acceptable `Status` in the `Pods` page.
 
-1. Find the `Node Port` of the `{{stratos-helm-name}}-ui-ext` service that exposes access to Stratos
+1. Find the `Node Port` of the `{{stratos-helm-name}}-ui-ext` service that exposes access to Stratos by clicking on the `Services` button in the sub-sidenav
 
 ## Explore Kubernetes Tech Preview Features
 
@@ -261,19 +272,21 @@ Explore some of the new Tech Preview Kubernetes features, there's some suggestio
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Configure and View the Kubernetes Dashboard
 1. Navigate to the Summary page of your Kubernetes by clicking on the `Kubernetes` button in the sidenav on the left
 
-1. Click on `Configure` in the `Kubernetes Dashboard` section
+1. Click on `Configure` in the `Kubernetes Dashboard` section in the centre of the page
 
 1. Click on `Install Dashboard` on the bottom right of the `Kubernetes Dashboard Installation` card
 
 1. Click on `Create Service Account` on the bottom right of the `Service Account` card
 
 1. Stratos will spin up the Kube Dashboard in a pod. We can see the status of this by 
-   1. Naviate to the `Kubernetes` `Pods` view.
-   1. Clicking the circle button in the lists header on the right to refresh the list
-   1. Filter the list by 
+   1. Navigating to the `Kubernetes` section by clicking on the sidenav
+   1. Clicking on the `Pods` sub-sidenav button
+   1. Clicking the circle button in the lists header on the right to refresh the list to refresh the list
+   1. Filter the list by adding the following
       ```
       dashboard
       ```
+   1. Finding the Pod with `Name` `kubernetes-dashboard-<random characters>`
 
 1. Go back to the summary page by clicking the `Kubernetes` button in the sidenav
 
@@ -298,9 +311,9 @@ Kubernetes analysis tools are a new feature which allows the execution of extern
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> View an Overview Graph
 The overview graph provides a way to see Kubernetes resources and how they connect to each other.
 
-1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
-
-1. Find the workload for WordPress, it should be named `{{wordpress-name}}`, and click on it
+1. If you've clicked away from the WordPress Workload page follow the steps below
+  1. Navigate to the Workloads list by clicking on the `Workloads` button in the sidenav on the left
+  1. Find the workload for WordPress, it should be named `{{wordpress-name}}`, and click on it
 
 1. Click on the `Overview` button in the left sub-sidenav
 
@@ -313,18 +326,22 @@ The Kube & Helm terminal provides a shell like experience with the Kube and Helm
 
 1. Navigate to the Summary page of your Kubernetes by clicking on the `Kubernetes` button in the sidenav on the left
 
-1. Click on `Open Terminal` in the button in the sub-header
+1. Click on `Open Terminal` in the button in the sub-header and wait for the command prompt
+
+   > Note - This may not be instant, please allow some time for Kubernetes to fetch the require image
+
+   > Note - The terminal will have the correct credentials to communicate with all registered and connected Kubernetes Clusters
 
 1. Type and execute the following to see Stratos's own pods
-   ```
-   kubectl get pod --namespace {{stratos-namespace}}
-   ```
+
+   `kubectl get pod -n {{stratos-namespace}}`
+
    > Note - See the `terminal-` pod that hosts the terminal
 
-1. Execute the following to see the Stratos's own chart
-   ```
-   helm list -A
-   ```
+1. Type and execute the following to see the Stratos's own chart
+
+   `helm list -A`
+
    > Note - See the Stratos and Wordpress installs
 
 1. Exit there terminal by navigating away from this page
@@ -361,15 +378,21 @@ You can view some of the existing Cloud Foundry functionality by following the s
 
 1. Enter the your credentials
 
-   Username: `{{seat}}-summitlabs@cloudfoundry.org`
+   Username:
+   ```
+   {{seat}}-summitlabs@cloudfoundry.org
+   ```
 
-   Password: `SummitLabs{{seat}}`
+   Password:
+   ```
+   SummitLabs{{seat}}
+   ```
 
 1. Click `Connect`
 
 
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Browse Applications 
-1. Click on the `Applications` button in the sidenav
+1. Click on the `Applications` button at the top of the sidenav
 
 1. Here you would see all applications in Spaces your user is a member of
 
@@ -378,7 +401,10 @@ You can view some of the existing Cloud Foundry functionality by following the s
 
 1. Click on `Public GitHub` 
 
-1. Select `{{cf-endpoint-name}}` as your Cloud Foundry, `cf-summit` as your organisation and `stratos-{{seat}}` as your space
+1. Select
+  - `{{cf-endpoint-name}}` as your Cloud Foundry
+  - `cf-summit` as your organisation 
+  - `stratos-{{seat}}` as your space
 
 1. Click `Next`
 
@@ -405,9 +431,8 @@ You can view some of the existing Cloud Foundry functionality by following the s
 1. Wait for the Deployment to complete 
    - The top of the log should contain an overlay stating `Deployed`
    - The below line should be shown at the end of the log
-     ```
-     #0   running   2020-10-19T14:35:03Z   0.0%   0 of 16M   0 of 64M   
-     ```
+
+     `#0   running   <current date>   0.0%   0 of 16M   0 of 64M`
 
 1. Click on `Go to App Summary` and explore the Application functionality provided by Stratos, including those in the sub-sidenav
 
