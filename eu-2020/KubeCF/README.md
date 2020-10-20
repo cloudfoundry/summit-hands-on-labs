@@ -575,7 +575,7 @@ spec:
 
 * Apply the yaml file using the following command
 
-        
+        kubectl apply -f 
 
 Apply the yaml, and watch the `eirini-secscanner` namespace, a pod should appear and go to running, our extension is up!
 
