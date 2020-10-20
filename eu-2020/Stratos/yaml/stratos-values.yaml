@@ -1,0 +1,6 @@
+console:
+  localAdminPassword: "password"
+  service:
+    type: "NodePort"
+    nodePort: 30891
+  techPreview: true
