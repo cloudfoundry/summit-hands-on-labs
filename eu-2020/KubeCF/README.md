@@ -176,12 +176,13 @@ In general, apps pushed into Cloud Foundry are ephermal and the data from the ap
 
 In this task, we will write an extension for Eirini with EiriniX. The extension is a security-oriented one. For example, we want to prevent from being pushed Eirini apps that doesn't pass a vulnerability scan.
 
-[trivy](https://github.com/aquasecurity/trivy#embed-in-dockerfile) is a perfect fit, and we will try to run it in an `InitContainer` before starting the Cloud Foundry Application, preventing it to run if it fails `trivy` validations.
+[trivy](https://github.com/aquasecurity/trivy#embed-in-dockerfile) is a perfect fit, and we will try to run it in an `InitContainer` before starting the `Eirini app`, preventing it to run if it fails `trivy` validations.
 
 ### Prepare Project folder
 
 * Make a new folder
 
+        cd ..
         mkdir extension
         cd extension
         go mod init github.com/$USER/eirini-secscanner
@@ -192,6 +193,8 @@ In this task, we will write an extension for Eirini with EiriniX. The extension 
 
 ### Prepare Code files
 
+In this task, we will creating two files `main.go` and `extension.go`.
+
 Before jumping into creating our `main.go` for the go package, let's focus on our extension logic. EiriniX does support different kind of extensions, which allows to interact with Eirini applications, or staging pods in different ways:
 
 - MutatingWebhooks -  by having an active component which patches Eirini apps before starting them
@@ -200,7 +203,7 @@ Before jumping into creating our `main.go` for the go package, let's focus on ou
 
 An Eirini App is represented by a ```StatefulSet```, which then it becomes a pod running in the Eirini namespace. 
 
-For our Security scanner (secscanner) makes sense to use a *MutatingWebhook*, we will try to patch the Eirini app pod and inject an `InitContainer` with [trivy](https://github.com/aquasecurity/trivy#embed-in-dockerfile) preventing to starting it in case has security vulnerability.
+For our Security scanner `trivy` (secscanner), it makes sense to use a *MutatingWebhook*, we will try to patch the Eirini app pod and inject an `InitContainer` which runs [trivy](https://github.com/aquasecurity/trivy#embed-in-dockerfile) preventing to start the `Eirini App pod` in case it has security vulnerabilitys.
 
 We have the following tasks ahead.
 
@@ -295,7 +298,7 @@ Note we have a bunch of arguments to our `Handle` method that receives structure
 -  ```ctx``` is the request context, that can be used for background operations. 
 - ```eiriniManager``` is EiriniX, it's an instance of the current execution. 
 - ```pod``` is the Pod that needs to be patched - in our case will be our Eirini App pod.
-- ```req``` is the raw admission request, might be useful for furhter inspection, but we won't use it in our case
+- ```req``` is the raw admission request, might be useful for further inspection, but we won't use it in our case
 
 We have added a bunch of code, let's go over it one by one:
 
@@ -321,7 +324,7 @@ We know now the correct image, so we are ready to tweak our container:
 
 ```
 secscanner := corev1.Container{
-	Name:            "secscanner",
+    Name:            "secscanner",
     Image:           image,
     Args:            []string{trivyInject(ext.Severity)},
     Command:         []string{"/bin/sh", "-c"},
@@ -441,6 +444,21 @@ First we collect options from the environment. This will allow us to tweak easil
 - `SERVICE_NAME` is the Kubernetes service name reserved to our extension. We will need a Kubernetes service resource created before starting our extension. It will be used by Kubernetes to contact our extension while mutating Eirini apps.
 - Next we construct the EiriniX manager, which will run our extension under the hood, and will create all the necessary boilerplate resources to talk to Kubernetes.
 
+```golang
+ext := eirinix.NewManager(eirinix.ManagerOptions{
+    	Namespace:           eiriniNsEnvVar,
+    	Host:                "0.0.0.0",
+    	Port:                int32(port),
+    	Logger:              zaplog,
+    	FilterEiriniApps:    &filter,
+        OperatorFingerprint: operatorFingerprint,
+    	ServiceName:         serviceNameEnvVar,
+    	WebhookNamespace:    webhookNsEnvVar,
+})
+
+ext.AddExtension(&Extension{Memory: os.Getenv("MEMORY"), Severity: severity})
+```
+
 * So, we are done creating our two files, `extension.go` and `main.go`. Now, let's convert it into a docker image.
 
 ### Dockerfile
@@ -489,9 +507,9 @@ At the end it should look more or less like in this [link](https://raw.githubuse
 
         kubectl get pod -n eirini-secscanner
 
-* Since we already have a Eirini app running. Let's restage it so that our extension inserts an init-container `secscanner`. 
+* Since we already have a Eirini app running. Let's restart it so that our extension inserts an init-container `secscanner` `trivy`.
 
-        cf restage python-flask-app
+        cf restart python-flask-app
 
 * Now, lets findout if our `secscanner` has passed successfully.
 
@@ -501,19 +519,32 @@ At the end it should look more or less like in this [link](https://raw.githubuse
 
 Now we can also play with the extension itself - as we saw already `trivy` takes a `--severity` parameter which sets the severity levels of the issues found, if the sevirity found matches with the one you selected, it will make the container to exit so the pod doesn't start.
 
-* Let's tweak our extension deployment. Change the severity to HIGH.
+* Let's tweak our extension deployment yaml. Change the severity to HIGH.
+
+```
+containers:
+- name: eirini-secscanner
+  ...
+  env:
+    ...
+    - name: SEVERITY
+      value: "CRITICAL" # Change it to "HIGH"
+```
+
+* Run the following command to tweak the extension deployment.
 
         kubectl apply -f https://raw.githubusercontent.com/rohitsakala/eirini-secscanner/main/contrib/kube_high.yaml
 
-* Lets restage the app again.
+* Lets restart the app again so the `InitContianer` secscanner is udpated.
 
-        cf restage python-flask-app
+        export CF_STARTUP_TIMEOUT=1
+        cf restart python-flask-app
 
-* Now, lets check our `Eirini pod`.
+* Now, lets findout if our `secscanner` has passed successfully.
 
-        kubectl get pods -n eirini. 
+        kubectl logs -l cloudfoundry.org/source_type=APP -n eirini -c secscanner
 
-As you can see, this time it fails since our source code is not *extremely* safe.
+As you can see, this time it finds out some issues and list them in a table. This means our source code is not *extremely* safe.
 
 Congratulations, you have successfully completed hands on lab. Your training for developer peace is completed. :wink:
 
