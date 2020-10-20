@@ -234,7 +234,7 @@ EOF
 
 Our extension needs a `Handle` method, so we can write and let's make it add a new init container through `Handle` method.
 
-```c
+```code
 cat<<EOF >> extension.go
 func (ext *Extension) Handle(
     ctx context.Context,
