@@ -211,35 +211,36 @@ So our extension will also have to retrieve the image of the Eirini app - and us
 ### Anatomy of an Extension
 
 [EiriniX Extensions](https://github.com/cloudfoundry-incubator/eirinix#write-your-extension) which are *MutatingWebhooks* are expected to provide a *Handle* method which receives a request from the Kubernetes API. The request contains
-the pod definition that we want to mutate, so our extension will start by defining a struct. Create a file `extension.go` with the following:
+the pod definition that we want to mutate, so our extension will start by defining a struct. Following command will create the `extension.go` file.
 
+        cat<<EOF > extension.go
         package main
 
+            import (
+                "context"
+                "errors"
+                "net/http"
 
-        import (
-            "context"
-            "errors"
-            "net/http"
+                eirinix "code.cloudfoundry.org/eirinix"
+                corev1 "k8s.io/api/core/v1"
+                "sigs.k8s.io/controller-runtime/pkg/webhook/admission"
+            )
 
-            eirinix "code.cloudfoundry.org/eirinix"
-            corev1 "k8s.io/api/core/v1"
-            "sigs.k8s.io/controller-runtime/pkg/webhook/admission"
-        )
-
-        type Extension struct{}
+            type Extension struct{}
+        EOF
 
 Our extension needs a `Handle` method, so we can write:
 
-```go
-func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
+        cat<<EOF > extension.go
+        func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
 
-	if pod == nil {
-		return admission.Errored(http.StatusBadRequest, errors.New("No pod could be decoded from the request"))
-  }
+            if pod == nil {
+                return admission.Errored(http.StatusBadRequest, errors.New("No pod could be decoded from the request"))
+            }
 
-	return eiriniManager.PatchFromPod(req, pod)
-}
-```
+            return eiriniManager.PatchFromPod(req, pod)
+        }
+        EOF
 
 Note we need to add a bunch of imports, as our new `Handle` method receives structures from other packages:
 
