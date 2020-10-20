@@ -186,9 +186,9 @@ In this task, we will write an extension for Eirini with EiriniX. The extension 
         cd extension
         go mod init github.com/$USER/eirini-secscanner
 
-* Fetch eirinix go package
+* Create go.mod packages with necessary 
 
-        go get -u code.cloudfoundry.org/eirinix@v0.3.1-0.20200908072226-2c03042398ea
+        go get code.cloudfoundry.org/eirinix@v0.3.1-0.20200908072226-2c03042398ea
 
 ### Prepare Code files
 
@@ -213,27 +213,27 @@ So our extension will also have to retrieve the image of the Eirini app - and us
 [EiriniX Extensions](https://github.com/cloudfoundry-incubator/eirinix#write-your-extension) which are *MutatingWebhooks* are expected to provide a *Handle* method which receives a request from the Kubernetes API. The request contains
 the pod definition that we want to mutate, so our extension will start by defining a struct. Following command will create the `extension.go` file.
 
-```golang
+```go
 cat<<EOF > extension.go
-    package main
+package main
 
-    import (
-        "context"
-        "errors"
-        "net/http"
+import (
+    "context"
+    "errors"
+    "net/http"
 
-        eirinix "code.cloudfoundry.org/eirinix"
-        corev1 "k8s.io/api/core/v1"
-        "sigs.k8s.io/controller-runtime/pkg/webhook/admission"
-    )
+    eirinix "code.cloudfoundry.org/eirinix"
+    corev1 "k8s.io/api/core/v1"
+    "sigs.k8s.io/controller-runtime/pkg/webhook/admission"
+)
 
-    type Extension struct{}
+type Extension struct{}
 EOF
 ```
 
 Our extension needs a `Handle` method, so we can write and let's make it add a new init container through `Handle` method.
 
-```golang
+```go
 cat<<EOF >> extension.go
 func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
 
