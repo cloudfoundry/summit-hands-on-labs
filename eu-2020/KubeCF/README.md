@@ -178,6 +178,10 @@ In this task, we will write an extension for Eirini with EiriniX. The extension 
 
 [trivy](https://github.com/aquasecurity/trivy#embed-in-dockerfile) is a perfect fit, and we will try to run it in an `InitContainer` before starting the Cloud Foundry Application, preventing it to run if it fails `trivy` validations.
 
+## Preparation
+
+Be sure you have an environment where you can build golang source code, see [here for golang installation](https://golang.org/doc/install), and check that your environment can compile the [go hello world program](https://golang.org/doc/tutorial/getting-started). Note the tutorial needs an environment with `Go >=1.14`.
+
 ### Setup go.mod for our project
 
 First of all, create a new folder, and init it with your project path:
