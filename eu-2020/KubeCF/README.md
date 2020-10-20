@@ -234,35 +234,35 @@ EOF
 
 Our extension needs a `Handle` method, so we can write and let's make it add a new init container through `Handle` method.
 
-```golang
-cat<<EOF >> extension.go
-func (ext *Extension) Handle(
-    ctx context.Context,
-    eiriniManager eirinix.Manager,
-    pod *corev1.Pod, 
-    req admission.Request) admission.Response {
-	
-    if pod == nil {
-		return admission.Errored(http.StatusBadRequest, errors.New("No pod could be decoded from the request"))
-    }
-    podCopy := pod.DeepCopy()
+        ```golang
+        cat<<EOF >> extension.go
+        func (ext *Extension) Handle(
+            ctx context.Context,
+            eiriniManager eirinix.Manager,
+            pod *corev1.Pod, 
+            req admission.Request) admission.Response {
+            
+            if pod == nil {
+                return admission.Errored(http.StatusBadRequest, errors.New("No pod could be decoded from the request"))
+            }
+            podCopy := pod.DeepCopy()
 
-    secscanner := corev1.Container{
-	    Name:            "secscanner",
-	    Image:           "busybox",
-	    Args:            []string{"echo 'fancy'"},
-	    Command:         []string{"/bin/sh", "-c"},
-	    ImagePullPolicy: corev1.PullAlways,
-	    Env:             []corev1.EnvVar{},
-    }
+            secscanner := corev1.Container{
+                Name:            "secscanner",
+                Image:           "busybox",
+                Args:            []string{"echo 'fancy'"},
+                Command:         []string{"/bin/sh", "-c"},
+                ImagePullPolicy: corev1.PullAlways,
+                Env:             []corev1.EnvVar{},
+            }
 
-    podCopy.Spec.InitContainers = append(podCopy.Spec.InitContainers, secscanner)
+            podCopy.Spec.InitContainers = append(podCopy.Spec.InitContainers, secscanner)
 
-    return eiriniManager.PatchFromPod(req, podCopy)
-}
+            return eiriniManager.PatchFromPod(req, podCopy)
+        }
 
-EOF
-```
+        EOF
+        ```
 
 Note we need to add a bunch of imports, as our new `Handle` method receives structures from other packages:
 
@@ -376,21 +376,21 @@ Here we just map the settings that we collected in environment variables, that w
 
 * At this point we can write up a Dockerfile to build our extension, it just needs to build a go binary and offer it as an entrypoint. Create a file `Dockerfile` with the following content:
 
-```Dockerfile
-cat<<EOF >> Dockerfile
-ARG BASE_IMAGE=opensuse/leap
+        ```Dockerfile
+        cat<<EOF >> Dockerfile
+        ARG BASE_IMAGE=opensuse/leap
 
-FROM golang:1.14 as build
-ADD . /eirini-secscanner
-WORKDIR /eirini-secscanner
-RUN CGO_ENABLED=0 go build -o eirini-secscanner
-RUN chmod +x eirini-secscanner
+        FROM golang:1.14 as build
+        ADD . /eirini-secscanner
+        WORKDIR /eirini-secscanner
+        RUN CGO_ENABLED=0 go build -o eirini-secscanner
+        RUN chmod +x eirini-secscanner
 
-FROM opensuse/leap
-COPY --from=build /eirini-secscanner/eirini-secscanner /bin/
-ENTRYPOINT ["/bin/eirini-secscanner"]
-EOF
-```
+        FROM opensuse/leap
+        COPY --from=build /eirini-secscanner/eirini-secscanner /bin/
+        ENTRYPOINT ["/bin/eirini-secscanner"]
+        EOF
+        ```
 
 * Build the docker image.
 
