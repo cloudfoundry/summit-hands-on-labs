@@ -213,7 +213,8 @@ So our extension will also have to retrieve the image of the Eirini app - and us
 [EiriniX Extensions](https://github.com/cloudfoundry-incubator/eirinix#write-your-extension) which are *MutatingWebhooks* are expected to provide a *Handle* method which receives a request from the Kubernetes API. The request contains
 the pod definition that we want to mutate, so our extension will start by defining a struct. Following command will create the `extension.go` file.
 
-```go
+```code
+
 cat<<EOF > extension.go
 package main
 
@@ -233,7 +234,7 @@ EOF
 
 Our extension needs a `Handle` method, so we can write and let's make it add a new init container through `Handle` method.
 
-```go
+```code
 cat<<EOF >> extension.go
 func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
 
