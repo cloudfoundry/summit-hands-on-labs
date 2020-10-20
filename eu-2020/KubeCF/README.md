@@ -307,17 +307,15 @@ type Extension struct{}
 
 Our extension needs a `Handle` method, so we can write:
 
-```golang
-func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
+    func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
 
-	if pod == nil {
-		return admission.Errored(http.StatusBadRequest, errors.New("No pod could be decoded from the request"))
-  }
+	    if pod == nil {
+		    return admission.Errored(http.StatusBadRequest, errors.New("No pod could be decoded from the request"))
+        }
 
-	return eiriniManager.PatchFromPod(req, pod)
-}
+	    return eiriniManager.PatchFromPod(req, pod)
+    }
 
-```
 
 Note we need to add a bunch of imports, as our new `Handle` method receives structures from other packages:
 
