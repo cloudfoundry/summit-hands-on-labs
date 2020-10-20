@@ -208,54 +208,33 @@ Since we want [trivy](https://github.com/aquasecurity/trivy#embed-in-dockerfile)
 
 So our extension will also have to retrieve the image of the Eirini app - and use that one to run the security scanner.
 
-### Anatomy of an Extension
+#### Anatomy of an Extension
 
 [EiriniX Extensions](https://github.com/cloudfoundry-incubator/eirinix#write-your-extension) which are *MutatingWebhooks* are expected to provide a *Handle* method which receives a request from the Kubernetes API. The request contains
 the pod definition that we want to mutate, so our extension will start by defining a struct. Following command will create the `extension.go` file.
 
-        cat<<EOF > extension.go
-        package main
-
-            import (
-                "context"
-                "errors"
-                "net/http"
-
-                eirinix "code.cloudfoundry.org/eirinix"
-                corev1 "k8s.io/api/core/v1"
-                "sigs.k8s.io/controller-runtime/pkg/webhook/admission"
-            )
-
-            type Extension struct{}
-        EOF
-
-Our extension needs a `Handle` method, so we can write:
-
 ```golang
 cat<<EOF > extension.go
-func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
+    package main
 
-	if pod == nil {
-		return admission.Errored(http.StatusBadRequest, errors.New("No pod could be decoded from the request"))
-    }
+    import (
+        "context"
+        "errors"
+        "net/http"
 
-	return eiriniManager.PatchFromPod(req, pod)
-}
+        eirinix "code.cloudfoundry.org/eirinix"
+        corev1 "k8s.io/api/core/v1"
+        "sigs.k8s.io/controller-runtime/pkg/webhook/admission"
+    )
+
+    type Extension struct{}
 EOF
 ```
 
-Note we need to add a bunch of imports, as our new `Handle` method receives structures from other packages:
-
--  ```ctx``` is the request context, that can be used for background operations. 
-- ```eiriniManager``` is EiriniX, it's an instance of the current execution. 
-- ```pod``` is the Pod that needs to be patched - in our case will be our Eirini Extension
-- ```req``` is the raw admission request, might be useful for furhter inspection, but we won't use it in our case
-- ```eiriniManager.PatchFromPod(req, pod)``` is computing the diff between the raw request and the pod. It's used to return the actual difference we are introducing in the pod
-
-As it stands our extension is not much useful, let's make it add a new init container:
+Our extension needs a `Handle` method, so we can write and let's make it add a new init container through `Handle` method.
 
 ```golang
-
+cat<<EOF >> extension.go
 func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager, pod *corev1.Pod, req admission.Request) admission.Response {
 
 	if pod == nil {
@@ -276,7 +255,15 @@ func (ext *Extension) Handle(ctx context.Context, eiriniManager eirinix.Manager,
 
 	return eiriniManager.PatchFromPod(req, podCopy)
 }
+EOF
 ```
+
+Note we need to add a bunch of imports, as our new `Handle` method receives structures from other packages:
+
+-  ```ctx``` is the request context, that can be used for background operations. 
+- ```eiriniManager``` is EiriniX, it's an instance of the current execution. 
+- ```pod``` is the Pod that needs to be patched - in our case will be our Eirini Extension
+- ```req``` is the raw admission request, might be useful for furhter inspection, but we won't use it in our case
 
 We have added a bunch of things, let's go over it one by one:
 
@@ -285,12 +272,12 @@ We have added a bunch of things, let's go over it one by one:
 - ```podCopy.Spec.InitContainers = append(podCopy.Spec.InitContainers, secscanner)``` is appending the InitContainer to the list of the containers in ```podCopy```
 - ```return eiriniManager.PatchFromPod(req, podCopy)``` returns the diff patch from the request to the podCopy
 
-
-### Write our "main.go"
+#### Write our "main.go"
 
 Let's now write a short `main.go` which just executes our extension:
 
 ```golang
+cat<<EOF >> main.go
 package main
 
 import (
@@ -360,20 +347,20 @@ First we collect options from the environment. This will allow us to tweak easil
 - `PORT` is the listening port where our extension is listening to
 - `SERVICE_NAME` is the Kubernetes service name reserved to our extension. We will need a Kubernetes service resource created before starting our extension. It will be used by Kubernetes to contact our extension while mutating Eirini apps.
 
-Mext we construct the EiriniX manager, which will run our extension under the hood, and will create all the necessary boilerplate resources to talk to Kubernetes:
+Next we construct the EiriniX manager, which will run our extension under the hood, and will create all the necessary boilerplate resources to talk to Kubernetes:
 ```golang
 
 filter := true
 
-	ext := eirinix.NewManager(eirinix.ManagerOptions{
-		Namespace:           eiriniNsEnvVar,
-		Host:                "0.0.0.0",
-		Port:                int32(port),
-		FilterEiriniApps:    &filter,
-		OperatorFingerprint: operatorFingerprint,
-		ServiceName:         serviceNameEnvVar,
-		WebhookNamespace:    webhookNsEnvVar,
-	})
+ext := eirinix.NewManager(eirinix.ManagerOptions{
+	Namespace:           eiriniNsEnvVar,
+	Host:                "0.0.0.0",
+	Port:                int32(port),
+	FilterEiriniApps:    &filter,
+	OperatorFingerprint: operatorFingerprint,
+	ServiceName:         serviceNameEnvVar,
+	WebhookNamespace:    webhookNsEnvVar,
+})
 ```
 
 Here we just map the settings that we collected in environment variables, that we hand over to EiriniX. The ```OperatorFingerprint```  and ```FilterEiriniApps``` are used to set a fingerprint for our runtime and for filtering eirini apps only respectively.
@@ -381,9 +368,10 @@ Here we just map the settings that we collected in environment variables, that w
 
 ### Dockerfile
 
-At this point we can write up a Dockerfile to build our extension, it just needs to build a go binary and offer it as an entrypoint. Create a file `Dockerfile` with the following content:
+* At this point we can write up a Dockerfile to build our extension, it just needs to build a go binary and offer it as an entrypoint. Create a file `Dockerfile` with the following content:
 
 ```Dockerfile
+cat<<EOF >> Dockerfile
 ARG BASE_IMAGE=opensuse/leap
 
 FROM golang:1.14 as build
@@ -395,28 +383,16 @@ RUN chmod +x eirini-secscanner
 FROM $BASE_IMAGE
 COPY --from=build /eirini-secscanner/eirini-secscanner /bin/
 ENTRYPOINT ["/bin/eirini-secscanner"]
+EOF
 ```
 
-## Commit the code
+* Build the docker image.
 
-Time to try things out!
+        docker build . -t gcr.io/summit-labs/eirini-secscanner-$USER
 
-Build the code with `go build -o eirini-secscanner` to see if you have any error.
+* Push the docker image.
 
-Commit and push the code done so far to github
-
-```bash
-$ git add go.mod go.sum extension.go main.go Dockerfile
-$ git commit -m "Inject security scanner"
-$ git push
-```
-a workflow will trigger automatically, which can be inspected in the "Actions" tab of the repository. 
-Now, we should have a docker image, and we are ready to start our extension!
-
-
-### Make the Docker image public
-
-After GH Action has been executed and the docker image of your extension has been pushed, change its permission setting to public in the [package settings page](https://docs.github.com/en/free-pro-team@latest/packages/managing-container-images-with-github-container-registry/configuring-access-control-and-visibility-for-container-images#configuring-visibility-of-container-images-for-your-personal-account)
+        docker push gcr.io/summit-labs/eirini-secscanner-$USER
 
 ## Let's test it!
 
@@ -583,7 +559,7 @@ spec:
       containers:
         - name: eirini-secscanner
           imagePullPolicy: Always
-          image: "ghcr.io/[USER]/eirini-secscanner:latest"
+          image: "ghcr.io/mudler/eirini-secscanner:latest"
           env:
             - name: EIRINI_NAMESPACE
               value: "eirini"
@@ -597,7 +573,9 @@ spec:
               value: "CRITICAL"
 ```
 
-Notes: replace `"ghcr.io/[USER]/eirini-secscanner:latest"` with your image, and then apply the yaml with `kubectl`. Our component will be now on the `eirini-secscanner` namespace, intercepting Eirini Apps.
+* Apply the yaml file using the following command
+
+        
 
 Apply the yaml, and watch the `eirini-secscanner` namespace, a pod should appear and go to running, our extension is up!
 
