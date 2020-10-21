@@ -8,3 +8,6 @@
 
 ## [Stratos](https://github.com/cloudfoundry/summit-hands-on-labs/tree/master/eu-2020/Stratos)
 Please visit the Stratos [README](https://github.com/cloudfoundry/summit-hands-on-labs/tree/master/eu-2020/Stratos)
+
+## [GitHub Actions](https://github.com/cloudfoundry/summit-hands-on-labs/tree/master/eu-2020/GitHub-Actions)
+Please visit the GitHub Actions [README](https://github.com/cloudfoundry/summit-hands-on-labs/tree/master/eu-2020/GitHub-Actions)
