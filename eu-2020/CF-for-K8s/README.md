@@ -242,7 +242,7 @@ To access the app from an external network, you still need a mechanism to connec
 
 The gateway is responsible for directing the traffic to the apps or CF API. The domain you setup above is fed into the gateway as the allowed hostnames.
 
-    kubectl describe gateway/ingressgateway -n cf-system
+    kubectl describe gateway/istio-ingressgateway -n cf-system
 
 ## Building the image
 As you noticed, cf-for-k8s builds an **OCI compliant image** from your source code. Let's inspect the pod responsible for creating the app image.
@@ -274,7 +274,7 @@ Apps need a root file system to run. A stack provides the buildpack lifecycle wi
 
     kubectl get clusterstacks -n cf-workloads-staging
 
-You will `cflinuxfs3-stack` is the default stack used in cf-for-k8s.
+You will see that the `bionic-stack` is the default stack used in cf-for-k8s.
 
     kubectl describe clusterstacks/bionic-stack -n cf-workloads-staging | grep Spec -A 6
 
