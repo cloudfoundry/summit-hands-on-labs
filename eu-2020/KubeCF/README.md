@@ -107,7 +107,7 @@ If you want to re-install, delete the app and retry the section.
 
 ## EiriniX Persi
 
-In general, apps pushed into Cloud Foundry are ephermal and the data from the apps is not persisted. In any case, you would like to have your data persisted, you need to use the EiriniX Persi extension.
+In general, apps pushed into Cloud Foundry are ephermal and the data from the apps is not persisted. In any case, you would like to have your data persisted, you need to use the EiriniX Persi extension. In simple words, eirini extensions (EiriniX) are used modify the `Eirini` app pods according to your usecase. In our current case, we want our `Eirini` apps to have access to a persistent storage volume.
 
 * A volume is needed where you can store the output from your application. In Cloud Foundry, service brokers are used to create services which provide storage capacity. So, lets create a service broker.
 
