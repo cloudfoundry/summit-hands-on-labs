@@ -102,7 +102,7 @@ In this step we will find the Stratos Helm Chart via the Stratos Helm Repo, inst
    - The **READY** column shows all containers have started e.g. 1/1, 2/2, etc
    - The **STATUS** column shows all pods as **Running**
 
-1. Exist the **watch** command by entering **CTRL + C**
+1. Exit the **watch** command by entering **CTRL + C**
    
 ### <walkthrough-web-preview-icon></walkthrough-web-preview-icon> Log in
 1. Open the Stratos URL in your local browser
