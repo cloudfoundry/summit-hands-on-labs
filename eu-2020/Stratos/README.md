@@ -31,7 +31,7 @@ In this step we will gather your lab credentials and bring up your Google Cloud 
 
 ### Receive your Google Credentials
 1. Open the following Google Sheet [https://docs.google.com/spreadsheets/d/1AJb0UiM44YpX1okJMTcwuhlxso_GpqOGGuWww5Xv460/edit#gid=0](https://docs.google.com/spreadsheets/d/1AJb0UiM44YpX1okJMTcwuhlxso_GpqOGGuWww5Xv460/edit#gid=0)
-1. Starting from **row 20** assign yourself credentials by placing your mark in the **Stratos** column
+1. Starting from **row 30** assign yourself credentials by placing your mark in the **Stratos** column
    - These will be used to access Google Cloud Shell and it's resources
 
 ### Start Google Cloud Shell 
