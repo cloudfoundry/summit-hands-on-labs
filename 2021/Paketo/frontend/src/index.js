@@ -5,7 +5,7 @@ import Root from './root';
 import Store from './store';
 import reportWebVitals from './reportWebVitals';
 
-const store = new Store({ host: "http://BACKEND_HOST" });
+const store = new Store({ host: `https://${document.domain}` });
 
 ReactDOM.render(
   <React.StrictMode>
