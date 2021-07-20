@@ -34,9 +34,9 @@ Students should have a basic understanding of Docker, Dockerfiles, and container
    ```
 
 1. Find the internal IP for the backend application
-  ```
-  docker network inspect bridge
-  ```
+   ```
+   docker network inspect bridge
+   ```
 
 #### Building and running the frontend
 1. Build the frontend application
