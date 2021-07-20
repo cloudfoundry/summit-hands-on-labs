@@ -4,6 +4,14 @@
 
 ## Introduction
 
+Are you tired of updating your application dependencies in your Dockerfiles?
+Would you like to try buildpacks, but you don’t know where to start? In this
+session, we will demonstrate how you can move your application from a
+Dockerfile to buildpacks. Once we move our application onto buildpacks, we’ll
+show how you can keep your application dependencies up-to-date. We’ll cover the
+details of what the buildpacks are doing, and what that means you can stop
+doing.
+
 ### Target Audience
 
 Developers that a familiar with Docker and Dockerfiles, but interested in
@@ -93,9 +101,3 @@ Students should have a basic understanding of Docker, Dockerfiles, and container
    ```
    docker run -it -p 8080:3000 --env PORT=3000 --env BACKEND_HOST=<backend-internal-ip>:3000 frontend
    ```
-
-## Review
-
-## Beyond the Lab
-
----
