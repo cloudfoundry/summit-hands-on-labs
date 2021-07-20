@@ -16,4 +16,6 @@ doing.
 * [@ryanmoran](https://github.com/ryanmoran)
 * [@andymoe](https://github.com/andymoe)
 
+[![Open in Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/editor?cloudshell_image=gcr.io/summit-labs/paketo:latest&cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fryanmoran%2Fsummit-hands-on-labs&cloudshell_working_dir=2021%2FPaketo&cloudshell_tutorial=README.md)
+
 ## [Stark & Wayne TBD]
