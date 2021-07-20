@@ -22,11 +22,18 @@ Students should have a basic understanding of Docker, Dockerfiles, and container
 
 ### Build with Docker
 
-#### Building and running the backend
+#### Building the containers
 1. Build the backend application
    ```
    docker build -t backend backend/
    ```
+
+1. Build the frontend application
+   ```
+   docker build -t frontend frontend/
+   ```
+
+#### Running the containers
 
 1. Run the backend application
    ```
@@ -38,16 +45,11 @@ Students should have a basic understanding of Docker, Dockerfiles, and container
    docker network inspect bridge
    ```
 
-#### Building and running the frontend
-1. Build the frontend application
-   ```
-   docker build -t frontend frontend/
-   ```
-
 1. Run the frontend application
    ```
    docker run -it -p 8080:3000 --env BACKEND_HOST=<backend-internal-ip>:3000 frontend
    ```
+
 
 ### Build with Paketo Cloud Native Buildpacks
 
@@ -80,6 +82,11 @@ Students should have a basic understanding of Docker, Dockerfiles, and container
      --buildpack paketo-buildpacks/node-run-script@0.1.0 \
      --buildpack paketo-buildpacks/nginx@0.3.1 \
      --path frontend/
+   ```
+
+1. Find the internal IP for the backend application
+   ```
+   docker network inspect bridge
    ```
 
 1. Run the frontend application
