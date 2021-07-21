@@ -57,14 +57,14 @@ RUN wget "https://nginx.org/download/nginx-${nginx_version}.tar.gz" \
 ENV PATH "/usr/local/nginx/sbin:${PATH}"
 
 # Setup user, home, and app
-RUN useradd -ms /bin/bash vcap
+RUN useradd -ms /bin/bash nginxuser
 WORKDIR /workspace
 COPY --from=builder /tmp/app/build /workspace/build
 COPY --from=builder /tmp/app/nginx.conf /workspace/nginx.conf
 COPY --from=builder /tmp/app/mime.types /workspace/mime.types
 COPY --from=builder /tmp/app/run.sh /workspace/run.sh
-RUN chown -R vcap:vcap /workspace
+RUN chown -R nginxuser:nginxuser /workspace
 
-USER vcap:vcap
+USER nginxuser:nginxuser
 EXPOSE 3000
 ENTRYPOINT [ "/workspace/run.sh" ]

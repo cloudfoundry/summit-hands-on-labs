@@ -55,7 +55,7 @@ Students should have a basic understanding of Docker, Dockerfiles, and container
 
 1. Run the frontend application
    ```
-   docker run -it -p 8080:3000 --env BACKEND_HOST=<backend-internal-ip>:3000 frontend
+   docker run -it -p 8080:3000 --env BACKEND_HOST=http://<backend-internal-ip>:3000 frontend
    ```
 
 
